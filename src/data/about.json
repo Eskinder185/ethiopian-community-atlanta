@@ -1,0 +1,74 @@
+{
+  "hero": {
+    "eyebrow": "About ECAA",
+    "title": "About ECAA",
+    "description": "The Ethiopian Community Association in Atlanta brings community members together through programs, events, and shared support. TODO: Add verified organization overview."
+  },
+  "missionVision": {
+    "id": "mission-vision",
+    "eyebrow": "Purpose",
+    "title": "Mission & Vision",
+    "intro": "ECAA is guided by a commitment to building intergenerational connections and strengthening community resilience.",
+    "cards": [
+      {
+        "title": "Mission",
+        "body": "TODO: Add verified ECAA mission statement."
+      },
+      {
+        "title": "Vision",
+        "body": "TODO: Add verified ECAA vision statement."
+      },
+      {
+        "title": "Values",
+        "body": "TODO: Add verified core values."
+      }
+    ]
+  },
+  "history": {
+    "id": "history",
+    "eyebrow": "Our story",
+    "title": "History",
+    "intro": "TODO: Add verified founding story and historical milestones for ECAA in Atlanta.",
+    "highlights": [
+      "TODO: Add verified founding year or era",
+      "TODO: Add verified milestone or community moment",
+      "TODO: Add verified growth or community impact highlight"
+    ]
+  },
+  "howItWorks": {
+    "id": "how-ecaa-works",
+    "eyebrow": "Community",
+    "title": "How ECAA Works",
+    "intro": "TODO: Add verified overview of how ECAA serves members and the broader community.",
+    "items": [
+      {
+        "id": "membership-community",
+        "question": "How do members participate?",
+        "answer": "TODO: Add verified explanation of member participation."
+      },
+      {
+        "id": "programs-events",
+        "question": "How are programs and events organized?",
+        "answer": "TODO: Add verified explanation of programs and events."
+      },
+      {
+        "id": "governance",
+        "question": "How is ECAA governed?",
+        "answer": "TODO: Add verified explanation of governance and volunteer leadership."
+      },
+      {
+        "id": "community-support",
+        "question": "How does ECAA support the community?",
+        "answer": "TODO: Add verified explanation of community support services."
+      }
+    ]
+  },
+  "leadershipStructure": {
+    "id": "leadership-structure",
+    "eyebrow": "Governance",
+    "title": "Leadership Structure",
+    "intro": "TODO: Add verified overview of ECAA leadership, committees, and how volunteers guide the organization.",
+    "linkLabel": "Meet our leadership",
+    "linkTo": "/leadership"
+  }
+}

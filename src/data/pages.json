@@ -1,0 +1,87 @@
+{
+  "home": {
+    "title": "Home",
+    "description": "Welcome to the Ethiopian Community Association in Atlanta."
+  },
+  "about": {
+    "title": "About ECAA",
+    "description": "Our history, mission, and role in the Atlanta Ethiopian community.",
+    "todos": [
+      "Add organization history and founding story",
+      "Add mission, vision, and values",
+      "Add community impact highlights"
+    ]
+  },
+  "programs": {
+    "title": "Programs & Services",
+    "description": "Programs and services for families, youth, older adults, and the broader community.",
+    "todos": [
+      "List current programs and services",
+      "Add program descriptions and who each serves",
+      "Add registration or contact details per program"
+    ]
+  },
+  "membership": {
+    "title": "Membership",
+    "description": "Join ECAA and stay connected with the Ethiopian community in Atlanta.",
+    "todos": [
+      "Add membership benefits and eligibility",
+      "Add membership tiers or fees if applicable",
+      "Add renewal process details"
+    ]
+  },
+  "events": {
+    "title": "Events & News",
+    "description": "Upcoming events, community news, and announcements.",
+    "todos": [
+      "Add upcoming events calendar",
+      "Add recent news and announcements",
+      "Add event registration links where applicable"
+    ]
+  },
+  "leadership": {
+    "title": "Leadership",
+    "description": "Board members, officers, and volunteers who guide ECAA.",
+    "todos": [
+      "Add board and officer profiles",
+      "Add photos and short bios",
+      "Add committee structure if applicable"
+    ]
+  },
+  "documents": {
+    "title": "Documents",
+    "description": "Forms, bylaws, policies, and other resources.",
+    "todos": [
+      "Add downloadable forms and documents",
+      "Add bylaws and governance documents",
+      "Organize documents by category"
+    ]
+  },
+  "media": {
+    "title": "Media",
+    "description": "Photos, videos, and stories from the ECAA community.",
+    "todos": [
+      "Add photo galleries",
+      "Add video links or embeds",
+      "Add press coverage or community stories"
+    ]
+  },
+  "support": {
+    "title": "Support ECAA",
+    "description": "Donate, volunteer, or partner with ECAA to strengthen our community.",
+    "todos": [
+      "Add donation options and instructions",
+      "Add volunteer opportunities",
+      "Add sponsorship or partnership information"
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Reach ECAA with questions, ideas, or partnership opportunities.",
+    "todos": [
+      "Add office address and hours",
+      "Add phone number and email",
+      "Add contact form or preferred contact method"
+    ]
+  }
+}

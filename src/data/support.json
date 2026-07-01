@@ -1,0 +1,61 @@
+{
+  "hero": {
+    "eyebrow": "Give & get involved",
+    "title": "Support ECAA",
+    "description": "Your support helps ECAA serve the Ethiopian community in Atlanta through programs, events, and community resources. TODO: Add verified support impact statement."
+  },
+  "sections": [
+    {
+      "id": "donate",
+      "title": "Donate",
+      "description": "TODO: Add verified donation overview and how contributions support ECAA programs.",
+      "ctaLabel": "Donate to ECAA",
+      "ctaUrl": "TODO: Add verified donation URL",
+      "highlights": [
+        "TODO: Add verified donation method or platform",
+        "TODO: Add verified tax or receipt information if applicable",
+        "TODO: Add verified example of what donations support"
+      ],
+      "accent": "green"
+    },
+    {
+      "id": "fundraising",
+      "title": "Fundraising",
+      "description": "TODO: Add verified fundraising initiatives and how the community can participate.",
+      "ctaLabel": "Learn about fundraising",
+      "ctaUrl": "TODO: Add verified fundraising URL",
+      "highlights": [
+        "TODO: Add verified current or annual fundraising campaign",
+        "TODO: Add verified event or drive details",
+        "TODO: Add verified contact for fundraising questions"
+      ],
+      "accent": "gold"
+    },
+    {
+      "id": "sponsorship",
+      "title": "Sponsorship",
+      "description": "TODO: Add verified sponsorship opportunities for businesses and community partners.",
+      "ctaLabel": "Explore sponsorship",
+      "ctaUrl": "TODO: Add verified sponsorship URL",
+      "highlights": [
+        "TODO: Add verified sponsorship levels or packages",
+        "TODO: Add verified partner benefits",
+        "TODO: Add verified contact for sponsorship inquiries"
+      ],
+      "accent": "red"
+    },
+    {
+      "id": "volunteer",
+      "title": "Volunteer",
+      "description": "TODO: Add verified volunteer opportunities and how to get involved.",
+      "ctaLabel": "Volunteer with ECAA",
+      "ctaUrl": "TODO: Add verified volunteer signup URL",
+      "highlights": [
+        "TODO: Add verified volunteer roles",
+        "TODO: Add verified time commitment or expectations",
+        "TODO: Add verified contact for volunteer coordination"
+      ],
+      "accent": "cream"
+    }
+  ]
+}

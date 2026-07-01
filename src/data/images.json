@@ -1,0 +1,23 @@
+{
+  "galleries": [
+    {
+      "id": "sample-gallery",
+      "title": "TODO: Gallery title",
+      "description": "TODO: Add verified gallery description.",
+      "published": false,
+      "images": []
+    }
+  ],
+  "images": [
+    {
+      "id": "sample-image",
+      "title": "TODO: Image title",
+      "description": "TODO: Add verified image description.",
+      "src": "",
+      "alt": "TODO: Describe the image for accessibility",
+      "galleryId": "sample-gallery",
+      "date": "TODO: YYYY-MM-DD",
+      "published": false
+    }
+  ]
+}

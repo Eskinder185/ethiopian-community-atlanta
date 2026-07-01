@@ -1,0 +1,37 @@
+{
+  "colors": {
+    "green": {
+      "role": "Trust, community, growth",
+      "primary": "ecaa-green-900",
+      "light": "ecaa-green-50"
+    },
+    "gold": {
+      "role": "Ethiopian cultural warmth",
+      "primary": "ecaa-gold-500",
+      "light": "ecaa-gold-50"
+    },
+    "red": {
+      "role": "Energy and identity (accent)",
+      "primary": "ecaa-red-500",
+      "light": "ecaa-red-50"
+    },
+    "surfaces": {
+      "cream": "ecaa-cream",
+      "white": "ecaa-white"
+    },
+    "text": {
+      "default": "ecaa-ink",
+      "muted": "ecaa-ink-muted",
+      "subtle": "ecaa-ink-subtle"
+    }
+  },
+  "utilities": {
+    "layout": ["page-container", "page-container-wide", "section-spacing", "section-spacing-sm"],
+    "typography": ["text-eyebrow", "text-lead", "text-body", "heading-display", "heading-page", "heading-section"],
+    "surfaces": ["surface-cream", "surface-white", "surface-muted"],
+    "cards": ["ecaa-card", "ecaa-card-hover"],
+    "buttons": ["btn-primary", "btn-secondary", "btn-accent", "btn-ghost"],
+    "badges": ["ecaa-badge-green", "ecaa-badge-gold", "ecaa-badge-red", "ecaa-badge-neutral"],
+    "grids": ["grid-cards", "grid-cards-2"]
+  }
+}

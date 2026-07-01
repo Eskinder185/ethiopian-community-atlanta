@@ -1,0 +1,59 @@
+{
+  "categories": [
+    {
+      "id": "community-support",
+      "title": "Community Support",
+      "description": "TODO: Add verified description for Community Support programs.",
+      "summary": "TODO: Add a short summary for preview cards.",
+      "link": "/programs#community-support",
+      "published": true,
+      "programs": []
+    },
+    {
+      "id": "cultural-programs",
+      "title": "Cultural Programs",
+      "description": "TODO: Add verified description for Cultural Programs.",
+      "summary": "TODO: Add a short summary for preview cards.",
+      "link": "/programs#cultural-programs",
+      "published": true,
+      "programs": []
+    },
+    {
+      "id": "youth-education",
+      "title": "Youth & Education",
+      "description": "TODO: Add verified description for Youth & Education programs.",
+      "summary": "TODO: Add a short summary for preview cards.",
+      "link": "/programs#youth-education",
+      "published": true,
+      "programs": []
+    },
+    {
+      "id": "health-sports",
+      "title": "Health & Sports",
+      "description": "TODO: Add verified description for Health & Sports programs.",
+      "summary": "TODO: Add a short summary for preview cards.",
+      "link": "/programs#health-sports",
+      "published": true,
+      "programs": []
+    },
+    {
+      "id": "edir",
+      "title": "EDIR",
+      "description": "TODO: Add verified description for EDIR programs and services.",
+      "summary": "TODO: Add a short summary for preview cards.",
+      "link": "/programs#edir",
+      "published": true,
+      "programs": []
+    }
+  ],
+  "sampleProgram": {
+    "id": "sample-program",
+    "title": "TODO: Program name",
+    "categoryId": "community-support",
+    "description": "TODO: Add verified program description.",
+    "summary": "TODO: Add a short summary for cards.",
+    "contact": "TODO: Add contact person or email if public",
+    "link": "",
+    "published": false
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "videos": [
+    {
+      "id": "sample-video",
+      "title": "TODO: Video title",
+      "description": "TODO: Add verified video description.",
+      "embedUrl": "TODO: Add embed URL",
+      "thumbnailUrl": "",
+      "thumbnailAlt": "TODO: Describe the video thumbnail",
+      "provider": "TODO: youtube | vimeo | other",
+      "date": "TODO: YYYY-MM-DD",
+      "published": false
+    }
+  ]
+}

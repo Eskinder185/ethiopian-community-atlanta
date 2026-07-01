@@ -1,0 +1,15 @@
+{
+  "forms": [
+    {
+      "id": "membership-registration",
+      "title": "ECAA Registration Form",
+      "description": "Complete the official ECAA membership registration form online. The form opens in a new tab.",
+      "url": "https://form.jotform.com/211111215669043",
+      "provider": "Jotform",
+      "category": "membership",
+      "recommendedPlacement": "Membership page",
+      "embedAllowed": true,
+      "notes": "Public membership/registration form."
+    }
+  ]
+}
