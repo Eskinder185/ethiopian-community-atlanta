@@ -184,6 +184,99 @@
     @apply relative overflow-hidden;
   }
 
+  .hero-home {
+    @apply relative overflow-hidden;
+  }
+
+  .hero-bg {
+    @apply relative overflow-hidden;
+  }
+
+  .hero-home-eyebrow,
+  .hero-page-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.22em] text-ecaa-gold-400 sm:text-sm;
+  }
+
+  .hero-home-title {
+    @apply text-3xl font-semibold tracking-tight text-ecaa-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.12];
+    letter-spacing: -0.03em;
+  }
+
+  .hero-page-title {
+    @apply text-3xl font-semibold tracking-tight text-ecaa-white sm:text-4xl lg:text-5xl;
+    letter-spacing: -0.025em;
+  }
+
+  .hero-home-lead,
+  .hero-page-lead {
+    @apply max-w-[640px] text-lg leading-relaxed text-ecaa-cream/90 sm:text-xl;
+  }
+
+  .hero-home-lead {
+    @apply max-w-[32rem] text-base leading-relaxed text-ecaa-cream/85 sm:text-lg;
+  }
+
+  .hero-home-trust {
+    @apply text-sm leading-relaxed text-ecaa-cream/75 sm:text-base;
+  }
+
+  .home-section {
+    @apply py-14 sm:py-16 lg:py-20;
+  }
+
+  .home-section-inner {
+    @apply px-0;
+  }
+
+  .home-section-grid {
+    @apply max-w-6xl;
+  }
+
+  .home-section-header {
+    @apply flex flex-col gap-5;
+  }
+
+  .home-section-header-row {
+    @apply sm:flex-row sm:items-end sm:justify-between sm:gap-8;
+  }
+
+  .btn-hero-ghost {
+    @apply !text-ecaa-cream/90 hover:!bg-ecaa-white/10 hover:!text-ecaa-white;
+  }
+
+  .chat-launcher {
+    @apply backdrop-blur-sm;
+  }
+
+  .chat-panel-header {
+    background: linear-gradient(135deg, rgb(13 79 60) 0%, rgb(10 58 45) 55%, rgb(8 48 38) 100%);
+  }
+
+  .hero-bg-badge {
+    @apply border border-ecaa-white/20 bg-ecaa-white/15 text-ecaa-white backdrop-blur-sm;
+  }
+
+  .hero-bg-badge.ecaa-badge-green {
+    @apply bg-ecaa-green-800/50 text-ecaa-green-50;
+  }
+
+  .hero-bg-badge.ecaa-badge-gold {
+    @apply bg-ecaa-gold-500/20 text-ecaa-gold-100;
+  }
+
+  .hero-bg-badge.ecaa-badge-red {
+    @apply bg-ecaa-red-500/20 text-ecaa-red-100;
+  }
+
+  .hero-bg-badge.ecaa-badge-neutral {
+    @apply bg-ecaa-white/15 text-ecaa-cream;
+  }
+
+  .btn-hero-outline {
+    @apply !border-ecaa-white/35 !bg-ecaa-white/10 !text-ecaa-white backdrop-blur-sm;
+    @apply hover:!border-ecaa-white/55 hover:!bg-ecaa-white/15 hover:!text-ecaa-white hover:shadow-ecaa-sm;
+  }
+
   .hero-grid {
     background-image:
       linear-gradient(to right, rgb(13 79 60 / 0.04) 1px, transparent 1px),
@@ -279,6 +372,10 @@
     @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ecaa-gold-500;
   }
 
+  .nav-link-header {
+    @apply px-2 py-1.5 text-[0.8125rem] xl:px-2.5 xl:text-sm;
+  }
+
   .nav-link-active {
     @apply bg-ecaa-green-50 text-ecaa-green-900;
     @apply hover:bg-ecaa-green-50 hover:text-ecaa-green-900;
@@ -286,7 +383,7 @@
   }
 
   .nav-dropdown-panel {
-    @apply absolute right-0 top-full z-50 mt-2 min-w-[11rem] overflow-hidden rounded-xl border border-ecaa-border/80 bg-ecaa-white py-1.5 shadow-ecaa-md;
+    @apply absolute left-0 top-full z-50 mt-2 min-w-[240px] overflow-hidden rounded-xl border border-ecaa-border/80 bg-ecaa-white py-1.5 shadow-lg;
     animation: menu-slide-in 0.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
@@ -319,6 +416,10 @@
 
   .empty-state {
     @apply rounded-ecaa-xl border border-dashed border-ecaa-border-strong/80 bg-ecaa-white/60 px-6 py-10 text-left sm:px-10 sm:py-12;
+  }
+
+  .empty-state-compact {
+    @apply px-5 py-7 sm:px-8 sm:py-8;
   }
 
   .editorial-todo {

@@ -1,7 +1,7 @@
 import DocumentCard from '../cards/DocumentCard'
 import EmptyState from '../ui/EmptyState'
 import ContentSection from './ContentSection'
-import documentsData from '../../data/documents.json'
+import documentsData from '../../content/documents.json'
 import { filterVerifiedContent } from '../../utils/data'
 
 export default function DocumentCategorySection({ category, muted = false }) {

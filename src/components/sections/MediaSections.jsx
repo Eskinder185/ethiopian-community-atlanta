@@ -2,18 +2,19 @@ import VideoCard from '../cards/VideoCard'
 import ImageCard from '../cards/ImageCard'
 import EmptyState from '../ui/EmptyState'
 import ContentSection from './ContentSection'
-import videosData from '../../data/videos.json'
-import imagesData from '../../data/images.json'
+import videosData from '../../content/videos.json'
+import imagesData from '../../content/images.json'
 import {
   filterPublished,
   filterVerifiedContent,
   hasUsableText,
+  hasUsableUrl,
   toEmbedUrl,
 } from '../../utils/data'
 
 export function MediaVideosSection({ muted = false }) {
-  const videos = filterVerifiedContent(videosData.videos, ['title']).filter((video) =>
-    Boolean(toEmbedUrl(video.embedUrl)),
+  const videos = filterVerifiedContent(videosData.videos, ['title']).filter(
+    (video) => Boolean(toEmbedUrl(video.embedUrl)) || hasUsableUrl(video.embedUrl),
   )
 
   return (
@@ -33,7 +34,7 @@ export function MediaVideosSection({ muted = false }) {
       ) : (
         <EmptyState
           title="Videos coming soon"
-          description="TODO: Add verified YouTube or video embed URLs to videos.json with published set to true."
+          description="Community videos will appear here when published."
         />
       )}
     </ContentSection>
@@ -42,7 +43,10 @@ export function MediaVideosSection({ muted = false }) {
 
 export function MediaPhotosSection({ muted = false }) {
   const images = filterPublished(imagesData.images).filter(
-    (image) => hasUsableText(image.title) && hasUsableText(image.src),
+    (image) =>
+      image.mediaGallery !== false &&
+      hasUsableText(image.title) &&
+      hasUsableText(image.src),
   )
 
   return (
@@ -62,7 +66,7 @@ export function MediaPhotosSection({ muted = false }) {
       ) : (
         <EmptyState
           title="Photos coming soon"
-          description="TODO: Add verified images to images.json with published set to true."
+          description="Community photo galleries will appear here when published."
         />
       )}
     </ContentSection>

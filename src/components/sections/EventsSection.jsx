@@ -2,8 +2,8 @@ import EventCard from '../cards/EventCard'
 import AnnouncementCard from '../cards/AnnouncementCard'
 import EmptyState from '../ui/EmptyState'
 import ContentSection from './ContentSection'
-import eventsData from '../../data/events.json'
-import { filterVerifiedContent } from '../../utils/data'
+import eventsData from '../../content/events.json'
+import { filterVerifiedContent, hasUsableText } from '../../utils/data'
 
 const sections = [
   {
@@ -13,9 +13,7 @@ const sections = [
     key: 'upcoming',
     type: 'event',
     variant: 'upcoming',
-    emptyTitle: 'Upcoming events will be added soon.',
-    emptyDescription:
-      'TODO: Add verified upcoming events to events.json with published set to true.',
+    emptyKey: 'upcoming',
   },
   {
     id: 'announcements',
@@ -23,9 +21,7 @@ const sections = [
     description: 'Important updates for ECAA members and the community.',
     key: 'announcements',
     type: 'announcement',
-    emptyTitle: 'No announcements yet',
-    emptyDescription:
-      'TODO: Add verified announcements to events.json with published set to true.',
+    emptyKey: 'announcements',
   },
   {
     id: 'community-news',
@@ -33,9 +29,7 @@ const sections = [
     description: 'Stories and news from the ECAA community.',
     key: 'communityNews',
     type: 'news',
-    emptyTitle: 'Community news coming soon',
-    emptyDescription:
-      'TODO: Add verified news items to events.json with published set to true.',
+    emptyKey: 'communityNews',
   },
   {
     id: 'past-events',
@@ -44,14 +38,16 @@ const sections = [
     key: 'past',
     type: 'event',
     variant: 'past',
-    emptyTitle: 'Past events will be added soon.',
-    emptyDescription:
-      'TODO: Add verified past events to events.json with published set to true.',
+    emptyKey: 'past',
   },
 ]
 
 export default function EventsSection({ config, muted = false }) {
-  const items = filterVerifiedContent(eventsData[config.key] ?? [], ['title'])
+  let items = filterVerifiedContent(eventsData[config.key] ?? [], ['title'])
+  if (config.variant === 'upcoming') {
+    items = items.filter((item) => hasUsableText(item.date))
+  }
+  const emptyState = eventsData.emptyStates?.[config.emptyKey]
 
   return (
     <ContentSection
@@ -73,8 +69,11 @@ export default function EventsSection({ config, muted = false }) {
         </div>
       ) : (
         <EmptyState
-          title={config.emptyTitle}
-          description={config.emptyDescription}
+          title={emptyState?.title ?? 'No items published'}
+          description={
+            emptyState?.description ??
+            'Check back soon or contact ECAA for current updates.'
+          }
         />
       )}
     </ContentSection>

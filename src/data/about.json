@@ -1,8 +1,25 @@
 {
   "hero": {
-    "eyebrow": "About ECAA",
-    "title": "About ECAA",
-    "description": "The Ethiopian Community Association in Atlanta brings community members together through programs, events, and shared support. TODO: Add verified organization overview."
+    "badge": "About ECAA"
+  },
+  "overview": {
+    "cards": [
+      {
+        "id": "community",
+        "title": "Community",
+        "description": "Serving Ethiopians and Ethiopian-Americans in Atlanta."
+      },
+      {
+        "id": "culture",
+        "title": "Culture",
+        "description": "Preserving heritage through connection, events, and programs."
+      },
+      {
+        "id": "resilience",
+        "title": "Resilience",
+        "description": "Strengthening families, youth, elders, and community support."
+      }
+    ]
   },
   "missionVision": {
     "id": "mission-vision",
@@ -12,63 +29,80 @@
     "cards": [
       {
         "title": "Mission",
-        "body": "TODO: Add verified ECAA mission statement."
+        "body": "ECAA's mission is to serve and empower the Ethiopian community in Atlanta by strengthening cultural connection, supporting families, promoting community participation, and creating programs that respond to community needs."
       },
       {
         "title": "Vision",
-        "body": "TODO: Add verified ECAA vision statement."
-      },
-      {
-        "title": "Values",
-        "body": "TODO: Add verified core values."
+        "body": "A connected, resilient, and thriving Ethiopian community in Atlanta where generations support one another, preserve their heritage, and contribute positively to the broader society."
       }
     ]
   },
   "history": {
     "id": "history",
-    "eyebrow": "Our story",
+    "eyebrow": "Our Story",
     "title": "History",
-    "intro": "TODO: Add verified founding story and historical milestones for ECAA in Atlanta.",
+    "intro": "The Ethiopian Community Association in Atlanta has served as a community institution for Ethiopians and Ethiopian-Americans in Georgia, supporting cultural preservation, community engagement, mutual aid, and access to services.",
     "highlights": [
-      "TODO: Add verified founding year or era",
-      "TODO: Add verified milestone or community moment",
-      "TODO: Add verified growth or community impact highlight"
+      "Established to support Ethiopians and Ethiopian-Americans in Georgia",
+      "Serves as a gathering point for community members, families, and volunteers",
+      "Supports cultural preservation and community resilience in the Atlanta area"
     ]
   },
   "howItWorks": {
     "id": "how-ecaa-works",
     "eyebrow": "Community",
     "title": "How ECAA Works",
-    "intro": "TODO: Add verified overview of how ECAA serves members and the broader community.",
+    "intro": "ECAA operates as a volunteer-led community organization connecting members to programs, resources, and opportunities.",
     "items": [
-      {
-        "id": "membership-community",
-        "question": "How do members participate?",
-        "answer": "TODO: Add verified explanation of member participation."
-      },
-      {
-        "id": "programs-events",
-        "question": "How are programs and events organized?",
-        "answer": "TODO: Add verified explanation of programs and events."
-      },
-      {
-        "id": "governance",
-        "question": "How is ECAA governed?",
-        "answer": "TODO: Add verified explanation of governance and volunteer leadership."
-      },
-      {
-        "id": "community-support",
-        "question": "How does ECAA support the community?",
-        "answer": "TODO: Add verified explanation of community support services."
-      }
+      "Volunteer-led and community-centered",
+      "Guided by elected leadership and committees",
+      "Supports cultural, social, educational, health, and EDIR-related activities",
+      "Connects community members to programs, events, resources, and opportunities",
+      "Uses membership, donations, sponsorship, and volunteer service to sustain programs"
     ]
   },
   "leadershipStructure": {
     "id": "leadership-structure",
     "eyebrow": "Governance",
     "title": "Leadership Structure",
-    "intro": "TODO: Add verified overview of ECAA leadership, committees, and how volunteers guide the organization.",
-    "linkLabel": "Meet our leadership",
+    "intro": "ECAA leadership includes an Executive Committee, Governing Board, Audit Committee, Advisory Board, and EDIR Committee. Learn more about the people serving in these roles.",
+    "groups": [
+      {
+        "id": "executive-committee",
+        "title": "Executive Committee",
+        "description": "ECAA executive leadership responsible for day-to-day organizational direction, program coordination, and community service."
+      },
+      {
+        "id": "board-of-directors",
+        "title": "Board of Directors",
+        "description": "Governing board members who provide oversight and guidance for ECAA's mission and community work."
+      },
+      {
+        "id": "audit-committee",
+        "title": "Audit Committee",
+        "description": "Committee members responsible for audit oversight and financial accountability."
+      },
+      {
+        "id": "advisory-board",
+        "title": "Advisory Board",
+        "description": "Advisory members who support ECAA with guidance, expertise, and community perspective."
+      },
+      {
+        "id": "edir-committee",
+        "title": "Edir Committee",
+        "description": "Leadership connected to EDIR-related community support and governance within ECAA."
+      }
+    ],
+    "linkLabel": "View Leadership",
     "linkTo": "/leadership"
+  },
+  "closingCta": {
+    "title": "Ready to connect with ECAA?",
+    "description": "Become a member, explore upcoming events, or learn how to support community programs.",
+    "buttons": [
+      { "label": "Become a Member", "href": "/membership" },
+      { "label": "View Events", "href": "/events" },
+      { "label": "Support ECAA", "href": "/support" }
+    ]
   }
 }

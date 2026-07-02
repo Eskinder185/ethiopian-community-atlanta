@@ -1,11 +1,11 @@
 import Container from '../ui/Container'
 import CTAButton from '../ui/CTAButton'
 import ContactCard from '../cards/ContactCard'
-import contactData from '../../data/contact.json'
-import siteInfo from '../../data/siteInfo.json'
+import contactData from '../../content/contact.json'
+import siteInfo from '../../content/siteInfo.json'
 import { filterPublished, hasUsableText } from '../../utils/data'
 
-function ContactDetail({ label, value, href }) {
+function ContactDetail({ label, value, href, multiline = false }) {
   return (
     <div className="ecaa-card">
       <p className="text-sm font-semibold uppercase tracking-widest text-ecaa-gold-600">
@@ -20,11 +20,13 @@ function ContactDetail({ label, value, href }) {
             {value}
           </a>
         ) : (
-          <p className="mt-3 text-lg text-ecaa-ink">{value}</p>
+          <p className={`mt-3 text-lg text-ecaa-ink ${multiline ? 'whitespace-pre-line' : ''}`}>
+            {value}
+          </p>
         )
       ) : (
         <p className="mt-3 text-base text-ecaa-ink-subtle">
-          TODO: Add verified {label.toLowerCase()}
+          Contact information not yet available.
         </p>
       )}
     </div>
@@ -32,17 +34,17 @@ function ContactDetail({ label, value, href }) {
 }
 
 export default function ContactDetailsSection() {
-  const { general, departments } = contactData
-  const { address } = general
+  const { general, departments, closingNote } = contactData
+  const { address, mailingAddress } = general
   const publishedDepartments = filterPublished(departments)
-
-  const streetDisplay = hasUsableText(address.street)
-    ? address.street
-    : 'TODO: Add verified street address'
 
   const cityLine = hasUsableText(address.zip)
     ? `${address.city}, ${address.state} ${address.zip}`
     : `${address.city}, ${address.state}`
+
+  const mailingLine = mailingAddress
+    ? `${mailingAddress.street}, ${mailingAddress.city}, ${mailingAddress.state} ${mailingAddress.zip}`
+    : null
 
   return (
     <>
@@ -63,44 +65,58 @@ export default function ContactDetailsSection() {
                   : undefined
               }
             />
-            <ContactDetail label="Office hours" value={general.hours} />
+            {hasUsableText(general.secondaryPhone) && (
+              <ContactDetail
+                label="Additional phone"
+                value={general.secondaryPhone}
+                href={`tel:${general.secondaryPhone.replace(/\D/g, '')}`}
+              />
+            )}
+            <ContactDetail label="Office hours" value={general.hours} multiline />
             <div className="ecaa-card">
               <p className="text-sm font-semibold uppercase tracking-widest text-ecaa-gold-600">
                 Address
               </p>
               <address className="mt-3 not-italic text-lg leading-relaxed text-ecaa-ink">
-                {streetDisplay}
+                {address.street}
                 <br />
                 {cityLine}
                 <br />
                 {address.country}
               </address>
             </div>
+            {mailingLine && (
+              <div className="ecaa-card">
+                <p className="text-sm font-semibold uppercase tracking-widest text-ecaa-gold-600">
+                  Mailing address
+                </p>
+                <address className="mt-3 not-italic text-lg leading-relaxed text-ecaa-ink">
+                  {mailingLine}
+                </address>
+              </div>
+            )}
           </div>
         </Container>
       </section>
 
       <section className="surface-muted" id="map">
         <Container className="section-spacing-sm">
-          <h2 className="heading-section">Map</h2>
+          <h2 className="heading-section">Visit ECAA</h2>
           <p className="text-body mt-3 max-w-2xl">
-            TODO: Add verified map embed or directions once the official ECAA
-            address is confirmed.
+            ECAA is located at {address.street}, {cityLine}. Contact ECAA for directions or
+            appointment details.
           </p>
           <div
-            className="mt-8 flex aspect-[16/9] max-h-96 items-center justify-center rounded-ecaa-xl border border-dashed border-ecaa-border-strong bg-ecaa-cream-dark px-6 text-center"
+            className="mt-8 flex aspect-[16/9] max-h-96 items-center justify-center rounded-ecaa-xl border border-ecaa-border bg-ecaa-cream-dark px-6 text-center"
             role="img"
-            aria-label="Map placeholder — location details to be added"
+            aria-label={`Map area for ${siteInfo.name}`}
           >
             <div>
-              <p className="text-lg font-semibold text-ecaa-ink">
-                {siteInfo.name}
-              </p>
-              <p className="mt-2 text-base text-ecaa-ink-subtle">
-                {address.city}, {address.state}
-              </p>
-              <p className="mt-4 text-sm text-ecaa-ink-faint">
-                Map area — TODO: Add verified location
+              <p className="text-lg font-semibold text-ecaa-ink">{siteInfo.name}</p>
+              <p className="mt-2 text-base text-ecaa-ink-muted">
+                {address.street}
+                <br />
+                {cityLine}
               </p>
             </div>
           </div>
@@ -124,10 +140,7 @@ export default function ContactDetailsSection() {
         <Container className="section-spacing-sm">
           <div className="ecaa-card mx-auto max-w-3xl text-center">
             <h2 className="heading-section text-2xl">Ready to get involved?</h2>
-            <p className="text-body mx-auto mt-4 max-w-xl">
-              TODO: Add verified preferred contact method or response time
-              expectations.
-            </p>
+            <p className="text-body mx-auto mt-4 max-w-xl">{closingNote}</p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <CTAButton to="/membership" variant="primary" size="lg">
                 Become a Member

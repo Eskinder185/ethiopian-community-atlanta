@@ -1,0 +1,154 @@
+{
+  "quickLinks": {
+    "title": "Find documents by category",
+    "links": [
+      { "label": "Bylaws", "href": "#bylaws" },
+      { "label": "Elections", "href": "#elections" },
+      { "label": "Meeting Notices", "href": "#meeting-notices" },
+      { "label": "Public Reports", "href": "#public-reports" },
+      { "label": "Historical Documents", "href": "#historical-documents" }
+    ]
+  },
+  "featuredSection": {
+    "title": "Important Documents",
+    "description": "Key ECAA documents available for review and download."
+  },
+  "emptyStates": {
+    "meeting-notices": {
+      "title": "No meeting notices published",
+      "description": "Meeting notices will be added here when available."
+    }
+  },
+  "closingCta": {
+    "title": "Need help finding a document?",
+    "description": "Contact ECAA if you need help locating a specific document, form, or public resource.",
+    "buttons": [
+      { "label": "Contact ECAA", "href": "/contact" },
+      { "label": "Become a Member", "href": "/membership" }
+    ]
+  },
+  "categories": [
+    {
+      "id": "bylaws",
+      "label": "Bylaws",
+      "title": "Bylaws",
+      "description": "Current and historical ECAA bylaws documents."
+    },
+    {
+      "id": "elections",
+      "label": "Elections",
+      "title": "Election Documents",
+      "description": "Election documents including candidate profiles, nomination forms, and archived election notices.",
+      "notice": "This election information may be archived. Please verify current election status, deadlines, and eligibility requirements directly with ECAA."
+    },
+    {
+      "id": "meeting-notices",
+      "label": "Meeting Notices",
+      "title": "Meeting Notices",
+      "description": "Official ECAA meeting notices and community meeting announcements."
+    },
+    {
+      "id": "public-reports",
+      "label": "Public Reports",
+      "title": "Public Reports",
+      "description": "Public reports and statements published by ECAA."
+    },
+    {
+      "id": "historical-documents",
+      "label": "Historical Documents",
+      "title": "Historical Documents",
+      "description": "Older organizational documents retained for reference."
+    }
+  ],
+  "documents": [
+    {
+      "id": "bylaws-english-current",
+      "title": "ECAA Bylaws — English Version",
+      "categoryId": "bylaws",
+      "description": "Current English bylaws document.",
+      "fileUrl": "https://ethiopiancaa.org/wp-content/uploads/2026/01/ECAA-Bylaws-FINAL_1072026-3.pdf",
+      "fileType": "pdf",
+      "language": "English",
+      "status": "current",
+      "date": "2026-01-07",
+      "featured": true,
+      "published": true
+    },
+    {
+      "id": "bylaws-amharic-current",
+      "title": "ECAA Bylaws — Amharic Version",
+      "categoryId": "bylaws",
+      "description": "Current Amharic bylaws document.",
+      "fileUrl": "https://ethiopiancaa.org/wp-content/uploads/2025/11/%E1%88%98%E1%89%B0%E1%8B%B3%E1%8B%B0%E1%88%AA%E1%8B%AB-%E1%8B%B0%E1%8A%95%E1%89%A5-Final-October-05-2025.-Please-review-and-sign-signed.pdf",
+      "fileType": "pdf",
+      "language": "Amharic",
+      "status": "current",
+      "date": "2025-10-05",
+      "featured": true,
+      "published": true
+    },
+    {
+      "id": "candidate-profiles-2026",
+      "title": "Candidate Profiles 2026",
+      "categoryId": "elections",
+      "description": "Short candidate profiles for 2026 ECAA and EDIR leadership.",
+      "fileUrl": "https://ethiopiancaa.org/wp-content/uploads/2026/02/Candidate-Profiles-02_07_2026_Final.pdf",
+      "fileType": "pdf",
+      "status": "current",
+      "date": "2026-02-07",
+      "featured": true,
+      "published": true
+    },
+    {
+      "id": "nomination-form-amharic-2026",
+      "title": "2026 Nomination Form — Amharic",
+      "categoryId": "elections",
+      "description": "Archived 2026 election nomination form in Amharic. Verify current election status with ECAA.",
+      "fileUrl": "https://docs.google.com/forms/d/e/1FAIpQLSeHA6txi64fIETM9r9o2lg62hgiV-LcSU7XDCPf8ZdBvuThJA/viewform?usp=publish-editor",
+      "fileType": "form",
+      "language": "Amharic",
+      "status": "archived",
+      "date": "2025-12-10",
+      "featured": false,
+      "published": true
+    },
+    {
+      "id": "nomination-form-english-2026",
+      "title": "2026 Nomination Form — English",
+      "categoryId": "elections",
+      "description": "Archived 2026 election nomination form in English. Verify current election status with ECAA.",
+      "fileUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfwwvZ8AJzNGgPEeGbQOFa5AswDLmLYh4rV0hb7IfER2EqRBw/viewform?usp=publish-editor",
+      "fileType": "form",
+      "language": "English",
+      "status": "archived",
+      "date": "2025-12-10",
+      "featured": false,
+      "published": true
+    },
+    {
+      "id": "board-members-statement",
+      "title": "Board Members Statement",
+      "categoryId": "public-reports",
+      "description": "Public statement document related to board members.",
+      "fileUrl": "https://ethiopiancaa.org/wp-content/uploads/2025/07/%E1%8A%A0%E1%88%B5%E1%88%AD10_ECAA_%E1%8B%A8_%E1%89%A6%E1%88%AD%E1%8B%B5_%E1%8A%A0%E1%89%A3%E1%88%8B%E1%89%B5_%E1%8A%A0%E1%89%8B%E1%88%9B%E1%89%B8%E1%8B%8D%E1%8A%95_%E1%88%B5%E1%88%88%E1%88%9B%E1%88%B3%E1%8B%88%E1%89%85.pdf",
+      "fileType": "pdf",
+      "status": "current",
+      "date": "2025-07-10",
+      "featured": false,
+      "published": true
+    },
+    {
+      "id": "bylaws-english-2010",
+      "title": "ECAA Bylaws — English Version, March 2010",
+      "categoryId": "historical-documents",
+      "description": "Older English bylaws version from March 2010.",
+      "fileUrl": "https://ethiopiancaa.org/wp-content/uploads/2024/08/ECAA-Bylaws-English-Version-March-2010-1.pdf",
+      "fileType": "pdf",
+      "language": "English",
+      "status": "historical",
+      "date": "2010-03-01",
+      "featured": false,
+      "published": true
+    }
+  ]
+}

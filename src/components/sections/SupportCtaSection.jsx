@@ -8,8 +8,13 @@ const accentStyles = {
   cream: 'border-ecaa-border bg-ecaa-cream',
 }
 
+function isInternalPath(value) {
+  return typeof value === 'string' && value.startsWith('/')
+}
+
 export default function SupportCtaSection({ section, muted = false }) {
-  const hasLink = hasUsableUrl(section.ctaUrl)
+  const isExternal = hasUsableUrl(section.ctaUrl)
+  const isInternal = isInternalPath(section.ctaUrl)
 
   return (
     <section
@@ -36,7 +41,7 @@ export default function SupportCtaSection({ section, muted = false }) {
           </ul>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
-            {hasLink ? (
+            {isExternal ? (
               <CTAButton
                 href={section.ctaUrl}
                 variant="primary"
@@ -44,6 +49,10 @@ export default function SupportCtaSection({ section, muted = false }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                {section.ctaLabel}
+              </CTAButton>
+            ) : isInternal ? (
+              <CTAButton to={section.ctaUrl} variant="primary" size="lg">
                 {section.ctaLabel}
               </CTAButton>
             ) : (

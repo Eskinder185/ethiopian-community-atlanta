@@ -1,12 +1,16 @@
-import TeamMemberCard from '../cards/TeamMemberCard'
+import LeadershipCard, { getImageSrc } from '../cards/LeadershipCard'
 import EmptyState from '../ui/EmptyState'
 import ContentSection from './ContentSection'
-import { filterVerifiedMembers } from '../../utils/data'
+import { hasUsableText } from '../../utils/data'
 
-export default function LeadershipGroupSection({ group, members, muted = false }) {
-  const groupMembers = filterVerifiedMembers(members)
-    .filter((member) => member.groupId === group.id)
-    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+function getGroupMembers(group) {
+  return (group.members || []).filter(
+    (member) => hasUsableText(member.name) && hasUsableText(getImageSrc(member)),
+  )
+}
+
+export default function LeadershipGroupSection({ group, muted = false }) {
+  const groupMembers = getGroupMembers(group)
 
   return (
     <ContentSection
@@ -17,15 +21,15 @@ export default function LeadershipGroupSection({ group, members, muted = false }
       muted={muted}
     >
       {groupMembers.length > 0 ? (
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {groupMembers.map((member) => (
-            <TeamMemberCard key={member.id} member={member} />
+            <LeadershipCard key={member.id} member={member} committee={group.title} />
           ))}
         </div>
       ) : (
         <EmptyState
           title="Profiles coming soon"
-          description={`TODO: Add verified ${group.title} profiles to teamMembers.json with published set to true.`}
+          description={`Leadership profiles for ${group.title} will be published when verified details are available.`}
         />
       )}
     </ContentSection>

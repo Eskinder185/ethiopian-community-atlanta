@@ -1,0 +1,28 @@
+{
+  "videos": [
+    {
+      "id": "ecaa-youtube-channel",
+      "title": "ECAA YouTube Channel",
+      "description": "Official ECAA YouTube channel with community videos and highlights.",
+      "embedUrl": "https://www.youtube.com/@EthiopianCommunity-np1yk",
+      "thumbnailUrl": "",
+      "thumbnailAlt": "ECAA YouTube Channel",
+      "provider": "youtube",
+      "date": "",
+      "published": true,
+      "featured": false
+    },
+    {
+      "id": "ecaa-community-video",
+      "title": "ECAA Community Video",
+      "description": "Community video from the Ethiopian Community Association in Atlanta.",
+      "embedUrl": "https://youtu.be/xV1vZDTNk6k",
+      "thumbnailUrl": "",
+      "thumbnailAlt": "ECAA Community Video",
+      "provider": "youtube",
+      "date": "",
+      "published": true,
+      "featured": true
+    }
+  ]
+}

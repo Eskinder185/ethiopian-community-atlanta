@@ -1,0 +1,98 @@
+{
+  "hero": {
+    "eyebrow": "Membership",
+    "title": "Join ECAA",
+    "description": "Join the Ethiopian Community Association in Atlanta and help strengthen Ethiopian community life, cultural connection, mutual support, and intergenerational resilience.",
+    "primaryCtaLabel": "Open Membership Form",
+    "secondaryCtaLabel": "Learn About EDIR",
+    "edirPath": "/programs#edir"
+  },
+  "benefitsSection": {
+    "label": "Membership Details",
+    "title": "Membership benefits",
+    "description": "Membership helps support ECAA's community programs, cultural activities, leadership work, and services for Ethiopians and Ethiopian-Americans in the Atlanta area.",
+    "items": [
+      "Support community programs and services",
+      "Stay connected with ECAA announcements and events",
+      "Participate in community decision-making where eligible",
+      "Help preserve Ethiopian culture and heritage",
+      "Support youth, families, elders, and intergenerational programs",
+      "Contribute to EDIR and mutual-support efforts where applicable"
+    ]
+  },
+  "membershipOption": {
+    "title": "ECAA Membership",
+    "subtitle": "Standard membership with the Ethiopian Community Association in Atlanta.",
+    "fee": "Annual membership fee: $30.00 per person",
+    "description": "Membership is intended for Ethiopian community members, Ethiopian-Americans, families, and supporters connected to ECAA's mission.",
+    "ctaLabel": "Start Registration",
+    "published": true
+  },
+  "beforeYouStart": {
+    "label": "Prepare",
+    "title": "What You Need Before You Start",
+    "description": "Gather this information before completing the registration form. It helps the process go smoothly.",
+    "items": [
+      "Full name",
+      "Date of birth",
+      "Phone number",
+      "Email address",
+      "Permanent address",
+      "Billing address",
+      "Spouse information if applicable",
+      "Children information if applicable",
+      "Designated representative information if applicable",
+      "Signature confirmation"
+    ]
+  },
+  "registration": {
+    "label": "Register",
+    "title": "Membership Registration",
+    "description": "Complete your ECAA membership registration and payment through the secure Jotform linked below.",
+    "ctaTitle": "Register or Renew Membership",
+    "ctaDescription": "Membership registration and payment are handled securely through Jotform. The form opens in a new tab.",
+    "ctaLabel": "Open Membership Form",
+    "importantNote": "The form may ask for family, spouse, children, designated representative, disclosure, and signature information depending on membership type."
+  },
+  "relatedLinks": {
+    "title": "Explore More With ECAA",
+    "description": "Membership connects you to education, events, volunteering, and community support across Atlanta.",
+    "links": [
+      { "label": "Education & Training", "path": "/programs#education-training" },
+      { "label": "Volunteer", "path": "/support#volunteer" },
+      { "label": "Events", "path": "/events" },
+      { "label": "Contact ECAA", "path": "/contact" }
+    ]
+  },
+  "notice": {
+    "title": "Important notice",
+    "text": "Please read the full disclosure carefully inside the registration form before signing. Specific EDIR fees or requirements should be verified with ECAA before completing registration."
+  },
+  "faqSection": {
+    "label": "Questions",
+    "title": "Membership FAQ",
+    "description": "Common questions about joining ECAA."
+  },
+  "finalCta": {
+    "title": "Ready to join ECAA?",
+    "description": "Start your registration online or contact ECAA if you need help before completing the form.",
+    "buttons": [
+      { "label": "Start Registration", "href": "https://form.jotform.com/211111215669043", "external": true },
+      { "label": "Contact for Help", "href": "/contact" }
+    ]
+  },
+  "options": [
+    {
+      "id": "ecaa-edir-membership",
+      "title": "ECAA + EDIR Membership",
+      "summary": "Membership that includes ECAA and EDIR participation.",
+      "details": [
+        "EDIR appears as part of ECAA's community structure.",
+        "TODO: Add verified EDIR membership fees or requirements before publishing.",
+        "Contact ECAA for current EDIR membership guidance."
+      ],
+      "highlight": false,
+      "published": false
+    }
+  ]
+}

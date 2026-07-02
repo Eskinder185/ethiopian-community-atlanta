@@ -1,0 +1,106 @@
+{
+  "quickActions": [
+    { "label": "Upcoming Events", "href": "#upcoming" },
+    { "label": "Announcements", "href": "#announcements" },
+    { "label": "Community News", "href": "#community-news" },
+    { "label": "Book a Hall", "href": "#book-hall" }
+  ],
+  "emptyStates": {
+    "upcoming": {
+      "title": "No upcoming events published",
+      "description": "No upcoming events are published at this time. Please check back soon or contact ECAA for current announcements."
+    },
+    "announcements": {
+      "title": "No announcements published",
+      "description": "Check back for ECAA announcements or contact ECAA for current updates."
+    },
+    "communityNews": {
+      "title": "Community news coming soon",
+      "description": "Community news will be published here when available."
+    },
+    "past": {
+      "title": "Past events will be added soon",
+      "description": "Past community events will be listed here when verified details are available."
+    }
+  },
+  "upcoming": [],
+  "announcements": [
+    {
+      "id": "back-to-school-block-party",
+      "title": "Back to School Block Party",
+      "date": "",
+      "summary": "Community block party event hosted on Eventbrite. Verify current date and availability before attending.",
+      "body": "Back to School Block Party community event. Event date should be verified on Eventbrite before attending.",
+      "link": "https://www.eventbrite.com/e/back-to-school-block-party-tickets-1992307679902",
+      "ctaLabel": "Read more",
+      "external": true,
+      "published": true
+    },
+    {
+      "id": "general-assembly-special-meeting-2025",
+      "title": "General Assembly Special Meeting 2025",
+      "date": "2025",
+      "summary": "Announcement regarding the ECAA General Assembly Special Meeting 2025.",
+      "body": "Read the full announcement on the ECAA website for meeting details and updates.",
+      "link": "https://ethiopiancaa.org/general-assembly-special-meeting-2025/",
+      "ctaLabel": "Read more",
+      "external": true,
+      "published": true
+    },
+    {
+      "id": "ecaa-breaking-news",
+      "title": "ECAA Breaking News",
+      "date": "",
+      "summary": "Important ECAA community announcement and breaking news update.",
+      "body": "Read the full ECAA breaking news announcement on the ECAA website.",
+      "link": "https://ethiopiancaa.org/ecaa-breaking-news/",
+      "ctaLabel": "Read more",
+      "external": true,
+      "published": true
+    }
+  ],
+  "communityNews": [],
+  "past": [
+    {
+      "id": "back-to-school-block-party-past",
+      "title": "Back to School Block Party",
+      "date": "",
+      "location": "",
+      "summary": "Past community event listing retained for reference. Verify event date on Eventbrite.",
+      "recapUrl": "https://www.eventbrite.com/e/back-to-school-block-party-tickets-1992307679902",
+      "image": {
+        "src": "",
+        "alt": ""
+      },
+      "published": false
+    }
+  ],
+  "bookHall": {
+    "id": "book-hall",
+    "title": "Book the ECAA Event Hall",
+    "description": "Request to rent the ECAA event hall for meetings, celebrations, cultural gatherings, workshops, trainings, and community events.",
+    "importantNote": "Submitting a request does not guarantee a reservation. ECAA must confirm availability, requirements, pricing, and approval before the hall is booked.",
+    "goodFor": [
+      "Community meetings",
+      "Cultural gatherings",
+      "Family celebrations",
+      "Workshops and trainings",
+      "Youth and education events",
+      "Health and wellness sessions",
+      "Fundraising events"
+    ],
+    "requestPath": "/contact",
+    "contactPath": "/contact",
+    "email": "staff@ethiopiancaa.org",
+    "subject": "ECAA Hall Rental Request",
+    "bodyTemplate": "Full Name:\nEmail:\nPhone:\nEvent Type:\nRequested Date:\nStart Time:\nEnd Time:\nEstimated Guests:\nSetup Needs:\nMessage:"
+  },
+  "closingCta": {
+    "title": "Have questions about an event or announcement?",
+    "description": "Contact ECAA for current event details, hall availability, and community updates.",
+    "buttons": [
+      { "label": "Contact ECAA", "href": "/contact" },
+      { "label": "Become a Member", "href": "/membership" }
+    ]
+  }
+}

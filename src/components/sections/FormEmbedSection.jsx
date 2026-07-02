@@ -1,7 +1,7 @@
 import Container from '../ui/Container'
 import SectionHeader from '../ui/SectionHeader'
 import FormCard from '../cards/FormCard'
-import formsData from '../../data/forms.json'
+import formsData from '../../content/forms.json'
 
 export default function FormEmbedSection({
   formId = 'membership-registration',

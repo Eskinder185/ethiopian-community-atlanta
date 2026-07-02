@@ -1,0 +1,255 @@
+{
+  "intro": "ECAA is a nonprofit, membership-based organization led by dedicated volunteers who serve on the Board of Directors, Executive Committee, and supporting committees. These leaders help guide the organization's programs, community services, events, membership work, and long-term vision. Members of the association elect leadership through a democratic process during the general assembly every two years.",
+  "groups": [
+    {
+      "id": "executive-committee",
+      "title": "Executive Committee",
+      "description": "ECAA executive leadership responsible for day-to-day organizational direction, program coordination, and community service.",
+      "anchor": "executive-committee",
+      "members": [
+        {
+          "id": "hailemelekot-betre",
+          "name": "Hailemelekot Betre",
+          "title": "Executive Director",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/elementor/thumbs/1-Hailemelekot-Betre-Exec.-Director-rkqs8dzo2vqwhyw5z08q9acxfrh9u7lm5hy6ztrwao.png",
+          "socials": []
+        },
+        {
+          "id": "teshome-assefa",
+          "name": "Teshome Assefa",
+          "title": "Deputy Executive Director",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/2-Teshome-Assefa-Deputy-Exec.-Director-1.png",
+          "socials": []
+        },
+        {
+          "id": "teshome-achew",
+          "name": "Teshome Achew",
+          "title": "Secretary, Fundraising Committee Head",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/3-Teshome-Achew-Secretary-Fundraising-Committee-head.png",
+          "socials": []
+        },
+        {
+          "id": "eskender-abebe",
+          "name": "Eskender Abebe",
+          "title": "CFO, Health & Sport",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/4-Eskender-Abebe-CFO-health-sport.png",
+          "socials": []
+        },
+        {
+          "id": "sisay-abebe",
+          "name": "Sisay Abebe",
+          "title": "Treasurer, Engineering",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/5-Sisay-Abebe-Treasurer-Engineering.png",
+          "socials": []
+        },
+        {
+          "id": "wubit-tafesework",
+          "name": "Wubit Tafesework",
+          "title": "Women & Children Affairs, Education & Training",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/6-Wubit-Tafesework-Women-Children-affairs-Education-Training.png",
+          "socials": []
+        },
+        {
+          "id": "fasika-alemu",
+          "name": "Fasika Alemu",
+          "title": "Social Affairs, Women & Children Affairs",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/7-Fasika-Social-Affairs-women-Children-affairs.png",
+          "socials": []
+        },
+        {
+          "id": "yordanos-haile",
+          "name": "Yordanos Haile",
+          "title": "Public Relations & Youth Affairs",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/8-Yordanos-Haile-Public-Relation-Youth-Affairs.png",
+          "socials": []
+        },
+        {
+          "id": "lulseged-ahmed",
+          "name": "Lulseged Ahmed",
+          "title": "Youth Affairs, Asset Management",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/9-Lulseged-Ahmed-Youth-affairs-Asset-management.png",
+          "socials": []
+        }
+      ]
+    },
+    {
+      "id": "board-of-directors",
+      "title": "Board of Directors",
+      "description": "Governing board members who provide oversight and guidance for ECAA's mission and community work.",
+      "anchor": "board-of-directors",
+      "members": [
+        {
+          "id": "kinfu-damene",
+          "name": "Kinfu Damene",
+          "title": "Chairperson",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/1-Kinfu-Damene-Chairperson.png",
+          "socials": []
+        },
+        {
+          "id": "siye-kebreabe",
+          "name": "Siye T. Kebreabe",
+          "title": "Vice Chairperson",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/2-Siye-T-Kebreabe-Vice-Chairperson.png",
+          "socials": []
+        },
+        {
+          "id": "bisrat-tefera",
+          "name": "Bisrat Tefera",
+          "title": "Secretary",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/3-Bisrat-Tefera-Secretary.png",
+          "socials": []
+        },
+        {
+          "id": "berhane-haile-negewo",
+          "name": "Berhane Haile Negewo",
+          "title": "Member",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/4-Berhane-Haile-Negewo-Member.png",
+          "socials": []
+        },
+        {
+          "id": "teklehaymanot-tessema",
+          "name": "Teklehaymanot Tessema",
+          "title": "Member",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/5-Teklehaymanot-Tessema-Member.png",
+          "socials": []
+        },
+        {
+          "id": "wondwosen-hailu",
+          "name": "Wondwosen Hailu",
+          "title": "Member",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/6-Wondwosen-Hailu-Member.png",
+          "socials": []
+        },
+        {
+          "id": "yonas-teklemariam",
+          "name": "Yonas Teklemariam",
+          "title": "Member",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/7-Yonas-Teklemariam-Member.png",
+          "socials": []
+        },
+        {
+          "id": "wangail-assamenew",
+          "name": "Wangail Assamenew",
+          "title": "Member",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/8-Wangail-Assamenew-Member.png",
+          "socials": []
+        },
+        {
+          "id": "tariku-tesammaw",
+          "name": "Tariku Tesammaw",
+          "title": "Member",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/9-Tariku-Tesamma-Member.png",
+          "socials": []
+        }
+      ]
+    },
+    {
+      "id": "audit-committee",
+      "title": "Audit Committee",
+      "description": "Committee members responsible for audit oversight and financial accountability.",
+      "anchor": "audit-committee",
+      "members": [
+        {
+          "id": "fana-fikreyesus",
+          "name": "Fana Fikreyesus",
+          "title": "Chairperson",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/Fana-Fikreyesus-Chairperson.png",
+          "socials": []
+        },
+        {
+          "id": "meseret-abebe",
+          "name": "Meseret Abebe",
+          "title": "Vice Chairperson",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/Meseret-Abebe-Secretary.png",
+          "socials": []
+        },
+        {
+          "id": "sileshi-gelaw-ejigu",
+          "name": "Sileshi Gelaw Ejigu",
+          "title": "Secretary",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/Sileshi-Gelaw-Ejigu-Vice-Chairperson.png",
+          "socials": []
+        }
+      ]
+    },
+    {
+      "id": "advisory-board",
+      "title": "Advisory Board",
+      "description": "Advisory members who support ECAA with guidance, expertise, and community perspective.",
+      "anchor": "advisory-board",
+      "members": [
+        {
+          "id": "tsehai-alemayehu",
+          "name": "Tsehai Alemayehu, Prof.",
+          "title": "Chairperson",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/1-Tsehai-Alemayehu-Prof.-Chairperson.png",
+          "socials": []
+        },
+        {
+          "id": "abebe-takele",
+          "name": "Abebe Takele",
+          "title": "Vice Chairperson",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/2-Abebe-Takele-Vice-Chairman.png",
+          "socials": []
+        },
+        {
+          "id": "shiferaw-sefiew",
+          "name": "Shiferaw Sefiew",
+          "title": "Member",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/Shiferaw-Sefiew-Member.png",
+          "socials": []
+        },
+        {
+          "id": "zerihun-beri",
+          "name": "Zerihun Beri",
+          "title": "Member",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/Zerihun-Beri-Member.jpeg",
+          "socials": []
+        }
+      ]
+    },
+    {
+      "id": "edir-committee",
+      "title": "Edir Committee",
+      "description": "Leadership connected to EDIR-related community support and governance within ECAA.",
+      "anchor": "edir-committee",
+      "members": [
+        {
+          "id": "yeme-tegegn",
+          "name": "Yeme Tegegn",
+          "title": "Chairperson",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/1-Yeme-Tegegn-Chairperson.png",
+          "socials": []
+        },
+        {
+          "id": "michael-lulseged",
+          "name": "Michael Lulseged",
+          "title": "Secretary",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/2-Michael-Lulseged-Secretary.jpg",
+          "socials": []
+        },
+        {
+          "id": "wossen-mulat",
+          "name": "Wossen Mulat",
+          "title": "CFO",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/3-Wossan-Mulat-CFO.png",
+          "socials": []
+        },
+        {
+          "id": "yeshitela-fetene-asfaw",
+          "name": "Yeshitela Fetene Asfaw",
+          "title": "Treasurer",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/%E1%8B%A8%E1%88%BA%E1%8C%A5%E1%88%8B-150x150.jpg",
+          "socials": []
+        },
+        {
+          "id": "misganaw-girma",
+          "name": "Misganaw Girma",
+          "title": "Member",
+          "image": "https://ethiopiancaa.org/wp-content/uploads/2026/03/5-Misganaw-Girma-Member.png",
+          "socials": []
+        }
+      ]
+    }
+  ]
+}

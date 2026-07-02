@@ -1,0 +1,48 @@
+{
+  "general": [],
+  "membership": [
+    {
+      "id": "how-to-join",
+      "question": "How do I become a member?",
+      "answer": "Open the ECAA membership form and complete the required registration and payment information through Jotform.",
+      "category": "membership",
+      "published": true
+    },
+    {
+      "id": "form-secure",
+      "question": "Is the membership form secure?",
+      "answer": "The registration form is hosted through Jotform and opens as a secure online form.",
+      "category": "membership",
+      "published": true
+    },
+    {
+      "id": "leave-website",
+      "question": "Will I leave the ECAA website?",
+      "answer": "Yes. The membership form opens in a new tab through Jotform.",
+      "category": "membership",
+      "published": true
+    },
+    {
+      "id": "form-fields",
+      "question": "What information does the form ask for?",
+      "answer": "The form may ask for your name, date of birth, phone number, email, address, family information, designated representative information, disclosure acknowledgment, and signature confirmation.",
+      "category": "membership",
+      "published": true
+    },
+    {
+      "id": "membership-fee",
+      "question": "How much is membership?",
+      "answer": "The annual membership fee is listed as $30.00 per person. Any EDIR-related fees or requirements should be verified with ECAA.",
+      "category": "membership",
+      "published": true
+    },
+    {
+      "id": "edir-membership",
+      "question": "Does ECAA have EDIR-related membership?",
+      "answer": "The registration process may include EDIR-related disclosure or membership information. Please read the form carefully and contact ECAA if you have questions before signing.",
+      "category": "membership",
+      "published": true
+    }
+  ],
+  "programs": []
+}

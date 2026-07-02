@@ -1,0 +1,78 @@
+{
+  "general": {
+    "email": "staff@ethiopiancaa.org",
+    "phone": "+1 (404) 298-4570",
+    "secondaryPhone": "404-254-0747",
+    "address": {
+      "street": "5616 Memorial Dr",
+      "city": "Stone Mountain",
+      "state": "GA",
+      "zip": "30083",
+      "country": "United States"
+    },
+    "mailingAddress": {
+      "street": "PO Box 494",
+      "city": "Clarkston",
+      "state": "GA",
+      "zip": "30021",
+      "country": "United States"
+    },
+    "hours": "Monday – Friday: 10:00 AM to 6:00 PM\nSaturday: 9:00 AM to 2:00 PM\nSunday: Closed"
+  },
+  "departments": [
+    {
+      "id": "legal",
+      "title": "Legal inquiries",
+      "description": "Contact ECAA for legal and organizational matters.",
+      "email": "legal@ethiopiancaa.org",
+      "phone": "",
+      "published": true
+    },
+    {
+      "id": "elections",
+      "title": "Election inquiries",
+      "description": "Contact ECAA regarding elections and nominations.",
+      "email": "ECAAelections@gmail.com",
+      "phone": "",
+      "published": true
+    },
+    {
+      "id": "membership-forms",
+      "title": "Membership and donation forms",
+      "description": "Additional phone number listed on ECAA membership and donation forms.",
+      "email": "staff@ethiopiancaa.org",
+      "phone": "404-254-0747",
+      "published": true
+    }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/ethiopia.addis.313/",
+    "instagram": "https://www.instagram.com/ecaa_atl/",
+    "youtube": "https://www.youtube.com/@EthiopianCommunity-np1yk",
+    "tiktok": "https://www.tiktok.com/@ecaa_atl?is_from_webapp=1&sender_device=pc"
+  },
+  "footer": {
+    "description": "ECAA serves Ethiopians and Ethiopian-Americans in the Atlanta area by building intergenerational connections, strengthening community resilience, supporting cultural preservation, and connecting community members to programs, services, and opportunities.",
+    "serviceLinks": [
+      {
+        "label": "EDIR Membership",
+        "path": "/programs#edir"
+      },
+      {
+        "label": "Become a Sponsor",
+        "path": "/support"
+      }
+    ],
+    "legalLinks": [
+      {
+        "label": "Privacy Policy",
+        "path": "/privacy"
+      },
+      {
+        "label": "Terms & Conditions",
+        "path": "/terms"
+      }
+    ]
+  },
+  "closingNote": "Reach ECAA by email, phone, or visit during office hours. ECAA welcomes questions about membership, programs, events, leadership, and community support."
+}

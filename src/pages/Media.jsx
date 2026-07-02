@@ -16,11 +16,13 @@ export default function Media() {
         title={page.title}
         description={page.description}
         badge={{ label: 'Photos & videos', variant: 'red' }}
+        imageId="events-community-gathering"
+        overlayStrength="strong"
       >
         <CTAButton href="#videos" variant="primary" size="lg">
           Videos
         </CTAButton>
-        <CTAButton href="#photos" variant="secondary" size="lg">
+        <CTAButton href="#photos" variant="secondary" size="lg" className="btn-hero-outline">
           Photos
         </CTAButton>
       </PageHero>

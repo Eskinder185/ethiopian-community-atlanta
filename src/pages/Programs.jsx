@@ -1,49 +1,39 @@
 import PageHero from '../components/layout/PageHero'
-import ProgramCategorySection from '../components/sections/ProgramCategorySection'
+import ProgramsOverviewSection from '../components/sections/ProgramsOverviewSection'
+import ProgramsMainGrid from '../components/sections/ProgramsMainGrid'
+import EducationTrainingSection from '../components/sections/EducationTrainingSection'
+import ProgramsFormsSection from '../components/sections/ProgramsFormsSection'
+import ProgramsClosingCta from '../components/sections/ProgramsClosingCta'
 import CTAButton from '../components/ui/CTAButton'
-import programsData from '../data/programs.json'
-import pages from '../data/pages.json'
-
-const categoryOrder = [
-  'community-support',
-  'cultural-programs',
-  'youth-education',
-  'health-sports',
-  'edir',
-]
+import programsData from '../content/programs.json'
 
 export default function Programs() {
-  const page = pages.programs
-  const categories = categoryOrder
-    .map((id) => programsData.categories.find((item) => item.id === id))
-    .filter(Boolean)
+  const { overview, categories, educationTraining, formsSection, closingCta } = programsData
 
   return (
     <>
       <PageHero
-        eyebrow="Programs & Services"
-        title={page.title}
-        description={page.description}
+        size="page"
+        eyebrow="Programs"
+        title="Community Programs & Services"
+        description="Explore the main program areas that support ECAA's mission in Atlanta."
         badge={{ label: 'Community programs', variant: 'gold' }}
+        imageId="programs-community-support"
+        overlayStrength="default"
       >
-        <CTAButton href="#community-support" variant="primary" size="lg">
-          Explore programs
+        <CTAButton href="#community-programs" variant="primary" size="lg">
+          Explore Programs
         </CTAButton>
-        <CTAButton to="/membership" variant="secondary" size="lg">
-          Become a Member
-        </CTAButton>
-        <CTAButton to="/contact" variant="ghost" size="lg">
-          Contact ECAA
+        <CTAButton href="#education-training" variant="secondary" size="lg" className="btn-hero-outline">
+          Education & Training
         </CTAButton>
       </PageHero>
 
-      {categories.map((category, index) => (
-        <ProgramCategorySection
-          key={category.id}
-          category={category}
-          muted={index % 2 === 1}
-        />
-      ))}
+      <ProgramsOverviewSection section={overview} />
+      <ProgramsMainGrid categories={categories} />
+      <ProgramsFormsSection section={formsSection} categories={categories} />
+      <EducationTrainingSection section={educationTraining} />
+      <ProgramsClosingCta section={closingCta} />
     </>
   )
 }

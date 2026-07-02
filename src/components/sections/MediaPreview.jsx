@@ -1,47 +1,78 @@
 import Container from '../ui/Container'
 import SectionHeader from '../ui/SectionHeader'
+import MasonryGallery from '../ui/MasonryGallery'
 import VideoCard from '../cards/VideoCard'
-import ImageCard from '../cards/ImageCard'
 import EmptyState from '../ui/EmptyState'
 import CTAButton from '../ui/CTAButton'
 import AnimateIn from '../ui/AnimateIn'
-import videosData from '../../data/videos.json'
-import imagesData from '../../data/images.json'
-import { filterPublished } from '../../utils/data'
+import imagesData from '../../content/images.json'
+import videosData from '../../content/videos.json'
+import homeData from '../../content/homepage.json'
+import { filterPublished, hasUsableText, toEmbedUrl } from '../../utils/data'
 
-export default function MediaPreview() {
-  const videos = filterPublished(videosData.videos).slice(0, 1)
-  const images = filterPublished(imagesData.images).slice(0, 2)
-  const hasContent = videos.length > 0 || images.length > 0
+function getFeaturedImages(images, limit = 5) {
+  const eligible = filterPublished(images).filter(
+    (image) =>
+      image.category !== 'decorative' &&
+      image.category !== 'hero' &&
+      hasUsableText(image.src) &&
+      !image.src.startsWith('TODO'),
+  )
+
+  const featured = eligible.filter((image) => image.featured === true)
+  const source = featured.length > 0 ? featured : eligible
+
+  return source.slice(0, limit)
+}
+
+function getFeaturedVideo(videos) {
+  const published = filterPublished(videos)
+  const featured = published.filter((video) => video.featured === true)
+  const candidates = featured.length > 0 ? featured : published
 
   return (
-    <section className="surface-white">
+    candidates.find((video) => toEmbedUrl(video.embedUrl)) ??
+    candidates.find((video) => hasUsableText(video.embedUrl)) ??
+    null
+  )
+}
+
+export default function MediaPreview() {
+  const { mediaPreview } = homeData
+  const images = getFeaturedImages(imagesData.images)
+  const video = getFeaturedVideo(videosData.videos)
+  const hasContent = images.length > 0 || Boolean(video)
+
+  return (
+    <section className="surface-muted">
       <Container className="section-spacing-sm">
         <AnimateIn>
           <SectionHeader
-            eyebrow="Media"
-            title="Stories from our community"
-            description="Photos and videos from ECAA events and programs."
-            action={{ label: 'View media', to: '/media', variant: 'secondary' }}
+            eyebrow={mediaPreview.eyebrow}
+            title={mediaPreview.title}
+            description={mediaPreview.description}
+            action={{ label: 'View Media Gallery', to: '/media', variant: 'secondary' }}
           />
 
           {hasContent ? (
-            <div className="mt-14 grid gap-6 lg:grid-cols-3">
-              {videos.map((video) => (
-                <VideoCard key={video.id} video={video} />
-              ))}
-              {images.map((image) => (
-                <ImageCard key={image.id} image={image} />
-              ))}
+            <div className="mt-14 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+              {images.length > 0 && <MasonryGallery images={images} />}
+              {video ? (
+                <div className={images.length > 0 ? '' : 'lg:col-span-2'}>
+                  <VideoCard video={video} />
+                </div>
+              ) : (
+                images.length === 0 && null
+              )}
             </div>
           ) : (
             <EmptyState
               className="mt-14"
-              title="Community media coming soon"
-              description="TODO: Add verified photos and videos to the media library."
+              title="Photos and videos will be added soon."
+              description="TODO: Add verified featured photos and videos to the media library."
               action={
                 <CTAButton to="/media" variant="secondary">
-                  Visit Media
+                  View Media Gallery
                 </CTAButton>
               }
             />

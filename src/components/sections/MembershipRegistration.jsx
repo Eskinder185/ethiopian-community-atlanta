@@ -1,70 +1,52 @@
 import Container from '../ui/Container'
 import SectionHeader from '../ui/SectionHeader'
-import CTAButton from '../ui/CTAButton'
-import Badge from '../ui/Badge'
+import ExternalFormCTA from '../ui/ExternalFormCTA'
 import AnimateIn from '../ui/AnimateIn'
-import membershipData from '../../data/membership.json'
-import formsData from '../../data/forms.json'
-import siteInfo from '../../data/siteInfo.json'
+import membershipData from '../../content/membership.json'
+import formsData from '../../content/forms.json'
 
 export default function MembershipRegistration() {
   const { registration } = membershipData
-  const form =
-    formsData.forms.find((item) => item.id === 'membership-registration') ?? {
-      url: siteInfo.membershipFormUrl,
-      title: registration.title,
-      provider: 'Jotform',
-    }
+  const { membership: form } = formsData
 
   return (
     <section className="surface-muted" id="registration-form">
       <Container className="section-spacing-sm">
         <AnimateIn>
           <SectionHeader
-            eyebrow="Register"
+            eyebrow={registration.label}
             title={registration.title}
             description={registration.description}
             align="center"
-            className="mx-auto"
+            className="mx-auto max-w-3xl"
           />
 
-          <article className="ecaa-card-premium mx-auto mt-14 max-w-2xl text-center">
-            <div className="flex flex-wrap justify-center gap-2">
-              <Badge variant="green">{form.provider}</Badge>
-              <Badge variant="neutral">Secure online form</Badge>
+          {registration.importantNote && (
+            <div
+              className="mx-auto mt-8 max-w-3xl rounded-ecaa-lg border border-ecaa-gold-200/70 bg-ecaa-gold-50/50 px-5 py-4 text-center sm:text-left"
+              role="note"
+            >
+              <p className="text-base leading-relaxed text-ecaa-ink-muted">
+                <span className="font-semibold text-ecaa-ink">Important:</span>{' '}
+                {registration.importantNote}
+              </p>
             </div>
+          )}
 
-            <h3 className="mt-8 text-2xl font-semibold tracking-tight text-ecaa-ink">
-              Ready to complete your registration?
-            </h3>
+          <div className="mt-10">
+            <ExternalFormCTA
+              title={registration.ctaTitle}
+              description={registration.ctaDescription}
+              buttonLabel={registration.ctaLabel}
+              formUrl={form.formUrl}
+            />
+          </div>
 
-            <p className="text-body mx-auto mt-4 max-w-lg">
-              The form opens in a new tab. Take your time — you can return here
-              anytime to review the checklist or FAQs.
+          {form.privacyNote && (
+            <p className="mx-auto mt-8 max-w-3xl text-center text-sm leading-relaxed text-ecaa-ink-subtle sm:text-base">
+              {form.privacyNote}
             </p>
-
-            <CTAButton
-              href={form.url}
-              variant="primary"
-              size="lg"
-              className="mt-10"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open full registration form (opens in a new tab)"
-            >
-              {registration.buttonLabel}
-            </CTAButton>
-
-            <p
-              className={`mt-8 text-base ${
-                registration.helperText?.startsWith('TODO')
-                  ? 'editorial-todo'
-                  : 'text-ecaa-ink-subtle'
-              }`}
-            >
-              {registration.helperText}
-            </p>
-          </article>
+          )}
         </AnimateIn>
       </Container>
     </section>

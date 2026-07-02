@@ -1,44 +1,56 @@
 import Badge from '../ui/Badge'
 import CTAButton from '../ui/CTAButton'
 import { hasUsableText, hasUsableUrl } from '../../utils/data'
+import { formatEventDateLabel } from '../../utils/events'
 
 export default function EventCard({ event, variant = 'upcoming' }) {
-  const showDate = hasUsableText(event.date)
+  const dateLabel = formatEventDateLabel(event.date)
   const showLocation = hasUsableText(event.location)
+  const showCategory = hasUsableText(event.category)
+  const excerpt = hasUsableText(event.summary)
+    ? event.summary
+    : hasUsableText(event.description)
+      ? event.description
+      : null
+  const actionUrl = hasUsableUrl(event.registrationUrl)
+    ? event.registrationUrl
+    : hasUsableUrl(event.recapUrl)
+      ? event.recapUrl
+      : hasUsableUrl(event.link)
+        ? event.link
+        : null
+  const badgeLabel = variant === 'past' ? 'Past event' : 'Upcoming'
 
   return (
-    <article className="ecaa-card-hover flex h-full flex-col">
+    <article className="flex h-full flex-col rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-white p-6 shadow-ecaa-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-ecaa-green-200/70 hover:shadow-ecaa-md sm:p-7">
       <div className="flex flex-wrap items-center gap-2">
-        <Badge variant={variant === 'past' ? 'neutral' : 'green'}>
-          {variant === 'past' ? 'Past event' : 'Upcoming'}
-        </Badge>
-        {showDate && (
-          <span className="text-sm text-ecaa-ink-subtle">{event.date}</span>
-        )}
+        <Badge variant={variant === 'past' ? 'neutral' : 'green'}>{badgeLabel}</Badge>
+        {showCategory && <Badge variant="gold">{event.category}</Badge>}
+        {dateLabel && <span className="text-sm font-medium text-ecaa-ink-subtle">{dateLabel}</span>}
       </div>
 
-      <h3 className="heading-section mt-4 text-2xl">{event.title}</h3>
+      <h3 className="mt-4 text-xl font-semibold tracking-tight text-ecaa-ink">{event.title}</h3>
 
-      {(hasUsableText(event.summary) || hasUsableText(event.description)) && (
-        <p className="text-body mt-3 flex-1">
-          {hasUsableText(event.summary) ? event.summary : event.description}
-        </p>
-      )}
+      {excerpt && <p className="mt-3 flex-1 text-base leading-relaxed text-ecaa-ink-muted">{excerpt}</p>}
 
       {showLocation && (
-        <p className="mt-4 text-base text-ecaa-ink-subtle">{event.location}</p>
+        <p className="mt-4 text-sm text-ecaa-ink-subtle">{event.location}</p>
       )}
 
-      {hasUsableUrl(event.registrationUrl) && (
+      {actionUrl && (
         <CTAButton
-          href={event.registrationUrl}
+          href={actionUrl}
           variant="secondary"
           size="sm"
-          className="mt-6"
+          className="mt-6 self-start"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Register
+          {hasUsableUrl(event.registrationUrl)
+            ? event.ctaLabel || 'Register'
+            : variant === 'past'
+              ? event.ctaLabel || 'View recap'
+              : event.ctaLabel || 'Learn more'}
         </CTAButton>
       )}
     </article>

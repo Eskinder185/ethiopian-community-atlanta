@@ -2,11 +2,11 @@ import Container from '../ui/Container'
 import SectionHeader from '../ui/SectionHeader'
 import CTAButton from '../ui/CTAButton'
 import AnimateIn from '../ui/AnimateIn'
-import contactData from '../../data/contact.json'
-import siteInfo from '../../data/siteInfo.json'
+import contactData from '../../content/contact.json'
+import siteInfo from '../../content/siteInfo.json'
 import { hasUsableText } from '../../utils/data'
 
-function ContactLine({ label, value, href }) {
+function ContactLine({ label, value, href, multiline = false }) {
   if (!hasUsableText(value)) {
     return (
       <li className="flex flex-col gap-1 sm:flex-row sm:gap-3">
@@ -31,7 +31,7 @@ function ContactLine({ label, value, href }) {
           {value}
         </a>
       ) : (
-        <span className="text-lg text-ecaa-ink">{value}</span>
+        <span className={`text-lg text-ecaa-ink ${multiline ? 'whitespace-pre-line' : ''}`}>{value}</span>
       )}
     </li>
   )
@@ -82,7 +82,7 @@ export default function ContactPreview() {
                       : undefined
                   }
                 />
-                <ContactLine label="Hours" value={general.hours} />
+                <ContactLine label="Hours" value={general.hours} multiline />
                 <li className="flex flex-col gap-1 sm:flex-row sm:gap-3">
                   <span className="min-w-24 text-sm font-semibold uppercase tracking-wide text-ecaa-ink-subtle">
                     Visit

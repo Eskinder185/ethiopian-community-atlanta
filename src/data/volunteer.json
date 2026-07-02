@@ -1,0 +1,33 @@
+{
+  "hero": {
+    "eyebrow": "Volunteer",
+    "title": "Volunteer With ECAA",
+    "description": "Volunteers help ECAA serve the community through events, education, outreach, youth programs, family support, health initiatives, and administrative work."
+  },
+  "areas": [
+    "Events and hospitality",
+    "Education and training",
+    "Youth programs",
+    "Health and wellness",
+    "Family and community support",
+    "Fundraising and donor support",
+    "Media and communications",
+    "Administrative support",
+    "Translation and interpretation",
+    "Facility and event hall support"
+  ],
+  "form": {
+    "email": "staff@ethiopiancaa.org",
+    "subject": "ECAA Volunteer Interest",
+    "submitLabel": "Email ECAA About Volunteering",
+    "note": "This volunteer interest form opens your email app so you can send your information directly to ECAA. A connected website form can be added later if needed.",
+    "fields": [
+      { "id": "fullName", "label": "Full Name", "type": "text", "required": true },
+      { "id": "email", "label": "Email", "type": "email", "required": true },
+      { "id": "phone", "label": "Phone", "type": "tel", "required": true },
+      { "id": "volunteerArea", "label": "Volunteer Area", "type": "select", "required": true },
+      { "id": "availability", "label": "Availability", "type": "text", "required": true },
+      { "id": "message", "label": "Message", "type": "textarea", "required": false }
+    ]
+  }
+}

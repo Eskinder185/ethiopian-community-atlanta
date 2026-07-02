@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>ECAA Content Manager</title>
+    <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        background: #faf9f6;
+        color: #1a1f1c;
+      }
+      .admin-topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding: 12px 16px;
+        background: rgba(250, 249, 246, 0.96);
+        border-bottom: 1px solid #e8e4dc;
+        box-shadow: 0 2px 10px rgba(13, 79, 60, 0.08);
+      }
+      .admin-topbar-label {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #6b756f;
+      }
+      .back-home-link {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: #0d4f3c;
+        color: #fff;
+        font-family: system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        transition: background 0.2s ease;
+      }
+      .back-home-link:hover {
+        background: #116550;
+      }
+      .back-home-link:focus-visible {
+        outline: 2px solid #c9a227;
+        outline-offset: 2px;
+      }
+      .admin-topbar-actions {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .lock-admin-btn {
+        display: none;
+        align-items: center;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(13, 79, 60, 0.22);
+        background: rgba(255, 255, 255, 0.6);
+        color: #0d4f3c;
+        font-family: system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        transition:
+          background 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .lock-admin-btn:hover {
+        background: rgba(13, 79, 60, 0.06);
+        border-color: rgba(13, 79, 60, 0.3);
+      }
+      .lock-admin-btn:focus-visible {
+        outline: 2px solid #c9a227;
+        outline-offset: 2px;
+      }
+
+      /* PIN gate overlay */
+      .pin-gate {
+        display: none;
+        min-height: 100vh;
+        padding: 5rem 1.25rem 2.5rem;
+        background: radial-gradient(circle at 15% 15%, rgba(201, 162, 39, 0.22), transparent 40%),
+          radial-gradient(circle at 80% 65%, rgba(13, 79, 60, 0.28), transparent 45%),
+          linear-gradient(135deg, #071f18, #0d4f3c 55%, #071f18);
+        align-items: center;
+        justify-content: center;
+      }
+      .pin-card {
+        width: 100%;
+        max-width: 420px;
+        border-radius: 22px;
+        background: rgba(250, 249, 246, 0.96);
+        border: 1px solid rgba(232, 228, 220, 0.9);
+        box-shadow: 0 20px 55px rgba(0, 0, 0, 0.25);
+        padding: 26px 22px;
+      }
+      .pin-card h1 {
+        margin: 0;
+        font-size: 26px;
+        letter-spacing: -0.02em;
+        color: #071f18;
+      }
+      .pin-card p {
+        margin: 10px 0 0;
+        color: #4a524d;
+        line-height: 1.55;
+      }
+      .pin-form {
+        margin-top: 18px;
+        display: grid;
+        gap: 12px;
+      }
+      .pin-input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(13, 79, 60, 0.18);
+        background: #ffffff;
+        font-size: 16px;
+        color: #1a1f1c;
+        outline: none;
+      }
+      .pin-input:focus {
+        border-color: rgba(201, 162, 39, 0.9);
+        box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.22);
+      }
+      .pin-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .pin-unlock-btn {
+        flex: 1 1 auto;
+        padding: 12px 14px;
+        border-radius: 999px;
+        border: none;
+        background: #0d4f3c;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+        transition: background 0.2s ease;
+      }
+      .pin-unlock-btn:hover {
+        background: #116550;
+      }
+      .pin-unlock-btn:focus-visible {
+        outline: 2px solid #c9a227;
+        outline-offset: 2px;
+      }
+      .pin-error {
+        display: none;
+        margin-top: 10px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(150, 38, 38, 0.25);
+        background: rgba(254, 245, 245, 0.9);
+        color: #962626;
+        font-weight: 600;
+        font-size: 14px;
+      }
+      .pin-helper {
+        margin-top: 12px;
+        color: #6b756f;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      .cms-status {
+        display: flex;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 5rem 2rem 2rem;
+        text-align: center;
+      }
+      .cms-status p {
+        margin: 0;
+        max-width: 32rem;
+        color: #6b756f;
+        line-height: 1.6;
+      }
+      .cms-status.error strong {
+        color: #962626;
+      }
+      .cms-status code {
+        background: #f4f1eb;
+        padding: 0.15rem 0.4rem;
+        border-radius: 0.25rem;
+        font-size: 0.9em;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="admin-topbar">
+      <p class="admin-topbar-label">Admin Dashboard</p>
+      <div class="admin-topbar-actions">
+        <button class="lock-admin-btn" id="lock-admin-btn" type="button">Lock Admin</button>
+        <a href="../" class="back-home-link">← Back to Website Home</a>
+      </div>
+    </header>
+
+    <main class="pin-gate" id="pin-gate" aria-label="Admin PIN gate">
+      <div class="pin-card">
+        <h1>ECAA Admin</h1>
+        <p>Enter PIN to continue</p>
+
+        <form class="pin-form" id="pin-form" autocomplete="off">
+          <label for="pin-input" class="admin-topbar-label" style="color: #6b756f">PIN</label>
+          <input
+            id="pin-input"
+            class="pin-input"
+            type="password"
+            inputmode="numeric"
+            autocomplete="one-time-code"
+            placeholder="••••"
+            aria-describedby="pin-error"
+          />
+          <div class="pin-actions">
+            <button class="pin-unlock-btn" type="submit">Unlock</button>
+            <a href="../" class="back-home-link" style="box-shadow: none">← Back to Website Home</a>
+          </div>
+          <div id="pin-error" class="pin-error" role="status" aria-live="polite">
+            Incorrect PIN. Please try again.
+          </div>
+          <p class="pin-helper">
+            Temporary PIN gate only. This is not secure production authentication. Replace with real CMS
+            authentication before launch.
+          </p>
+        </form>
+      </div>
+    </main>
+
+    <div class="cms-status" id="cms-status">
+      <strong>Loading ECAA Content Manager…</strong>
+      <p>Decap CMS is starting. This may take a few seconds.</p>
+    </div>
+
+    <div id="nc-root"></div>
+
+    <script>
+      function showError(message) {
+        const status = document.getElementById('cms-status')
+        if (!status) return
+        status.className = 'cms-status error'
+        status.innerHTML = message
+      }
+
+      // Temporary PIN gate only. This is not secure production authentication.
+      // Replace with real CMS authentication before launch.
+      //
+      // Change the PIN here:
+      const ADMIN_PIN = '185@'
+
+      const SESSION_KEY = 'ecaaAdminUnlocked'
+
+      function setUnlocked() {
+        sessionStorage.setItem(SESSION_KEY, 'true')
+      }
+
+      function clearUnlocked() {
+        sessionStorage.removeItem(SESSION_KEY)
+      }
+
+      function isUnlocked() {
+        return sessionStorage.getItem(SESSION_KEY) === 'true'
+      }
+
+      function showPinGate() {
+        const pinGate = document.getElementById('pin-gate')
+        const status = document.getElementById('cms-status')
+        const lockBtn = document.getElementById('lock-admin-btn')
+        if (pinGate) pinGate.style.display = 'flex'
+        if (status) status.style.display = 'none'
+        if (lockBtn) lockBtn.style.display = 'none'
+      }
+
+      function hidePinGate() {
+        const pinGate = document.getElementById('pin-gate')
+        if (pinGate) pinGate.style.display = 'none'
+      }
+
+      function showLockButton() {
+        const lockBtn = document.getElementById('lock-admin-btn')
+        if (!lockBtn) return
+        lockBtn.style.display = 'inline-flex'
+        lockBtn.addEventListener('click', function () {
+          clearUnlocked()
+          window.location.reload()
+        })
+      }
+
+      function loadDecapCms() {
+        const status = document.getElementById('cms-status')
+        if (status) status.style.display = 'flex'
+
+        const existing = document.getElementById('decap-cms-script')
+        if (existing) return
+
+        const script = document.createElement('script')
+        script.id = 'decap-cms-script'
+        script.src = 'https://unpkg.com/decap-cms@3.8.0/dist/decap-cms.js'
+        script.onload = function () {
+          document.getElementById('cms-status')?.remove()
+          showLockButton()
+        }
+        script.onerror = function () {
+          showError(
+            '<strong>Could not load Decap CMS.</strong><p>Check your internet connection and refresh the page.</p>',
+          )
+        }
+        document.body.appendChild(script)
+      }
+
+      window.addEventListener('error', function (event) {
+        if (event.filename && event.filename.includes('decap-cms')) {
+          showError(
+            '<strong>Could not load the content editor.</strong>' +
+              '<p>Check your internet connection and refresh the page. The editor loads from a CDN.</p>',
+          )
+        }
+      })
+
+      function initPinGate() {
+        const form = document.getElementById('pin-form')
+        const input = document.getElementById('pin-input')
+        const error = document.getElementById('pin-error')
+
+        if (!form || !input) return
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault()
+          if (error) error.style.display = 'none'
+
+          const entered = String(input.value || '').trim()
+          if (entered === ADMIN_PIN) {
+            setUnlocked()
+            hidePinGate()
+            loadDecapCms()
+            return
+          }
+
+          if (error) error.style.display = 'block'
+          input.focus()
+          input.select?.()
+        })
+      }
+
+      if (isUnlocked()) {
+        hidePinGate()
+        loadDecapCms()
+      } else {
+        showPinGate()
+        initPinGate()
+        document.getElementById('pin-input')?.focus?.()
+      }
+    </script>
+  </body>
+</html>

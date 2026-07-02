@@ -1,0 +1,132 @@
+{
+  "membership": {
+    "title": "ECAA Registration Form",
+    "description": "Complete the secure ECAA membership registration form through Jotform. The form opens in a new tab.",
+    "formUrl": "https://form.jotform.com/211111215669043",
+    "height": 2600,
+    "fallbackLabel": "Open Membership Form",
+    "organization": "Ethiopian Community Association in Atlanta, Inc.",
+    "address": "5616 Memorial Dr. Stone Mountain, GA 30083",
+    "mailingAddress": "PO Box 494 Clarkston, GA 30021",
+    "phone": "404-298-4570 / 404-254-0747",
+    "officeHours": [
+      "Monday - Friday: 10 AM to 6 PM",
+      "Saturday: 9 AM to 2 PM"
+    ],
+    "fieldsOverview": [
+      "Membership Type",
+      "Full Name",
+      "Date of Birth",
+      "Telephone Number",
+      "Email",
+      "Permanent Address",
+      "Billing Address Confirmation",
+      "Marital Status",
+      "Spouse Information",
+      "Designated Representative 1",
+      "Designated Representative 2",
+      "Children Information",
+      "Disclosure Agreement",
+      "Signature"
+    ],
+    "privacyNote": "Your data is secure with ECAA and will not be shared or sold to third parties for marketing and promotional purposes."
+  },
+  "forms": [
+    {
+      "id": "membership-registration",
+      "title": "ECAA Registration Form",
+      "description": "Complete the official ECAA membership registration form online. Opens in a new tab through Jotform.",
+      "url": "https://form.jotform.com/211111215669043",
+      "provider": "Jotform",
+      "category": "membership",
+      "recommendedPlacement": "Membership page",
+      "embedAllowed": false,
+      "published": true,
+      "notes": "Public membership/registration form."
+    },
+    {
+      "id": "fundraising-donation",
+      "title": "ECAA Fundraising / Donation Form",
+      "description": "Support ECAA community programs and services through the fundraising form. Opens in a new tab through Jotform.",
+      "url": "https://form.jotform.com/240604382753152",
+      "provider": "Jotform",
+      "category": "support",
+      "recommendedPlacement": "Support page",
+      "embedAllowed": false,
+      "published": true,
+      "notes": "Public fundraising and donation form."
+    },
+    {
+      "id": "student-interest-form",
+      "title": "Student Interest Form",
+      "description": "Submit student interest information for ECAA youth and education programs.",
+      "url": "",
+      "provider": "TODO",
+      "category": "education",
+      "recommendedPlacement": "Programs page",
+      "embedAllowed": false,
+      "published": true,
+      "notes": "TODO: Add official student interest form URL."
+    },
+    {
+      "id": "volunteer-information-form",
+      "title": "Volunteer Information Form",
+      "description": "Share your volunteer interest and availability to support ECAA programs, events, and community services.",
+      "url": "",
+      "provider": "TODO",
+      "category": "volunteer",
+      "recommendedPlacement": "Programs page",
+      "embedAllowed": false,
+      "published": true,
+      "notes": "TODO: Add official volunteer information form URL."
+    },
+    {
+      "id": "event-rsvp",
+      "title": "ECAA Event RSVP",
+      "description": "RSVP for ECAA community events.",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSfhFyDtPFvuKOT1vca1iLZfFnZYcYj3pwyDr6EEKNfFVt8ueg/viewform",
+      "provider": "Google Forms",
+      "category": "events",
+      "recommendedPlacement": "Events page",
+      "embedAllowed": false,
+      "published": true,
+      "notes": "Event RSVP form."
+    },
+    {
+      "id": "hall-booking",
+      "title": "Book a Hall",
+      "description": "TODO: Add official hall booking description.",
+      "url": "/contact",
+      "provider": "Internal",
+      "category": "hall-booking",
+      "recommendedPlacement": "Home page and Contact page",
+      "embedAllowed": false,
+      "published": true,
+      "notes": "TODO: Replace with official hall booking form or process when available."
+    },
+    {
+      "id": "nomination-form-amharic-2026",
+      "title": "2026 Nomination Form — Amharic",
+      "description": "Archived 2026 election nomination form in Amharic.",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSeHA6txi64fIETM9r9o2lg62hgiV-LcSU7XDCPf8ZdBvuThJA/viewform?usp=publish-editor",
+      "provider": "Google Forms",
+      "category": "elections",
+      "recommendedPlacement": "Documents page",
+      "embedAllowed": false,
+      "published": true,
+      "notes": "Archived election nomination form."
+    },
+    {
+      "id": "nomination-form-english-2026",
+      "title": "2026 Nomination Form — English",
+      "description": "Archived 2026 election nomination form in English.",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSfwwvZ8AJzNGgPEeGbQOFa5AswDLmLYh4rV0hb7IfER2EqRBw/viewform?usp=publish-editor",
+      "provider": "Google Forms",
+      "category": "elections",
+      "recommendedPlacement": "Documents page",
+      "embedAllowed": false,
+      "published": true,
+      "notes": "Archived election nomination form."
+    }
+  ]
+}

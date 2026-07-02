@@ -1,56 +1,68 @@
 import { Link } from 'react-router-dom'
 import Container from '../ui/Container'
-import AnimateIn from '../ui/AnimateIn'
-import siteInfo from '../../data/siteInfo.json'
-import navigation from '../../data/navigation.json'
+import siteInfo from '../../content/siteInfo.json'
+import contactData from '../../content/contact.json'
+import { hasUsableText } from '../../utils/data'
+
+const linkClass =
+  'text-sm text-ecaa-green-100/90 transition-colors duration-200 hover:text-ecaa-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ecaa-gold-400'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
-  const midpoint = Math.ceil(navigation.main.length / 2)
-  const firstColumn = navigation.main.slice(0, midpoint)
-  const secondColumn = navigation.main.slice(midpoint)
+  const { general, footer } = contactData
+  const legalLinks = footer.legalLinks ?? []
+
+  const addressLine = hasUsableText(general.address?.street)
+    ? `${general.address.street}, ${general.address.city}, ${general.address.state} ${general.address.zip}`
+    : null
 
   return (
-    <footer className="relative mt-auto border-t border-ecaa-border/60 bg-ecaa-green-950 text-ecaa-white">
-      <Container className="section-spacing-sm">
-        <AnimateIn>
-          <div className="grid gap-12 lg:grid-cols-3 lg:gap-16">
-            <div>
-              <p className="text-xl font-semibold tracking-tight text-ecaa-white">
-                {siteInfo.name}
-              </p>
-              <p className="mt-4 text-base leading-relaxed text-ecaa-green-200/90">
-                {siteInfo.tagline}
-              </p>
-            </div>
-
-            <nav className="lg:col-span-2" aria-label="Footer navigation">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-ecaa-gold-400">
-                Explore
-              </p>
-              <div className="mt-5 grid gap-x-12 gap-y-3 sm:grid-cols-2">
-                {[firstColumn, secondColumn].map((column, index) => (
-                  <ul key={index} className="space-y-3">
-                    {column.map((item) => (
-                      <li key={item.path}>
-                        <Link
-                          to={item.path}
-                          className="text-base text-ecaa-green-100/90 transition-colors duration-300 hover:text-ecaa-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ecaa-gold-400"
-                        >
-                          {item.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                ))}
-              </div>
-            </nav>
+    <footer className="mt-auto border-t border-ecaa-green-800/40 bg-ecaa-green-950 text-ecaa-white">
+      <Container className="px-5 py-8 sm:px-8 sm:py-10">
+        <div className="flex flex-col items-center gap-6 text-center md:flex-row md:items-start md:justify-between md:gap-8 md:text-left">
+          <div className="space-y-2">
+            <p className="text-base font-semibold tracking-tight text-ecaa-white sm:text-lg">
+              {siteInfo.name}
+            </p>
+            <p className="text-xs text-ecaa-green-200/70 md:max-w-xs">
+              © {currentYear} {siteInfo.name} All rights reserved.
+            </p>
           </div>
 
-          <p className="mt-14 text-sm text-ecaa-green-200/70">
-            © {currentYear} {siteInfo.shortName}. All rights reserved.
-          </p>
-        </AnimateIn>
+          <div className="space-y-1.5 text-sm text-ecaa-green-100/90">
+            {addressLine && <p>{addressLine}</p>}
+            {hasUsableText(general.email) && (
+              <p>
+                <a href={`mailto:${general.email}`} className={linkClass}>
+                  {general.email}
+                </a>
+              </p>
+            )}
+            {hasUsableText(general.phone) && (
+              <p>
+                <a href={`tel:${general.phone.replace(/\s/g, '')}`} className={linkClass}>
+                  {general.phone}
+                </a>
+              </p>
+            )}
+            {legalLinks.length > 0 && (
+              <p className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 pt-1 md:justify-start">
+                {legalLinks.map((item, index) => (
+                  <span key={item.path} className="inline-flex items-center gap-2">
+                    {index > 0 && (
+                      <span className="text-ecaa-green-600" aria-hidden="true">
+                        |
+                      </span>
+                    )}
+                    <Link to={item.path} className={linkClass}>
+                      {item.label}
+                    </Link>
+                  </span>
+                ))}
+              </p>
+            )}
+          </div>
+        </div>
       </Container>
     </footer>
   )

@@ -1,87 +1,46 @@
 {
   "home": {
-    "title": "Home",
-    "description": "Welcome to the Ethiopian Community Association in Atlanta."
+    "title": "Ethiopian Community Association in Atlanta | ECAA",
+    "description": "Building intergenerational connections and strengthening community resilience for the Ethiopian community in Atlanta."
   },
   "about": {
-    "title": "About ECAA",
-    "description": "Our history, mission, and role in the Atlanta Ethiopian community.",
-    "todos": [
-      "Add organization history and founding story",
-      "Add mission, vision, and values",
-      "Add community impact highlights"
-    ]
+    "title": "About ECAA | Ethiopian Community Association in Atlanta",
+    "description": "Learn about ECAA's mission, history, leadership structure, and work serving Ethiopians and Ethiopian-Americans in Atlanta."
   },
   "programs": {
-    "title": "Programs & Services",
-    "description": "Programs and services for families, youth, older adults, and the broader community.",
-    "todos": [
-      "List current programs and services",
-      "Add program descriptions and who each serves",
-      "Add registration or contact details per program"
-    ]
+    "title": "Programs | ECAA",
+    "description": "Explore ECAA community support, cultural programs, youth initiatives, health and wellness, EDIR, volunteer opportunities, and education and training."
   },
   "membership": {
-    "title": "Membership",
-    "description": "Join ECAA and stay connected with the Ethiopian community in Atlanta.",
-    "todos": [
-      "Add membership benefits and eligibility",
-      "Add membership tiers or fees if applicable",
-      "Add renewal process details"
-    ]
+    "title": "Membership | ECAA",
+    "description": "Become a member of the Ethiopian Community Association in Atlanta and support community programs, cultural connection, and mutual support."
   },
   "events": {
-    "title": "Events & News",
-    "description": "Upcoming events, community news, and announcements.",
-    "todos": [
-      "Add upcoming events calendar",
-      "Add recent news and announcements",
-      "Add event registration links where applicable"
-    ]
+    "title": "Events and Announcements | ECAA",
+    "description": "Find ECAA community events, announcements, meetings, event hall rental requests, and opportunities to participate."
   },
   "leadership": {
-    "title": "Leadership",
-    "description": "Board members, officers, and volunteers who guide ECAA.",
-    "todos": [
-      "Add board and officer profiles",
-      "Add photos and short bios",
-      "Add committee structure if applicable"
-    ]
+    "title": "Leadership | ECAA",
+    "description": "ECAA is led by community members serving through executive leadership, board roles, audit oversight, advisory support, and EDIR leadership."
   },
   "documents": {
-    "title": "Documents",
-    "description": "Forms, bylaws, policies, and other resources.",
-    "todos": [
-      "Add downloadable forms and documents",
-      "Add bylaws and governance documents",
-      "Organize documents by category"
-    ]
+    "title": "Documents | ECAA",
+    "description": "Access ECAA bylaws, election documents, public reports, meeting notices, and organizational documents."
   },
   "media": {
-    "title": "Media",
-    "description": "Photos, videos, and stories from the ECAA community.",
-    "todos": [
-      "Add photo galleries",
-      "Add video links or embeds",
-      "Add press coverage or community stories"
-    ]
+    "title": "Media | ECAA",
+    "description": "Watch ECAA videos and view community media highlights."
   },
   "support": {
     "title": "Support ECAA",
-    "description": "Donate, volunteer, or partner with ECAA to strengthen our community.",
-    "todos": [
-      "Add donation options and instructions",
-      "Add volunteer opportunities",
-      "Add sponsorship or partnership information"
-    ]
+    "description": "Support ECAA through donations, sponsorship, volunteering, and membership."
   },
   "contact": {
-    "title": "Contact",
-    "description": "Reach ECAA with questions, ideas, or partnership opportunities.",
-    "todos": [
-      "Add office address and hours",
-      "Add phone number and email",
-      "Add contact form or preferred contact method"
-    ]
+    "title": "Contact ECAA",
+    "description": "Contact the Ethiopian Community Association in Atlanta in Stone Mountain, Georgia."
+  },
+  "volunteer": {
+    "title": "Volunteer With ECAA",
+    "description": "Volunteer with the Ethiopian Community Association in Atlanta through events, education, outreach, and community support."
   }
 }

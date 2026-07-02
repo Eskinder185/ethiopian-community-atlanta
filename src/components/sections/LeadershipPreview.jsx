@@ -1,37 +1,47 @@
 import Container from '../ui/Container'
 import SectionHeader from '../ui/SectionHeader'
-import TeamMemberCard from '../cards/TeamMemberCard'
+import LeadershipCard from '../cards/LeadershipCard'
+import { getAllTeamMembers } from '../cards/TeamMemberCard'
 import EmptyState from '../ui/EmptyState'
 import CTAButton from '../ui/CTAButton'
 import AnimateIn from '../ui/AnimateIn'
-import teamData from '../../data/teamMembers.json'
-import { filterVerifiedMembers } from '../../utils/data'
+import teamData from '../../content/teamMembers.json'
+import homeData from '../../content/homepage.json'
 
 export default function LeadershipPreview({ limit = 3 }) {
-  const members = filterVerifiedMembers(teamData.members).slice(0, limit)
+  const members = getAllTeamMembers(teamData).slice(0, limit)
+  const { leadershipPreview } = homeData
 
   return (
     <section className="surface-muted">
       <Container className="section-spacing-sm">
         <AnimateIn>
           <SectionHeader
-            eyebrow="Leadership"
-            title="Guided by community volunteers"
-            description="ECAA is led by dedicated board members, officers, and committee volunteers."
-            action={{ label: 'Meet leadership', to: '/leadership', variant: 'secondary' }}
+            eyebrow={leadershipPreview.eyebrow}
+            title={leadershipPreview.title}
+            description={leadershipPreview.description}
+            action={{
+              label: leadershipPreview.ctaLabel,
+              to: leadershipPreview.ctaPath,
+              variant: 'secondary',
+            }}
           />
 
           {members.length > 0 ? (
-            <div className="mt-14 grid-cards">
+            <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {members.map((member) => (
-                <TeamMemberCard key={member.id} member={member} />
+                <LeadershipCard
+                  key={member.id}
+                  member={member}
+                  committee={member.committee}
+                />
               ))}
             </div>
           ) : (
             <EmptyState
               className="mt-14"
               title="Leadership profiles coming soon"
-              description="TODO: Add verified board and committee profiles to teamMembers.json."
+              description="Leadership profiles will appear here once verified details are published."
               action={
                 <CTAButton to="/leadership" variant="primary">
                   Leadership page

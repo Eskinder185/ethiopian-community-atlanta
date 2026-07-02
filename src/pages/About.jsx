@@ -1,31 +1,46 @@
 import PageHero from '../components/layout/PageHero'
 import ContentSection from '../components/sections/ContentSection'
+import AboutOverview from '../components/sections/about/AboutOverview'
 import AboutMissionVision from '../components/sections/about/AboutMissionVision'
 import AboutHistory from '../components/sections/about/AboutHistory'
 import AboutHowItWorks from '../components/sections/about/AboutHowItWorks'
 import AboutLeadershipStructure from '../components/sections/about/AboutLeadershipStructure'
+import AboutClosingCta from '../components/sections/about/AboutClosingCta'
 import CTAButton from '../components/ui/CTAButton'
 import aboutData from '../data/about.json'
-import siteInfo from '../data/siteInfo.json'
+import pages from '../data/pages.json'
 
 export default function About() {
-  const { hero, missionVision, history, howItWorks, leadershipStructure } = aboutData
+  const {
+    hero,
+    overview,
+    missionVision,
+    history,
+    howItWorks,
+    leadershipStructure,
+    closingCta,
+  } = aboutData
+  const page = pages.about
 
   return (
     <>
       <PageHero
-        eyebrow={hero.eyebrow}
-        title={hero.title}
-        description={hero.description}
-        badge={{ label: siteInfo.shortName, variant: 'green' }}
+        size="page"
+        title={page.title}
+        description={page.description}
+        badge={{ label: hero.badge || 'About ECAA', variant: 'gold' }}
+        imageId="home-hero-community-atlanta"
+        overlayStrength="default"
       >
         <CTAButton href="#mission-vision" variant="primary" size="lg">
           Mission & Vision
         </CTAButton>
-        <CTAButton to="/membership" variant="secondary" size="lg">
+        <CTAButton to="/membership" variant="secondary" size="lg" className="btn-hero-outline">
           Become a Member
         </CTAButton>
       </PageHero>
+
+      <AboutOverview section={overview} />
 
       <ContentSection
         id={missionVision.id}
@@ -35,20 +50,11 @@ export default function About() {
         <AboutMissionVision section={missionVision} />
       </ContentSection>
 
-      <ContentSection
-        id={history.id}
-        eyebrow={history.eyebrow}
-        title={history.title}
-        muted
-      >
+      <ContentSection id={history.id} eyebrow={history.eyebrow} title={history.title} muted>
         <AboutHistory section={history} />
       </ContentSection>
 
-      <ContentSection
-        id={howItWorks.id}
-        eyebrow={howItWorks.eyebrow}
-        title={howItWorks.title}
-      >
+      <ContentSection id={howItWorks.id} eyebrow={howItWorks.eyebrow} title={howItWorks.title}>
         <AboutHowItWorks section={howItWorks} />
       </ContentSection>
 
@@ -60,6 +66,8 @@ export default function About() {
       >
         <AboutLeadershipStructure section={leadershipStructure} />
       </ContentSection>
+
+      <AboutClosingCta section={closingCta} />
     </>
   )
 }

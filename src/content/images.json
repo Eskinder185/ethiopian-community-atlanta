@@ -1,0 +1,83 @@
+{
+  "galleries": [],
+  "images": [
+    {
+      "id": "home-hero-community-atlanta",
+      "title": "Community in Atlanta",
+      "alt": "Community members gathered in Atlanta for the Ethiopian Community Association in Atlanta.",
+      "src": "/images/home-hero-community-atlanta.jpg",
+      "category": "hero",
+      "recommendedUse": "Homepage hero section",
+      "page": "Home",
+      "notes": "Primary homepage visual.",
+      "mediaGallery": false,
+      "published": true,
+      "featured": false
+    },
+    {
+      "id": "membership-welcome",
+      "title": "Welcome to membership",
+      "alt": "Welcoming community image for ECAA membership.",
+      "src": "/images/membership-welcome.jpg",
+      "category": "membership",
+      "recommendedUse": "Membership page hero or intro section",
+      "page": "Membership",
+      "notes": "Use near Become a Member section.",
+      "mediaGallery": false,
+      "published": true,
+      "featured": true
+    },
+    {
+      "id": "programs-community-support",
+      "title": "Community support programs",
+      "alt": "Community support and programs image for ECAA.",
+      "src": "/images/programs-community-support.jpg",
+      "category": "programs",
+      "recommendedUse": "Programs page and homepage programs preview",
+      "page": "Programs",
+      "notes": "Use for Programs & Services content.",
+      "mediaGallery": false,
+      "published": true,
+      "featured": true
+    },
+    {
+      "id": "events-community-gathering",
+      "title": "Community gathering",
+      "alt": "Community gathering image for ECAA events.",
+      "src": "/images/events-community-gathering.jpg",
+      "category": "events",
+      "recommendedUse": "Events page and homepage events preview",
+      "page": "Events",
+      "notes": "Use for Events & News content.",
+      "mediaGallery": false,
+      "published": true,
+      "featured": true
+    },
+    {
+      "id": "leadership-community-guidance",
+      "title": "Community leadership",
+      "alt": "Community leadership and guidance image for ECAA.",
+      "src": "/images/leadership-community-guidance.jpg",
+      "category": "leadership",
+      "recommendedUse": "Leadership page and homepage leadership preview",
+      "page": "Leadership",
+      "notes": "Use for leadership section.",
+      "mediaGallery": false,
+      "published": true,
+      "featured": true
+    },
+    {
+      "id": "global-ethiopian-pattern-divider",
+      "title": "Ethiopian pattern accent",
+      "alt": "Ethiopian-inspired decorative pattern divider.",
+      "src": "/images/global-ethiopian-pattern-divider.png",
+      "category": "decorative",
+      "recommendedUse": "Section divider or subtle background accent",
+      "page": "Global",
+      "notes": "Use lightly as a decorative accent.",
+      "mediaGallery": false,
+      "published": true,
+      "featured": false
+    }
+  ]
+}

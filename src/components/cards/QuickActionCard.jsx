@@ -13,6 +13,7 @@ export default function QuickActionCard({
   to,
   icon,
   accent = 'green',
+  ctaLabel = 'Explore',
 }) {
   return (
     <Link
@@ -33,7 +34,7 @@ export default function QuickActionCard({
       <p className="text-body mt-3 flex-1">{description}</p>
 
       <span className="mt-6 inline-flex items-center text-sm font-semibold text-ecaa-green-900 transition-all duration-300 group-hover:translate-x-1">
-        Explore
+        {ctaLabel}
         <span className="ml-2 opacity-70" aria-hidden="true">→</span>
       </span>
     </Link>

@@ -1,78 +1,166 @@
 {
   "main": [
     { "label": "Home", "path": "/" },
-    { "label": "About ECAA", "path": "/about" },
-    { "label": "Programs & Services", "path": "/programs" },
-    { "label": "Membership", "path": "/membership" },
-    { "label": "Events & News", "path": "/events" },
-    { "label": "Leadership", "path": "/leadership" },
-    { "label": "Documents", "path": "/documents" },
-    { "label": "Media", "path": "/media" },
-    { "label": "Support ECAA", "path": "/support" },
-    { "label": "Contact", "path": "/contact" }
+    { "label": "About", "path": "/about" },
+    { "label": "Programs", "path": "/programs" },
+    { "label": "Events", "path": "/events" },
+    { "label": "Get Involved", "path": "/membership" },
+    { "label": "Resources", "path": "/documents" }
   ],
   "header": {
-    "primary": [
-      { "label": "Home", "path": "/" },
+    "brandSubtitle": "Ethiopian Community Association",
+    "items": [
+      { "label": "Home", "path": "/", "type": "link" },
+      {
+        "label": "About",
+        "type": "dropdown",
+        "children": [
+          { "label": "About ECAA", "path": "/about" },
+          { "label": "Mission & Vision", "path": "/about#mission" },
+          { "label": "History", "path": "/about#history" },
+          { "label": "How ECAA Works", "path": "/about#how-it-works" },
+          { "label": "Leadership Structure", "path": "/about#leadership-structure" },
+          { "label": "Leadership Team", "path": "/leadership" }
+        ]
+      },
+      {
+        "label": "Programs",
+        "type": "dropdown",
+        "children": [
+          { "label": "Programs Overview", "path": "/programs" },
+          { "label": "Community Support", "path": "/programs#community-support" },
+          { "label": "Cultural Programs", "path": "/programs#cultural-programs" },
+          { "label": "Youth & Education", "path": "/programs#youth-education" },
+          { "label": "Health & Wellness", "path": "/programs#health-wellness" },
+          { "label": "EDIR", "path": "/programs#edir" },
+          { "label": "Volunteer & Civic Engagement", "path": "/programs#volunteer-civic-engagement" },
+          { "label": "Education & Training", "path": "/programs#education-training" }
+        ]
+      },
+      {
+        "label": "Events",
+        "type": "dropdown",
+        "children": [
+          { "label": "Events & News", "path": "/events" },
+          { "label": "Upcoming Events", "path": "/events#upcoming" },
+          { "label": "Announcements", "path": "/events#announcements" },
+          { "label": "Community News", "path": "/events#community-news" },
+          { "label": "Past Events", "path": "/events#past" },
+          { "label": "Book the Event Hall", "path": "/events#book-hall" },
+          { "label": "Media Gallery", "path": "/media" }
+        ]
+      },
+      {
+        "label": "Get Involved",
+        "type": "dropdown",
+        "children": [
+          { "label": "Become a Member", "path": "/membership" },
+          {
+            "label": "Open Membership Form",
+            "path": "https://form.jotform.com/211111215669043",
+            "external": true
+          },
+          { "label": "Donate / Support", "path": "/support" },
+          { "label": "Volunteer", "path": "/support#volunteer" },
+          { "label": "Book a Hall", "path": "/events#book-hall" },
+          { "label": "Contact ECAA", "path": "/contact" }
+        ]
+      },
+      {
+        "label": "Resources",
+        "type": "dropdown",
+        "children": [
+          { "label": "Documents Overview", "path": "/documents" },
+          { "label": "Bylaws", "path": "/documents#bylaws" },
+          { "label": "Election Documents", "path": "/documents#elections" },
+          { "label": "Meeting Notices", "path": "/documents#meeting-notices" },
+          { "label": "Public Reports", "path": "/documents#public-reports" },
+          { "label": "Historical Documents", "path": "/documents#historical-documents" },
+          { "label": "Privacy Policy", "path": "/privacy" },
+          { "label": "Terms & Conditions", "path": "/terms" }
+        ]
+      }
+    ],
+    "adminCta": {
+      "label": "Admin",
+      "path": "/admin",
+      "published": true
+    }
+  },
+  "footer": {
+    "ecaaLinks": [
       { "label": "About", "path": "/about" },
       { "label": "Programs", "path": "/programs" },
       { "label": "Events", "path": "/events" },
-      { "label": "Contact", "path": "/contact" }
+      { "label": "Media", "path": "/media" }
     ],
-    "more": [
-      { "label": "Leadership", "path": "/leadership" },
+    "getInvolvedLinks": [
+      { "label": "Membership", "path": "/membership" },
+      { "label": "Donate / Support", "path": "/support" },
+      { "label": "Volunteer", "path": "/support#volunteer" },
+      { "label": "Contact Us", "path": "/contact" },
+      { "label": "Book a Hall", "path": "/events#book-hall" }
+    ],
+    "resourcesLinks": [
       { "label": "Documents", "path": "/documents" },
-      { "label": "Media", "path": "/media" },
-      { "label": "Support ECAA", "path": "/support" }
+      { "label": "Bylaws", "path": "/documents#bylaws" },
+      { "label": "Privacy Policy", "path": "/privacy" },
+      { "label": "Terms & Conditions", "path": "/terms" }
     ],
-    "cta": {
-      "label": "Become a Member",
-      "path": "/membership"
-    },
-    "mobileSecondaryCta": {
-      "label": "Support ECAA",
-      "path": "/support"
-    }
+    "externalForms": [
+      {
+        "label": "Membership Form",
+        "url": "https://form.jotform.com/211111215669043"
+      },
+      {
+        "label": "Donation Form",
+        "url": "https://form.jotform.com/240604382753152"
+      }
+    ]
   },
   "sections": {
     "about": [
-      { "id": "mission-vision", "label": "Mission & Vision", "anchor": "mission-vision" },
+      { "id": "mission-vision", "label": "Mission & Vision", "anchor": "mission" },
       { "id": "history", "label": "History", "anchor": "history" },
-      { "id": "how-ecaa-works", "label": "How ECAA Works", "anchor": "how-ecaa-works" },
+      { "id": "how-ecaa-works", "label": "How ECAA Works", "anchor": "how-it-works" },
       { "id": "leadership-structure", "label": "Leadership Structure", "anchor": "leadership-structure" }
     ],
     "programs": [
       { "id": "community-support", "label": "Community Support", "anchor": "community-support" },
       { "id": "cultural-programs", "label": "Cultural Programs", "anchor": "cultural-programs" },
       { "id": "youth-education", "label": "Youth & Education", "anchor": "youth-education" },
-      { "id": "health-sports", "label": "Health & Sports", "anchor": "health-sports" },
-      { "id": "edir", "label": "EDIR", "anchor": "edir" }
+      { "id": "health-wellness", "label": "Health & Wellness", "anchor": "health-wellness" },
+      { "id": "edir", "label": "EDIR", "anchor": "edir" },
+      { "id": "volunteer-civic", "label": "Volunteer & Civic Engagement", "anchor": "volunteer-civic-engagement" },
+      { "id": "education-training", "label": "Education & Training", "anchor": "education-training" }
     ],
     "membership": [
-      { "id": "become-a-member", "label": "Become a Member", "anchor": "become-a-member" },
-      { "id": "benefits", "label": "Benefits", "anchor": "benefits" },
-      { "id": "eligibility", "label": "Eligibility", "anchor": "eligibility" },
+      { "id": "become-a-member", "label": "Become a Member", "anchor": "membership-options" },
+      { "id": "benefits", "label": "Benefits", "anchor": "membership-options" },
+      { "id": "eligibility", "label": "Eligibility", "anchor": "membership-options" },
       { "id": "membership-faq", "label": "Membership FAQ", "anchor": "membership-faq" },
       { "id": "registration-form", "label": "ECAA Registration Form", "anchor": "registration-form" }
     ],
     "events": [
-      { "id": "upcoming-events", "label": "Upcoming Events", "anchor": "upcoming-events" },
+      { "id": "upcoming-events", "label": "Upcoming Events", "anchor": "upcoming" },
       { "id": "announcements", "label": "Announcements", "anchor": "announcements" },
       { "id": "community-news", "label": "Community News", "anchor": "community-news" },
-      { "id": "past-events", "label": "Past Events", "anchor": "past-events" }
+      { "id": "past-events", "label": "Past Events", "anchor": "past" },
+      { "id": "book-hall", "label": "Book the ECAA Event Hall", "anchor": "book-hall" }
     ],
     "leadership": [
       { "id": "executive-committee", "label": "Executive Committee", "anchor": "executive-committee" },
-      { "id": "board-members", "label": "Board Members", "anchor": "board-members" },
+      { "id": "board-of-directors", "label": "Board of Directors", "anchor": "board-of-directors" },
       { "id": "audit-committee", "label": "Audit Committee", "anchor": "audit-committee" },
       { "id": "advisory-board", "label": "Advisory Board", "anchor": "advisory-board" },
       { "id": "edir-committee", "label": "EDIR Committee", "anchor": "edir-committee" }
     ],
     "documents": [
       { "id": "bylaws", "label": "Bylaws", "anchor": "bylaws" },
-      { "id": "election-documents", "label": "Election Documents", "anchor": "election-documents" },
+      { "id": "election-documents", "label": "Elections", "anchor": "elections" },
       { "id": "meeting-notices", "label": "Meeting Notices", "anchor": "meeting-notices" },
-      { "id": "public-reports", "label": "Public Reports", "anchor": "public-reports" }
+      { "id": "public-reports", "label": "Public Reports", "anchor": "public-reports" },
+      { "id": "historical-documents", "label": "Historical Documents", "anchor": "historical-documents" }
     ],
     "media": [
       { "id": "videos", "label": "Videos", "anchor": "videos" },
@@ -80,9 +168,8 @@
     ],
     "support": [
       { "id": "donate", "label": "Donate", "anchor": "donate" },
-      { "id": "fundraising", "label": "Fundraising", "anchor": "fundraising" },
-      { "id": "sponsorship", "label": "Sponsorship", "anchor": "sponsorship" },
-      { "id": "volunteer", "label": "Volunteer", "anchor": "volunteer" }
+      { "id": "volunteer", "label": "Volunteer", "anchor": "volunteer" },
+      { "id": "other-ways", "label": "Other Ways to Support", "anchor": "other-ways" }
     ]
   }
 }

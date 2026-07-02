@@ -1,7 +1,7 @@
 import Container from '../ui/Container'
 import SectionHeader from '../ui/SectionHeader'
 import AnimateIn from '../ui/AnimateIn'
-import membershipData from '../../data/membership.json'
+import membershipData from '../../content/membership.json'
 
 export default function MembershipBeforeYouStart() {
   const { beforeYouStart } = membershipData
@@ -11,26 +11,26 @@ export default function MembershipBeforeYouStart() {
       <Container className="section-spacing-sm">
         <AnimateIn>
           <SectionHeader
-            eyebrow="Prepare"
+            eyebrow={beforeYouStart.label}
             title={beforeYouStart.title}
             description={beforeYouStart.description}
           />
 
-          <ul className="mt-14 grid gap-4 sm:grid-cols-2">
+          <ol className="mt-12 grid gap-3 sm:grid-cols-2 sm:gap-4">
             {beforeYouStart.items.map((item, index) => (
-              <AnimateIn key={item} delay={index * 40} as="li">
-                <div className="ecaa-card-hover flex items-start gap-4">
+              <AnimateIn key={item} delay={index * 30} as="li">
+                <div className="flex items-center gap-4 rounded-ecaa-lg border border-ecaa-border/70 bg-ecaa-white px-4 py-3.5 shadow-ecaa-sm">
                   <span
-                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ecaa-green-900 text-sm font-bold text-ecaa-white shadow-ecaa-sm"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ecaa-green-900 text-sm font-bold text-ecaa-white"
                     aria-hidden="true"
                   >
                     {index + 1}
                   </span>
-                  <span className="pt-1.5 text-base font-medium text-ecaa-ink">{item}</span>
+                  <span className="text-base text-ecaa-ink">{item}</span>
                 </div>
               </AnimateIn>
             ))}
-          </ul>
+          </ol>
         </AnimateIn>
       </Container>
     </section>

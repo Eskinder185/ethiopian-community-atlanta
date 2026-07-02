@@ -1,53 +1,79 @@
-import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 import Container from '../ui/Container'
-import CTAButton from '../ui/CTAButton'
 import HeaderBrand from './HeaderBrand'
 import MobileMenu from './MobileMenu'
-import NavMoreDropdown from './NavMoreDropdown'
+import NavDropdown from './NavDropdown'
+import CTAButton from '../ui/CTAButton'
 import navigation from '../../data/navigation.json'
 
 const navLinkClass = ({ isActive }) =>
-  ['nav-link whitespace-nowrap', isActive ? 'nav-link-active' : ''].filter(Boolean).join(' ')
+  ['nav-link nav-link-header whitespace-nowrap', isActive ? 'nav-link-active' : '']
+    .filter(Boolean)
+    .join(' ')
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const { primary, cta } = navigation.header
+  const [openDropdown, setOpenDropdown] = useState(null)
+  const location = useLocation()
+  const { items, adminCta } = navigation.header
+
+  useEffect(() => {
+    setOpenDropdown(null)
+  }, [location.pathname, location.hash])
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ecaa-border/60 bg-ecaa-white/85 shadow-ecaa-sm backdrop-blur-xl">
-      <Container>
-        <div className="flex h-[4.5rem] items-center justify-between gap-6">
+    <header className="sticky top-0 z-50 w-full overflow-visible border-b border-ecaa-border/60 bg-ecaa-white/95 shadow-ecaa-sm backdrop-blur-xl">
+      <Container wide className="overflow-visible">
+        <div className="flex h-16 items-center justify-between gap-3 sm:gap-4">
           <HeaderBrand />
 
-          {/* Desktop navigation */}
-          <div className="hidden min-w-0 flex-1 items-center justify-end gap-3 lg:flex">
+          <div className="hidden min-w-0 flex-1 items-center justify-end gap-2 xl:flex xl:gap-3">
             <nav
-              className="flex items-center gap-1"
+              className="flex min-w-0 items-center gap-0 overflow-visible"
               aria-label="Main navigation"
             >
-              {primary.map((item) => (
-                <NavLink key={item.path} to={item.path} className={navLinkClass}>
-                  {item.label}
-                </NavLink>
-              ))}
-              <NavMoreDropdown />
+              {items.map((item) =>
+                item.type === 'dropdown' ? (
+                  <NavDropdown
+                    key={item.label}
+                    item={item}
+                    isOpen={openDropdown === item.label}
+                    onToggle={() =>
+                      setOpenDropdown((current) =>
+                        current === item.label ? null : item.label,
+                      )
+                    }
+                    onClose={() => setOpenDropdown(null)}
+                  />
+                ) : (
+                  <NavLink
+                    key={item.path}
+                    to={item.path}
+                    className={navLinkClass}
+                    end={item.path === '/'}
+                  >
+                    {item.label}
+                  </NavLink>
+                ),
+              )}
             </nav>
 
-            <CTAButton
-              to={cta.path}
-              variant="primary"
-              size="sm"
-              className="ml-2 shrink-0"
-            >
-              {cta.label}
-            </CTAButton>
+            {adminCta?.published && adminCta.path && (
+              <CTAButton
+                to={adminCta.path}
+                variant="primary"
+                size="sm"
+                className="ml-1 shrink-0 xl:ml-2"
+              >
+                {adminCta.label}
+              </CTAButton>
+            )}
           </div>
 
-          {/* Mobile menu toggle */}
           <button
             type="button"
-            className="btn btn-secondary btn-sm shrink-0 lg:hidden"
+            className="btn btn-secondary btn-sm shrink-0 xl:hidden"
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             onClick={() => setMenuOpen((open) => !open)}

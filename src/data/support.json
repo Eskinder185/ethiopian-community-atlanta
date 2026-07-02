@@ -1,61 +1,34 @@
 {
   "hero": {
-    "eyebrow": "Give & get involved",
+    "eyebrow": "Support ECAA",
     "title": "Support ECAA",
-    "description": "Your support helps ECAA serve the Ethiopian community in Atlanta through programs, events, and community resources. TODO: Add verified support impact statement."
+    "description": "Help ECAA build a stronger, more resilient, and mortgage-free community future."
   },
-  "sections": [
-    {
-      "id": "donate",
-      "title": "Donate",
-      "description": "TODO: Add verified donation overview and how contributions support ECAA programs.",
-      "ctaLabel": "Donate to ECAA",
-      "ctaUrl": "TODO: Add verified donation URL",
-      "highlights": [
-        "TODO: Add verified donation method or platform",
-        "TODO: Add verified tax or receipt information if applicable",
-        "TODO: Add verified example of what donations support"
-      ],
-      "accent": "green"
-    },
-    {
-      "id": "fundraising",
-      "title": "Fundraising",
-      "description": "TODO: Add verified fundraising initiatives and how the community can participate.",
-      "ctaLabel": "Learn about fundraising",
-      "ctaUrl": "TODO: Add verified fundraising URL",
-      "highlights": [
-        "TODO: Add verified current or annual fundraising campaign",
-        "TODO: Add verified event or drive details",
-        "TODO: Add verified contact for fundraising questions"
-      ],
-      "accent": "gold"
-    },
-    {
-      "id": "sponsorship",
-      "title": "Sponsorship",
-      "description": "TODO: Add verified sponsorship opportunities for businesses and community partners.",
-      "ctaLabel": "Explore sponsorship",
-      "ctaUrl": "TODO: Add verified sponsorship URL",
-      "highlights": [
-        "TODO: Add verified sponsorship levels or packages",
-        "TODO: Add verified partner benefits",
-        "TODO: Add verified contact for sponsorship inquiries"
-      ],
-      "accent": "red"
-    },
-    {
-      "id": "volunteer",
-      "title": "Volunteer",
-      "description": "TODO: Add verified volunteer opportunities and how to get involved.",
-      "ctaLabel": "Volunteer with ECAA",
-      "ctaUrl": "TODO: Add verified volunteer signup URL",
-      "highlights": [
-        "TODO: Add verified volunteer roles",
-        "TODO: Add verified time commitment or expectations",
-        "TODO: Add verified contact for volunteer coordination"
-      ],
-      "accent": "cream"
-    }
-  ]
+  "donationCampaign": {
+    "title": "Unlocking Our Community's Future: Mortgage-Free and Thriving",
+    "description": "Support ECAA's community programs, services, and long-term community initiatives through the fundraising campaign.",
+    "levels": [
+      { "name": "Certificate", "amount": "$100" },
+      { "name": "Bronze Plaque", "amount": "$500" },
+      { "name": "Silver Plaque", "amount": "$1,000" },
+      { "name": "Gold Plaque", "amount": "$5,000" },
+      { "name": "Platinum Plaque", "amount": "$10,000" },
+      { "name": "Starting Level", "amount": "$20" },
+      { "name": "Any Amount", "amount": "Multiple of $10" }
+    ],
+    "formUrl": "https://form.jotform.com/240604382753152",
+    "ctaLabel": "Donate Through Secure Jotform",
+    "ctaDescription": "Donation payments are handled securely through Jotform. Click below to open the fundraising form in a new tab."
+  },
+  "otherOptions": {
+    "title": "Other Ways to Support ECAA",
+    "description": "Membership, volunteering, hall rentals, and direct contact are other meaningful ways to support ECAA.",
+    "links": [
+      { "label": "Become a Member", "path": "/membership" },
+      { "label": "Volunteer", "path": "/volunteer" },
+      { "label": "Book a Hall", "path": "/events#book-hall" },
+      { "label": "Contact ECAA", "path": "/contact" }
+    ]
+  },
+  "closingNote": "Contact ECAA for questions about donations, fundraising, sponsorship, and volunteer opportunities."
 }

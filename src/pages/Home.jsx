@@ -1,36 +1,60 @@
-import HeroSection from '../components/sections/HeroSection'
-import QuickActions from '../components/sections/QuickActions'
-import AboutPreview from '../components/sections/AboutPreview'
-import ProgramsPreview from '../components/sections/ProgramsPreview'
-import EventsPreview from '../components/sections/EventsPreview'
-import MediaPreview from '../components/sections/MediaPreview'
-import LeadershipPreview from '../components/sections/LeadershipPreview'
-import ContactPreview from '../components/sections/ContactPreview'
+import PageHero from '../components/layout/PageHero'
+import FeaturedEventsSection from '../components/sections/FeaturedEventsSection'
+import FeaturedMediaSection from '../components/sections/FeaturedMediaSection'
+import BookHallHomeSection from '../components/sections/BookHallHomeSection'
+import FeaturedProgramsSection from '../components/sections/FeaturedProgramsSection'
 import CTAButton from '../components/ui/CTAButton'
-import siteInfo from '../data/siteInfo.json'
+import homepage from '../content/homepage.json'
+import { getLinkProps, getPublicText, isSectionVisible } from '../utils/homepage'
 
 export default function Home() {
+  const { hero, featuredEvents, featuredMedia, bookHall, featuredPrograms } = homepage
+
   return (
     <>
-      <HeroSection title={siteInfo.name} description={siteInfo.tagline}>
-        <CTAButton to="/membership" variant="primary" size="lg">
-          Become a Member
-        </CTAButton>
-        <CTAButton to="/support" variant="accent" size="lg">
-          Donate
-        </CTAButton>
-        <CTAButton to="/events" variant="secondary" size="lg">
-          View Events
-        </CTAButton>
-      </HeroSection>
+      {isSectionVisible(hero) && (
+        <PageHero
+          size="home"
+          priority
+          eyebrow={hero.eyebrow}
+          title={hero.title}
+          description={hero.description}
+          imageId="home-hero-community-atlanta"
+          overlayStrength="welcoming"
+          footer={getPublicText(hero.trustCue)}
+        >
+          {getLinkProps(hero.primaryCta) && (
+            <CTAButton {...getLinkProps(hero.primaryCta)} variant="primary" size="lg">
+              {hero.primaryCta.label}
+            </CTAButton>
+          )}
+          {getLinkProps(hero.secondaryCta) && (
+            <CTAButton
+              {...getLinkProps(hero.secondaryCta)}
+              variant="secondary"
+              size="lg"
+              className="btn-hero-outline"
+            >
+              {hero.secondaryCta.label}
+            </CTAButton>
+          )}
+          {getLinkProps(hero.supportCta) && (
+            <CTAButton
+              {...getLinkProps(hero.supportCta)}
+              variant="ghost"
+              size="lg"
+              className="btn-hero-ghost"
+            >
+              {hero.supportCta.label}
+            </CTAButton>
+          )}
+        </PageHero>
+      )}
 
-      <QuickActions />
-      <AboutPreview />
-      <ProgramsPreview />
-      <EventsPreview />
-      <MediaPreview />
-      <LeadershipPreview />
-      <ContactPreview />
+      <FeaturedEventsSection data={featuredEvents} />
+      <FeaturedMediaSection data={featuredMedia} />
+      <BookHallHomeSection data={bookHall} />
+      <FeaturedProgramsSection data={featuredPrograms} />
     </>
   )
 }

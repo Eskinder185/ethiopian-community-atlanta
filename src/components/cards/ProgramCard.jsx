@@ -1,9 +1,10 @@
 import CTAButton from '../ui/CTAButton'
-import { hasUsableText } from '../../utils/data'
+import { hasUsableText, hasUsableUrl } from '../../utils/data'
 
 export default function ProgramCard({ program, variant = 'preview' }) {
   const link = program.link || `/programs#${program.id}`
   const isDetail = variant === 'detail'
+  const isExternalLink = hasUsableUrl(link)
 
   const description = isDetail
     ? program.description || program.summary
@@ -39,8 +40,20 @@ export default function ProgramCard({ program, variant = 'preview' }) {
         )
       )}
 
+      {isDetail && isExternalLink && (
+        <CTAButton href={link} variant="secondary" size="sm" className="mt-6 self-start">
+          Open form
+        </CTAButton>
+      )}
+
       {!isDetail && (
-        <CTAButton to={link} variant="ghost" size="sm" className="mt-8 self-start">
+        <CTAButton
+          to={isExternalLink ? undefined : link}
+          href={isExternalLink ? link : undefined}
+          variant="ghost"
+          size="sm"
+          className="mt-8 self-start"
+        >
           Learn more
         </CTAButton>
       )}

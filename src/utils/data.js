@@ -58,3 +58,36 @@ export function toEmbedUrl(url) {
     return null
   }
 }
+
+/** Extract YouTube video ID from common URL formats. */
+export function getYoutubeVideoId(url) {
+  if (!hasUsableUrl(url)) return null
+
+  try {
+    const parsed = new URL(url)
+    const host = parsed.hostname.replace('www.', '')
+
+    if (host === 'youtu.be') {
+      const id = parsed.pathname.slice(1).split('/')[0]
+      return id || null
+    }
+
+    if (host === 'youtube.com' || host === 'm.youtube.com') {
+      const fromQuery = parsed.searchParams.get('v')
+      if (fromQuery) return fromQuery
+      const embedMatch = parsed.pathname.match(/\/embed\/([^/?]+)/)
+      if (embedMatch) return embedMatch[1]
+    }
+
+    return null
+  } catch {
+    return null
+  }
+}
+
+/** Thumbnail URL for YouTube videos; returns null for non-YouTube URLs. */
+export function getYoutubeThumbnail(url) {
+  if (hasUsableText(url) && !hasUsableUrl(url)) return url
+  const videoId = getYoutubeVideoId(url)
+  return videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : null
+}
