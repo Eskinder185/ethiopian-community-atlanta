@@ -1,0 +1,424 @@
+# =============================================================================
+# ECAA Decap CMS — Phase 1 (Home, Events, Leadership only)
+# Ethiopian Community Association in Atlanta
+# =============================================================================
+#
+# WHAT EDITORS CAN CHANGE:
+#   1. Home Page        → src/content/homepage.json
+#   2. Events & News    → src/content/events.json
+#   3. Leadership       → src/content/teamMembers.json
+#
+# LOCAL EDITING (developers):
+#   Run: npm run dev
+#   Open: http://localhost:5173/admin/
+#   Uses decap-server on port 8081 (started automatically with npm run dev).
+#
+# PRODUCTION (team members):
+#   Real login is NOT configured yet. Before non-technical editors can save online:
+#   1. Connect this GitHub repo to your host (Netlify recommended).
+#   2. Configure git-gateway + authentication (Netlify Identity/Git Gateway or GitHub OAuth).
+#   3. Replace site_url, display_url, and branch below.
+#   4. Remove or comment out local_backend for production deploys.
+#   5. Invite editors with appropriate permissions.
+#
+# EDITOR RULES:
+#   - Use TODO in data fields only when details are not confirmed (hidden on public site).
+#   - Do not invent dates, prices, roles, or official details.
+#   - Image description helps screen readers and accessibility.
+# =============================================================================
+
+backend:
+  name: git-gateway
+  branch: main # TODO: Set before production deploy
+
+local_backend: true
+
+site_url: https://your-domain.com # TODO: Production website URL
+display_url: https://your-domain.com # TODO: URL shown in CMS header
+logo_url: /favicon.svg
+
+media_folder: public/uploads
+public_folder: /uploads
+
+slug:
+  encoding: unicode
+  clean_accents: true
+
+collections:
+  # ---------------------------------------------------------------------------
+  # 1. Home Page
+  # ---------------------------------------------------------------------------
+  - name: homepage
+    label: Home Page
+    files:
+      - name: homepage
+        label: Home Page
+        file: src/content/homepage.json
+        description: "Curated Home page sections only. This appears on the Home page only. Do not add every event, photo, or program here — choose featured items visitors should see first."
+        fields:
+          - label: Hero section
+            name: hero
+            widget: object
+            hint: "This appears on the Home page only."
+            fields:
+              - { label: Show this section?, name: visible, widget: boolean, default: true }
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Page title, name: title, widget: text }
+              - { label: Short description, name: description, widget: text, hint: "Use TODO if details are not confirmed." }
+              - { label: Background image, name: image, widget: image, required: false, hint: "Upload image or GIF, or use /images/home-hero-community-atlanta.jpg" }
+              - { label: Image description for accessibility, name: imageAlt, widget: string, required: false }
+              - { label: Trust message below buttons, name: trustCue, widget: string, required: false }
+              - label: Primary button
+                name: primaryCta
+                widget: object
+                fields:
+                  - { label: Button label, name: label, widget: string }
+                  - { label: Button link, name: href, widget: string }
+              - label: Secondary button
+                name: secondaryCta
+                widget: object
+                fields:
+                  - { label: Button label, name: label, widget: string }
+                  - { label: Button link, name: href, widget: string }
+              - label: Third button
+                name: supportCta
+                widget: object
+                fields:
+                  - { label: Button label, name: label, widget: string }
+                  - { label: Button link, name: href, widget: string }
+
+          - label: Upcoming Events & Community
+            name: featuredEvents
+            widget: object
+            hint: "Do not add every event to the Home page. Add only featured items."
+            fields:
+              - { label: Show this section?, name: visible, widget: boolean, default: true }
+              - { label: Section label, name: eyebrow, widget: string }
+              - { label: Section heading, name: title, widget: string }
+              - { label: Short description, name: description, widget: text }
+              - label: Featured event cards
+                name: items
+                widget: list
+                summary: "{{fields.title}}"
+                hint: "Up to 3 cards recommended. Use this to choose what visitors see first."
+                fields:
+                  - { label: Item ID, name: id, widget: string }
+                  - { label: Event title, name: title, widget: string }
+                  - { label: Event date, name: date, widget: string, required: false, hint: "Use TODO if date is not confirmed." }
+                  - { label: Category, name: category, widget: string, required: false }
+                  - { label: Short description, name: excerpt, widget: text }
+                  - { label: Upload image or GIF, name: image, widget: image, required: false }
+                  - { label: Image description for accessibility, name: imageAlt, widget: string, required: false }
+                  - { label: Button label, name: ctaLabel, widget: string, default: "Learn more" }
+                  - { label: Button link, name: href, widget: string }
+                  - { label: Show this item?, name: visible, widget: boolean, default: true }
+                  - { label: Notes for editors, name: notes, widget: text, required: false }
+              - label: Empty state (when no featured cards)
+                name: emptyState
+                widget: object
+                required: false
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+                  - label: Button
+                    name: primaryCta
+                    widget: object
+                    fields:
+                      - { label: Button label, name: label, widget: string }
+                      - { label: Button link, name: href, widget: string }
+              - label: Section button
+                name: sectionCta
+                widget: object
+                fields:
+                  - { label: Button label, name: label, widget: string }
+                  - { label: Button link, name: href, widget: string }
+
+          - label: Community Moments
+            name: featuredMedia
+            widget: object
+            hint: "This appears on the Home page only."
+            fields:
+              - { label: Show this section?, name: visible, widget: boolean, default: true }
+              - { label: Section label, name: eyebrow, widget: string }
+              - { label: Section heading, name: title, widget: string }
+              - { label: Short description, name: description, widget: text }
+              - label: Media items
+                name: items
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: Item ID, name: id, widget: string }
+                  - label: Media type
+                    name: type
+                    widget: select
+                    options: [image, gif, youtube]
+                  - { label: Title, name: title, widget: string }
+                  - { label: Upload image or GIF, name: src, widget: image, required: false }
+                  - { label: Image description for accessibility, name: alt, widget: string, required: false }
+                  - { label: YouTube link, name: youtubeUrl, widget: string, required: false }
+                  - { label: YouTube embed URL, name: embedUrl, widget: string, required: false }
+                  - label: Collage size
+                    name: featuredSize
+                    widget: select
+                    options: [large, wide, small]
+                  - { label: Link, name: href, widget: string, required: false, default: "/media" }
+                  - { label: Show this item?, name: visible, widget: boolean, default: true }
+                  - { label: Notes for editors, name: notes, widget: text, required: false }
+              - label: Empty state
+                name: emptyState
+                widget: object
+                required: false
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+                  - label: Button
+                    name: primaryCta
+                    widget: object
+                    fields:
+                      - { label: Button label, name: label, widget: string }
+                      - { label: Button link, name: href, widget: string }
+              - label: Section button
+                name: sectionCta
+                widget: object
+                fields:
+                  - { label: Button label, name: label, widget: string }
+                  - { label: Button link, name: href, widget: string }
+
+          - label: Book a Hall
+            name: bookHall
+            widget: object
+            hint: "If official booking form is not ready, link buttons to /contact."
+            fields:
+              - { label: Show this section?, name: visible, widget: boolean, default: true }
+              - { label: Section label, name: eyebrow, widget: string }
+              - { label: Section heading, name: title, widget: string }
+              - { label: Short description, name: description, widget: text }
+              - { label: Helpful text, name: helpfulText, widget: text, required: false, hint: "Optional extra line below the description." }
+              - { label: Important notice, name: importantNote, widget: text, required: false }
+              - label: Good-for list
+                name: useCases
+                widget: list
+                required: false
+                field: { label: Item, name: useCase, widget: string }
+              - label: Primary button
+                name: primaryCta
+                widget: object
+                fields:
+                  - { label: Button label, name: label, widget: string }
+                  - { label: Button link, name: href, widget: string }
+              - label: Secondary button
+                name: secondaryCta
+                widget: object
+                fields:
+                  - { label: Button label, name: label, widget: string }
+                  - { label: Button link, name: href, widget: string }
+              - { label: Upload image or GIF, name: image, widget: image, required: false }
+              - { label: Image description for accessibility, name: imageAlt, widget: string, required: false }
+
+          - label: Featured Programs & Services
+            name: featuredPrograms
+            widget: object
+            hint: "Choose up to 4 featured programs for the Home page only."
+            fields:
+              - { label: Show this section?, name: visible, widget: boolean, default: true }
+              - { label: Section label, name: eyebrow, widget: string }
+              - { label: Section heading, name: title, widget: string }
+              - { label: Short description, name: description, widget: text }
+              - label: Featured program cards
+                name: items
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { label: Item ID, name: id, widget: string }
+                  - { label: Program title, name: title, widget: string }
+                  - { label: Short description, name: shortDescription, widget: text }
+                  - { label: Upload image or icon image, name: image, widget: image, required: false }
+                  - { label: Image description for accessibility, name: imageAlt, widget: string, required: false }
+                  - { label: Button label, name: ctaLabel, widget: string, default: "Learn More", required: false }
+                  - { label: Button link, name: href, widget: string }
+                  - { label: Show this item?, name: visible, widget: boolean, default: true }
+                  - { label: Notes for editors, name: notes, widget: text, required: false }
+              - label: Section button
+                name: sectionCta
+                widget: object
+                fields:
+                  - { label: Button label, name: label, widget: string }
+                  - { label: Button link, name: href, widget: string }
+
+  # ---------------------------------------------------------------------------
+  # 2. Events & News
+  # ---------------------------------------------------------------------------
+  - name: events
+    label: Events & News
+    files:
+      - name: events
+        label: Events & News Page
+        file: src/content/events.json
+        description: "Full Events & News page. Status is set by which list you add the item to."
+        fields:
+          - label: Empty state messages
+            name: emptyStates
+            widget: object
+            fields:
+              - label: Upcoming events
+                name: upcoming
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+              - label: Announcements
+                name: announcements
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+              - label: Community news
+                name: communityNews
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+              - label: Past events
+                name: past
+                widget: object
+                fields:
+                  - { label: Title, name: title, widget: string }
+                  - { label: Description, name: description, widget: text }
+
+          - label: Upcoming events
+            name: upcoming
+            widget: list
+            summary: "{{fields.title}}"
+            hint: "Event status: upcoming. Do not invent dates. Use TODO if date is not confirmed."
+            fields: &event_item_fields
+              - { label: Slug or ID, name: id, widget: string }
+              - { label: Event title, name: title, widget: string }
+              - { label: Category, name: category, widget: string, required: false }
+              - { label: Event date, name: date, widget: string, hint: "Required for upcoming events. YYYY-MM-DD or readable date." }
+              - { label: Event time, name: time, widget: string, required: false }
+              - { label: Location, name: location, widget: string, required: false }
+              - { label: Short description, name: summary, widget: text }
+              - { label: Full description, name: description, widget: text, required: false }
+              - label: Event image
+                name: image
+                widget: object
+                required: false
+                fields:
+                  - { label: Upload image or GIF, name: src, widget: image, required: false }
+                  - { label: Image description for accessibility, name: alt, widget: string, required: false }
+              - { label: External link, name: link, widget: string, required: false }
+              - { label: Registration URL, name: registrationUrl, widget: string, required: false }
+              - { label: Button label, name: ctaLabel, widget: string, required: false, default: "Learn more" }
+              - { label: Featured on homepage?, name: featured, widget: boolean, default: false, hint: "Also add to Home Page featured events to display on Home." }
+              - { label: Show this item?, name: published, widget: boolean, default: false }
+              - { label: Notes for editors, name: notes, widget: text, required: false }
+
+          - label: Announcements
+            name: announcements
+            widget: list
+            summary: "{{fields.title}}"
+            hint: "Event status: announcement."
+            fields:
+              - { label: Slug or ID, name: id, widget: string }
+              - { label: Event title, name: title, widget: string }
+              - { label: Category, name: category, widget: string, required: false }
+              - { label: Event date, name: date, widget: string, required: false }
+              - { label: Short description, name: summary, widget: text }
+              - { label: Full description, name: body, widget: text, required: false }
+              - { label: External link, name: link, widget: string, required: false }
+              - { label: Button label, name: ctaLabel, widget: string, required: false, default: "Read more" }
+              - { label: External link opens new tab?, name: external, widget: boolean, default: true, required: false }
+              - { label: Featured on homepage?, name: featured, widget: boolean, default: false, required: false }
+              - { label: Show this item?, name: published, widget: boolean, default: false }
+              - { label: Notes for editors, name: notes, widget: text, required: false }
+
+          - label: Community news
+            name: communityNews
+            widget: list
+            summary: "{{fields.title}}"
+            hint: "Event status: community-news."
+            fields:
+              - { label: Slug or ID, name: id, widget: string }
+              - { label: Event title, name: title, widget: string }
+              - { label: Category, name: category, widget: string, required: false }
+              - { label: Event date, name: date, widget: string, required: false }
+              - { label: Short description, name: summary, widget: text }
+              - { label: Full description, name: body, widget: text, required: false }
+              - { label: External link, name: link, widget: string, required: false }
+              - { label: Button label, name: ctaLabel, widget: string, required: false, default: "Read more" }
+              - { label: External link opens new tab?, name: external, widget: boolean, default: true, required: false }
+              - { label: Featured on homepage?, name: featured, widget: boolean, default: false, required: false }
+              - { label: Show this item?, name: published, widget: boolean, default: false }
+              - { label: Notes for editors, name: notes, widget: text, required: false }
+
+          - label: Past events
+            name: past
+            widget: list
+            summary: "{{fields.title}}"
+            hint: "Event status: past."
+            fields:
+              - { label: Slug or ID, name: id, widget: string }
+              - { label: Event title, name: title, widget: string }
+              - { label: Category, name: category, widget: string, required: false }
+              - { label: Event date, name: date, widget: string, required: false }
+              - { label: Location, name: location, widget: string, required: false }
+              - { label: Short description, name: summary, widget: text }
+              - { label: Recap URL, name: recapUrl, widget: string, required: false }
+              - label: Event image
+                name: image
+                widget: object
+                required: false
+                fields:
+                  - { label: Upload image or GIF, name: src, widget: image, required: false }
+                  - { label: Image description for accessibility, name: alt, widget: string, required: false }
+              - { label: Button label, name: ctaLabel, widget: string, required: false, default: "View recap" }
+              - { label: Show this item?, name: published, widget: boolean, default: false }
+              - { label: Notes for editors, name: notes, widget: text, required: false }
+
+  # ---------------------------------------------------------------------------
+  # 3. Leadership
+  # ---------------------------------------------------------------------------
+  - name: leadership
+    label: Leadership
+    files:
+      - name: teamMembers
+        label: Leadership & Team
+        file: src/content/teamMembers.json
+        description: "Leadership page grouped by committee. Do not invent names, titles, or roles."
+        fields:
+          - { label: Page intro, name: intro, widget: text, hint: "Short paragraph at the top of the Leadership page." }
+          - label: Committees
+            name: groups
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: Committee ID, name: id, widget: string }
+              - label: Committee
+                name: title
+                widget: select
+                options:
+                  - Executive Committee
+                  - Board Members
+                  - Audit Committee
+                  - Advisory Board
+                  - EDIR Committee
+                  - Other
+              - { label: Committee description, name: description, widget: text, required: false }
+              - { label: Page anchor, name: anchor, widget: string, hint: "Example: executive-committee" }
+              - label: Leadership members
+                name: members
+                widget: list
+                summary: "{{fields.name}} — {{fields.title}}"
+                fields:
+                  - { label: Member ID, name: id, widget: string }
+                  - { label: Leadership name, name: name, widget: string }
+                  - { label: Leadership role, name: title, widget: string }
+                  - { label: Bio, name: bio, widget: text, required: false }
+                  - { label: Upload image, name: image, widget: image, required: false, hint: "Upload or paste an image URL." }
+                  - { label: Image description for accessibility, name: imageAlt, widget: string, required: false }
+                  - { label: Email, name: email, widget: string, required: false }
+                  - { label: Phone, name: phone, widget: string, required: false }
+                  - { label: Display order, name: order, widget: number, required: false, default: 0, hint: "Lower numbers appear first." }
+                  - { label: Active?, name: active, widget: boolean, default: true }
+                  - { label: Show on leadership page?, name: published, widget: boolean, default: true }
+                  - { label: Notes for editors, name: notes, widget: text, required: false }

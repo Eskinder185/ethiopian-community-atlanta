@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>ECAA Content Manager</title>
+    <link href="./config.yml" type="text/yaml" rel="cms-config-url" />
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        background: #faf9f6;
+        color: #1a1f1c;
+      }
+      .admin-topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        padding: 12px 16px;
+        background: rgba(250, 249, 246, 0.96);
+        border-bottom: 1px solid #e8e4dc;
+        box-shadow: 0 2px 10px rgba(13, 79, 60, 0.08);
+      }
+      .admin-topbar-label {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #6b756f;
+      }
+      .back-home-link {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: #0d4f3c;
+        color: #fff;
+        font-family: system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        transition: background 0.2s ease;
+      }
+      .back-home-link:hover {
+        background: #116550;
+      }
+      .back-home-link:focus-visible {
+        outline: 2px solid #c9a227;
+        outline-offset: 2px;
+      }
+      .cms-status {
+        display: flex;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 5rem 2rem 2rem;
+        text-align: center;
+      }
+      .cms-status p {
+        margin: 0;
+        max-width: 32rem;
+        color: #6b756f;
+        line-height: 1.6;
+      }
+      .cms-status.error strong {
+        color: #962626;
+      }
+      #nc-root {
+        padding-top: 56px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="admin-topbar">
+      <p class="admin-topbar-label">ECAA Content Manager</p>
+      <a href="../" class="back-home-link">← Back to Website</a>
+    </header>
+
+    <div class="cms-status" id="cms-status">
+      <strong>Loading ECAA Content Manager…</strong>
+      <p>Decap CMS is starting. This may take a few seconds.</p>
+      <p>
+        Local editing requires <code>npm run dev</code>. Production login requires authentication
+        setup — see README.md.
+      </p>
+    </div>
+
+    <div id="nc-root"></div>
+
+    <script>
+      function showError(message) {
+        const status = document.getElementById('cms-status')
+        if (!status) return
+        status.className = 'cms-status error'
+        status.innerHTML = message
+      }
+
+      function loadDecapCms() {
+        const existing = document.getElementById('decap-cms-script')
+        if (existing) return
+
+        const script = document.createElement('script')
+        script.id = 'decap-cms-script'
+        script.src = 'https://unpkg.com/decap-cms@3.8.0/dist/decap-cms.js'
+        script.onload = function () {
+          document.getElementById('cms-status')?.remove()
+        }
+        script.onerror = function () {
+          showError(
+            '<strong>Could not load Decap CMS.</strong><p>Check your internet connection and refresh the page.</p>',
+          )
+        }
+        document.body.appendChild(script)
+      }
+
+      window.addEventListener('error', function (event) {
+        if (event.filename && event.filename.includes('decap-cms')) {
+          showError(
+            '<strong>Could not load the content editor.</strong>' +
+              '<p>Check your internet connection and refresh the page. The editor loads from a CDN.</p>',
+          )
+        }
+      })
+
+      loadDecapCms()
+    </script>
+  </body>
+</html>
