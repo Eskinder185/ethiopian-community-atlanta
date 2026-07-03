@@ -8,7 +8,9 @@ export default function AboutHistory({ section }) {
       </div>
 
       <aside className="rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-white p-6 shadow-ecaa-sm sm:p-8">
-        <h3 className="text-lg font-semibold text-ecaa-green-900">Key moments</h3>
+        <h3 className="text-lg font-semibold normal-case text-ecaa-green-900">
+          {section.highlightsHeading || 'Key moments'}
+        </h3>
         <ul className="mt-5 space-y-4">
           {section.highlights.map((item) => (
             <li key={item} className="flex gap-3 text-base leading-relaxed text-ecaa-ink-muted">

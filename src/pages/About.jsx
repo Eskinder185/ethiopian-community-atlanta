@@ -1,4 +1,5 @@
-import PageHero from '../components/layout/PageHero'
+import { useLanguage } from '../context/LanguageContext'
+import PageHeroWithStats from '../components/layout/PageHeroWithStats'
 import ContentSection from '../components/sections/ContentSection'
 import AboutOverview from '../components/sections/about/AboutOverview'
 import AboutMissionVision from '../components/sections/about/AboutMissionVision'
@@ -6,68 +7,66 @@ import AboutHistory from '../components/sections/about/AboutHistory'
 import AboutHowItWorks from '../components/sections/about/AboutHowItWorks'
 import AboutLeadershipStructure from '../components/sections/about/AboutLeadershipStructure'
 import AboutClosingCta from '../components/sections/about/AboutClosingCta'
-import CTAButton from '../components/ui/CTAButton'
-import aboutData from '../data/about.json'
-import pages from '../data/pages.json'
+import { getAboutPageContent } from '../data/aboutPageContent'
+import { getPageHero, getHeroBackground } from '../utils/pageHeroes'
 
 export default function About() {
-  const {
-    hero,
-    overview,
-    missionVision,
-    history,
-    howItWorks,
-    leadershipStructure,
-    closingCta,
-  } = aboutData
-  const page = pages.about
+  const { language } = useLanguage()
+  const content = getAboutPageContent(language)
+  const pageHeroConfig = getPageHero('about')
+  const background = getHeroBackground(pageHeroConfig, 'about')
 
   return (
     <>
-      <PageHero
-        size="page"
-        title={page.title}
-        description={page.description}
-        badge={{ label: hero.badge || 'About ECAA', variant: 'gold' }}
-        imageId="home-hero-community-atlanta"
-        overlayStrength="default"
-      >
-        <CTAButton href="#mission-vision" variant="primary" size="lg">
-          Mission & Vision
-        </CTAButton>
-        <CTAButton to="/membership" variant="secondary" size="lg" className="btn-hero-outline">
-          Become a Member
-        </CTAButton>
-      </PageHero>
+      <PageHeroWithStats
+        eyebrow={content.hero.eyebrow}
+        title={content.hero.title}
+        description={content.hero.description}
+        backgroundImage={background}
+        backgroundAlt={pageHeroConfig?.backgroundAlt}
+        buttons={content.hero.buttons}
+        stats={content.highlights}
+        variant={pageHeroConfig?.variant || 'page'}
+        overlayStrength={pageHeroConfig?.overlayStrength || 'default'}
+      />
 
-      <AboutOverview section={overview} />
+      <AboutOverview section={{ cards: content.values }} />
 
       <ContentSection
-        id={missionVision.id}
-        eyebrow={missionVision.eyebrow}
-        title={missionVision.title}
+        id={content.missionVision.id}
+        eyebrow={content.missionVision.eyebrow}
+        title={content.missionVision.title}
       >
-        <AboutMissionVision section={missionVision} />
-      </ContentSection>
-
-      <ContentSection id={history.id} eyebrow={history.eyebrow} title={history.title} muted>
-        <AboutHistory section={history} />
-      </ContentSection>
-
-      <ContentSection id={howItWorks.id} eyebrow={howItWorks.eyebrow} title={howItWorks.title}>
-        <AboutHowItWorks section={howItWorks} />
+        <AboutMissionVision section={content.missionVision} />
       </ContentSection>
 
       <ContentSection
-        id={leadershipStructure.id}
-        eyebrow={leadershipStructure.eyebrow}
-        title={leadershipStructure.title}
+        id={content.history.id}
+        eyebrow={content.history.eyebrow}
+        title={content.history.title}
         muted
       >
-        <AboutLeadershipStructure section={leadershipStructure} />
+        <AboutHistory section={content.history} />
       </ContentSection>
 
-      <AboutClosingCta section={closingCta} />
+      <ContentSection
+        id={content.howItWorks.id}
+        eyebrow={content.howItWorks.eyebrow}
+        title={content.howItWorks.title}
+      >
+        <AboutHowItWorks section={content.howItWorks} />
+      </ContentSection>
+
+      <ContentSection
+        id={content.leadershipStructure.id}
+        eyebrow={content.leadershipStructure.eyebrow}
+        title={content.leadershipStructure.title}
+        muted
+      >
+        <AboutLeadershipStructure section={content.leadershipStructure} />
+      </ContentSection>
+
+      <AboutClosingCta section={content.finalCta} />
     </>
   )
 }

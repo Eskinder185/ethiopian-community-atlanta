@@ -1,14 +1,17 @@
-import { Link, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import Header from './Header'
 import Footer from './Footer'
 import ScrollToTop from './ScrollToTop'
 import ChatWidget from '../chat/ChatWidget'
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function Layout() {
+  const { t } = useLanguage()
+
   return (
     <div className="flex min-h-screen flex-col overflow-x-hidden">
       <a href="#main-content" className="skip-link">
-        Skip to main content
+        {t('common.skipToMain')}
       </a>
       <ScrollToTop />
       <Header />

@@ -1,7 +1,6 @@
 import Container from '../ui/Container'
 import SectionHeader from '../ui/SectionHeader'
 import AnimateIn from '../ui/AnimateIn'
-import membershipData from '../../content/membership.json'
 
 function CheckIcon() {
   return (
@@ -20,21 +19,21 @@ function CheckIcon() {
   )
 }
 
-export default function MembershipBenefits() {
-  const { benefitsSection } = membershipData
+export default function MembershipBenefits({ section }) {
+  if (!section?.items?.length) return null
 
   return (
     <section className="surface-white" id="membership-benefits">
       <Container className="section-spacing-sm">
         <AnimateIn>
           <SectionHeader
-            eyebrow={benefitsSection.label}
-            title={benefitsSection.title}
-            description={benefitsSection.description}
+            eyebrow={section.label}
+            title={section.title}
+            description={section.description}
           />
 
           <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:gap-5">
-            {benefitsSection.items.map((item, index) => (
+            {section.items.map((item, index) => (
               <AnimateIn key={item} delay={index * 40} as="li">
                 <div className="flex items-start gap-3 rounded-ecaa-lg border border-ecaa-border/60 bg-ecaa-cream/40 px-5 py-4">
                   <CheckIcon />

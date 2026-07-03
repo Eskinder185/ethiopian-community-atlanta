@@ -10,6 +10,7 @@ Editable website content for the ECAA site lives in this folder as JSON files.
 |------|---------|
 | `siteInfo.json` | Organization name, tagline, URLs, SEO |
 | `homepage.json` | Home page featured sections (hero, events, media, book hall, programs) |
+| `pageHeroes.json` | Hero banners for main pages (title, image, buttons, highlights) |
 | `programs.json` | Program categories and services |
 | `events.json` | Events, announcements, news, book-hall |
 | `teamMembers.json` | Leadership groups and member profiles |

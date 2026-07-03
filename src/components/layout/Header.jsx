@@ -5,7 +5,11 @@ import HeaderBrand from './HeaderBrand'
 import MobileMenu from './MobileMenu'
 import NavDropdown from './NavDropdown'
 import CTAButton from '../ui/CTAButton'
+import LanguageToggle from '../LanguageToggle'
 import navigation from '../../data/navigation.json'
+import { useLanguage } from '../../context/LanguageContext'
+import { translateNavLabel } from '../../utils/navigationLabels'
+import { ADMIN_LOGIN_PATH } from '../../utils/admin'
 
 const navLinkClass = ({ isActive }) =>
   ['nav-link nav-link-header whitespace-nowrap', isActive ? 'nav-link-active' : '']
@@ -16,7 +20,8 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [openDropdown, setOpenDropdown] = useState(null)
   const location = useLocation()
-  const { items, adminCta } = navigation.header
+  const { t } = useLanguage()
+  const { items, primaryCta, adminCta } = navigation.header
 
   useEffect(() => {
     setOpenDropdown(null)
@@ -53,20 +58,32 @@ export default function Header() {
                     className={navLinkClass}
                     end={item.path === '/'}
                   >
-                    {item.label}
+                    {translateNavLabel(item.label, t)}
                   </NavLink>
                 ),
               )}
             </nav>
 
-            {adminCta?.published && adminCta.path && (
+            <LanguageToggle />
+
+            {adminCta?.published && (
               <CTAButton
-                to={adminCta.path}
+                to={ADMIN_LOGIN_PATH}
                 variant="primary"
                 size="sm"
-                className="ml-1 shrink-0 xl:ml-2"
+                className="ml-1 shrink-0 rounded-lg xl:ml-2"
               >
-                {adminCta.label}
+                {translateNavLabel(adminCta.label, t)}
+              </CTAButton>
+            )}
+            {primaryCta?.path && (
+              <CTAButton
+                to={primaryCta.path}
+                variant="secondary"
+                size="sm"
+                className="shrink-0"
+              >
+                {translateNavLabel(primaryCta.label, t)}
               </CTAButton>
             )}
           </div>
@@ -78,8 +95,8 @@ export default function Header() {
             aria-controls="mobile-nav"
             onClick={() => setMenuOpen((open) => !open)}
           >
-            <span className="sr-only">{menuOpen ? 'Close menu' : 'Open menu'}</span>
-            <span aria-hidden="true">{menuOpen ? 'Close' : 'Menu'}</span>
+            <span className="sr-only">{menuOpen ? t('common.closeMenu') : t('common.openMenu')}</span>
+            <span aria-hidden="true">{menuOpen ? t('common.close') : t('common.menu')}</span>
           </button>
         </div>
 

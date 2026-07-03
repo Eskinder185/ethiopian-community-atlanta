@@ -1,9 +1,8 @@
 import Container from '../ui/Container'
 import AnimateIn from '../ui/AnimateIn'
-import membershipData from '../../content/membership.json'
 
-export default function EdirDisclosure() {
-  const { notice } = membershipData
+export default function EdirDisclosure({ section }) {
+  if (!section?.text) return null
 
   return (
     <section className="surface-white py-12 sm:py-14" id="edir-disclosure">
@@ -21,12 +20,10 @@ export default function EdirDisclosure() {
               !
             </span>
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.15em] text-ecaa-gold-700">
-                {notice.title}
+              <p className="text-sm font-semibold normal-case tracking-wide text-ecaa-gold-700">
+                {section.title}
               </p>
-              <p className="mt-2 text-base leading-relaxed text-ecaa-ink-muted sm:text-lg">
-                {notice.text}
-              </p>
+              <p className="mt-2 text-base leading-relaxed text-ecaa-ink-muted sm:text-lg">{section.text}</p>
             </div>
           </aside>
         </AnimateIn>

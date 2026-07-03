@@ -56,8 +56,8 @@ export default function ContactPreview() {
           <AnimateIn>
             <SectionHeader
               eyebrow="Contact & Visit"
-              title="We would love to hear from you"
-              description="Reach out with questions, ideas, or ways to get involved with ECAA."
+              title="Let's Connect With ECAA"
+              description="Reach out with questions, ideas, or ways to get involved with the Ethiopian community in Atlanta."
             />
           </AnimateIn>
 
@@ -99,7 +99,7 @@ export default function ContactPreview() {
 
               <div className="mt-10 flex flex-wrap gap-3">
                 <CTAButton to="/contact" variant="primary">
-                  Contact Us
+                  Contact ECAA
                 </CTAButton>
                 <CTAButton to="/membership" variant="secondary">
                   Become a Member

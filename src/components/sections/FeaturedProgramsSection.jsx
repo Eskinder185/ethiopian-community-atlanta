@@ -9,18 +9,21 @@ import {
   isSectionVisible,
 } from '../../utils/homepage'
 
+const FEATURED_PROGRAM_LIMIT = 4
+
 export default function FeaturedProgramsSection({ data }) {
   if (!isSectionVisible(data)) return null
 
-  const items = getVisibleItems(data.items, isFeaturedProgramItem, 4)
+  const items = getVisibleItems(data.items, isFeaturedProgramItem, FEATURED_PROGRAM_LIMIT)
   const sectionCta = getLinkProps(data.sectionCta)
   const hasItems = items.length > 0
 
   return (
-    <section className="home-section surface-white">
+    <section className="home-section surface-white" aria-labelledby="featured-programs-heading">
       <Container className="home-section-inner">
         <AnimateIn>
           <HomeSectionHeader
+            id="featured-programs-heading"
             eyebrow={data.eyebrow}
             title={data.title}
             description={data.description}
@@ -33,7 +36,7 @@ export default function FeaturedProgramsSection({ data }) {
           />
 
           {hasItems && (
-            <div className="home-programs-showcase mt-10 grid gap-4 sm:grid-cols-2">
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
               {items.map((item, index) => (
                 <AnimateIn key={item.id} delay={index * 50}>
                   <FeaturedProgramCard item={item} />

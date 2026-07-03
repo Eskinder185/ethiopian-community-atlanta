@@ -9,6 +9,7 @@ export default function Terms() {
       subtitle="Terms and Conditions of Ethiopian Community Association In Atlanta Inc. (ECAA) Website"
       breadcrumbLabel="Terms & Conditions"
       documentTitle="Terms & Conditions | Ethiopian Community Association in Atlanta"
+      heroPage="terms"
     >
       <LegalSection title="Acceptance of Terms and Conditions">
         <p>

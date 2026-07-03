@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getImageById, hasImageAsset } from '../../utils/images'
+import { getImageById, getResolvedImageSrc, hasImageAsset } from '../../utils/images'
 
 const aspectClasses = {
   '4/3': 'aspect-[4/3]',
@@ -35,7 +35,7 @@ export default function SectionImage({
         .join(' ')}
     >
       <img
-        src={image.src}
+        src={getResolvedImageSrc(image)}
         alt={image.alt || image.title || ''}
         className={['h-full w-full object-cover object-center', className].filter(Boolean).join(' ')}
         loading={priority ? 'eager' : 'lazy'}

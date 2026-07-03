@@ -1,60 +1,45 @@
-import PageHero from '../components/layout/PageHero'
-import FeaturedEventsSection from '../components/sections/FeaturedEventsSection'
-import FeaturedMediaSection from '../components/sections/FeaturedMediaSection'
-import BookHallHomeSection from '../components/sections/BookHallHomeSection'
-import FeaturedProgramsSection from '../components/sections/FeaturedProgramsSection'
-import CTAButton from '../components/ui/CTAButton'
-import homepage from '../content/homepage.json'
-import { getLinkProps, getPublicText, isSectionVisible } from '../utils/homepage'
+import { useEffect } from 'react'
+import HomeHero from '../components/home/HomeHero'
+import HomeEventsPreview from '../components/home/HomeEventsPreview'
+import HomeMediaPreview from '../components/home/HomeMediaPreview'
+import HomeBookHall from '../components/home/HomeBookHall'
+import HomeFeaturedPrograms from '../components/home/HomeFeaturedPrograms'
+import HomeFinalCTA from '../components/home/HomeFinalCTA'
+import { useHomepage } from '../hooks/useHomepageContent'
+import { useEvents } from '../hooks/useEvents'
+import { useMediaItems } from '../hooks/useMediaItems'
+import { usePrograms } from '../hooks/usePrograms'
+
+function setMetaDescription(content) {
+  if (!content) return
+  let meta = document.querySelector('meta[name="description"]')
+  if (!meta) {
+    meta = document.createElement('meta')
+    meta.setAttribute('name', 'description')
+    document.head.appendChild(meta)
+  }
+  meta.setAttribute('content', content)
+}
 
 export default function Home() {
-  const { hero, featuredEvents, featuredMedia, bookHall, featuredPrograms } = homepage
+  const { homepage } = useHomepage()
+  const { events } = useEvents()
+  const { mediaItems } = useMediaItems(events)
+  const { programs } = usePrograms()
+
+  useEffect(() => {
+    document.title = homepage.seo?.title || 'Ethiopian Community Association in Atlanta | Join ECAA'
+    setMetaDescription(homepage.seo?.description)
+  }, [homepage.seo?.title, homepage.seo?.description])
 
   return (
     <>
-      {isSectionVisible(hero) && (
-        <PageHero
-          size="home"
-          priority
-          eyebrow={hero.eyebrow}
-          title={hero.title}
-          description={hero.description}
-          imageId="home-hero-community-atlanta"
-          overlayStrength="welcoming"
-          footer={getPublicText(hero.trustCue)}
-        >
-          {getLinkProps(hero.primaryCta) && (
-            <CTAButton {...getLinkProps(hero.primaryCta)} variant="primary" size="lg">
-              {hero.primaryCta.label}
-            </CTAButton>
-          )}
-          {getLinkProps(hero.secondaryCta) && (
-            <CTAButton
-              {...getLinkProps(hero.secondaryCta)}
-              variant="secondary"
-              size="lg"
-              className="btn-hero-outline"
-            >
-              {hero.secondaryCta.label}
-            </CTAButton>
-          )}
-          {getLinkProps(hero.supportCta) && (
-            <CTAButton
-              {...getLinkProps(hero.supportCta)}
-              variant="ghost"
-              size="lg"
-              className="btn-hero-ghost"
-            >
-              {hero.supportCta.label}
-            </CTAButton>
-          )}
-        </PageHero>
-      )}
-
-      <FeaturedEventsSection data={featuredEvents} />
-      <FeaturedMediaSection data={featuredMedia} />
-      <BookHallHomeSection data={bookHall} />
-      <FeaturedProgramsSection data={featuredPrograms} />
+      <HomeHero data={homepage.hero} />
+      <HomeEventsPreview section={homepage.eventsCommunity} events={events} />
+      <HomeMediaPreview section={homepage.communityMoments} mediaItems={mediaItems} />
+      <HomeBookHall data={homepage.bookHall} />
+      <HomeFeaturedPrograms section={homepage.featuredPrograms} programs={programs} />
+      <HomeFinalCTA data={homepage.finalCta} />
     </>
   )
 }

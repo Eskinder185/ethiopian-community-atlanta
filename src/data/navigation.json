@@ -5,7 +5,7 @@
     { "label": "Programs", "path": "/programs" },
     { "label": "Events", "path": "/events" },
     { "label": "Get Involved", "path": "/membership" },
-    { "label": "Resources", "path": "/documents" }
+    { "label": "Contact", "path": "/contact" }
   ],
   "header": {
     "brandSubtitle": "Ethiopian Community Association",
@@ -16,37 +16,26 @@
         "type": "dropdown",
         "children": [
           { "label": "About ECAA", "path": "/about" },
-          { "label": "Mission & Vision", "path": "/about#mission" },
-          { "label": "History", "path": "/about#history" },
-          { "label": "How ECAA Works", "path": "/about#how-it-works" },
-          { "label": "Leadership Structure", "path": "/about#leadership-structure" },
-          { "label": "Leadership Team", "path": "/leadership" }
+          { "label": "Leadership", "path": "/leadership" },
+          { "label": "Governance", "path": "/about#leadership-structure" }
         ]
       },
       {
         "label": "Programs",
         "type": "dropdown",
         "children": [
-          { "label": "Programs Overview", "path": "/programs" },
-          { "label": "Community Support", "path": "/programs#community-support" },
-          { "label": "Cultural Programs", "path": "/programs#cultural-programs" },
-          { "label": "Youth & Education", "path": "/programs#youth-education" },
-          { "label": "Health & Wellness", "path": "/programs#health-wellness" },
+          { "label": "Programs & Services", "path": "/programs" },
           { "label": "EDIR", "path": "/programs#edir" },
-          { "label": "Volunteer & Civic Engagement", "path": "/programs#volunteer-civic-engagement" },
-          { "label": "Education & Training", "path": "/programs#education-training" }
+          { "label": "Youth & Education", "path": "/programs#youth-education" },
+          { "label": "Health & Wellness", "path": "/programs#health-wellness" }
         ]
       },
       {
         "label": "Events",
         "type": "dropdown",
         "children": [
-          { "label": "Events & News", "path": "/events" },
-          { "label": "Upcoming Events", "path": "/events#upcoming" },
+          { "label": "Upcoming Events", "path": "/events" },
           { "label": "Announcements", "path": "/events#announcements" },
-          { "label": "Community News", "path": "/events#community-news" },
-          { "label": "Past Events", "path": "/events#past" },
-          { "label": "Book the Event Hall", "path": "/events#book-hall" },
           { "label": "Media Gallery", "path": "/media" }
         ]
       },
@@ -55,31 +44,12 @@
         "type": "dropdown",
         "children": [
           { "label": "Become a Member", "path": "/membership" },
-          {
-            "label": "Open Membership Form",
-            "path": "https://form.jotform.com/211111215669043",
-            "external": true
-          },
-          { "label": "Donate / Support", "path": "/support" },
+          { "label": "Donate", "path": "/support" },
           { "label": "Volunteer", "path": "/support#volunteer" },
-          { "label": "Book a Hall", "path": "/events#book-hall" },
-          { "label": "Contact ECAA", "path": "/contact" }
+          { "label": "Book a Hall", "path": "/contact" }
         ]
       },
-      {
-        "label": "Resources",
-        "type": "dropdown",
-        "children": [
-          { "label": "Documents Overview", "path": "/documents" },
-          { "label": "Bylaws", "path": "/documents#bylaws" },
-          { "label": "Election Documents", "path": "/documents#elections" },
-          { "label": "Meeting Notices", "path": "/documents#meeting-notices" },
-          { "label": "Public Reports", "path": "/documents#public-reports" },
-          { "label": "Historical Documents", "path": "/documents#historical-documents" },
-          { "label": "Privacy Policy", "path": "/privacy" },
-          { "label": "Terms & Conditions", "path": "/terms" }
-        ]
-      }
+      { "label": "Contact", "path": "/contact", "type": "link" }
     ],
     "adminCta": {
       "label": "Admin",
@@ -88,24 +58,17 @@
     }
   },
   "footer": {
-    "ecaaLinks": [
+    "mission": "Building intergenerational connections and strengthening community resilience for Ethiopians and Ethiopian Americans in Atlanta.",
+    "nonprofitNote": "Ethiopian Community Association in Atlanta, Inc. is a 501(c)(3) nonprofit organization.",
+    "quickLinks": [
       { "label": "About", "path": "/about" },
       { "label": "Programs", "path": "/programs" },
       { "label": "Events", "path": "/events" },
-      { "label": "Media", "path": "/media" }
-    ],
-    "getInvolvedLinks": [
       { "label": "Membership", "path": "/membership" },
-      { "label": "Donate / Support", "path": "/support" },
-      { "label": "Volunteer", "path": "/support#volunteer" },
-      { "label": "Contact Us", "path": "/contact" },
-      { "label": "Book a Hall", "path": "/events#book-hall" }
-    ],
-    "resourcesLinks": [
-      { "label": "Documents", "path": "/documents" },
-      { "label": "Bylaws", "path": "/documents#bylaws" },
-      { "label": "Privacy Policy", "path": "/privacy" },
-      { "label": "Terms & Conditions", "path": "/terms" }
+      { "label": "Donate", "path": "/support" },
+      { "label": "Volunteer", "path": "/volunteer" },
+      { "label": "Leadership", "path": "/leadership" },
+      { "label": "Contact", "path": "/contact" }
     ],
     "externalForms": [
       {

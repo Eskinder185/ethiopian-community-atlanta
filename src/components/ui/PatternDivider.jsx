@@ -1,9 +1,10 @@
-import { getPatternImage, hasImageAsset } from '../../utils/images'
+import { getPatternImage, getResolvedImageSrc, hasImageAsset } from '../../utils/images'
 
 export default function PatternDivider({ className = '' }) {
   const pattern = getPatternImage()
+  const patternSrc = hasImageAsset(pattern) ? getResolvedImageSrc(pattern) : ''
 
-  if (!hasImageAsset(pattern)) return null
+  if (!patternSrc) return null
 
   return (
     <div
@@ -13,7 +14,7 @@ export default function PatternDivider({ className = '' }) {
       <div
         className="absolute inset-0 opacity-[0.18]"
         style={{
-          backgroundImage: `url(${pattern.src})`,
+          backgroundImage: `url(${patternSrc})`,
           backgroundRepeat: 'repeat-x',
           backgroundPosition: 'center',
           backgroundSize: 'auto 100%',

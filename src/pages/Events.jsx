@@ -1,110 +1,105 @@
-import PageHero from '../components/layout/PageHero'
+import { useMemo } from 'react'
+import PageHeroWithStats from '../components/layout/PageHeroWithStats'
 import EventsQuickActionsBar from '../components/sections/EventsQuickActionsBar'
-import EventsStatusSection from '../components/sections/EventsStatusSection'
-import EventHallRentalSection from '../components/sections/EventHallRentalSection'
 import EventsClosingCta from '../components/sections/EventsClosingCta'
-import EventCard from '../components/cards/EventCard'
-import AnnouncementCard from '../components/cards/AnnouncementCard'
-import CTAButton from '../components/ui/CTAButton'
-import eventsData from '../content/events.json'
-import pages from '../data/pages.json'
-import {
-  getVerifiedAnnouncements,
-  getVerifiedCommunityNews,
-  getVerifiedPastEvents,
-  getVerifiedUpcomingEvents,
-} from '../utils/events'
+import EventHallRentalSection from '../components/sections/EventHallRentalSection'
+import EventSection from '../components/events/EventSection'
+import EventCard from '../components/events/EventCard'
+import { useEventsPage } from '../hooks/useEventsPage'
+import { useHallBookings } from '../hooks/useHallBookings'
+import { getEventsHighlightCards } from '../data/eventsPageContent'
+import { getHeroBackground, getPageHero } from '../utils/pageHeroes'
 
 export default function Events() {
-  const page = pages.events
-  const {
-    quickActions,
-    emptyStates,
-    upcoming,
-    announcements,
-    communityNews,
-    past,
-    bookHall,
-    closingCta,
-  } = eventsData
+  const { content, groups } = useEventsPage()
+  const { bookings } = useHallBookings()
+  const pageHeroConfig = useMemo(() => getPageHero('events'), [])
+  const background = useMemo(() => getHeroBackground(pageHeroConfig, 'events'), [pageHeroConfig])
+  const highlightCards = useMemo(() => getEventsHighlightCards(content), [content])
 
-  const upcomingEvents = getVerifiedUpcomingEvents(upcoming)
-  const announcementItems = getVerifiedAnnouncements(announcements)
-  const newsItems = getVerifiedCommunityNews(communityNews)
-  const pastEvents = getVerifiedPastEvents(past)
+  const { upcoming, announcements, communityNews, past } = groups
 
   return (
     <>
-      <PageHero
-        size="page"
-        eyebrow="Events & News"
-        title={page.title}
-        description={page.description}
-        badge={{ label: 'Community calendar', variant: 'gold' }}
-        imageId="events-community-gathering"
-        overlayStrength="default"
+      <PageHeroWithStats
+        eyebrow={content.hero.eyebrow}
+        title={content.hero.title}
+        description={content.hero.description}
+        backgroundImage={background}
+        backgroundAlt={pageHeroConfig?.backgroundAlt}
+        buttons={content.hero.buttons}
+        stats={highlightCards}
+        variant={pageHeroConfig?.variant || 'page'}
+        overlayStrength={pageHeroConfig?.overlayStrength || 'default'}
+      />
+
+      <EventsQuickActionsBar actions={content.quickActions} />
+
+      <EventSection
+        id={content.sections.upcoming.id}
+        title={content.sections.upcoming.title}
+        emptyState={content.emptyStates.upcoming}
+        hasItems={upcoming.length > 0}
       >
-        <CTAButton href="#upcoming" variant="primary" size="lg">
-          Upcoming Events
-        </CTAButton>
-        <CTAButton href="#book-hall" variant="secondary" size="lg" className="btn-hero-outline">
-          Book a Hall
-        </CTAButton>
-      </PageHero>
+        {upcoming.map((event) => (
+          <EventCard key={event.id} event={event} badgeLabels={content.badgeLabels} />
+        ))}
+      </EventSection>
 
-      <EventsQuickActionsBar actions={quickActions} />
-
-      <EventsStatusSection
-        id="upcoming"
-        label="Upcoming Events"
-        title="Upcoming Events"
-        description="Community gatherings, celebrations, and programs on the calendar."
-        items={upcomingEvents}
-        renderItem={(item) => <EventCard key={item.id} event={item} variant="upcoming" />}
-        emptyState={emptyStates.upcoming}
-        emptyActions={[
-          { label: 'Contact ECAA', to: '/contact' },
-          { label: 'View Announcements', href: '#announcements' },
-        ]}
-      />
-
-      <EventsStatusSection
-        id="announcements"
-        label="Announcements"
-        title="Announcements"
-        description="Important updates for ECAA members and the community."
-        items={announcementItems}
-        renderItem={(item) => <AnnouncementCard key={item.id} item={item} type="announcement" />}
-        emptyState={emptyStates.announcements}
+      <EventSection
+        id={content.sections.announcements.id}
+        title={content.sections.announcements.title}
+        emptyState={content.emptyStates.announcements}
         muted
-      />
+        hasItems={announcements.length > 0}
+      >
+        {announcements.map((event) => (
+          <EventCard
+            key={event.id}
+            event={event}
+            variant="announcement"
+            badgeLabels={content.badgeLabels}
+            buttonLabels={content.buttonLabels}
+          />
+        ))}
+      </EventSection>
 
-      <EventsStatusSection
-        id="community-news"
-        label="Community News"
-        title="Community News"
-        description="Stories and news from the ECAA community."
-        items={newsItems}
-        renderItem={(item) => <AnnouncementCard key={item.id} item={item} type="news" />}
-        emptyState={emptyStates.communityNews}
-        emptyActions={[{ label: 'Contact ECAA', to: '/contact' }]}
-        compactEmpty
-      />
+      <EventSection
+        id={content.sections.communityNews.id}
+        title={content.sections.communityNews.title}
+        emptyState={content.emptyStates.communityNews}
+        hasItems={communityNews.length > 0}
+      >
+        {communityNews.map((event) => (
+          <EventCard
+            key={event.id}
+            event={event}
+            variant="news"
+            badgeLabels={content.badgeLabels}
+          />
+        ))}
+      </EventSection>
 
-      <EventsStatusSection
-        id="past"
-        label="Past Events"
-        title="Past Events"
-        description="A look back at previous ECAA gatherings and programs."
-        items={pastEvents}
-        renderItem={(item) => <EventCard key={item.id} event={item} variant="past" />}
-        emptyState={emptyStates.past}
-        compactEmpty
+      <EventHallRentalSection section={content.bookHall} bookings={bookings} />
+
+      <EventSection
+        id={content.sections.past.id}
+        title={content.sections.past.title}
+        emptyState={content.emptyStates.past}
         muted
-      />
+        hasItems={past.length > 0}
+      >
+        {past.map((event) => (
+          <EventCard
+            key={event.id}
+            event={event}
+            variant="past"
+            badgeLabels={content.badgeLabels}
+          />
+        ))}
+      </EventSection>
 
-      <EventHallRentalSection section={bookHall} />
-      <EventsClosingCta section={closingCta} />
+      <EventsClosingCta section={content.closingCta} />
     </>
   )
 }

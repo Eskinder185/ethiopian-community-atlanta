@@ -1,4 +1,5 @@
 import { hasUsableText } from '../../utils/data'
+import { getResolvedImageSrc } from '../../utils/images'
 
 const COLLAGE_LAYOUTS = [
   'sm:col-span-2 sm:row-span-2',
@@ -29,7 +30,7 @@ export default function MasonryGallery({ images = [], className = '' }) {
             className={`group relative min-h-[220px] overflow-hidden rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-cream-dark shadow-ecaa-sm sm:min-h-0 ${layout}`}
           >
             <img
-              src={image.src}
+              src={getResolvedImageSrc(image)}
               alt={getAltText(image)}
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               loading="lazy"

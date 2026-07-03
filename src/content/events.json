@@ -1,9 +1,10 @@
 {
   "quickActions": [
-    { "label": "Upcoming Events", "href": "#upcoming" },
+    { "label": "Upcoming Events", "href": "#upcoming-events" },
     { "label": "Announcements", "href": "#announcements" },
     { "label": "Community News", "href": "#community-news" },
-    { "label": "Book a Hall", "href": "#book-hall" }
+    { "label": "Book a Hall", "href": "#book-hall" },
+    { "label": "Past Events", "href": "#past-events" }
   ],
   "emptyStates": {
     "upcoming": {

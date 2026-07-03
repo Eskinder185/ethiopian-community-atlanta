@@ -2,25 +2,31 @@
   "hero": {
     "eyebrow": "Volunteer",
     "title": "Volunteer With ECAA",
-    "description": "Volunteers help ECAA serve the community through events, education, outreach, youth programs, family support, health initiatives, and administrative work."
+    "description": "Volunteers help ECAA serve the community through youth programs, event planning, IT and grants support, newcomer assistance, legal awareness, health education, financial literacy, and community services."
   },
   "areas": [
-    "Events and hospitality",
-    "Education and training",
-    "Youth programs",
-    "Health and wellness",
-    "Family and community support",
-    "Fundraising and donor support",
+    "Youth programs and college readiness",
+    "Event planning and community gatherings",
+    "IT, grants, and administrative support",
+    "Newcomer and family support",
+    "Legal awareness education",
+    "Health and wellness programs",
+    "Financial literacy education",
     "Media and communications",
-    "Administrative support",
     "Translation and interpretation",
     "Facility and event hall support"
   ],
+  "googleForm": {
+    "title": "Volunteer Information Form",
+    "description": "Share your volunteer interest, skills, and availability through ECAA's official volunteer form.",
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLScqZHcyvOK4aF1GCrVh2pNeTbvQCAOG6Fpo1Zez27k4OLi0fg/viewform",
+    "buttonLabel": "Volunteer With ECAA"
+  },
   "form": {
     "email": "staff@ethiopiancaa.org",
     "subject": "ECAA Volunteer Interest",
-    "submitLabel": "Email ECAA About Volunteering",
-    "note": "This volunteer interest form opens your email app so you can send your information directly to ECAA. A connected website form can be added later if needed.",
+    "submitLabel": "Contact ECAA About Volunteering",
+    "note": "Prefer email instead? Use the form below to send your volunteer interest directly to ECAA.",
     "fields": [
       { "id": "fullName", "label": "Full Name", "type": "text", "required": true },
       { "id": "email", "label": "Email", "type": "email", "required": true },

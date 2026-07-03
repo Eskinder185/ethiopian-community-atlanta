@@ -1,43 +1,46 @@
-import PageHero from '../components/layout/PageHero'
+import { useMemo } from 'react'
+import PageHeroWithStats from '../components/layout/PageHeroWithStats'
 import Container from '../components/ui/Container'
 import CTAButton from '../components/ui/CTAButton'
 import ExternalFormCTA from '../components/ui/ExternalFormCTA'
 import AnimateIn from '../components/ui/AnimateIn'
-import supportData from '../data/support.json'
+import { useSupportPage } from '../hooks/useSupportPage'
+import { getSupportHighlightCards } from '../data/supportPageContent'
+import { getPageHero, getHeroBackground } from '../utils/pageHeroes'
 
 export default function Support() {
-  const { hero, donationCampaign, otherOptions, closingNote } = supportData
+  const { content } = useSupportPage()
+  const pageHeroConfig = useMemo(() => getPageHero('support'), [])
+  const background = useMemo(() => getHeroBackground(pageHeroConfig, 'support'), [pageHeroConfig])
+  const highlightCards = useMemo(() => getSupportHighlightCards(content), [content])
 
   return (
     <>
-      <PageHero
-        eyebrow={hero.eyebrow}
-        title={hero.title}
-        description={hero.description}
-        badge={{ label: 'Give & support', variant: 'red' }}
-        imageId="membership-welcome"
-      >
-        <CTAButton href="#donate" variant="primary" size="lg">
-          Donate
-        </CTAButton>
-        <CTAButton to="/volunteer" variant="secondary" size="lg" className="btn-hero-outline">
-          Volunteer
-        </CTAButton>
-      </PageHero>
+      <PageHeroWithStats
+        eyebrow={content.hero.eyebrow}
+        title={content.hero.title}
+        description={content.hero.description}
+        backgroundImage={background}
+        backgroundAlt={pageHeroConfig?.backgroundAlt}
+        buttons={content.hero.buttons}
+        stats={highlightCards}
+        variant={pageHeroConfig?.variant || 'page'}
+        overlayStrength={pageHeroConfig?.overlayStrength || 'default'}
+      />
 
       <section className="surface-white" id="donate">
         <Container className="section-spacing-sm">
           <AnimateIn>
             <div className="mx-auto max-w-3xl text-center">
-              <p className="text-eyebrow">Donation campaign</p>
-              <h2 className="heading-section mt-3 text-3xl">{donationCampaign.title}</h2>
-              <p className="text-body mx-auto mt-4 max-w-2xl">{donationCampaign.description}</p>
+              <p className="text-eyebrow">{content.donation.eyebrow}</p>
+              <h2 className="heading-section mt-3 text-3xl">{content.donation.title}</h2>
+              <p className="text-body mx-auto mt-4 max-w-2xl">{content.donation.description}</p>
             </div>
 
             <ul className="mx-auto mt-10 grid max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {donationCampaign.levels.map((level) => (
+              {content.donation.levels.map((level) => (
                 <li
-                  key={level.name}
+                  key={`${level.name}-${level.amount}`}
                   className="rounded-ecaa-lg border border-ecaa-border/60 bg-ecaa-cream/50 px-5 py-4 text-center"
                 >
                   <p className="font-semibold text-ecaa-ink">{level.name}</p>
@@ -48,10 +51,11 @@ export default function Support() {
 
             <div className="mt-12">
               <ExternalFormCTA
-                title="Make a Donation"
-                description={donationCampaign.ctaDescription}
-                buttonLabel={donationCampaign.ctaLabel}
-                formUrl={donationCampaign.formUrl}
+                title={content.donation.form.title}
+                description={content.donation.form.description}
+                buttonLabel={content.donation.form.buttonLabel}
+                formUrl={content.donation.form.formUrl}
+                badges={content.donation.form.badges}
               />
             </div>
           </AnimateIn>
@@ -62,10 +66,10 @@ export default function Support() {
         <Container className="section-spacing-sm">
           <AnimateIn>
             <div className="ecaa-card mx-auto max-w-3xl text-center">
-              <h2 className="heading-section text-2xl">{otherOptions.title}</h2>
-              <p className="text-body mx-auto mt-4 max-w-xl">{otherOptions.description}</p>
+              <h2 className="heading-section text-2xl">{content.otherOptions.title}</h2>
+              <p className="text-body mx-auto mt-4 max-w-xl">{content.otherOptions.description}</p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
-                {otherOptions.links.map((link) => (
+                {content.otherOptions.links.map((link) => (
                   <CTAButton key={link.path} to={link.path} variant="secondary" size="lg">
                     {link.label}
                   </CTAButton>
@@ -76,18 +80,15 @@ export default function Support() {
         </Container>
       </section>
 
-      <section className="surface-muted" id="volunteer">
+      <section className="surface-muted" id={content.volunteer.id || 'volunteer'}>
         <Container className="section-spacing-sm">
           <AnimateIn>
             <div className="ecaa-card mx-auto max-w-3xl text-center">
-              <h2 className="heading-section text-2xl">Volunteer with ECAA</h2>
-              <p className="text-body mx-auto mt-4 max-w-xl">
-                ECAA welcomes volunteers who want to support community programs, events, and services.
-                Visit the volunteer page to learn more and get started.
-              </p>
+              <h2 className="heading-section text-2xl">{content.volunteer.title}</h2>
+              <p className="text-body mx-auto mt-4 max-w-xl">{content.volunteer.description}</p>
               <div className="mt-8">
-                <CTAButton to="/volunteer" variant="primary" size="lg">
-                  Volunteer Opportunities
+                <CTAButton to={content.volunteer.buttonPath} variant="primary" size="lg">
+                  {content.volunteer.buttonLabel}
                 </CTAButton>
               </div>
             </div>
@@ -98,15 +99,19 @@ export default function Support() {
       <section className="surface-white">
         <Container className="section-spacing-sm">
           <div className="ecaa-card mx-auto max-w-3xl text-center">
-            <h2 className="heading-section text-2xl">Questions about supporting ECAA?</h2>
-            <p className="text-body mx-auto mt-4 max-w-xl">{closingNote}</p>
+            <h2 className="heading-section text-2xl">{content.finalCta.title}</h2>
+            <p className="text-body mx-auto mt-4 max-w-xl">{content.finalCta.description}</p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <CTAButton to="/contact" variant="primary" size="lg">
-                Contact ECAA
-              </CTAButton>
-              <CTAButton to="/membership" variant="secondary" size="lg">
-                Become a Member
-              </CTAButton>
+              {content.finalCta.buttons.map((button, index) => (
+                <CTAButton
+                  key={button.href}
+                  to={button.href}
+                  variant={index === 0 ? 'primary' : 'secondary'}
+                  size="lg"
+                >
+                  {button.label}
+                </CTAButton>
+              ))}
             </div>
           </div>
         </Container>

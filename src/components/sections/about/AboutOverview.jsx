@@ -20,7 +20,7 @@ export default function AboutOverview({ section }) {
                 >
                   {index + 1}
                 </div>
-                <h2 className="mt-4 text-lg font-semibold text-ecaa-ink">{card.title}</h2>
+                <h2 className="mt-4 text-lg font-semibold normal-case text-ecaa-ink">{card.title}</h2>
                 <p className="mt-2 text-base leading-relaxed text-ecaa-ink-muted">{card.description}</p>
               </article>
             ))}

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { getMediaAlt, getMediaCaption, getLinkProps } from '../../utils/homepage'
 import { getYoutubeThumbnail, toEmbedUrl } from '../../utils/data'
+import { getResolvedImageSrc } from '../../utils/images'
 
 const SIZE_CLASSES = {
   large: 'sm:col-span-2 sm:row-span-2 min-h-[280px] sm:min-h-0',
@@ -65,7 +66,7 @@ function MediaTile({ item, layout, sectionHref }) {
         )
       ) : (
         <img
-          src={item.src}
+          src={getResolvedImageSrc(item)}
           alt={getMediaAlt(item)}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
           loading="lazy"

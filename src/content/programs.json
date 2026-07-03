@@ -1,7 +1,480 @@
 {
   "overview": {
-    "title": "Community Programs & Services",
-    "description": "Explore the main program areas that support ECAA's mission in Atlanta."
+    "title": "Education & Training Programs",
+    "description": "ECAA's Education & Training programs support children, youth, parents, families, and the broader community through practical learning, awareness, prevention, wellness, and leadership development.",
+    "subtext": "Program dates, session details, eligibility, and registration information will be announced as they become available."
+  },
+  "mainPrograms": [
+    {
+      "id": "special-needs-children-family",
+      "slug": "special-needs-children-family",
+      "initials": "SN",
+      "category": "Special Needs Children and Family",
+      "title": "Throb of Our Hearts",
+      "subtitle": "Yelbachne Terta",
+      "description": "Support, education, and community awareness for special needs children and their families.",
+      "shortDescription": "Support, education, and community awareness for special needs children and their families.",
+      "fullDescription": "",
+      "pageIntro": "",
+      "statusLabel": "Details Coming Soon",
+      "placeholderDetails": [
+        "Program details will be announced soon.",
+        "Family support resources and session information will be shared when available.",
+        "Contact ECAA for current information."
+      ],
+      "detailSections": [
+        {
+          "heading": "About This Program",
+          "body": "The Throb of Our Hearts program supports children and families with special needs through community awareness, education, family connection, and shared support."
+        },
+        {
+          "heading": "Family and Community Support",
+          "body": "This page can be used to share support information, parent resources, awareness sessions, meeting updates, and community announcements."
+        },
+        {
+          "heading": "Future Updates",
+          "body": "ECAA editors will be able to add flyers, photos, videos, forms, and helpful links to this page through the admin portal."
+        }
+      ],
+      "mediaItems": [
+        {
+          "id": "throb-flyer",
+          "type": "image",
+          "title": "The Throb of Our Hearts Flyer",
+          "caption": "Community awareness and family support flyer for children and families with special needs.",
+          "url": "",
+          "imageUrl": "/uploads/throb-of-our-hearts-flyer.png",
+          "altText": "Flyer for ECAA The Throb of Our Hearts special needs children and family program."
+        }
+      ],
+      "resourceLinks": [],
+      "interestFormLabel": "",
+      "interestFormLink": "",
+      "buttonLabel": "View Program Details",
+      "buttonLink": "/programs/special-needs-children-family",
+      "featured": true,
+      "visible": true,
+      "displayOrder": 1,
+      "published": true,
+      "registrationLinks": [],
+      "registrationEmptyMessage": "Registration or contact information for this program will be shared when available."
+    },
+    {
+      "id": "youth-education",
+      "slug": "youth-education",
+      "initials": "YE",
+      "category": "Youth and Education",
+      "title": "Youth Education",
+      "subtitle": "College Readiness",
+      "description": "College readiness, academic preparation, mentorship, and guidance for students and families.",
+      "shortDescription": "College readiness, academic preparation, mentorship, and guidance for students and families.",
+      "fullDescription": "",
+      "pageIntro": "",
+      "statusLabel": "Details Coming Soon",
+      "placeholderDetails": [
+        "Student interest registration is available on this page.",
+        "Dates and session details will be announced soon.",
+        "Mentorship and college preparation information will be shared as programs are finalized."
+      ],
+      "detailSections": [
+        {
+          "heading": "Student Support",
+          "body": "This program supports students and families through academic preparation, college readiness, mentorship, and educational guidance."
+        },
+        {
+          "heading": "College Readiness",
+          "body": "Future content may include college preparation resources, application guidance, scholarship information, mentorship opportunities, and student workshops."
+        },
+        {
+          "heading": "Summer School and Youth Programs",
+          "body": "ECAA may share youth program applications, summer school opportunities, student interest forms, and education-related announcements on this page."
+        }
+      ],
+      "mediaItems": [],
+      "resourceLinks": [
+        {
+          "id": "student-interest-form",
+          "label": "Student Interest Form",
+          "description": "Submit student information for ECAA youth and education programs, including grade level, school information, and parent or guardian contact details.",
+          "url": "https://docs.google.com/forms/d/e/1FAIpQLSeCofxWdhA6Oc49trML_3uusOLu8dANcMp0Xi3OaxCtbtx1YA/viewform",
+          "buttonLabel": "Open Student Interest Form",
+          "external": true
+        },
+        {
+          "id": "summer-school-application",
+          "label": "Summer School Application Form",
+          "description": "Application form for Ethiopian Community Summer School. The current form mentions summer school dates, registration information, and payment instructions. ECAA should verify current dates, fees, and registration deadlines before each program season.",
+          "url": "https://docs.google.com/forms/d/e/1FAIpQLSfdeiT2OMzKK9A2AQRXT4HISdu6teiSKloY0vWWnbIZ2lUTKg/viewform",
+          "buttonLabel": "Open Summer School Application",
+          "external": true
+        }
+      ],
+      "interestFormLabel": "",
+      "interestFormLink": "",
+      "buttonLabel": "View Program Details",
+      "buttonLink": "/programs/youth-education",
+      "featured": true,
+      "visible": true,
+      "displayOrder": 2,
+      "published": true,
+      "mediaEmptyMessage": "Photos, flyers, videos, and youth program media will be added soon.",
+      "registrationLinks": [
+        {
+          "id": "student-interest-form",
+          "title": "Student Interest Form",
+          "description": "Submit student information for ECAA youth and education programs, including grade level, school information, and parent or guardian contact details.",
+          "buttonLabel": "Open Student Interest Form",
+          "url": "https://docs.google.com/forms/d/e/1FAIpQLSeCofxWdhA6Oc49trML_3uusOLu8dANcMp0Xi3OaxCtbtx1YA/viewform",
+          "external": true,
+          "note": ""
+        },
+        {
+          "id": "summer-school-application",
+          "title": "Summer School Application Form",
+          "description": "Application form for Ethiopian Community Summer School. The current form mentions summer school dates, registration information, and payment instructions. ECAA should verify current dates, fees, and registration deadlines before each program season.",
+          "buttonLabel": "Open Summer School Application",
+          "url": "https://docs.google.com/forms/d/e/1FAIpQLSfdeiT2OMzKK9A2AQRXT4HISdu6teiSKloY0vWWnbIZ2lUTKg/viewform",
+          "external": true,
+          "note": "Please review the form carefully for current dates, deadlines, fees, and instructions."
+        }
+      ]
+    },
+    {
+      "id": "community-wellness",
+      "slug": "community-wellness",
+      "initials": "CW",
+      "category": "Community Wellness",
+      "title": "Mental Health, Addiction, and Homelessness",
+      "subtitle": "Awareness and Support",
+      "description": "Education and awareness around mental health, addiction, homelessness, prevention, and support resources.",
+      "shortDescription": "Education and awareness around mental health, addiction, homelessness, prevention, and support resources.",
+      "fullDescription": "",
+      "pageIntro": "",
+      "statusLabel": "Details Coming Soon",
+      "placeholderDetails": [
+        "Awareness sessions and resource information will be announced soon.",
+        "This program is intended to support education, prevention, and community awareness.",
+        "Contact ECAA for current information."
+      ],
+      "detailSections": [
+        {
+          "heading": "Awareness and Prevention",
+          "body": "Community education focused on mental health, addiction, and homelessness awareness will be shared as sessions are scheduled."
+        },
+        {
+          "heading": "Support Resources",
+          "body": "Helpful support pathways and community resource information may be added here for families seeking guidance."
+        },
+        {
+          "heading": "Community Partnerships",
+          "body": "ECAA may share partner organizations and referral information as this program expands."
+        }
+      ],
+      "mediaItems": [],
+      "resourceLinks": [],
+      "interestFormLabel": "",
+      "interestFormLink": "",
+      "buttonLabel": "View Program Details",
+      "buttonLink": "/programs/community-wellness",
+      "featured": false,
+      "visible": true,
+      "displayOrder": 3,
+      "published": true,
+      "registrationLinks": [],
+      "mediaEmptyMessage": "",
+      "registrationEmptyMessage": ""
+    },
+    {
+      "id": "family-education",
+      "slug": "family-education",
+      "initials": "FE",
+      "category": "Family Education",
+      "title": "Growing Strong Families",
+      "subtitle": "Parenting",
+      "description": "Parenting education and family-strengthening programs that support healthy homes and strong relationships.",
+      "shortDescription": "Parenting education and family-strengthening programs that support healthy homes and strong relationships.",
+      "fullDescription": "",
+      "pageIntro": "",
+      "statusLabel": "Details Coming Soon",
+      "placeholderDetails": [
+        "Parenting session details will be announced soon.",
+        "Family education topics and registration information will be shared when available.",
+        "Contact ECAA for current information."
+      ],
+      "detailSections": [
+        {
+          "heading": "Parenting Education",
+          "body": "Practical parenting topics and family-strengthening sessions will be announced as ECAA finalizes program content."
+        },
+        {
+          "heading": "Healthy Homes",
+          "body": "Resources and learning opportunities that support communication, stability, and strong family relationships may be shared here."
+        },
+        {
+          "heading": "Community Learning",
+          "body": "Workshops and group learning opportunities for parents and caregivers will be posted when schedules are available."
+        }
+      ],
+      "mediaItems": [],
+      "resourceLinks": [],
+      "interestFormLabel": "",
+      "interestFormLink": "",
+      "buttonLabel": "View Program Details",
+      "buttonLink": "/programs/family-education",
+      "featured": false,
+      "visible": true,
+      "displayOrder": 4,
+      "published": true,
+      "registrationLinks": [],
+      "mediaEmptyMessage": "",
+      "registrationEmptyMessage": ""
+    },
+    {
+      "id": "health-wellness",
+      "slug": "health-wellness",
+      "initials": "HW",
+      "category": "Health and Wellness",
+      "title": "Health and Wellness Education Series",
+      "subtitle": "Health and Sport",
+      "description": "Health, wellness, sport, and prevention education designed to improve community well-being.",
+      "shortDescription": "Health, wellness, sport, and prevention education designed to improve community well-being.",
+      "fullDescription": "",
+      "pageIntro": "",
+      "statusLabel": "Details Coming Soon",
+      "placeholderDetails": [
+        "Wellness sessions, sport activities, and health education details will be announced soon.",
+        "Community participation information will be shared when available.",
+        "Contact ECAA for current information."
+      ],
+      "detailSections": [
+        {
+          "heading": "Health Education",
+          "body": "Community health education topics and prevention information will be shared as sessions are announced."
+        },
+        {
+          "heading": "Wellness and Sport",
+          "body": "Wellness activities and sport-related community engagement opportunities may be listed here when available."
+        },
+        {
+          "heading": "Participation",
+          "body": "Registration and participation details will be posted when program schedules are finalized."
+        }
+      ],
+      "mediaItems": [],
+      "resourceLinks": [],
+      "interestFormLabel": "",
+      "interestFormLink": "",
+      "buttonLabel": "View Program Details",
+      "buttonLink": "/programs/health-wellness",
+      "featured": true,
+      "visible": true,
+      "displayOrder": 5,
+      "published": true,
+      "registrationLinks": [],
+      "mediaEmptyMessage": "",
+      "registrationEmptyMessage": ""
+    },
+    {
+      "id": "financial-literacy",
+      "slug": "financial-literacy",
+      "initials": "FL",
+      "category": "Financial Literacy",
+      "title": "Family and Community Financial Literacy",
+      "subtitle": "Financial Education",
+      "description": "Practical financial literacy education for individuals, families, and the community.",
+      "shortDescription": "Practical financial literacy education for individuals, families, and the community.",
+      "fullDescription": "",
+      "pageIntro": "",
+      "statusLabel": "Details Coming Soon",
+      "placeholderDetails": [
+        "Financial education topics and session dates will be announced soon.",
+        "Program may include practical learning around budgeting, planning, and community financial awareness.",
+        "Contact ECAA for current information."
+      ],
+      "detailSections": [
+        {
+          "heading": "Financial Education",
+          "body": "Practical financial literacy topics for individuals and families will be shared as workshops and sessions are scheduled."
+        },
+        {
+          "heading": "Budgeting and Planning",
+          "body": "Community learning around budgeting, planning, and everyday financial decision-making may be included in future sessions."
+        },
+        {
+          "heading": "Community Awareness",
+          "body": "Broader community financial awareness resources and program updates will be added here when available."
+        }
+      ],
+      "mediaItems": [],
+      "resourceLinks": [],
+      "interestFormLabel": "",
+      "interestFormLink": "",
+      "buttonLabel": "View Program Details",
+      "buttonLink": "/programs/financial-literacy",
+      "featured": false,
+      "visible": true,
+      "displayOrder": 6,
+      "published": true,
+      "registrationLinks": [],
+      "mediaEmptyMessage": "",
+      "registrationEmptyMessage": ""
+    },
+    {
+      "id": "leadership-community-growth",
+      "slug": "leadership-community-growth",
+      "initials": "LG",
+      "category": "Leadership and Community Growth",
+      "title": "Grow People, Grow Community",
+      "subtitle": "Community Development",
+      "description": "Training and community learning that develops people, strengthens leadership, and grows the community.",
+      "shortDescription": "Training and community learning that develops people, strengthens leadership, and grows the community.",
+      "fullDescription": "",
+      "pageIntro": "",
+      "statusLabel": "Details Coming Soon",
+      "placeholderDetails": [
+        "Leadership development sessions will be announced soon.",
+        "Volunteer, committee, and community growth opportunities may be shared here.",
+        "Contact ECAA for current information."
+      ],
+      "detailSections": [
+        {
+          "heading": "Leadership Development",
+          "body": "Training and learning opportunities that strengthen leadership skills and community capacity will be announced as programs develop."
+        },
+        {
+          "heading": "Community Growth",
+          "body": "Initiatives that help members grow personally and contribute to a stronger community may be shared here."
+        },
+        {
+          "heading": "Volunteer and Service",
+          "body": "Volunteer pathways and committee opportunities related to community development may be listed when available."
+        }
+      ],
+      "mediaItems": [],
+      "resourceLinks": [],
+      "interestFormLabel": "",
+      "interestFormLink": "",
+      "buttonLabel": "View Program Details",
+      "buttonLink": "/programs/leadership-community-growth",
+      "featured": false,
+      "visible": true,
+      "displayOrder": 7,
+      "published": true,
+      "registrationLinks": [],
+      "mediaEmptyMessage": "",
+      "registrationEmptyMessage": ""
+    },
+    {
+      "id": "legal-education",
+      "slug": "legal-education",
+      "initials": "LE",
+      "category": "Legal Education",
+      "title": "Legal Awareness and Prevention",
+      "subtitle": "Know Your Rights",
+      "description": "Legal awareness, prevention education, and community information sessions designed to help families understand rights, responsibilities, and available support.",
+      "shortDescription": "Legal awareness, prevention education, and community information sessions designed to help families understand rights, responsibilities, and available support.",
+      "fullDescription": "",
+      "pageIntro": "",
+      "statusLabel": "Details Coming Soon",
+      "placeholderDetails": [
+        "Legal education sessions and community awareness topics will be announced soon.",
+        "This program supports community education and awareness only.",
+        "Contact ECAA for current information."
+      ],
+      "detailSections": [
+        {
+          "heading": "Legal Awareness",
+          "body": "Community information sessions on rights, responsibilities, and prevention topics will be shared as they are scheduled."
+        },
+        {
+          "heading": "Prevention Education",
+          "body": "Educational materials and awareness resources designed to help families navigate common community questions may be added here."
+        },
+        {
+          "heading": "Community Information",
+          "body": "General community education resources and session announcements will be posted when available."
+        }
+      ],
+      "mediaItems": [],
+      "resourceLinks": [],
+      "interestFormLabel": "",
+      "interestFormLink": "",
+      "buttonLabel": "View Program Details",
+      "buttonLink": "/programs/legal-education",
+      "legalNotice": "This page is for community education and awareness only. It does not provide legal advice.",
+      "featured": true,
+      "visible": true,
+      "displayOrder": 8,
+      "published": true,
+      "registrationLinks": [],
+      "mediaEmptyMessage": "",
+      "registrationEmptyMessage": ""
+    }
+  ],
+  "detailsPlaceholder": {
+    "title": "Program Details Coming Soon",
+    "description": "ECAA is continuing to organize program details, schedules, registration steps, and volunteer opportunities. Information will be added as programs are finalized.",
+    "cards": [
+      {
+        "title": "Dates & Sessions",
+        "description": "Program dates and session schedules will be announced soon."
+      },
+      {
+        "title": "Registration",
+        "description": "Registration or interest forms will be shared when available."
+      },
+      {
+        "title": "Volunteers",
+        "description": "Volunteer opportunities may be available for selected programs."
+      },
+      {
+        "title": "Resources",
+        "description": "Helpful community resources may be added as programs develop."
+      },
+      {
+        "title": "Contact",
+        "description": "For current information, please contact ECAA directly."
+      }
+    ]
+  },
+  "interestForms": {
+    "title": "Program Interest Forms",
+    "description": "Some ECAA programs may use interest forms to help organize participation, volunteers, and future sessions.",
+    "contactPath": "/contact",
+    "forms": [
+      {
+        "id": "student-interest-form",
+        "category": "Youth & Education",
+        "title": "Student Interest Form",
+        "description": "Submit student interest information for ECAA youth and education programs.",
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSeCofxWdhA6Oc49trML_3uusOLu8dANcMp0Xi3OaxCtbtx1YA/viewform",
+        "ctaLabel": "Register Student Interest",
+        "published": true
+      },
+      {
+        "id": "volunteer-information-form",
+        "category": "Volunteer & Civic Engagement",
+        "title": "Volunteer Information Form",
+        "description": "Share your volunteer interest and availability to support ECAA programs, events, and community services.",
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLScqZHcyvOK4aF1GCrVh2pNeTbvQCAOG6Fpo1Zez27k4OLi0fg/viewform",
+        "ctaLabel": "Volunteer With ECAA",
+        "published": true
+      }
+    ]
+  },
+  "closingCta": {
+    "title": "Have questions about ECAA programs?",
+    "description": "Contact ECAA to learn more about current programs, upcoming sessions, volunteer opportunities, and ways to participate.",
+    "buttons": [
+      {
+        "label": "Contact ECAA",
+        "href": "/contact"
+      },
+      {
+        "label": "View Events",
+        "href": "/events"
+      }
+    ]
   },
   "categories": [
     {
@@ -9,13 +482,12 @@
       "initials": "CS",
       "category": "Community",
       "title": "Community Support",
-      "description": "ECAA connects community members with information, resources, events, and support systems that strengthen family and community life.",
+      "description": "ECAA helps newcomers and immigrant families connect with information, resources, orientation support, and community networks as they build life in the Atlanta area.",
       "image": "",
       "imageAlt": "Community support placeholder image.",
       "icon": "community",
       "published": true,
-      "featured": true,
-      "notes": "TODO: Add real program image or expanded details."
+      "featured": false
     },
     {
       "id": "cultural-programs",
@@ -27,15 +499,14 @@
       "imageAlt": "Cultural programs placeholder image.",
       "icon": "culture",
       "published": true,
-      "featured": true,
-      "notes": "TODO: Add real cultural program image."
+      "featured": false
     },
     {
       "id": "youth-education",
       "initials": "YE",
       "category": "Youth",
       "title": "Youth & Education",
-      "description": "ECAA supports youth and students through programs, interest forms, volunteer support, and educational community engagement.",
+      "description": "ECAA supports youth through education programs, college readiness, mentorship, student interest forms, and activities that help young people grow with confidence and cultural pride.",
       "image": "",
       "imageAlt": "Youth and education placeholder image.",
       "icon": "education",
@@ -44,25 +515,22 @@
       "form": {
         "title": "Student Interest Form",
         "description": "Submit student interest information for ECAA youth and education programs.",
-        "url": "",
-        "ctaLabel": "Open form",
-        "published": true,
-        "notes": "TODO: Add official Student Interest Form URL."
-      },
-      "notes": "TODO: Add real youth program image and details."
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLSeCofxWdhA6Oc49trML_3uusOLu8dANcMp0Xi3OaxCtbtx1YA/viewform",
+        "ctaLabel": "Register Student Interest",
+        "published": true
+      }
     },
     {
       "id": "health-wellness",
       "initials": "HW",
       "category": "Wellness",
       "title": "Health & Wellness",
-      "description": "ECAA supports health, wellness, and sport-related initiatives that encourage community well-being and participation.",
+      "description": "ECAA supports health, wellness, sports, and social activities that encourage community well-being, fitness, and connection across generations.",
       "image": "",
       "imageAlt": "Health and wellness placeholder image.",
       "icon": "wellness",
       "published": true,
-      "featured": true,
-      "notes": "TODO: Add real health and wellness program image."
+      "featured": false
     },
     {
       "id": "edir",
@@ -74,15 +542,14 @@
       "imageAlt": "EDIR placeholder image.",
       "icon": "edir",
       "published": true,
-      "featured": true,
-      "notes": "TODO: Add verified EDIR details for public page."
+      "featured": true
     },
     {
       "id": "volunteer-civic",
       "initials": "VC",
       "category": "Volunteer",
       "title": "Volunteer & Civic Engagement",
-      "description": "Community members can support ECAA through volunteering, service, outreach, program support, events, and committee work.",
+      "description": "Community members can support ECAA through volunteering in youth programs, event planning, IT, grants, newcomer support, legal awareness, health education, financial literacy, and community services.",
       "image": "",
       "imageAlt": "Volunteer and civic engagement placeholder image.",
       "icon": "volunteer",
@@ -91,12 +558,10 @@
       "form": {
         "title": "Volunteer Information Form",
         "description": "Share your volunteer interest and availability to support ECAA programs, events, and community services.",
-        "url": "",
-        "ctaLabel": "Open form",
-        "published": true,
-        "notes": "TODO: Add official Volunteer Information Form URL."
-      },
-      "notes": "TODO: Add real volunteer program image and details."
+        "url": "https://docs.google.com/forms/d/e/1FAIpQLScqZHcyvOK4aF1GCrVh2pNeTbvQCAOG6Fpo1Zez27k4OLi0fg/viewform",
+        "ctaLabel": "Volunteer With ECAA",
+        "published": true
+      }
     }
   ],
   "educationTraining": {
@@ -105,134 +570,11 @@
     "title": "Education & Training Programs",
     "intro": "ECAA's Education & Training programs support children, youth, parents, families, and the broader community through practical learning, awareness, prevention, wellness, and leadership development.",
     "scheduleNote": "Program dates and session details will be announced soon.",
-    "topics": [
-      {
-        "id": "special-needs-children-family",
-        "initials": "SN",
-        "category": "Special Needs Children and Family",
-        "title": "Throb of Our Hearts",
-        "subtitle": "Yelbachne Terta",
-        "description": "Support, education, and community awareness for special needs children and their families.",
-        "image": "",
-        "imageAlt": "Special needs children and family program placeholder image.",
-        "status": "coming-soon",
-        "published": true,
-        "notes": "TODO: Add session dates and official details."
-      },
-      {
-        "id": "youth-and-education",
-        "initials": "YE",
-        "category": "Youth and Education",
-        "title": "Youth Education",
-        "subtitle": "College Readiness",
-        "description": "College readiness, academic preparation, mentorship, and guidance for students and families.",
-        "image": "",
-        "imageAlt": "Youth education program placeholder image.",
-        "status": "coming-soon",
-        "published": true,
-        "notes": "TODO: Add session dates and official details."
-      },
-      {
-        "id": "community-wellness",
-        "initials": "CW",
-        "category": "Community Wellness",
-        "title": "Mental Health, Addiction, and Homelessness",
-        "subtitle": "Awareness and Support",
-        "description": "Education and awareness around mental health, addiction, homelessness, prevention, and support resources.",
-        "image": "",
-        "imageAlt": "Community wellness program placeholder image.",
-        "status": "coming-soon",
-        "published": true,
-        "notes": "TODO: Add session dates and official details."
-      },
-      {
-        "id": "family-education",
-        "initials": "FE",
-        "category": "Family Education",
-        "title": "Growing Strong Families",
-        "subtitle": "Parenting",
-        "description": "Parenting education and family-strengthening programs that support healthy homes and strong relationships.",
-        "image": "",
-        "imageAlt": "Family education program placeholder image.",
-        "status": "coming-soon",
-        "published": true,
-        "notes": "TODO: Add session dates and official details."
-      },
-      {
-        "id": "health-and-wellness",
-        "initials": "HW",
-        "category": "Health and Wellness",
-        "title": "Health and Wellness Education Series",
-        "subtitle": "Health and Sport",
-        "description": "Health, wellness, sport, and prevention education designed to improve community well-being.",
-        "image": "",
-        "imageAlt": "Health and wellness education placeholder image.",
-        "status": "coming-soon",
-        "published": true,
-        "notes": "TODO: Add session dates and official details."
-      },
-      {
-        "id": "financial-literacy",
-        "initials": "FL",
-        "title": "Family and Community Financial Literacy",
-        "subtitle": "Financial Education",
-        "category": "Financial Literacy",
-        "description": "Practical financial literacy education for individuals, families, and the community.",
-        "image": "",
-        "imageAlt": "Financial literacy program placeholder image.",
-        "status": "coming-soon",
-        "published": true,
-        "notes": "TODO: Add session dates and official details."
-      },
-      {
-        "id": "leadership-community-growth",
-        "initials": "LG",
-        "title": "Grow People, Grow Community",
-        "subtitle": "Community Development",
-        "category": "Leadership and Community Growth",
-        "description": "Training and community learning that develops people, strengthens leadership, and grows the community.",
-        "image": "",
-        "imageAlt": "Leadership and community growth placeholder image.",
-        "status": "coming-soon",
-        "published": true,
-        "notes": "TODO: Add session dates and official details."
-      },
-      {
-        "id": "legal-education",
-        "initials": "LE",
-        "title": "Legal Awareness and Prevention",
-        "subtitle": "Know Your Rights",
-        "category": "Legal Education",
-        "description": "Legal awareness, prevention education, and community information sessions designed to help families understand rights, responsibilities, and available support.",
-        "image": "",
-        "imageAlt": "Legal education program placeholder image.",
-        "status": "coming-soon",
-        "published": true,
-        "notes": "TODO: Add session dates and official details."
-      }
-    ]
+    "topics": []
   },
   "formsSection": {
     "title": "Program Interest Forms",
     "description": "Some ECAA programs may use interest forms to help organize participation, volunteers, and future sessions.",
     "contactPath": "/contact"
-  },
-  "closingCta": {
-    "title": "Interested in ECAA programs?",
-    "description": "Contact ECAA to learn more about upcoming programs, volunteer opportunities, education sessions, and community services.",
-    "buttons": [
-      {
-        "label": "Contact ECAA",
-        "href": "/contact"
-      },
-      {
-        "label": "Volunteer With ECAA",
-        "href": "/support#volunteer"
-      },
-      {
-        "label": "Become a Member",
-        "href": "/membership"
-      }
-    ]
   }
 }

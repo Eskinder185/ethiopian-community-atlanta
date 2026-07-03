@@ -52,7 +52,7 @@ export default function EventsPreview({ limit = 3 }) {
             eyebrow={eventsPreview.eyebrow}
             title={eventsPreview.title}
             description={eventsPreview.description}
-            action={{ label: 'View All Events', to: '/events', variant: 'secondary' }}
+            action={{ label: 'View Upcoming Events', to: '/events', variant: 'secondary' }}
           />
 
           {events.length > 0 ? (
@@ -66,11 +66,11 @@ export default function EventsPreview({ limit = 3 }) {
           ) : (
             <EmptyState
               className="mt-14"
-              title="Upcoming events will be added soon."
+              title="Upcoming events will be posted soon."
               description={eventsPreview.emptyDescription}
               action={
                 <CTAButton to="/events" variant="secondary">
-                  View All Events
+                  View Upcoming Events
                 </CTAButton>
               }
             />

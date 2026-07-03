@@ -1,65 +1,70 @@
-import chatHelpItems from '../data/chatHelp.json'
+import {
+  CHAT_INTRO_MESSAGE,
+  CHAT_NO_MATCH_MESSAGE,
+  fallbackButtons,
+  intents,
+  quickActions,
+} from '../data/chatHelp'
+import { getLocalizedIntents } from '../data/chatHelpContent'
 
-export const QUICK_TOPICS = [
-  { label: 'Membership', query: 'membership' },
-  { label: 'Events', query: 'events' },
-  { label: 'Media', query: 'media' },
-  { label: 'Book a Hall', query: 'book a hall' },
-  { label: 'Programs', query: 'programs' },
-  { label: 'Contact', query: 'contact' },
-]
+export { CHAT_INTRO_MESSAGE, CHAT_NO_MATCH_MESSAGE, quickActions, fallbackButtons }
 
-export const CHAT_INTRO_MESSAGE =
-  'Welcome! Ask a question or choose a topic below to find membership, events, media, programs, and community resources.'
+export const QUICK_ACTIONS = quickActions
 
-export const CHAT_NO_MATCH_MESSAGE =
-  "I couldn't find an exact match. Try Membership, Events, Media, Book a Hall, Programs, or Contact."
-
-export function getChatHelpItems() {
-  return chatHelpItems
+export function getChatIntents(language = 'en') {
+  return getLocalizedIntents(language)
 }
 
-function scoreItem(item, query) {
+function scoreIntent(intent, query) {
   const normalized = query.toLowerCase().trim()
   if (!normalized) return 0
 
   let score = 0
-  const title = item.title.toLowerCase()
-  const description = item.description.toLowerCase()
+  const title = intent.title.toLowerCase()
+  const answer = intent.answer.toLowerCase()
 
   if (title.includes(normalized)) score += 12
-  if (description.includes(normalized)) score += 4
+  if (answer.includes(normalized)) score += 4
 
-  for (const keyword of item.keywords) {
-    if (normalized === keyword) score += 14
-    else if (normalized.includes(keyword)) score += 8
-    else if (keyword.includes(normalized)) score += 6
+  for (const keyword of intent.keywords) {
+    if (normalized === keyword) score += 16
+    else if (normalized.includes(keyword)) score += 10
+    else if (keyword.includes(normalized) && normalized.length > 2) score += 6
   }
 
   const words = normalized.split(/\s+/).filter((word) => word.length > 1)
   for (const word of words) {
     if (title.includes(word)) score += 3
-    if (description.includes(word)) score += 2
-    for (const keyword of item.keywords) {
-      if (keyword.includes(word) || word.includes(keyword)) score += 4
+    if (answer.includes(word)) score += 2
+    for (const keyword of intent.keywords) {
+      if (keyword.includes(word) || word.includes(keyword)) score += 5
+    }
+  }
+
+  if (intent.id === 'admin') {
+    const adminSignals = ['admin', 'login', 'editor', 'dashboard', 'staff']
+    if (!adminSignals.some((signal) => normalized.includes(signal))) {
+      score = Math.max(0, score - 8)
     }
   }
 
   return score
 }
 
-export function searchChatHelp(query, limit = 3) {
+export function searchChatHelp(query, limit = 2, language = 'en') {
   const normalized = query.toLowerCase().trim()
   if (!normalized) return []
 
-  return chatHelpItems
-    .map((item) => ({ item, score: scoreItem(item, normalized) }))
+  const localizedIntents = getLocalizedIntents(language)
+
+  return localizedIntents
+    .map((intent) => ({ intent, score: scoreIntent(intent, normalized) }))
     .filter(({ score }) => score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, limit)
-    .map(({ item }) => item)
+    .map(({ intent }) => intent)
 }
 
 export function getChatHelpById(id) {
-  return chatHelpItems.find((item) => item.id === id) ?? null
+  return intents.find((intent) => intent.id === id) ?? null
 }

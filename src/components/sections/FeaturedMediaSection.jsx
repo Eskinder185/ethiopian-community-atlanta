@@ -1,6 +1,8 @@
 import Container from '../ui/Container'
 import HomeSectionHeader from '../ui/HomeSectionHeader'
 import FeaturedMediaCollage from '../ui/FeaturedMediaCollage'
+import CTAButton from '../ui/CTAButton'
+import EmptyState from '../ui/EmptyState'
 import AnimateIn from '../ui/AnimateIn'
 import {
   getLinkProps,
@@ -14,19 +16,22 @@ export default function FeaturedMediaSection({ data }) {
 
   const items = getVisibleItems(data.items, isFeaturedMediaItem, 6)
   const sectionCta = getLinkProps(data.sectionCta)
+  const emptyState = data.emptyState ?? {}
   const hasItems = items.length > 0
   const sectionHref = sectionCta?.to || sectionCta?.href || '/media'
+  const emptyPrimaryCta = getLinkProps(emptyState.primaryCta)
 
   return (
-    <section className="home-section surface-muted">
+    <section className="home-section surface-muted" aria-labelledby="featured-media-heading">
       <Container className="home-section-inner">
         <AnimateIn>
           <HomeSectionHeader
+            id="featured-media-heading"
             eyebrow={data.eyebrow}
             title={data.title}
             description={data.description}
             action={
-              sectionCta
+              hasItems && sectionCta
                 ? { label: data.sectionCta.label, ...sectionCta, variant: 'secondary' }
                 : undefined
             }
@@ -40,20 +45,26 @@ export default function FeaturedMediaSection({ data }) {
               className="home-section-grid mt-10"
             />
           ) : (
-            <div className="home-media-placeholder mt-10 grid gap-3 sm:grid-cols-4 sm:auto-rows-[minmax(160px,1fr)]">
-              {[0, 1, 2, 3].map((index) => (
-                <div
-                  key={index}
-                  className={`rounded-ecaa-xl border border-ecaa-border/60 bg-gradient-to-br from-ecaa-green-100/60 via-ecaa-cream to-ecaa-gold-100/40 shadow-ecaa-sm ${
-                    index === 0 ? 'min-h-[260px] sm:col-span-2 sm:row-span-2' : 'min-h-[160px]'
-                  }`}
-                  aria-hidden="true"
-                />
-              ))}
-              <p className="sm:col-span-4 mt-2 text-center text-sm text-ecaa-ink-subtle">
-                Community photos and videos will appear here soon.
-              </p>
-            </div>
+            <EmptyState
+              className="mt-10 rounded-ecaa-xl border border-ecaa-border/70 bg-ecaa-white/80 p-8 text-center shadow-ecaa-sm sm:p-10"
+              headingLevel="h3"
+              title={emptyState.title || 'Community photos and videos coming soon'}
+              description={
+                emptyState.description ||
+                'Photos and videos from ECAA community moments will be added here.'
+              }
+              action={
+                emptyPrimaryCta ? (
+                  <CTAButton {...emptyPrimaryCta} variant="primary" size="lg">
+                    {emptyState.primaryCta.label}
+                  </CTAButton>
+                ) : sectionCta ? (
+                  <CTAButton {...sectionCta} variant="primary" size="lg">
+                    {data.sectionCta.label}
+                  </CTAButton>
+                ) : null
+              }
+            />
           )}
         </AnimateIn>
       </Container>

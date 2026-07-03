@@ -15,7 +15,7 @@ export default function AboutLeadershipStructure({ section }) {
             key={group.id}
             className="flex h-full flex-col rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-white p-6 shadow-ecaa-sm transition-shadow duration-300 hover:shadow-ecaa-md sm:p-7"
           >
-            <h3 className="text-lg font-semibold tracking-tight text-ecaa-green-900">
+            <h3 className="text-lg font-semibold normal-case tracking-tight text-ecaa-green-900">
               {group.title}
             </h3>
             <p className="mt-3 flex-1 text-base leading-relaxed text-ecaa-ink-muted">

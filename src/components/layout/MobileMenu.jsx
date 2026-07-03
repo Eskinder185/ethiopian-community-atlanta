@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import navigation from '../../data/navigation.json'
 import CTAButton from '../ui/CTAButton'
+import LanguageToggle from '../LanguageToggle'
+import { useLanguage } from '../../context/LanguageContext'
+import { translateNavLabel } from '../../utils/navigationLabels'
+import { ADMIN_LOGIN_PATH } from '../../utils/admin'
 import { getNavHref, isExternalNavLink } from '../../utils/navigation'
 
 const navLinkClass = ({ isActive }) =>
@@ -16,9 +20,10 @@ const subLinkClass = ({ isActive }) =>
     .filter(Boolean)
     .join(' ')
 
-function MobileNavChild({ child, onClose }) {
+function MobileNavChild({ child, onClose, t }) {
   const href = getNavHref(child)
   const external = isExternalNavLink(child)
+  const label = translateNavLabel(child.label, t)
 
   if (external) {
     return (
@@ -29,20 +34,21 @@ function MobileNavChild({ child, onClose }) {
         rel="noopener noreferrer"
         onClick={onClose}
       >
-        {child.label}
+        {label}
       </a>
     )
   }
 
   return (
     <NavLink to={href} className={subLinkClass} onClick={onClose}>
-      {child.label}
+      {label}
     </NavLink>
   )
 }
 
 export default function MobileMenu({ isOpen, onClose }) {
-  const { items, adminCta } = navigation.header
+  const { items, primaryCta, adminCta } = navigation.header
+  const { t } = useLanguage()
   const [expanded, setExpanded] = useState({})
 
   useEffect(() => {
@@ -77,6 +83,10 @@ export default function MobileMenu({ isOpen, onClose }) {
       className="mobile-menu-panel border-t border-ecaa-border/60 py-4 xl:hidden"
       aria-label="Mobile navigation"
     >
+      <div className="mb-4 px-1">
+        <LanguageToggle variant="mobile" />
+      </div>
+
       <ul className="flex max-h-[calc(100vh-8rem)] flex-col gap-0.5 overflow-y-auto overflow-x-hidden">
         {items.map((item) =>
           item.type === 'dropdown' ? (
@@ -88,7 +98,7 @@ export default function MobileMenu({ isOpen, onClose }) {
                 aria-controls={`mobile-group-${item.label.replace(/\s+/g, '-').toLowerCase()}`}
                 onClick={() => toggleGroup(item.label)}
               >
-                <span>{item.label}</span>
+                <span>{translateNavLabel(item.label, t)}</span>
                 <span className="text-xs opacity-70" aria-hidden="true">
                   {expanded[item.label] ? '▴' : '▾'}
                 </span>
@@ -100,7 +110,7 @@ export default function MobileMenu({ isOpen, onClose }) {
                 >
                   {item.children.map((child) => (
                     <li key={`${getNavHref(child)}-${child.label}`}>
-                      <MobileNavChild child={child} onClose={onClose} />
+                      <MobileNavChild child={child} onClose={onClose} t={t} />
                     </li>
                   ))}
                 </ul>
@@ -109,22 +119,35 @@ export default function MobileMenu({ isOpen, onClose }) {
           ) : (
             <li key={item.path}>
               <NavLink to={item.path} className={navLinkClass} end={item.path === '/'} onClick={onClose}>
-                {item.label}
+                {translateNavLabel(item.label, t)}
               </NavLink>
             </li>
           ),
         )}
-        {adminCta?.published && adminCta.path && (
-          <li className="mt-4 border-t border-ecaa-border/60 pt-4">
-            <CTAButton
-              to={adminCta.path}
-              variant="primary"
-              size="md"
-              className="w-full"
-              onClick={onClose}
-            >
-              {adminCta.label}
-            </CTAButton>
+        {(adminCta?.published || primaryCta?.path) && (
+          <li className="mt-4 space-y-3 border-t border-ecaa-border/60 pt-4">
+            {adminCta?.published && (
+              <CTAButton
+                to={ADMIN_LOGIN_PATH}
+                variant="primary"
+                size="md"
+                className="w-full"
+                onClick={onClose}
+              >
+                {translateNavLabel(adminCta.label, t)}
+              </CTAButton>
+            )}
+            {primaryCta?.path && (
+              <CTAButton
+                to={primaryCta.path}
+                variant="secondary"
+                size="md"
+                className="w-full"
+                onClick={onClose}
+              >
+                {translateNavLabel(primaryCta.label, t)}
+              </CTAButton>
+            )}
           </li>
         )}
       </ul>

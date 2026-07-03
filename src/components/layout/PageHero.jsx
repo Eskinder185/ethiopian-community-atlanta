@@ -1,7 +1,7 @@
 import Container from '../ui/Container'
 import Badge from '../ui/Badge'
 import AnimateIn from '../ui/AnimateIn'
-import { getImageById, getPatternImage, hasImageAsset } from '../../utils/images'
+import { getImageById, getPatternImage, getResolvedImageSrc, hasImageAsset } from '../../utils/images'
 
 const overlayPresets = {
   welcoming: {
@@ -37,6 +37,7 @@ const sizeClasses = {
   page: 'min-h-[560px] py-16 sm:min-h-[580px] sm:py-20 lg:min-h-[640px] lg:py-24',
 }
 
+/** Legacy hero for pages not yet on pageHeroes.json (e.g. NotFound). */
 export default function PageHero({
   eyebrow,
   title,
@@ -68,7 +69,7 @@ export default function PageHero({
     <header className="hero-bg relative isolate overflow-hidden">
       {hasPhoto ? (
         <img
-          src={backgroundImage.src}
+          src={getResolvedImageSrc(backgroundImage)}
           alt=""
           aria-hidden="true"
           className={`absolute inset-0 h-full w-full object-cover ${objectPosition}`}
@@ -100,7 +101,7 @@ export default function PageHero({
           }`}
           aria-hidden="true"
           style={{
-            backgroundImage: `url(${pattern.src})`,
+            backgroundImage: `url(${getResolvedImageSrc(pattern)})`,
             backgroundRepeat: 'repeat',
             backgroundSize: '280px auto',
           }}

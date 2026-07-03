@@ -1,16 +1,12 @@
 import LeadershipCard, { getImageSrc } from '../cards/LeadershipCard'
 import EmptyState from '../ui/EmptyState'
 import ContentSection from './ContentSection'
-import { hasUsableText } from '../../utils/data'
-
-function getGroupMembers(group) {
-  return (group.members || []).filter(
-    (member) => hasUsableText(member.name) && hasUsableText(getImageSrc(member)),
-  )
-}
+import { getVisibleGroupMembers, groupHasVisibleMembers } from '../../utils/leadership'
 
 export default function LeadershipGroupSection({ group, muted = false }) {
-  const groupMembers = getGroupMembers(group)
+  if (!groupHasVisibleMembers(group)) return null
+
+  const groupMembers = getVisibleGroupMembers(group.members)
 
   return (
     <ContentSection

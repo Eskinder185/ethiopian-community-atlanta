@@ -1,39 +1,43 @@
-import PageHero from '../components/layout/PageHero'
+import { useMemo } from 'react'
+import { useLanguage } from '../context/LanguageContext'
+import PageHeroWithStats from '../components/layout/PageHeroWithStats'
 import ProgramsOverviewSection from '../components/sections/ProgramsOverviewSection'
 import ProgramsMainGrid from '../components/sections/ProgramsMainGrid'
-import EducationTrainingSection from '../components/sections/EducationTrainingSection'
+import ProgramsDetailsPlaceholderSection from '../components/sections/ProgramsDetailsPlaceholderSection'
 import ProgramsFormsSection from '../components/sections/ProgramsFormsSection'
 import ProgramsClosingCta from '../components/sections/ProgramsClosingCta'
-import CTAButton from '../components/ui/CTAButton'
-import programsData from '../content/programs.json'
+import { getProgramsPageContent } from '../data/programsPageContent'
+import { usePrograms } from '../hooks/usePrograms'
+import { applyProgramsLocale } from '../utils/programsLocale'
+import { getPageHero, getHeroBackground } from '../utils/pageHeroes'
 
 export default function Programs() {
-  const { overview, categories, educationTraining, formsSection, closingCta } = programsData
+  const { language } = useLanguage()
+  const pageContent = getProgramsPageContent(language)
+  const { programs: rawPrograms } = usePrograms()
+  const programs = useMemo(() => applyProgramsLocale(rawPrograms, language), [rawPrograms, language])
+  const pageHeroConfig = getPageHero('programs')
+  const background = getHeroBackground(pageHeroConfig, 'programs')
 
   return (
     <>
-      <PageHero
-        size="page"
-        eyebrow="Programs"
-        title="Community Programs & Services"
-        description="Explore the main program areas that support ECAA's mission in Atlanta."
-        badge={{ label: 'Community programs', variant: 'gold' }}
-        imageId="programs-community-support"
-        overlayStrength="default"
-      >
-        <CTAButton href="#community-programs" variant="primary" size="lg">
-          Explore Programs
-        </CTAButton>
-        <CTAButton href="#education-training" variant="secondary" size="lg" className="btn-hero-outline">
-          Education & Training
-        </CTAButton>
-      </PageHero>
+      <PageHeroWithStats
+        eyebrow={pageContent.hero.eyebrow}
+        title={pageContent.hero.title}
+        description={pageContent.hero.description}
+        backgroundImage={background}
+        backgroundAlt={pageHeroConfig?.backgroundAlt}
+        buttons={pageContent.hero.buttons}
+        stats={pageContent.overviewCards}
+        variant={pageHeroConfig?.variant || 'page'}
+        overlayStrength={pageHeroConfig?.overlayStrength || 'default'}
+      />
 
-      <ProgramsOverviewSection section={overview} />
-      <ProgramsMainGrid categories={categories} />
-      <ProgramsFormsSection section={formsSection} categories={categories} />
-      <EducationTrainingSection section={educationTraining} />
-      <ProgramsClosingCta section={closingCta} />
+      <ProgramsOverviewSection section={pageContent.intro} />
+      <ProgramsMainGrid programs={programs} />
+      <ProgramsDetailsPlaceholderSection section={pageContent.detailsComingSoon} />
+      <ProgramsFormsSection section={pageContent.interestForms} labels={pageContent.detailLabels} />
+      <ProgramsClosingCta section={pageContent.finalCta} />
     </>
   )
 }

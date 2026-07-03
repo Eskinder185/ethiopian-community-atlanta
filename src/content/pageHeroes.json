@@ -1,0 +1,301 @@
+{
+  "pages": {
+    "home": {
+      "visible": true,
+      "variant": "home",
+      "eyebrow": "Ethiopian Community Association in Atlanta",
+      "title": "Building Intergenerational Connections and Strengthening Community Resilience",
+      "description": "ECAA exists to serve, connect, and empower the Ethiopian community in Atlanta while helping preserve Ethiopian cultural heritage and support integration into American society.",
+      "trustCue": "Serving the Ethiopian and Ethiopian American community in Atlanta since 1983.",
+      "backgroundImage": "/images/heroes/home-hero.jpg",
+      "backgroundAlt": "Community members gathered in Atlanta for the Ethiopian Community Association in Atlanta.",
+      "overlayStrength": "welcoming",
+      "buttons": [
+        { "label": "Become a Member", "href": "/membership", "style": "primary" },
+        { "label": "View Events", "href": "/events", "style": "secondary" },
+        { "label": "Support ECAA", "href": "/support", "style": "ghost" }
+      ],
+      "summaryBand": {
+        "visible": false,
+        "text": ""
+      },
+      "stats": {
+        "visible": false,
+        "items": []
+      }
+    },
+    "about": {
+      "visible": true,
+      "variant": "page",
+      "eyebrow": "About ECAA",
+      "title": "Learn About the Community Behind ECAA",
+      "description": "Discover ECAA's mission, history, leadership, and continued work to serve, connect, and empower Ethiopians and Ethiopian Americans in Atlanta and surrounding communities.",
+      "backgroundImage": "/images/patterns/global-ethiopian-pattern-divider.jpg",
+      "backgroundAlt": "Ethiopian-inspired decorative pattern representing ECAA cultural heritage.",
+      "overlayStrength": "default",
+      "buttons": [
+        { "label": "Mission & Vision", "href": "#mission-vision", "style": "primary" },
+        { "label": "View Leadership", "href": "/leadership", "style": "secondary" }
+      ],
+      "summaryBand": {
+        "visible": false,
+        "text": ""
+      },
+      "stats": {
+        "visible": true,
+        "items": [
+          { "value": "Mission", "label": "Serving with purpose, unity, and vision" },
+          { "value": "History", "label": "Honoring our story and community journey" },
+          { "value": "Leadership", "label": "Guided by trusted community leadership" },
+          { "value": "Community", "label": "Connecting Atlanta and beyond" }
+        ]
+      }
+    },
+    "programs": {
+      "visible": true,
+      "variant": "page",
+      "eyebrow": "Programs & Services",
+      "title": "Programs That Bring Our Community Together",
+      "description": "ECAA offers programs and services that preserve culture, support families, empower youth, promote wellness, encourage service, and strengthen the Ethiopian community in Atlanta.",
+      "backgroundImage": "/images/heroes/programs-hero.jpg",
+      "backgroundAlt": "ECAA community support programs serving families in Atlanta.",
+      "overlayStrength": "default",
+      "buttons": [
+        { "label": "Explore Programs", "href": "#community-programs", "style": "primary" },
+        { "label": "Contact ECAA", "href": "/contact", "style": "secondary" }
+      ],
+      "summaryBand": { "visible": false, "text": "" },
+      "stats": {
+        "visible": true,
+        "items": [
+          { "value": "Community Support", "label": "Resources, guidance, and connection" },
+          { "value": "Culture", "label": "Celebrating heritage, tradition, and identity" },
+          { "value": "Youth & Education", "label": "Learning, mentorship, and growth" },
+          { "value": "EDIR", "label": "Mutual support, care, and shared responsibility" }
+        ]
+      }
+    },
+    "events": {
+      "visible": true,
+      "variant": "page",
+      "eyebrow": "Events & News",
+      "title": "Events, Announcements, and Community Updates",
+      "description": "Find ECAA community events, announcements, meetings, event hall rental requests, and opportunities to participate.",
+      "backgroundImage": "/images/heroes/events-hero.jpg",
+      "backgroundAlt": "Community gathering at an ECAA event in Atlanta.",
+      "overlayStrength": "default",
+      "buttons": [
+        { "label": "Upcoming Events", "href": "#upcoming-events", "style": "primary" },
+        { "label": "Book a Hall", "href": "#book-hall", "style": "secondary" },
+        { "label": "Media Gallery", "href": "/media", "style": "ghost" }
+      ],
+      "summaryBand": { "visible": false, "text": "" },
+      "stats": {
+        "visible": true,
+        "items": [
+          { "value": "Events", "label": "Community gatherings" },
+          { "value": "Announcements", "label": "News & updates" },
+          { "value": "Community News", "label": "Stay informed" },
+          { "value": "Hall Rental", "label": "Host your event" }
+        ]
+      }
+    },
+    "membership": {
+      "visible": true,
+      "variant": "page",
+      "eyebrow": "Membership",
+      "title": "Join ECAA",
+      "description": "Join the Ethiopian Community Association in Atlanta and help strengthen Ethiopian community life, cultural connection, mutual support, and intergenerational resilience.",
+      "backgroundImage": "/images/heroes/membership-hero.jpg",
+      "backgroundAlt": "Welcoming community gathering for ECAA membership.",
+      "overlayStrength": "default",
+      "buttons": [
+        {
+          "label": "Open Membership Form",
+          "href": "https://form.jotform.com/211111215669043",
+          "style": "primary"
+        },
+        { "label": "Learn About EDIR", "href": "/programs#edir", "style": "secondary" }
+      ],
+      "summaryBand": { "visible": false, "text": "" },
+      "stats": {
+        "visible": true,
+        "items": [
+          { "value": "Membership", "label": "Join the community" },
+          { "value": "Community", "label": "Stay connected" },
+          { "value": "EDIR", "label": "Mutual support" },
+          { "value": "Support", "label": "Programs & services" }
+        ]
+      }
+    },
+    "leadership": {
+      "visible": true,
+      "variant": "page",
+      "eyebrow": "Leadership",
+      "title": "Leadership",
+      "description": "Meet the leaders, board members, committee members, and advisors serving the Ethiopian Community Association in Atlanta.",
+      "backgroundImage": "/images/heroes/leadership-hero.jpg",
+      "backgroundAlt": "Community leadership and guidance at ECAA in Atlanta.",
+      "overlayStrength": "default",
+      "buttons": [
+        { "label": "View Committees", "href": "#leadership-committees", "style": "primary" },
+        { "label": "Contact ECAA", "href": "/contact", "style": "secondary" }
+      ],
+      "summaryBand": { "visible": false, "text": "" },
+      "stats": {
+        "visible": true,
+        "items": [
+          { "value": "Executive Committee", "label": "Organizational leadership" },
+          { "value": "Board", "label": "Governance oversight" },
+          { "value": "Advisory", "label": "Community guidance" },
+          { "value": "EDIR Committee", "label": "Mutual support" }
+        ]
+      }
+    },
+    "documents": {
+      "visible": true,
+      "variant": "page",
+      "eyebrow": "Public Resources",
+      "title": "Documents & Governance",
+      "description": "Access ECAA bylaws, election documents, public reports, meeting notices, and organizational documents.",
+      "backgroundImage": "/images/patterns/global-ethiopian-pattern-divider.jpg",
+      "backgroundAlt": "Ethiopian-inspired decorative pattern accent for ECAA public documents.",
+      "overlayStrength": "strong",
+      "buttons": [
+        { "label": "View Bylaws", "href": "#bylaws", "style": "primary" },
+        { "label": "Membership Forms", "href": "/membership", "style": "secondary" }
+      ],
+      "summaryBand": { "visible": false, "text": "" },
+      "stats": {
+        "visible": true,
+        "items": [
+          { "value": "Bylaws", "label": "English & Amharic" },
+          { "value": "Elections", "label": "Election documents" },
+          { "value": "Public Reports", "label": "Transparency" },
+          { "value": "Historical", "label": "Archived records" }
+        ]
+      }
+    },
+    "media": {
+      "visible": true,
+      "variant": "page",
+      "eyebrow": "Media",
+      "title": "Community Photos and Videos",
+      "description": "Explore photos, flyers, videos, and community links from ECAA events and programs.",
+      "backgroundImage": "/images/heroes/events-hero.jpg",
+      "backgroundAlt": "ECAA community photos and event highlights in Atlanta.",
+      "overlayStrength": "default",
+      "buttons": [
+        { "label": "View Events", "href": "/events", "style": "primary" }
+      ],
+      "summaryBand": { "visible": false, "text": "" },
+      "stats": {
+        "visible": true,
+        "items": [
+          { "value": "Photos", "label": "Community moments" },
+          { "value": "Videos", "label": "Stories & events" },
+          { "value": "Community", "label": "People & programs" },
+          { "value": "Culture", "label": "Heritage & pride" }
+        ]
+      }
+    },
+    "support": {
+      "visible": true,
+      "variant": "page",
+      "eyebrow": "Support ECAA",
+      "title": "Support Community Programs and Services",
+      "description": "Support ECAA through donations, sponsorship, volunteering, and participation in community programs.",
+      "backgroundImage": "/images/heroes/programs-hero.jpg",
+      "backgroundAlt": "ECAA community support programs and services in Atlanta.",
+      "overlayStrength": "default",
+      "buttons": [
+        { "label": "Donate Today", "href": "#donate", "style": "primary" },
+        { "label": "Volunteer", "href": "#volunteer", "style": "secondary" }
+      ],
+      "summaryBand": { "visible": false, "text": "" },
+      "stats": {
+        "visible": true,
+        "items": [
+          { "value": "Donate", "label": "Fund programs" },
+          { "value": "Sponsor", "label": "Community growth" },
+          { "value": "Volunteer", "label": "Share your time" },
+          { "value": "501(c)(3)", "label": "Nonprofit organization" }
+        ]
+      }
+    },
+    "contact": {
+      "visible": true,
+      "variant": "page",
+      "eyebrow": "Contact ECAA",
+      "title": "Connect With the Ethiopian Community Association in Atlanta",
+      "description": "Find ECAA contact information, location details, office information, and ways to reach the team.",
+      "backgroundImage": "/images/heroes/home-hero.jpg",
+      "backgroundAlt": "ECAA community center and contact location in Stone Mountain, Georgia.",
+      "overlayStrength": "default",
+      "buttons": [
+        { "label": "Email ECAA", "href": "mailto:staff@ethiopiancaa.org", "style": "primary" },
+        { "label": "Get Directions", "href": "#map", "style": "secondary" }
+      ],
+      "summaryBand": { "visible": false, "text": "" },
+      "stats": {
+        "visible": true,
+        "items": [
+          { "value": "Stone Mountain", "label": "Location" },
+          { "value": "Email", "label": "staff@ethiopiancaa.org" },
+          { "value": "Phone", "label": "+1 (404) 298-4570" },
+          { "value": "Office Hours", "label": "Mon–Fri & Saturday" }
+        ]
+      }
+    },
+    "privacy": {
+      "visible": true,
+      "variant": "legal",
+      "eyebrow": "Privacy Policy",
+      "title": "Privacy Policy",
+      "description": "Learn how ECAA describes the collection, use, disclosure, and protection of information provided through the website.",
+      "backgroundImage": "/images/patterns/global-ethiopian-pattern-divider.jpg",
+      "backgroundAlt": "Ethiopian-inspired decorative pattern accent.",
+      "overlayStrength": "strong",
+      "usePattern": true,
+      "buttons": [
+        { "label": "Contact ECAA", "href": "/contact", "style": "primary" },
+        { "label": "Terms & Conditions", "href": "/terms", "style": "secondary" }
+      ],
+      "summaryBand": { "visible": false, "text": "" },
+      "stats": {
+        "visible": true,
+        "items": [
+          { "value": "Privacy", "label": "Your information" },
+          { "value": "Website Use", "label": "How we operate" },
+          { "value": "Contact", "label": "Questions welcome" },
+          { "value": "Legal", "label": "Policy details" }
+        ]
+      }
+    },
+    "terms": {
+      "visible": true,
+      "variant": "legal",
+      "eyebrow": "Terms & Conditions",
+      "title": "Terms & Conditions",
+      "description": "Review the terms and conditions for using the Ethiopian Community Association in Atlanta website.",
+      "backgroundImage": "/images/patterns/global-ethiopian-pattern-divider.jpg",
+      "backgroundAlt": "Ethiopian-inspired decorative pattern accent.",
+      "overlayStrength": "strong",
+      "usePattern": true,
+      "buttons": [
+        { "label": "Privacy Policy", "href": "/privacy", "style": "primary" },
+        { "label": "Contact ECAA", "href": "/contact", "style": "secondary" }
+      ],
+      "summaryBand": { "visible": false, "text": "" },
+      "stats": {
+        "visible": true,
+        "items": [
+          { "value": "Terms", "label": "Website use" },
+          { "value": "Website Use", "label": "Visitor guidelines" },
+          { "value": "Donations", "label": "Support policies" },
+          { "value": "Contact", "label": "Reach ECAA" }
+        ]
+      }
+    }
+  }
+}

@@ -8,6 +8,7 @@ export default function Privacy() {
       effectiveDate="July 18, 2023"
       breadcrumbLabel="Privacy Policy"
       documentTitle="Privacy Policy | Ethiopian Community Association in Atlanta"
+      heroPage="privacy"
     >
       <p className="text-base leading-relaxed text-ecaa-ink-muted sm:text-lg">
         At Ethiopian Community Association In Atlanta Inc. (ECAA), we are committed to protecting the

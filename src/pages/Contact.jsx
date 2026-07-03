@@ -1,30 +1,30 @@
-import PageHero from '../components/layout/PageHero'
+import { useMemo } from 'react'
+import { useLanguage } from '../context/LanguageContext'
+import PageHeroWithStats from '../components/layout/PageHeroWithStats'
 import ContactDetailsSection from '../components/sections/ContactDetailsSection'
-import CTAButton from '../components/ui/CTAButton'
-import pages from '../data/pages.json'
-import siteInfo from '../content/siteInfo.json'
+import { getContactPageContent } from '../data/contactPageContent'
+import { getPageHero, getHeroBackground } from '../utils/pageHeroes'
 
 export default function Contact() {
-  const page = pages.contact
+  const { language } = useLanguage()
+  const content = useMemo(() => getContactPageContent(language), [language])
+  const pageHeroConfig = getPageHero('contact')
+  const background = getHeroBackground(pageHeroConfig, 'contact')
 
   return (
     <>
-      <PageHero
-        eyebrow="Contact"
-        title={page.title}
-        description={page.description}
-        badge={{ label: siteInfo.shortName, variant: 'green' }}
-        imageId="home-hero-community-atlanta"
-      >
-        <CTAButton to="/membership" variant="primary" size="lg">
-          Become a Member
-        </CTAButton>
-        <CTAButton href="#map" variant="secondary" size="lg" className="btn-hero-outline">
-          Map
-        </CTAButton>
-      </PageHero>
-
-      <ContactDetailsSection />
+      <PageHeroWithStats
+        eyebrow={content.hero.eyebrow}
+        title={content.hero.title}
+        description={content.hero.description}
+        backgroundImage={background}
+        backgroundAlt={pageHeroConfig?.backgroundAlt}
+        buttons={content.hero.buttons}
+        stats={content.summaryCards}
+        variant={pageHeroConfig?.variant || 'page'}
+        overlayStrength={pageHeroConfig?.overlayStrength || 'default'}
+      />
+      <ContactDetailsSection content={content} />
     </>
   )
 }

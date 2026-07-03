@@ -29,7 +29,7 @@
     "cards": [
       {
         "title": "Mission",
-        "body": "ECAA's mission is to serve and empower the Ethiopian community in Atlanta by strengthening cultural connection, supporting families, promoting community participation, and creating programs that respond to community needs."
+        "body": "ECAA serves, empowers, and advances the interests of Ethiopians and Ethiopian Americans in Atlanta and surrounding areas. We promote cultural pride, community support, education, civic connection, and successful integration into American society while preserving the values and traditions that unite us."
       },
       {
         "title": "Vision",
@@ -41,11 +41,12 @@
     "id": "history",
     "eyebrow": "Our Story",
     "title": "History",
-    "intro": "The Ethiopian Community Association in Atlanta has served as a community institution for Ethiopians and Ethiopian-Americans in Georgia, supporting cultural preservation, community engagement, mutual aid, and access to services.",
+    "intro": "Founded in 1983, the Ethiopian Community Association in Atlanta was created by Ethiopian community members who wanted to help newcomers adjust to life in Atlanta while preserving Ethiopian culture and building a stronger community. ECAA has served as a community institution for Ethiopians and Ethiopian-Americans in Georgia, supporting cultural preservation, community engagement, mutual aid, and access to services.",
     "highlights": [
-      "Established to support Ethiopians and Ethiopian-Americans in Georgia",
-      "Serves as a gathering point for community members, families, and volunteers",
-      "Supports cultural preservation and community resilience in the Atlanta area"
+      "Founded in 1983 by Ethiopian community members in the Atlanta area",
+      "Created to support newcomers and preserve Ethiopian culture in Georgia",
+      "Serves as a gathering point for families, youth, elders, and volunteers",
+      "Supports cultural preservation and community resilience across generations"
     ]
   },
   "howItWorks": {

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-import PageHero from './PageHero'
+import PageHeroFromConfig from './PageHeroFromConfig'
 import Container from '../ui/Container'
 import AnimateIn from '../ui/AnimateIn'
 import CTAButton from '../ui/CTAButton'
@@ -32,6 +32,7 @@ export default function LegalPageLayout({
   effectiveDate,
   breadcrumbLabel,
   documentTitle,
+  heroPage,
   children,
 }) {
   useEffect(() => {
@@ -42,13 +43,9 @@ export default function LegalPageLayout({
 
   return (
     <>
-      <PageHero
-        title={title}
-        description={subtitle}
-        patternOnly
-        patternImageId="global-ethiopian-pattern-divider"
-        overlayStrength="strong"
-      />
+      {heroPage ? (
+        <PageHeroFromConfig page={heroPage} />
+      ) : null}
 
       <section className="section-spacing-sm bg-ecaa-cream">
         <Container>

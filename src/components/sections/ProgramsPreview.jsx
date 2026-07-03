@@ -43,7 +43,7 @@ export default function ProgramsPreview() {
             eyebrow={programsPreview.eyebrow}
             title={programsPreview.title}
             description={programsPreview.description}
-            action={{ label: 'Explore All Programs', to: '/programs', variant: 'secondary' }}
+            action={{ label: 'Explore Programs', to: '/programs', variant: 'secondary' }}
           />
 
           {programs.length > 0 ? (

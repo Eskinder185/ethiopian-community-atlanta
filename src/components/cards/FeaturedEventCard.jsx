@@ -1,11 +1,13 @@
 import Badge from '../ui/Badge'
 import CTAButton from '../ui/CTAButton'
+import { useLanguage } from '../../context/LanguageContext'
 import { getLinkProps, getPublicText, isUsableHomeText } from '../../utils/homepage'
 
 const PLACEHOLDER_GRADIENT =
   'from-ecaa-green-900/85 via-ecaa-green-800/45 to-ecaa-gold-600/25'
 
 export default function FeaturedEventCard({ item, size = 'default' }) {
+  const { t, language } = useLanguage()
   const cta = getLinkProps({ href: item.href })
   const hasImage = isUsableHomeText(item.image) && !item.image.startsWith('TODO')
   const isExternal = cta?.href?.startsWith('http')
@@ -38,7 +40,7 @@ export default function FeaturedEventCard({ item, size = 'default' }) {
       <div className="relative mt-auto flex flex-1 flex-col justify-end p-5 sm:p-6">
         <div className="flex flex-wrap items-center gap-2">
           {isUsableHomeText(item.category) && !item.category.startsWith('TODO') && (
-            <Badge variant="gold">{item.category}</Badge>
+            <Badge variant="gold">{language === 'am' ? t('common.eventsLabel') : item.category}</Badge>
           )}
           {isUsableHomeText(item.date) && !item.date.startsWith('TODO') && (
             <span className="text-sm text-ecaa-cream/80">{item.date}</span>
@@ -63,7 +65,7 @@ export default function FeaturedEventCard({ item, size = 'default' }) {
             className="mt-4 self-start !border-ecaa-white/30 !bg-ecaa-white/10 !text-ecaa-white hover:!bg-ecaa-white/20"
             {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
           >
-            {item.ctaLabel || 'Learn more'}
+            {item.ctaLabel || (language === 'am' ? t('common.readMore') : 'Learn more')}
           </CTAButton>
         )}
       </div>

@@ -1,4 +1,5 @@
 import CTAButton from '../ui/CTAButton'
+import { useLanguage } from '../../context/LanguageContext'
 import { getLinkProps, getPublicText, isUsableHomeText } from '../../utils/homepage'
 
 const ICON_GRADIENTS = {
@@ -9,6 +10,7 @@ const ICON_GRADIENTS = {
 }
 
 export default function FeaturedProgramCard({ item }) {
+  const { t } = useLanguage()
   const cta = getLinkProps({ href: item.href })
   const hasImage = isUsableHomeText(item.image) && !item.image.startsWith('TODO')
   const imageAlt = getPublicText(item.imageAlt, item.title)
@@ -46,7 +48,7 @@ export default function FeaturedProgramCard({ item }) {
             size="sm"
             className="mt-4 self-start !px-0 !text-ecaa-gold-300 hover:!bg-transparent hover:!text-ecaa-white"
           >
-            Learn more
+            {t('common.learnMore')}
           </CTAButton>
         )}
       </div>

@@ -1,5 +1,7 @@
 import { useEffect, useId, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useLanguage } from '../../context/LanguageContext'
+import { translateNavLabel } from '../../utils/navigationLabels'
 import { getNavHref, getNavPathname, isExternalNavLink } from '../../utils/navigation'
 
 function isItemActive(location, item) {
@@ -17,6 +19,7 @@ export default function NavDropdown({ item, isOpen, onToggle, onClose }) {
   const containerRef = useRef(null)
   const menuId = useId()
   const location = useLocation()
+  const { t } = useLanguage()
   const isActive = isItemActive(location, item)
 
   useEffect(() => {
@@ -56,7 +59,7 @@ export default function NavDropdown({ item, isOpen, onToggle, onClose }) {
         aria-controls={menuId}
         onClick={onToggle}
       >
-        {item.label}
+        {translateNavLabel(item.label, t)}
         <span className="text-[0.65rem] opacity-70" aria-hidden="true">
           {isOpen ? '▴' : '▾'}
         </span>
@@ -79,7 +82,7 @@ export default function NavDropdown({ item, isOpen, onToggle, onClose }) {
                   rel="noopener noreferrer"
                   onClick={onClose}
                 >
-                  {child.label}
+                  {translateNavLabel(child.label, t)}
                 </a>
               )
             }

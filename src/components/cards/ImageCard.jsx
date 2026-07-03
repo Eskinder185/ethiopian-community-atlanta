@@ -1,14 +1,16 @@
 import { hasUsableText } from '../../utils/data'
+import { getResolvedImageSrc } from '../../utils/images'
 
 export default function ImageCard({ image }) {
   const hasImage = image.src && !image.src.startsWith('TODO')
+  const imageSrc = getResolvedImageSrc(image)
 
   return (
     <figure className="ecaa-card-hover overflow-hidden p-0">
       <div className="aspect-[4/3] bg-ecaa-cream-dark">
-        {hasImage ? (
+        {hasImage && imageSrc ? (
           <img
-            src={image.src}
+            src={imageSrc}
             alt={image.alt || image.title}
             className="h-full w-full object-cover"
             loading="lazy"

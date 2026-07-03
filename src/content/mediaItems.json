@@ -1,0 +1,24 @@
+{
+  "mediaItems": [
+    {
+      "id": "local-media-ecaa-community-video",
+      "localOnly": true,
+      "title": "ECAA Community Video",
+      "caption": "Community video from the Ethiopian Community Association in Atlanta.",
+      "type": "youtube",
+      "url": "https://youtu.be/xV1vZDTNk6k",
+      "image_url": "",
+      "alt_text": "ECAA Community Video",
+      "category": "events",
+      "featured": true,
+      "visible": true,
+      "display_order": 1
+    }
+  ],
+  "section": {
+    "title": "Event Media",
+    "description": "Photos, flyers, videos, and community moments from ECAA events and programs.",
+    "emptyTitle": "Media coming soon",
+    "emptyDescription": "Event photos, flyers, videos, and links will appear here when published."
+  }
+}

@@ -1,6 +1,8 @@
 const BADGE_INITIALS = {
   Mission: 'M',
   Vision: 'V',
+  'ተልዕኮ': 'ተ',
+  'ራዕይ': 'ራ',
 }
 
 export default function AboutMissionVision({ section }) {
@@ -24,7 +26,7 @@ export default function AboutMissionVision({ section }) {
                 {BADGE_INITIALS[card.title] || card.title.charAt(0)}
               </div>
               <div>
-                <h3 className="text-xl font-semibold tracking-tight text-ecaa-green-900 sm:text-2xl">
+                <h3 className="text-xl font-semibold normal-case tracking-tight text-ecaa-green-900 sm:text-2xl">
                   {card.title}
                 </h3>
                 <p className="mt-4 text-base leading-relaxed text-ecaa-ink-muted sm:text-lg">

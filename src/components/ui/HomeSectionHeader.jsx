@@ -1,6 +1,7 @@
 import CTAButton from './CTAButton'
 
 export default function HomeSectionHeader({
+  id,
   eyebrow,
   title,
   description,
@@ -11,7 +12,9 @@ export default function HomeSectionHeader({
     <div className={`home-section-header ${className}`.trim()}>
       <div className="max-w-2xl">
         {eyebrow && <p className="text-eyebrow">{eyebrow}</p>}
-        <h2 className="heading-section mt-2 text-3xl sm:text-4xl">{title}</h2>
+        <h2 id={id} className="heading-section mt-2 text-3xl sm:text-4xl">
+          {title}
+        </h2>
         {description && (
           <p className="mt-3 text-base leading-relaxed text-ecaa-ink-muted sm:text-lg">
             {description}

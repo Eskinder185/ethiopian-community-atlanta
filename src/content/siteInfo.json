@@ -2,7 +2,8 @@
   "name": "Ethiopian Community Association in Atlanta, Inc.",
   "shortName": "ECAA",
   "tagline": "Building intergenerational connections and strengthening community resilience.",
-  "description": "ECAA is a nonprofit community organization serving Ethiopians and Ethiopian-Americans in the Atlanta area through cultural connection, community support, membership, leadership, events, youth programs, health initiatives, EDIR, and civic engagement.",
+  "description": "Join the Ethiopian Community Association in Atlanta. Connect with culture, community programs, events, membership, volunteering, EDIR, and support for Ethiopians in Atlanta.",
+  "nonprofitStatus": "Ethiopian Community Association in Atlanta, Inc. is a 501(c)(3) nonprofit organization.",
   "location": {
     "city": "Stone Mountain",
     "state": "Georgia",
@@ -11,7 +12,7 @@
   "membershipFormUrl": "https://form.jotform.com/211111215669043",
   "fundraisingFormUrl": "https://form.jotform.com/240604382753152",
   "meta": {
-    "title": "Ethiopian Community Association in Atlanta | ECAA",
-    "description": "ECAA is a nonprofit community organization serving Ethiopians and Ethiopian-Americans in Atlanta through cultural connection, community support, membership, leadership, events, youth programs, health initiatives, EDIR, and civic engagement."
+    "title": "Ethiopian Community Association in Atlanta | Join ECAA",
+    "description": "Join the Ethiopian Community Association in Atlanta. Connect with culture, community programs, events, membership, volunteering, EDIR, and support for Ethiopians in Atlanta."
   }
 }

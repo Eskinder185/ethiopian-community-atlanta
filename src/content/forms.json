@@ -60,25 +60,25 @@
       "id": "student-interest-form",
       "title": "Student Interest Form",
       "description": "Submit student interest information for ECAA youth and education programs.",
-      "url": "",
-      "provider": "TODO",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLSeCofxWdhA6Oc49trML_3uusOLu8dANcMp0Xi3OaxCtbtx1YA/viewform",
+      "provider": "Google Forms",
       "category": "education",
       "recommendedPlacement": "Programs page",
       "embedAllowed": false,
       "published": true,
-      "notes": "TODO: Add official student interest form URL."
+      "notes": "Student interest form for youth and education programs."
     },
     {
       "id": "volunteer-information-form",
       "title": "Volunteer Information Form",
       "description": "Share your volunteer interest and availability to support ECAA programs, events, and community services.",
-      "url": "",
-      "provider": "TODO",
+      "url": "https://docs.google.com/forms/d/e/1FAIpQLScqZHcyvOK4aF1GCrVh2pNeTbvQCAOG6Fpo1Zez27k4OLi0fg/viewform",
+      "provider": "Google Forms",
       "category": "volunteer",
-      "recommendedPlacement": "Programs page",
+      "recommendedPlacement": "Volunteer page and Programs page",
       "embedAllowed": false,
       "published": true,
-      "notes": "TODO: Add official volunteer information form URL."
+      "notes": "Official volunteer information form."
     },
     {
       "id": "event-rsvp",

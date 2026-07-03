@@ -44,116 +44,98 @@ Replace `<PID>` with the process ID from the last column of `netstat` output.
 
 Use `npm run dev:site` if you only need the website without the CMS backend.
 
-## Content Management System
+## Admin CMS Editing
 
-Non-technical ECAA team members can update website content through **Decap CMS** without editing React components.
+Non-technical ECAA team members can update selected website content through **Decap CMS** at `/admin/` without editing React code.
 
 ### 1. Admin page location
 
 | | |
 |---|---|
-| **URL** | `/admin` (during development: `http://localhost:5173/admin/`) |
+| **URL** | `/admin/` (during development: `http://localhost:5173/admin/`) |
 | **Files** | `public/admin/index.html`, `public/admin/config.yml` |
 
-Run `npm run dev`, then open `/admin`. The site navbar also has an **Admin** link.
+Run `npm run dev`, then open `/admin/` or click **Admin** in the site navbar.
 
-### 2. What editors can update
+**Important:** The CMS interface loads at `/admin/`, but **real login/authentication still needs to be configured** before non-technical team members can save changes in production. Do not give editors direct code access unless necessary. Review content changes before publishing.
+
+### 2. First CMS version — three areas only
 
 | CMS collection | Content file | Used on |
 |----------------|--------------|---------|
-| Site Information | `src/content/siteInfo.json` | Site-wide name, tagline, form URLs, SEO |
-| Home Page | `src/content/homepage.json` | Home page only (curated featured sections) |
-| Events & News | `src/content/events.json` | Events page |
-| Media — Videos | `src/content/videos.json` | Media page |
-| Media — Photos | `src/content/images.json` | Media page, section images |
-| Programs & Services | `src/content/programs.json` | Programs page |
-| Membership | `src/content/membership.json` | Membership page |
-| Leadership | `src/content/teamMembers.json` | Leadership page |
-| Documents | `src/content/documents.json` | Documents page |
-| Contact | `src/content/contact.json` | Contact page, footer |
-| FAQs | `src/content/faq.json` | Membership FAQ |
-| Forms | `src/content/forms.json` | External forms (membership, hall booking, etc.) |
-| Navigation | `src/data/navigation.json` | Menu and footer link labels |
+| **Home Page** | `src/content/homepage.json` | Home page featured sections |
+| **Events & News** | `src/content/events.json` | Events & News page |
+| **Leadership** | `src/content/teamMembers.json` | Leadership page |
 
-Structural page copy for About and Support remains in `src/data/` for now.
+Other pages (Programs, Documents, Membership, Contact, Media, etc.) are **not** editable in the CMS yet.
 
-### 3. Home page is controlled separately
+### 3. Homepage content (`homepage.json`)
 
-The Home page reads **`src/content/homepage.json` only**. It does **not** automatically show everything from `events.json`, `videos.json`, `images.json`, or `programs.json`.
+The Home page uses **`src/content/homepage.json` only** for its curated sections. It does **not** automatically show every event, photo, or program from other files.
 
-Editors choose exactly what appears on the Home page:
+Editors can update:
 
-- **Hero** — headline, buttons, image
-- **Featured Events & News** — up to 3 curated cards
-- **Featured Media** — curated photo/video collage
-- **Book a Hall** — home section copy and buttons
-- **Featured Programs & Services** — curated program cards
+- **Hero** — title, description, background image, buttons
+- **Upcoming Events & Community** — up to 3 featured cards
+- **Community Moments** — featured photos, GIFs, or YouTube items
+- **Book a Hall** — copy, good-for list, buttons, image
+- **Featured Programs & Services** — up to 4 curated program cards
 
-Set **Show this section?** to `false` to hide a section without deleting its content.
+Use **Show this section?** or **Show this item?** to hide content without deleting it.
 
-### 4. Uploaded media
+### 4. Uploaded images and GIFs
 
-Images uploaded through the CMS are saved to `public/uploads/` and served at `/uploads/...`.
+Uploads are saved to `public/uploads/` and served at `/uploads/...`. You can also reference existing files in `public/images/` (for example `/images/home-hero-community-atlanta.jpg`).
 
-### 5. How to add a new event
+### 5. How to add a homepage feature
 
-1. Open `/admin` → **Events & News**.
-2. Add an item under **Upcoming events**, **Announcements**, **Community news**, or **Past events**.
-3. Fill in title, date, excerpt, and link. Use `TODO` if details are not confirmed.
-4. Set **Publish?** to `true` only when verified.
+1. Open `/admin/` → **Home Page**.
+2. Open the section you want (for example **Upcoming Events & Community**).
+3. Click **Add** under **Featured event cards** (or media items / program cards).
+4. Fill in title, description, image, and button link.
+5. Set **Show this item?** to `true`.
+6. Click **Publish**.
+
+**Tip:** Do not add every event to the Home page — add only featured items visitors should see first.
+
+### 6. How to add an event
+
+1. Open `/admin/` → **Events & News**.
+2. Add an item under the correct list:
+   - **Upcoming events** (status: upcoming — requires a date)
+   - **Announcements** (status: announcement)
+   - **Community news** (status: community-news)
+   - **Past events** (status: past)
+3. Fill in title, description, date (if known), and links.
+4. Set **Show this item?** to `true` only when verified.
 5. Click **Publish**.
 
-To feature an event on the **Home page**, also add it under **Home Page** → **Featured event cards** (separate from the full Events page).
+To feature an event on the **Home page**, also add it under **Home Page** → **Featured event cards**.
 
-### 6. How to add a new photo
+### 7. How to add a leadership member
 
-1. Open `/admin` → **Media — Photos**.
-2. Click **Add** under **Photos**.
-3. Enter a title, upload an image, and add alt text for accessibility.
-4. Set **Publish?** to `true` when ready.
-5. Click **Publish**.
+1. Open `/admin/` → **Leadership**.
+2. Open the correct **Committee** group (or add a new committee).
+3. Click **Add** under **Leadership members**.
+4. Fill in name, role, bio, and photo. Use **TODO** in notes if details are not confirmed.
+5. Set **Show on leadership page?** to `true`.
+6. Click **Publish**.
 
-To show a photo on the **Home page**, also add it under **Home Page** → **Featured media items**.
+Do not invent names, titles, or roles.
 
-### 7. How to add a new YouTube video
+### 8. What still needs setup before real team login
 
-1. Open `/admin` → **Media — Videos**.
-2. Click **Add** under **Videos**.
-3. Enter a title and paste the **public YouTube link** (watch or embed URL).
-4. Set **Publish?** to `true` when ready.
-5. Click **Publish**.
+Local editing works without login when you run `npm run dev` (`decap-server` + `local_backend`).
 
-To feature a video on the **Home page**, also add it under **Home Page** → **Featured media items** and set the type to **video**.
-
-### 8. How to update Book a Hall
-
-**On the Home page:** open `/admin` → **Home Page** → **Book a Hall**. Edit the title, description, details list, buttons, and image. Use `/contact` as the button link until the official booking form is ready. Do not invent pricing, capacity, or availability — use `TODO` for unconfirmed details.
-
-**On the Events page:** open `/admin` → **Events & News** → **Book the Event Hall** for the full-page hall booking section.
-
-### 9. How to update the membership form link
-
-The public membership form is: `https://form.jotform.com/211111215669043`
-
-1. Open `/admin` → **Forms** and update the **ECAA Registration Form** URL.
-2. Also update **Site Information** → **Membership form URL** if that link changes.
-3. Click **Publish**.
-
-You can also edit membership page copy under **Membership** in the CMS.
-
-### 10. What still needs setup before real team members can log in
-
-Local editing works without login when you run `npm run dev` (uses `decap-server` + `local_backend`).
-
-Before production editors can save changes online:
+Before production editors can save online:
 
 - [ ] Connect the GitHub repository to your hosting provider (Netlify recommended)
-- [ ] Configure the **Decap CMS backend** (`git-gateway` in `public/admin/config.yml`)
-- [ ] Set up an **authentication provider** (Netlify Identity + Git Gateway, or GitHub OAuth)
-- [ ] Replace `site_url`, `display_url`, and `branch` placeholders in `public/admin/config.yml`
+- [ ] Configure **git-gateway** in `public/admin/config.yml`
+- [ ] Set up **authentication** (Netlify Identity + Git Gateway, or GitHub OAuth)
+- [ ] Replace `site_url`, `display_url`, and `branch` placeholders
 - [ ] Remove or comment out `local_backend` for production deploys
-- [ ] Invite ECAA editors with appropriate permissions (they should use `/admin`, not edit React code)
-- [ ] Test a full edit → publish → deploy workflow
+- [ ] Invite ECAA editors with appropriate permissions
+- [ ] Test edit → publish → deploy workflow
 
 ## Build command
 

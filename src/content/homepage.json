@@ -1,10 +1,14 @@
 {
+  "seo": {
+    "title": "Ethiopian Community Association in Atlanta | Join ECAA",
+    "description": "Join the Ethiopian Community Association in Atlanta. Connect with culture, community programs, events, membership, volunteering, EDIR, and support for Ethiopians in Atlanta."
+  },
   "hero": {
     "visible": true,
     "eyebrow": "Ethiopian Community Association in Atlanta",
-    "title": "Building Intergenerational Connections\nand Strengthening Community Resilience",
+    "title": "Building Intergenerational Connections and Strengthening Community Resilience",
     "description": "ECAA exists to serve, connect, and empower the Ethiopian community in Atlanta while helping preserve Ethiopian cultural heritage and support integration into American society.",
-    "trustCue": "Serving the Ethiopian community in Atlanta through connection, culture, and support.",
+    "trustCue": "Serving the Ethiopian and Ethiopian American community in Atlanta since 1983.",
     "primaryCta": {
       "label": "Become a Member",
       "href": "/membership"
@@ -17,45 +21,370 @@
       "label": "Support ECAA",
       "href": "/support"
     },
-    "image": "/images/home-hero-community-atlanta.jpg",
-    "imageAlt": "Community members gathered in Atlanta for the Ethiopian Community Association in Atlanta."
+    "image": "/images/heroes/home-hero.jpg",
+    "imageAlt": "Ethiopian community members gathered together at an ECAA event in the Atlanta area."
   },
-  "featuredEvents": {
-    "visible": true,
-    "eyebrow": "Events & News",
-    "title": "Featured Events & Community Updates",
-    "description": "Stay connected with important ECAA events, announcements, and community news.",
-    "items": [],
-    "emptyCaption": "Upcoming events and community updates will appear here soon.",
-    "placeholderItems": [
+  "missionSection": {
+    "visible": false,
+    "eyebrow": "Our Purpose",
+    "title": "Our Mission",
+    "description": "ECAA serves, empowers, and advances the interests of Ethiopians and Ethiopian Americans in Atlanta and surrounding areas. We promote cultural pride, community support, education, civic connection, and successful integration into American society while preserving the values and traditions that unite us."
+  },
+  "communityPillars": {
+    "visible": false,
+    "eyebrow": "Community Pillars",
+    "title": "What We Stand For",
+    "description": "ECAA strengthens the Ethiopian and Ethiopian American community in Atlanta through culture, support, and opportunity for every generation.",
+    "items": [
       {
-        "id": "preview-upcoming-events",
-        "title": "Upcoming community events",
-        "category": "Events",
-        "excerpt": "Gatherings, celebrations, and seasonal programs for the community.",
-        "image": "/images/events-community-gathering.jpg",
-        "imageAlt": "Community gathering at an ECAA event."
+        "id": "pillar-culture",
+        "title": "Preserve Culture & Heritage",
+        "description": "Celebrate Ethiopian traditions, language, and identity through programs and gatherings that connect generations.",
+        "icon": "culture"
       },
       {
-        "id": "preview-announcements",
-        "title": "Announcements and celebrations",
-        "category": "News",
-        "excerpt": "Important updates and milestones from across ECAA.",
-        "image": "/images/membership-welcome.jpg",
-        "imageAlt": "Welcoming community gathering for ECAA."
+        "id": "pillar-families",
+        "title": "Support Families & Newcomers",
+        "description": "Help immigrant families, newcomers, and community members access information, support, and a welcoming network in Georgia.",
+        "icon": "family"
       },
       {
-        "id": "preview-seasonal",
-        "title": "Seasonal gatherings and updates",
-        "category": "Community",
-        "excerpt": "Cultural observances and community-wide news.",
-        "image": "/images/programs-community-support.jpg",
-        "imageAlt": "ECAA community support programs."
+        "id": "pillar-youth",
+        "title": "Empower Youth & Future Generations",
+        "description": "Invest in youth education, leadership, and opportunity so the next generation can thrive with pride and purpose.",
+        "icon": "youth"
+      }
+    ]
+  },
+  "programsPreview": {
+    "visible": false,
+    "eyebrow": "Programs",
+    "title": "Programs That Serve Our Community",
+    "description": "From youth education and newcomer support to health, legal awareness, financial literacy, and cultural connection — ECAA offers programs that meet real community needs."
+  },
+  "membershipPreview": {
+    "visible": false,
+    "eyebrow": "Membership",
+    "title": "Join the ECAA Community",
+    "description": "Membership helps you stay connected, support community programs, attend events, participate in discussions, and contribute to ECAA's future in Atlanta.",
+    "ctaLabel": "Become a Member",
+    "ctaPath": "/membership"
+  },
+  "volunteerPreview": {
+    "visible": false,
+    "eyebrow": "Volunteer",
+    "title": "Volunteer With ECAA",
+    "description": "Volunteers strengthen ECAA by supporting youth programs, event planning, IT, grants, newcomer support, legal awareness, health initiatives, financial literacy, and community services.",
+    "highlights": [
+      "Youth programs and college readiness",
+      "Event planning and community gatherings",
+      "IT, grants, and administrative support",
+      "Newcomer and family support",
+      "Legal awareness and health education",
+      "Financial literacy and community services"
+    ],
+    "primaryCta": {
+      "label": "Volunteer With ECAA",
+      "href": "https://docs.google.com/forms/d/e/1FAIpQLScqZHcyvOK4aF1GCrVh2pNeTbvQCAOG6Fpo1Zez27k4OLi0fg/viewform"
+    },
+    "secondaryCta": {
+      "label": "Learn More",
+      "href": "/volunteer"
+    }
+  },
+  "donationPreview": {
+    "visible": false,
+    "eyebrow": "Support ECAA",
+    "title": "Your Donation Builds Community",
+    "description": "Donations support ECAA's community center, cultural programs, youth and family services, and long-term growth for Ethiopians in the Atlanta area.",
+    "cta": {
+      "label": "Donate Today",
+      "href": "https://form.jotform.com/240604382753152"
+    },
+    "note": "Ethiopian Community Association in Atlanta, Inc. is a 501(c)(3) nonprofit organization. Donations may be tax-deductible to the extent allowed by law."
+  },
+  "eventsPreview": {
+    "visible": false,
+    "eyebrow": "Events",
+    "title": "Community Events",
+    "description": "Cultural celebrations, workshops, meetings, and gatherings that bring our community together.",
+    "emptyDescription": "Upcoming events will be posted soon. Check back for community gatherings, workshops, and cultural celebrations."
+  },
+  "aboutPreview": {
+    "visible": false,
+    "eyebrow": "About ECAA",
+    "title": "A Community Built Together",
+    "summary": "Founded in 1983, ECAA was created by Ethiopian community members who wanted to help newcomers adjust to life in Atlanta while preserving Ethiopian culture and building a stronger community.",
+    "ctaLabel": "Learn About ECAA",
+    "ctaPath": "/about"
+  },
+  "whyJoin": {
+    "visible": false,
+    "eyebrow": "Membership",
+    "title": "Why Join ECAA?",
+    "description": "Membership is more than signing up. It is a way to stay connected, preserve culture, support one another, and help build a stronger future for Ethiopians in Atlanta.",
+    "items": [
+      {
+        "id": "benefit-community",
+        "title": "Belong to a stronger Ethiopian community",
+        "description": "Connect with Ethiopians and Ethiopian Americans across the Atlanta area who share culture, values, and a commitment to community.",
+        "icon": "community"
+      },
+      {
+        "id": "benefit-culture",
+        "title": "Stay connected to culture and heritage",
+        "description": "Take part in cultural programs, celebrations, and traditions that keep Ethiopian identity alive for every generation.",
+        "icon": "culture"
+      },
+      {
+        "id": "benefit-families",
+        "title": "Support youth, families, and elders",
+        "description": "Access programs and community networks that support families, students, and elders through every stage of life.",
+        "icon": "family"
+      },
+      {
+        "id": "benefit-events",
+        "title": "Attend community events and programs",
+        "description": "Stay informed about gatherings, educational programs, and celebrations that bring the community together throughout the year.",
+        "icon": "calendar"
+      },
+      {
+        "id": "benefit-edir",
+        "title": "Participate in EDIR and mutual support",
+        "description": "Be part of a community tradition of mutual support that helps members during times of need and celebration.",
+        "icon": "edir"
+      },
+      {
+        "id": "benefit-future",
+        "title": "Help shape the future of ECAA",
+        "description": "Membership strengthens ECAA's ability to serve the Ethiopian community in Atlanta and guide programs for years to come.",
+        "icon": "hands"
       }
     ],
     "sectionCta": {
+      "label": "Become a Member Today",
+      "href": "/membership"
+    }
+  },
+  "communityImpact": {
+    "visible": false,
+    "eyebrow": "Community Impact",
+    "title": "Building Community Through Service, Culture, and Connection",
+    "description": "For decades, ECAA has served as a trusted home for Ethiopians and Ethiopian Americans in the greater Atlanta area — connecting people to culture, support, and one another.",
+    "items": [
+      {
+        "id": "impact-years",
+        "title": "40+ Years of Community Service",
+        "description": "Since 1983, ECAA has worked to strengthen the Ethiopian community in Atlanta through programs, leadership, and service.",
+        "icon": "years"
+      },
+      {
+        "id": "impact-events",
+        "title": "Cultural Events & Celebrations",
+        "description": "ECAA hosts gatherings and cultural observances that bring families and community members together throughout the year.",
+        "icon": "events"
+      },
+      {
+        "id": "impact-youth",
+        "title": "Youth and Family Support",
+        "description": "Programs and activities support young people, parents, and families navigating life in the Ethiopian American community.",
+        "icon": "youth"
+      },
+      {
+        "id": "impact-volunteer",
+        "title": "Volunteer-Led Community Work",
+        "description": "Dedicated volunteers and leaders help organize events, programs, and services that keep ECAA active and responsive.",
+        "icon": "volunteer"
+      },
+      {
+        "id": "impact-edir",
+        "title": "EDIR and Mutual Support",
+        "description": "ECAA supports community traditions of mutual aid that help members during difficult times and important milestones.",
+        "icon": "edir"
+      },
+      {
+        "id": "impact-home",
+        "title": "A Home for Ethiopians in Atlanta",
+        "description": "From Stone Mountain to the wider metro area, ECAA offers a welcoming place to connect, participate, and belong.",
+        "icon": "home"
+      }
+    ]
+  },
+  "whoWeServe": {
+    "visible": false,
+    "eyebrow": "Who We Serve",
+    "title": "A Community for Every Generation",
+    "description": "Whether you are new to Atlanta or have called it home for years, ECAA welcomes Ethiopians, Ethiopian Americans, and supporters of Ethiopian culture.",
+    "items": [
+      {
+        "id": "audience-newcomers",
+        "title": "Newcomers and immigrant families",
+        "description": "Find connection, information, and a welcoming community as you build a new life in the Atlanta area.",
+        "icon": "community"
+      },
+      {
+        "id": "audience-youth",
+        "title": "Youth and students",
+        "description": "Engage in programs, events, and mentorship that support identity, learning, and leadership.",
+        "icon": "youth"
+      },
+      {
+        "id": "audience-families",
+        "title": "Parents and families",
+        "description": "Access resources, events, and networks that support family life and intergenerational connection.",
+        "icon": "family"
+      },
+      {
+        "id": "audience-elders",
+        "title": "Elders",
+        "description": "Stay connected to community, culture, and mutual support through gatherings and ECAA programs.",
+        "icon": "elders"
+      },
+      {
+        "id": "audience-professionals",
+        "title": "Professionals and volunteers",
+        "description": "Share your skills, serve on committees, and help lead programs that strengthen the community.",
+        "icon": "professional"
+      },
+      {
+        "id": "audience-supporters",
+        "title": "Supporters of Ethiopian culture",
+        "description": "Join events, donate, and participate in programs that celebrate and preserve Ethiopian heritage in Atlanta.",
+        "icon": "supporter"
+      }
+    ]
+  },
+  "featuredPrograms": {
+    "visible": true,
+    "eyebrow": "Programs & Services",
+    "title": "Featured Programs",
+    "description": "Explore selected ECAA programs that support children, youth, families, wellness, education, and community growth.",
+    "maxItems": 4,
+    "items": [],
+    "sectionCta": {
+      "label": "Explore All Programs",
+      "href": "/programs"
+    }
+  },
+  "featuredEvents": {
+    "visible": true,
+    "eyebrow": "Events & Community",
+    "title": "Upcoming Events & Community Updates",
+    "description": "Stay connected with ECAA events, announcements, and opportunities to participate in community life.",
+    "maxItems": 3,
+    "items": [],
+    "emptyState": {
+      "title": "Upcoming events will be shared soon",
+      "description": "ECAA events and community updates will appear here as they become available.",
+      "primaryCta": {
+        "label": "View All Events",
+        "href": "/events"
+      }
+    },
+    "sectionCta": {
       "label": "View All Events",
       "href": "/events"
+    }
+  },
+  "waysToGetInvolved": {
+    "visible": false,
+    "eyebrow": "Get Involved",
+    "title": "Ways to Get Involved",
+    "description": "There are many ways to connect with ECAA — whether you join as a member, volunteer your time, give support, or host a gathering.",
+    "items": [
+      {
+        "id": "involve-member",
+        "title": "Become a Member",
+        "description": "Join ECAA and help strengthen the Ethiopian community in Atlanta.",
+        "featured": true,
+        "cta": {
+          "label": "Join Now",
+          "href": "/membership"
+        }
+      },
+      {
+        "id": "involve-volunteer",
+        "title": "Volunteer",
+        "description": "Share your time, skills, and heart with community programs and events.",
+        "cta": {
+          "label": "Volunteer",
+          "href": "/volunteer"
+        }
+      },
+      {
+        "id": "involve-donate",
+        "title": "Donate",
+        "description": "Support cultural programs, community services, youth initiatives, and long-term growth.",
+        "cta": {
+          "label": "Donate",
+          "href": "/support"
+        }
+      },
+      {
+        "id": "involve-hall",
+        "title": "Book the Hall",
+        "description": "Host meetings, celebrations, workshops, and community gatherings at ECAA.",
+        "cta": {
+          "label": "Book Hall",
+          "href": "/events#book-hall"
+        }
+      }
+    ]
+  },
+  "trustSection": {
+    "visible": false,
+    "eyebrow": "Trust & Transparency",
+    "title": "Trusted Community Leadership",
+    "description": "ECAA is a community-led nonprofit organization serving Ethiopians and Ethiopian Americans in the greater Atlanta area with transparency and accountability.",
+    "trustPoints": [
+      "501(c)(3) nonprofit organization",
+      "Located in Stone Mountain, serving the greater Atlanta Ethiopian community",
+      "Community-led leadership with board and committee structure",
+      "Public documents, bylaws, and meeting notices available online",
+      "Open contact channels for membership, programs, and community questions"
+    ],
+    "nonprofitNote": "Ethiopian Community Association in Atlanta, Inc. is a 501(c)(3) nonprofit organization. Donations may be tax-deductible to the extent allowed by law.",
+    "actions": [
+      {
+        "label": "Meet the Leadership",
+        "href": "/leadership",
+        "variant": "primary"
+      },
+      {
+        "label": "View Documents",
+        "href": "/documents",
+        "variant": "secondary"
+      },
+      {
+        "label": "Contact Us",
+        "href": "/contact",
+        "variant": "secondary"
+      }
+    ]
+  },
+  "bookHall": {
+    "visible": true,
+    "eyebrow": "Book a Hall",
+    "title": "Plan Your Next Gathering With ECAA",
+    "description": "Planning a community gathering, meeting, celebration, workshop, or private event? Contact ECAA to learn more about hall availability.",
+    "useCases": [
+      "Community meetings",
+      "Cultural gatherings",
+      "Celebrations",
+      "Workshops",
+      "Trainings",
+      "Youth events",
+      "Wellness sessions",
+      "Fundraising events"
+    ],
+    "importantNote": "Submitting a request does not guarantee a reservation. ECAA must confirm availability, requirements, pricing, and approval before the hall is booked.",
+    "primaryCta": {
+      "label": "Request Hall Availability",
+      "href": "/events#book-hall"
+    },
+    "secondaryCta": {
+      "label": "Contact ECAA",
+      "href": "/contact"
     }
   },
   "featuredMedia": {
@@ -63,155 +392,30 @@
     "eyebrow": "Media",
     "title": "Community Moments",
     "description": "Photos and videos that highlight ECAA's community, culture, and connection.",
+    "maxItems": 4,
     "layout": "collage",
-    "items": [
-      {
-        "id": "featured-media-video-1",
-        "type": "video",
-        "title": "ECAA Community Video",
-        "src": "",
-        "alt": "ECAA Community Video",
-        "youtubeUrl": "https://youtu.be/xV1vZDTNk6k",
-        "embedUrl": "https://youtu.be/xV1vZDTNk6k",
-        "thumbnailUrl": "",
-        "category": "Community",
-        "featuredSize": "large",
-        "href": "/media",
-        "sourceMediaId": "ecaa-community-video",
-        "notes": "Featured homepage video."
-      },
-      {
-        "id": "featured-media-image-1",
-        "type": "image",
-        "title": "Community Gathering",
-        "src": "/images/events-community-gathering.jpg",
-        "alt": "Community gathering at an ECAA event.",
-        "youtubeUrl": "",
-        "embedUrl": "",
-        "thumbnailUrl": "",
-        "category": "Events",
-        "featuredSize": "wide",
-        "href": "/media",
-        "sourceMediaId": "events-community-gathering",
-        "notes": "Featured homepage photo."
-      },
-      {
-        "id": "featured-media-image-2",
-        "type": "image",
-        "title": "Community Support",
-        "src": "/images/programs-community-support.jpg",
-        "alt": "ECAA community support programs.",
-        "youtubeUrl": "",
-        "embedUrl": "",
-        "thumbnailUrl": "",
-        "category": "Programs",
-        "featuredSize": "small",
-        "href": "/media",
-        "sourceMediaId": "programs-community-support",
-        "notes": "Featured homepage photo."
-      },
-      {
-        "id": "featured-media-image-3",
-        "type": "image",
-        "title": "Welcome to ECAA",
-        "src": "/images/membership-welcome.jpg",
-        "alt": "Welcoming community gathering for ECAA membership.",
-        "youtubeUrl": "",
-        "embedUrl": "",
-        "thumbnailUrl": "",
-        "category": "Membership",
-        "featuredSize": "small",
-        "href": "/media",
-        "sourceMediaId": "membership-welcome",
-        "notes": "Featured homepage photo."
+    "items": [],
+    "emptyState": {
+      "title": "Community media will be shared soon",
+      "description": "Photos, flyers, videos, and community moments will appear here when published.",
+      "primaryCta": {
+        "label": "View Media Gallery",
+        "href": "/media"
       }
-    ],
+    },
     "sectionCta": {
       "label": "View Media Gallery",
       "href": "/media"
     }
   },
-  "bookHall": {
+  "finalCta": {
     "visible": true,
-    "eyebrow": "Book a Hall",
-    "title": "Plan Your Next Gathering With ECAA",
-    "description": "Planning a community gathering, meeting, or private event? Submit a request to learn more about hall availability.",
-    "useCases": [
-      "Community meetings",
-      "Celebrations",
-      "Workshops",
-      "Cultural events"
-    ],
-    "details": [
-      "TODO: Add verified hall booking details.",
-      "TODO: Add verified availability or process."
-    ],
-    "primaryCta": {
-      "label": "Book a Hall",
-      "href": "/contact"
-    },
-    "secondaryCta": {
-      "label": "Contact Us",
-      "href": "/contact"
-    },
-    "image": "/images/events-community-gathering.jpg",
-    "imageAlt": "Community gathering space for ECAA events.",
-    "notes": "TODO: Replace /contact with official hall booking form if available."
-  },
-  "featuredPrograms": {
-    "visible": true,
-    "eyebrow": "Programs & Services",
-    "title": "Featured Programs & Services",
-    "description": "Explore selected ECAA programs and services that support culture, community, youth, families, and connection.",
-    "items": [
-      {
-        "id": "featured-program-community-support",
-        "title": "Community Support",
-        "shortDescription": "Information, resources, and support for community members and families.",
-        "href": "/programs#community-support",
-        "icon": "hands",
-        "image": "/images/programs-community-support.jpg",
-        "imageAlt": "Community support and programs image for ECAA.",
-        "sourceProgramId": "community-support",
-        "notes": "Homepage featured program only."
-      },
-      {
-        "id": "featured-program-cultural-programs",
-        "title": "Cultural Programs",
-        "shortDescription": "Gatherings and activities that celebrate heritage and connection.",
-        "href": "/programs#cultural-programs",
-        "icon": "culture",
-        "image": "/images/events-community-gathering.jpg",
-        "imageAlt": "Cultural community gathering for ECAA programs.",
-        "sourceProgramId": "cultural-programs",
-        "notes": ""
-      },
-      {
-        "id": "featured-program-youth-education",
-        "title": "Youth & Education",
-        "shortDescription": "Programs that support learning, student engagement, and growth.",
-        "href": "/programs#youth-education",
-        "icon": "education",
-        "image": "/images/leadership-community-guidance.jpg",
-        "imageAlt": "Youth and education community guidance at ECAA.",
-        "sourceProgramId": "youth-education",
-        "notes": ""
-      },
-      {
-        "id": "featured-program-edir",
-        "title": "EDIR",
-        "shortDescription": "Mutual-support structure and EDIR-related community leadership.",
-        "href": "/programs#edir",
-        "icon": "community",
-        "image": "/images/membership-welcome.jpg",
-        "imageAlt": "Community welcome and mutual support at ECAA.",
-        "sourceProgramId": "edir",
-        "notes": ""
-      }
-    ],
-    "sectionCta": {
-      "label": "Explore All Programs",
-      "href": "/programs"
-    }
+    "title": "Ready to get involved with ECAA?",
+    "description": "Become a member, attend an event, volunteer, or contact ECAA to learn how you can participate in community life.",
+    "buttons": [
+      { "label": "Become a Member", "href": "/membership" },
+      { "label": "View Events", "href": "/events" },
+      { "label": "Contact ECAA", "href": "/contact" }
+    ]
   }
 }
