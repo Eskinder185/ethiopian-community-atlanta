@@ -9,7 +9,8 @@
     "cms": "decap-server",
     "build": "vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.0",
@@ -24,6 +25,7 @@
     "@vitejs/plugin-react": "^6.0.3",
     "concurrently": "^9.2.1",
     "decap-server": "^3.4.0",
+    "gh-pages": "^6.3.0",
     "oxlint": "^1.71.0",
     "tailwindcss": "^4.3.2",
     "vite": "^8.1.1"
