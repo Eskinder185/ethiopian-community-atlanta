@@ -4,8 +4,8 @@ import CTAButton from "../ui/CTAButton";
 import AnimateIn from "../ui/AnimateIn";
 import { useLanguage } from "../../context/LanguageContext";
 import { getPatternImage, hasImageAsset, getResolvedImageSrc } from "../../utils/images";
+import { defaultImages, hasUsableImageUrl } from "../../utils/publicAsset";
 import {
-  getHeroBackground,
   getHeroButtons,
   getHeroButtonProps,
   getHeroStats,
@@ -142,8 +142,10 @@ export default function PageHeroWithStats({
   usePattern = false,
   priority = false,
   trustCue,
+  fallbackImage = defaultImages.homeHero,
 }) {
   const [imageFailed, setImageFailed] = useState(false);
+  const [activeImage, setActiveImage] = useState("");
   const { t } = useLanguage();
 
   const resolvedBackground = backgroundImage?.src
@@ -152,13 +154,20 @@ export default function PageHeroWithStats({
       ? { src: backgroundImage, alt: backgroundAlt }
       : null;
 
-  const photoSrc =
-    !imageFailed && resolvedBackground?.src
-      ? getResolvedImageSrc(resolvedBackground.src)
-      : "";
-  const hasPhoto = Boolean(photoSrc);
+  const heroImage = resolvedBackground?.src || "";
+  const resolvedHeroImage =
+    (heroImage ? getResolvedImageSrc(heroImage) || heroImage : "") ||
+    (hasUsableImageUrl(fallbackImage) ? getResolvedImageSrc(fallbackImage) || fallbackImage : "");
+
+  const displayImage = activeImage || resolvedHeroImage;
+
+  if (import.meta.env.DEV && displayImage) {
+    console.log("Hero image being used:", displayImage);
+  }
+
+  const hasPhoto = Boolean(displayImage) && !imageFailed;
   const pattern = getPatternImage();
-  const patternSrc = hasImageAsset(pattern) ? getResolvedImageSrc(pattern.src) : "";
+  const patternSrc = hasImageAsset(pattern) ? getResolvedImageSrc(pattern) : "";
   const overlay = overlayPresets[overlayStrength] || overlayPresets.default;
   const isHome = variant === "home";
   const isLegal = variant === "legal";
@@ -179,14 +188,23 @@ export default function PageHeroWithStats({
     <header className="hero-bg relative isolate overflow-hidden">
       {hasPhoto ? (
         <img
-          src={photoSrc}
+          src={displayImage}
           alt=""
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover object-center"
           loading={priority ? "eager" : "lazy"}
           decoding="async"
           fetchPriority={priority ? "high" : "auto"}
-          onError={() => setImageFailed(true)}
+          onError={() => {
+            const localFallback = hasUsableImageUrl(fallbackImage)
+              ? getResolvedImageSrc(fallbackImage) || fallbackImage
+              : "";
+            if (localFallback && displayImage !== localFallback) {
+              setActiveImage(localFallback);
+              return;
+            }
+            setImageFailed(true);
+          }}
         />
       ) : (
         <div
@@ -213,7 +231,7 @@ export default function PageHeroWithStats({
           className="pointer-events-none absolute inset-0 opacity-[0.07] mix-blend-soft-light"
           aria-hidden="true"
           style={{
-            backgroundImage: `url(${patternSrc})`,
+            backgroundImage: patternSrc ? `url("${patternSrc}")` : undefined,
             backgroundRepeat: "repeat",
             backgroundSize: "280px auto",
           }}

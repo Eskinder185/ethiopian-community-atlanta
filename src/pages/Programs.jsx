@@ -10,6 +10,7 @@ import { getProgramsPageContent } from "../data/programsPageContent";
 import { usePrograms } from "../hooks/usePrograms";
 import { applyProgramsLocale } from "../utils/programsLocale";
 import { getPageHero, getHeroBackground } from "../utils/pageHeroes";
+import { defaultImages } from "../utils/publicAsset";
 
 export default function Programs() {
   const { language } = useLanguage();
@@ -34,6 +35,7 @@ export default function Programs() {
         stats={pageContent.overviewCards}
         variant={pageHeroConfig?.variant || "page"}
         overlayStrength={pageHeroConfig?.overlayStrength || "default"}
+        fallbackImage={defaultImages.programsHero}
       />
 
       <ProgramsOverviewSection section={pageContent.intro} />

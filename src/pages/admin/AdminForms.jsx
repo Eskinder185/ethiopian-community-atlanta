@@ -5,6 +5,7 @@ import { useAdminLanguage } from "../../context/AdminLanguageContext";
 import {
   FORM_STATUS,
   FORM_TYPES,
+  FormsTableMissingError,
   archiveForm,
   fetchFormsForAdmin,
   fetchResponseCountsByFormIds,
@@ -40,7 +41,11 @@ export default function AdminForms() {
       const counts = await fetchResponseCountsByFormIds(items.map((item) => item.id));
       setResponseCounts(counts);
     } catch (loadError) {
-      setError(adminT("formsBuilder.loadError"));
+      if (loadError instanceof FormsTableMissingError || loadError?.name === "FormsTableMissingError") {
+        setError(adminT("formsBuilder.tableMissing"));
+      } else {
+        setError(adminT("formsBuilder.loadError"));
+      }
       console.error(loadError);
     } finally {
       setLoading(false);

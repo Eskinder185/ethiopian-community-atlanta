@@ -2,7 +2,15 @@ import imagesData from "../content/images.json";
 import { getPatternAsset, siteAssets } from "../config/assets";
 import { resolvePublicImageUrl } from "../lib/uploadMedia";
 import { hasUsableText } from "./data";
-import { defaultImagePaths, publicAsset } from "./publicAsset";
+import {
+  defaultImagePaths,
+  hasUsableImageUrl,
+  pageHeroDefaults,
+  publicAsset,
+  resolveHeroImage,
+} from "./publicAsset";
+
+export { resolveHeroImage, hasUsableImageUrl, publicAsset, defaultImages, pageHeroDefaults } from "./publicAsset";
 
 const IMAGE_ID_TO_ASSET = {
   "home-hero-community-atlanta": siteAssets.heroes.home,
@@ -29,6 +37,17 @@ function isInvalidLocalPath(path) {
     path.startsWith("file:") ||
     /^[A-Za-z]:\\/.test(path) ||
     path.startsWith("/uploads/")
+  );
+}
+
+function isStorageOnlyPath(path) {
+  const value = path.replace(/^\/+/, "");
+  return (
+    value.startsWith("media-gallery/") ||
+    value.startsWith("events/") ||
+    value.startsWith("leadership/") ||
+    value.startsWith("programs/") ||
+    value.startsWith("website/")
   );
 }
 
@@ -68,7 +87,8 @@ export function getResolvedImageSrc(imageOrPath) {
   if (!imageOrPath) return "";
 
   const path = typeof imageOrPath === "string" ? imageOrPath : imageOrPath.src;
-  if (!hasUsableText(path) || path.startsWith("TODO")) return "";
+  if (!hasUsableImageUrl(path) && !hasUsableText(path)) return "";
+  if (path.startsWith("TODO")) return "";
 
   const trimmed = path.trim();
 
@@ -78,16 +98,24 @@ export function getResolvedImageSrc(imageOrPath) {
   const base = import.meta.env.BASE_URL || "/";
   if (trimmed.startsWith(base)) return trimmed;
 
-  const storageUrl = resolvePublicImageUrl(trimmed);
-  if (storageUrl && isExternalUrl(storageUrl)) return storageUrl;
+  if (isStorageOnlyPath(trimmed)) {
+    const storageUrl = resolvePublicImageUrl(trimmed);
+    if (storageUrl && isExternalUrl(storageUrl)) return storageUrl;
+    return "";
+  }
 
   return publicAsset(trimmed);
 }
 
 /** Pick CMS image when valid, otherwise a local default public path. */
 export function resolveHeroImagePath(cmsPath, fallbackPath = defaultImagePaths.homeHero) {
-  if (hasUsableText(cmsPath) && !cmsPath.startsWith("TODO")) {
+  if (hasUsableImageUrl(cmsPath)) {
     return cmsPath.trim();
   }
   return fallbackPath;
+}
+
+/** Resolve logo or hall image with CMS override support. */
+export function resolveLocalImage(cmsValue, fallbackImage) {
+  return resolveHeroImage(cmsValue, fallbackImage);
 }

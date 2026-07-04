@@ -64,6 +64,7 @@ export default function PageHero({
   const patternFromId = patternImageId ? getImageById(patternImageId) : null;
   const defaultPattern = getPatternImage();
   const pattern = patternFromId || defaultPattern;
+  const patternSrc = hasImageAsset(pattern) ? getResolvedImageSrc(pattern) : "";
   const hasPhoto = !patternOnly && hasImageAsset(backgroundImage);
   const overlay = overlayPresets[overlayStrength] || overlayPresets.default;
   const objectPosition = positionClasses[backgroundPosition] || positionClasses.center;
@@ -106,7 +107,7 @@ export default function PageHero({
           }`}
           aria-hidden="true"
           style={{
-            backgroundImage: `url(${getResolvedImageSrc(pattern)})`,
+            backgroundImage: patternSrc ? `url("${patternSrc}")` : undefined,
             backgroundRepeat: "repeat",
             backgroundSize: "280px auto",
           }}

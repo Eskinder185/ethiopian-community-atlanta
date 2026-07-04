@@ -3,7 +3,7 @@ import Container from "../ui/Container";
 import CTAButton from "../ui/CTAButton";
 import ContactCard from "../cards/ContactCard";
 import { siteAssets } from "../../config/assets";
-import { resolvePublicAssetPath } from "../../utils/images";
+import { defaultImages } from "../../utils/publicAsset";
 import { filterPublished, hasUsableText } from "../../utils/data";
 
 function ContactDetail({ label, value, href, multiline = false }) {
@@ -32,7 +32,7 @@ function ContactDetail({ label, value, href, multiline = false }) {
 
 function VisitEcaaImage({ alt }) {
   const [failed, setFailed] = useState(false);
-  const src = resolvePublicAssetPath(siteAssets.homeHero);
+  const src = defaultImages.homeHero;
 
   if (failed || !src) {
     return (

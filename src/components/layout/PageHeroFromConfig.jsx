@@ -1,5 +1,6 @@
 import PageHeroWithStats from "./PageHeroWithStats";
 import { getPageHero, getHeroBackground, isHeroSectionVisible } from "../../utils/pageHeroes";
+import { pageHeroDefaults } from "../../utils/publicAsset";
 
 export default function PageHeroFromConfig({ page, priority = false }) {
   const hero = getPageHero(page);
@@ -7,6 +8,7 @@ export default function PageHeroFromConfig({ page, priority = false }) {
   if (!hero || !isHeroSectionVisible(hero)) return null;
 
   const background = getHeroBackground(hero, page);
+  const fallbackImage = pageHeroDefaults[page] || pageHeroDefaults.home;
 
   return (
     <PageHeroWithStats
@@ -23,6 +25,7 @@ export default function PageHeroFromConfig({ page, priority = false }) {
       overlayStrength={hero.overlayStrength || "default"}
       usePattern={hero.usePattern}
       priority={priority || page === "home"}
+      fallbackImage={fallbackImage}
     />
   );
 }

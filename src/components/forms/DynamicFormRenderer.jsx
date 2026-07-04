@@ -245,6 +245,8 @@ export default function DynamicFormRenderer({
   submitLabel = "Submit",
   onSubmit,
   submitting = false,
+  accentButtonClass,
+  preview = false,
 }) {
   const formInstanceId = useId();
   const mountedAt = useRef(Date.now());
@@ -314,7 +316,8 @@ export default function DynamicFormRenderer({
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-6">
+    <form onSubmit={preview ? (e) => e.preventDefault() : handleSubmit} noValidate>
+      <fieldset disabled={preview} className="space-y-6 border-0 p-0 m-0">
       {/* Honeypot */}
       <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
         <label htmlFor={`${formInstanceId}-company_website`}>Company website</label>
@@ -368,7 +371,7 @@ export default function DynamicFormRenderer({
               field,
               localized,
               value: values[field.fieldKey],
-              onChange: (val) => updateValue(field.fieldKey, val),
+              onChange: preview ? () => {} : (val) => updateValue(field.fieldKey, val),
               hasError: Boolean(error),
               describedBy,
               language,
@@ -388,12 +391,21 @@ export default function DynamicFormRenderer({
       <div className="pt-2">
         <button
           type="submit"
-          disabled={submitting}
-          className="inline-flex min-h-[44px] w-full items-center justify-center rounded-lg bg-ecaa-green-800 px-6 py-3 text-base font-semibold text-ecaa-white transition-colors hover:bg-ecaa-green-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ecaa-green-700 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          disabled={submitting || preview}
+          className={`inline-flex min-h-[44px] w-full items-center justify-center rounded-lg px-6 py-3 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto ${
+            accentButtonClass || "bg-ecaa-green-800 hover:bg-ecaa-green-900 text-ecaa-white focus-visible:ring-ecaa-green-700"
+          }`}
         >
-          {submitting ? (language === "am" ? "በመላክ ላይ…" : "Submitting…") : submitLabel}
+          {preview
+            ? submitLabel
+            : submitting
+              ? language === "am"
+                ? "በመላክ ላይ…"
+                : "Submitting…"
+              : submitLabel}
         </button>
       </div>
+      </fieldset>
     </form>
   );
 }

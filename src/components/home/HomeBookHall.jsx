@@ -2,7 +2,8 @@ import Container from "../ui/Container";
 import CTAButton from "../ui/CTAButton";
 import AnimateIn from "../ui/AnimateIn";
 import { siteAssets } from "../../config/assets";
-import { resolvePublicAssetPath } from "../../utils/images";
+import { defaultImages, hasUsableImageUrl } from "../../utils/publicAsset";
+import { resolveLocalImage } from "../../utils/images";
 import { useLanguage } from "../../context/LanguageContext";
 import {
   filterPublicLines,
@@ -38,7 +39,10 @@ export default function HomeBookHall({ data }) {
     data.importantNote,
     "Submitting a request does not guarantee a reservation. ECAA must confirm availability, requirements, pricing, and approval before the hall is booked."
   );
-  const hallImageSrc = resolvePublicAssetPath(siteAssets.bookHall);
+  const hallImageSrc = resolveLocalImage(
+    hasUsableImageUrl(data.image_url) ? data.image_url : data.image,
+    defaultImages.eventHall
+  );
   const hallImageAlt = getPublicText(data.imageAlt, siteAssets.bookHallAlt);
   const goodForLabel = getPublicText(data.goodForLabel, t("common.goodFor"));
 

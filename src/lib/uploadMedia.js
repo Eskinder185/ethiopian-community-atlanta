@@ -38,7 +38,9 @@ function isStorageOnlyPath(url) {
   return (
     value.startsWith("media-gallery/") ||
     value.startsWith("events/") ||
-    value.startsWith("leadership/")
+    value.startsWith("leadership/") ||
+    value.startsWith("programs/") ||
+    value.startsWith("website/")
   );
 }
 

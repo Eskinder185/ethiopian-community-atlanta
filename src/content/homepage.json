@@ -6,8 +6,8 @@
   "hero": {
     "visible": true,
     "eyebrow": "Ethiopian Community Association in Atlanta",
-    "title": "A Home for Ethiopians in Atlanta",
-    "description": "Come connect with culture, community, support, events, and people who understand your story.",
+    "title": "Welcome Home, Ethiopians in Atlanta",
+    "description": "Whether you are new to Atlanta or have called it home for years, ECAA is a place to connect, celebrate our culture, support one another, and belong.",
     "trustCue": "Serving Ethiopian and Ethiopian American families in Atlanta since 1983.",
     "primaryCta": {
       "label": "Become a Member",
@@ -16,14 +16,6 @@
     "secondaryCta": {
       "label": "See Upcoming Events",
       "href": "/events"
-    },
-    "supportCta": {
-      "label": "Volunteer",
-      "href": "/support#volunteer"
-    },
-    "donateCta": {
-      "label": "Donate",
-      "href": "/support"
     },
     "image": "/images/heroes/home-hero.jpg",
     "imageAlt": "Ethiopian community members gathered together at an ECAA event in the Atlanta area."

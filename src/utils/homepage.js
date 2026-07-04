@@ -2,8 +2,8 @@ import { hasUsableText, isTodoValue, toEmbedUrl } from "./data";
 import { featuredProgramAmharicBySlug } from "../data/homepageAmharic";
 import { EVENT_STATUS } from "./events";
 import { isHomepageMediaCandidate } from "./mediaItems";
-import { getResolvedImageSrc, resolveHeroImagePath } from "./images";
-import { defaultImagePaths } from "./publicAsset";
+import { getResolvedImageSrc, resolveHeroImage } from "./images";
+import { defaultImages } from "./publicAsset";
 
 export function isSectionVisible(section) {
   return section?.visible !== false;
@@ -274,15 +274,14 @@ export function mapHomeHeroData(hero) {
 
   addButton(hero.primaryCta, "primary");
   addButton(hero.secondaryCta, "secondary");
-  addButton(hero.supportCta, "ghost");
-  addButton(hero.donateCta, "ghost");
 
   return {
     eyebrow: hero.eyebrow,
     title: hero.title,
     description: hero.description,
-    backgroundImage: getResolvedImageSrc(
-      resolveHeroImagePath(hero.image, defaultImagePaths.homeHero)
+    backgroundImage: resolveHeroImage(
+      hero.image_url || hero.image || hero.backgroundImage,
+      defaultImages.homeHero
     ),
     backgroundAlt: hero.imageAlt,
     trustCue: hero.trustCue,

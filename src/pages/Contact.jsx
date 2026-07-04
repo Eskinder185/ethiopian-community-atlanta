@@ -4,6 +4,7 @@ import PageHeroWithStats from "../components/layout/PageHeroWithStats";
 import ContactDetailsSection from "../components/sections/ContactDetailsSection";
 import { getContactPageContent } from "../data/contactPageContent";
 import { getPageHero, getHeroBackground } from "../utils/pageHeroes";
+import { pageHeroDefaults } from "../utils/publicAsset";
 
 export default function Contact() {
   const { language } = useLanguage();
@@ -23,6 +24,7 @@ export default function Contact() {
         stats={content.summaryCards}
         variant={pageHeroConfig?.variant || "page"}
         overlayStrength={pageHeroConfig?.overlayStrength || "default"}
+        fallbackImage={pageHeroDefaults.contact}
       />
       <ContactDetailsSection content={content} />
     </>

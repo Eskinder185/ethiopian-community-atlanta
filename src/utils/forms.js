@@ -44,6 +44,26 @@ export const RESPONSE_STATUS = [
   "archived",
 ];
 
+export class FormsTableMissingError extends Error {
+  constructor() {
+    super("Forms table is not set up yet. Run the form-builder SQL in Supabase.");
+    this.name = "FormsTableMissingError";
+  }
+}
+
+function isMissingTableError(error) {
+  if (!error) return false;
+  const message = String(error.message || "");
+  return (
+    error.code === "42P01" ||
+    error.code === "PGRST205" ||
+    error.status === 404 ||
+    message.includes("does not exist") ||
+    message.includes("Could not find the table") ||
+    message.includes("relation") && message.includes("forms")
+  );
+}
+
 function warnSupabaseFallback(context, error) {
   console.warn(`Form builder Supabase fallback (${context})`, error);
 }
@@ -110,6 +130,11 @@ export function normalizeForm(raw) {
     collectEmail: raw.collect_email === true,
     notificationEmail: raw.notification_email || raw.notificationEmail || "",
     visiblePublic: raw.visible_public === true || raw.visiblePublic === true,
+    coverImageUrl: raw.cover_image_url || raw.coverImageUrl || "",
+    coverImageAlt: raw.cover_image_alt || raw.coverImageAlt || "",
+    backgroundTheme: raw.background_theme || raw.backgroundTheme || "warm",
+    accentTheme: raw.accent_theme || raw.accentTheme || "green",
+    layoutStyle: raw.layout_style || raw.layoutStyle || "standard",
     displayOrder:
       typeof raw.display_order === "number"
         ? raw.display_order
@@ -159,6 +184,11 @@ export function formToDbRow(form) {
     collect_email: form.collectEmail === true,
     notification_email: form.notificationEmail || "",
     visible_public: form.visiblePublic === true,
+    cover_image_url: form.coverImageUrl || "",
+    cover_image_alt: form.coverImageAlt || "",
+    background_theme: form.backgroundTheme || "warm",
+    accent_theme: form.accentTheme || "green",
+    layout_style: form.layoutStyle || "standard",
     display_order: form.displayOrder ?? 999,
   };
 }
@@ -287,14 +317,20 @@ export async function fetchFormsForAdmin() {
       .order("updated_at", { ascending: false });
 
     if (error) {
+      if (isMissingTableError(error)) {
+        throw new FormsTableMissingError();
+      }
       warnSupabaseFallback("fetchFormsForAdmin", error);
-      return [];
+      throw error;
     }
 
     return (data ?? []).map(normalizeForm).filter(Boolean);
   } catch (error) {
+    if (error instanceof FormsTableMissingError || isMissingTableError(error)) {
+      throw new FormsTableMissingError();
+    }
     warnSupabaseFallback("fetchFormsForAdmin", error);
-    return [];
+    throw error;
   }
 }
 

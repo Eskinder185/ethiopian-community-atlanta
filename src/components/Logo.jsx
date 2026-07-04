@@ -3,7 +3,6 @@ import { useState } from "react";
 import siteInfo from "../content/siteInfo.json";
 import { useLanguage } from "../context/LanguageContext";
 import { defaultImages } from "../utils/publicAsset";
-import { getResolvedImageSrc } from "../utils/images";
 
 export const LOGO_PATH = defaultImages.logo;
 export const LOGO_ALT = "Ethiopian Community Association in Atlanta logo";
@@ -40,7 +39,7 @@ export default function Logo({
 }) {
   const { t, language } = useLanguage();
   const [failed, setFailed] = useState(false);
-  const src = getResolvedImageSrc(LOGO_PATH);
+  const src = defaultImages.logo;
   const sizeClass = IMAGE_SIZE[size] || size;
   const logoAlt = language === "am" ? t("brand.logoAlt") : LOGO_ALT;
   const displayName = language === "am" ? t("brand.orgName") : ORG_DISPLAY_NAME;

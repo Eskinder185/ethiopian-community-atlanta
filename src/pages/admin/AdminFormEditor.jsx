@@ -1,13 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import EditorContentTabs from "../../components/admin/EditorContentTabs";
 import FormInput from "../../components/admin/FormInput";
 import FormSelect from "../../components/admin/FormSelect";
 import FormTextarea from "../../components/admin/FormTextarea";
+import ImageUpload from "../../components/admin/ImageUpload";
 import SaveButton from "../../components/admin/SaveButton";
 import StatusBadge from "../../components/admin/StatusBadge";
+import FormPreviewPanel from "../../components/forms/FormPreviewPanel";
 import { FORM_TEMPLATES, createBlankForm, createFormFromTemplate, slugifyFieldKey } from "../../data/formTemplates";
 import { useAdminLanguage } from "../../context/AdminLanguageContext";
+import {
+  ACCENT_THEMES,
+  BACKGROUND_THEMES,
+  LAYOUT_STYLES,
+} from "../../utils/formThemes";
 import {
   FIELD_TYPES,
   FORM_STATUS,
@@ -200,6 +207,61 @@ function FieldEditor({ field, editorLang, onChange, onDelete, onMoveUp, onMoveDo
   );
 }
 
+const WORKFLOW_STEPS = [
+  { id: "basic", labelKey: "workflowBasic" },
+  { id: "appearance", labelKey: "workflowAppearance" },
+  { id: "fields", labelKey: "workflowFields" },
+  { id: "confirmation", labelKey: "workflowConfirmation" },
+  { id: "preview", labelKey: "workflowPreview" },
+  { id: "publish", labelKey: "workflowPublish" },
+];
+
+function WorkflowSidebar({ steps, activeId, onSelect, completion, adminT }) {
+  return (
+    <nav
+      aria-label={adminT("formsBuilder.formSettings")}
+      className="rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-cream/40 p-4 lg:sticky lg:top-24"
+    >
+      <ol className="space-y-1">
+        {steps.map((step, index) => {
+          const isActive = activeId === step.id;
+          const isDone = completion[step.id];
+          return (
+            <li key={step.id}>
+              <button
+                type="button"
+                onClick={() => onSelect(step.id)}
+                className={[
+                  "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm transition-colors",
+                  isActive
+                    ? "bg-ecaa-green-900 text-ecaa-white"
+                    : "text-ecaa-green-950 hover:bg-ecaa-white/80",
+                ].join(" ")}
+              >
+                <span
+                  className={[
+                    "flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold",
+                    isDone
+                      ? isActive
+                        ? "bg-ecaa-white text-ecaa-green-900"
+                        : "bg-ecaa-green-700 text-ecaa-white"
+                      : isActive
+                        ? "bg-ecaa-green-700 text-ecaa-white"
+                        : "border border-ecaa-border bg-ecaa-white text-ecaa-ink-muted",
+                  ].join(" ")}
+                >
+                  {isDone ? "✓" : index + 1}
+                </span>
+                <span className="font-medium">{adminT(`formsBuilder.${step.labelKey}`)}</span>
+              </button>
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
+  );
+}
+
 export default function AdminFormEditor() {
   const { id } = useParams();
   const [searchParams] = useSearchParams();
@@ -215,6 +277,15 @@ export default function AdminFormEditor() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [showTemplates, setShowTemplates] = useState(isNew);
+  const [activeSection, setActiveSection] = useState("basic");
+  const [showPreview, setShowPreview] = useState(false);
+  const [copyMessage, setCopyMessage] = useState("");
+  const sectionRefs = useRef({});
+
+  const scrollToSection = (sectionId) => {
+    setActiveSection(sectionId);
+    sectionRefs.current[sectionId]?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   useEffect(() => {
     if (isNew) {
@@ -346,6 +417,28 @@ export default function AdminFormEditor() {
     setShowTemplates(false);
   }
 
+  async function copyPublicLink() {
+    if (!form.slug) return;
+    const path = getFormPublicPath(form.slug);
+    const fullUrl = `${window.location.origin}${path}`;
+    try {
+      await navigator.clipboard.writeText(fullUrl);
+      setCopyMessage(adminT("formsBuilder.linkCopied"));
+    } catch {
+      setCopyMessage(path);
+    }
+    setTimeout(() => setCopyMessage(""), 3000);
+  }
+
+  function openLivePreview() {
+    if (form.status === FORM_STATUS.PUBLISHED && form.slug && form.visiblePublic) {
+      window.open(getFormPublicPath(form.slug), "_blank", "noopener,noreferrer");
+      return;
+    }
+    setShowPreview(true);
+    scrollToSection("preview");
+  }
+
   if (loading || !form) {
     return <p className="text-ecaa-ink-muted">{adminT("common.loading")}</p>;
   }
@@ -361,8 +454,33 @@ export default function AdminFormEditor() {
     label: adminT(`formsBuilder.types.${type}`) || type,
   }));
 
+  const themeLabel = (item) => (isAm ? item.labelAm : item.labelEn);
+  const backgroundOptions = BACKGROUND_THEMES.map((item) => ({
+    value: item.value,
+    label: themeLabel(item),
+  }));
+  const accentOptions = ACCENT_THEMES.map((item) => ({
+    value: item.value,
+    label: themeLabel(item),
+  }));
+  const layoutOptions = LAYOUT_STYLES.map((item) => ({
+    value: item.value,
+    label: themeLabel(item),
+  }));
+
+  const workflowCompletion = {
+    basic: Boolean(form.title?.trim() && form.slug?.trim()),
+    appearance: Boolean(form.backgroundTheme && form.accentTheme),
+    fields: fields.length > 0,
+    confirmation: Boolean(form.confirmationMessage?.trim() || form.confirmationMessageAm?.trim()),
+    preview: showPreview,
+    publish: form.status === FORM_STATUS.PUBLISHED && form.visiblePublic,
+  };
+
+  const isDraftPreview = form.status !== FORM_STATUS.PUBLISHED || !form.visiblePublic;
+
   return (
-    <div className="mx-auto max-w-5xl">
+    <div className="mx-auto max-w-6xl">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <div>
           <Link to="/admin/forms" className="text-sm font-medium text-ecaa-green-800 hover:underline">
@@ -424,142 +542,302 @@ export default function AdminFormEditor() {
 
       <EditorContentTabs value={editorLang} onChange={setEditorLang} />
 
-      <div className="space-y-6">
-        <section className="rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-white p-5 shadow-ecaa-sm sm:p-6">
-          <h2 className="mb-4 text-lg font-semibold text-ecaa-green-950">{adminT("formsBuilder.formSettings")}</h2>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <FormInput
-              label={adminT("forms.title")}
-              value={isAm ? form.titleAm || "" : form.title}
-              onChange={(e) =>
-                isAm
-                  ? updateForm({ titleAm: e.target.value })
-                  : updateForm({
-                      title: e.target.value,
-                      slug: form.slug || slugifyFormTitle(e.target.value),
-                    })
-              }
-              required
-            />
-            <FormInput
-              label={adminT("forms.slug")}
-              value={form.slug}
-              onChange={(e) => updateForm({ slug: e.target.value })}
-              hint={form.slug ? getFormPublicPath(form.slug) : ""}
-            />
-            <div className="sm:col-span-2">
-              <FormTextarea
-                label={adminT("forms.description")}
-                value={isAm ? form.descriptionAm || "" : form.description || ""}
+      <div className="grid gap-6 lg:grid-cols-[220px_minmax(0,1fr)]">
+        <WorkflowSidebar
+          steps={WORKFLOW_STEPS}
+          activeId={activeSection}
+          onSelect={scrollToSection}
+          completion={workflowCompletion}
+          adminT={adminT}
+        />
+
+        <div className="space-y-6">
+          <section
+            id="section-basic"
+            ref={(el) => {
+              sectionRefs.current.basic = el;
+            }}
+            className="scroll-mt-24 rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-white p-5 shadow-ecaa-sm sm:p-6"
+          >
+            <h2 className="mb-4 text-lg font-semibold text-ecaa-green-950">{adminT("formsBuilder.workflowBasic")}</h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <FormInput
+                label={adminT("forms.title")}
+                value={isAm ? form.titleAm || "" : form.title}
                 onChange={(e) =>
                   isAm
-                    ? updateForm({ descriptionAm: e.target.value })
-                    : updateForm({ description: e.target.value })
+                    ? updateForm({ titleAm: e.target.value })
+                    : updateForm({
+                        title: e.target.value,
+                        slug: form.slug || slugifyFormTitle(e.target.value),
+                      })
                 }
-                rows={3}
+                required
+              />
+              <FormInput
+                label={adminT("forms.slug")}
+                value={form.slug}
+                onChange={(e) => updateForm({ slug: e.target.value })}
+                hint={form.slug ? getFormPublicPath(form.slug) : ""}
+              />
+              <div className="sm:col-span-2">
+                <FormTextarea
+                  label={adminT("forms.description")}
+                  value={isAm ? form.descriptionAm || "" : form.description || ""}
+                  onChange={(e) =>
+                    isAm
+                      ? updateForm({ descriptionAm: e.target.value })
+                      : updateForm({ description: e.target.value })
+                  }
+                  rows={3}
+                />
+              </div>
+              <FormSelect
+                label={adminT("forms.status")}
+                value={form.status}
+                onChange={(e) => updateForm({ status: e.target.value })}
+                options={statusOptions}
+              />
+              <FormSelect
+                label={adminT("common.type")}
+                value={form.formType}
+                onChange={(e) => updateForm({ formType: e.target.value })}
+                options={typeOptions}
+              />
+              <FormInput
+                label={adminT("formsBuilder.notificationEmail")}
+                type="email"
+                value={form.notificationEmail || ""}
+                onChange={(e) => updateForm({ notificationEmail: e.target.value })}
+                hint={adminT("formsBuilder.notificationEmailHint")}
+              />
+              <ToggleField
+                id="visible-public"
+                label={adminT("formsBuilder.visiblePublic")}
+                checked={form.visiblePublic}
+                onChange={(checked) => updateForm({ visiblePublic: checked })}
+              />
+              <ToggleField
+                id="allow-multiple"
+                label={adminT("formsBuilder.allowMultiple")}
+                checked={form.allowMultipleSubmissions}
+                onChange={(checked) => updateForm({ allowMultipleSubmissions: checked })}
+              />
+              <ToggleField
+                id="collect-email"
+                label={adminT("formsBuilder.collectEmail")}
+                checked={form.collectEmail}
+                onChange={(checked) => updateForm({ collectEmail: checked })}
               />
             </div>
-            <FormSelect
-              label={adminT("forms.status")}
-              value={form.status}
-              onChange={(e) => updateForm({ status: e.target.value })}
-              options={statusOptions}
-            />
-            <FormSelect
-              label={adminT("common.type")}
-              value={form.formType}
-              onChange={(e) => updateForm({ formType: e.target.value })}
-              options={typeOptions}
-            />
-            <FormTextarea
-              label={adminT("formsBuilder.confirmationMessage")}
-              value={isAm ? form.confirmationMessageAm || "" : form.confirmationMessage || ""}
-              onChange={(e) =>
-                isAm
-                  ? updateForm({ confirmationMessageAm: e.target.value })
-                  : updateForm({ confirmationMessage: e.target.value })
-              }
-              rows={2}
-            />
-            <FormInput
-              label={adminT("formsBuilder.submitButtonLabel")}
-              value={isAm ? form.submitButtonLabelAm || "" : form.submitButtonLabel || ""}
-              onChange={(e) =>
-                isAm
-                  ? updateForm({ submitButtonLabelAm: e.target.value })
-                  : updateForm({ submitButtonLabel: e.target.value })
-              }
-            />
-            <FormInput
-              label={adminT("formsBuilder.notificationEmail")}
-              type="email"
-              value={form.notificationEmail || ""}
-              onChange={(e) => updateForm({ notificationEmail: e.target.value })}
-              hint={adminT("formsBuilder.notificationEmailHint")}
-            />
-            <ToggleField
-              id="visible-public"
-              label={adminT("formsBuilder.visiblePublic")}
-              checked={form.visiblePublic}
-              onChange={(checked) => updateForm({ visiblePublic: checked })}
-            />
-            <ToggleField
-              id="allow-multiple"
-              label={adminT("formsBuilder.allowMultiple")}
-              checked={form.allowMultipleSubmissions}
-              onChange={(checked) => updateForm({ allowMultipleSubmissions: checked })}
-            />
-            <ToggleField
-              id="collect-email"
-              label={adminT("formsBuilder.collectEmail")}
-              checked={form.collectEmail}
-              onChange={(checked) => updateForm({ collectEmail: checked })}
-            />
-          </div>
-        </section>
+          </section>
 
-        <section className="space-y-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <h2 className="text-lg font-semibold text-ecaa-green-950">{adminT("formsBuilder.fieldBuilder")}</h2>
-            <button
-              type="button"
-              onClick={addField}
-              className="min-h-[44px] rounded-lg border border-ecaa-border px-4 py-2 text-sm font-semibold text-ecaa-green-900 hover:bg-ecaa-cream"
-            >
-              {adminT("formsBuilder.addField")}
-            </button>
-          </div>
-
-          {fields.length === 0 ? (
-            <p className="rounded-lg border border-dashed border-ecaa-border px-4 py-8 text-center text-sm text-ecaa-ink-muted">
-              {adminT("formsBuilder.noFields")}
-            </p>
-          ) : (
-            fields.map((field, index) => (
-              <FieldEditor
-                key={field.id || field.fieldKey}
-                field={field}
-                editorLang={editorLang}
-                onChange={(next) => updateField(index, next)}
-                onDelete={() => deleteField(index)}
-                onMoveUp={() => moveField(index, -1)}
-                onMoveDown={() => moveField(index, 1)}
-                isFirst={index === 0}
-                isLast={index === fields.length - 1}
-                adminT={adminT}
-              />
-            ))
-          )}
-        </section>
-
-        <div className="flex flex-wrap gap-3">
-          <SaveButton onClick={handleSave} saving={saving} />
-          <Link
-            to="/admin/forms"
-            className="inline-flex min-h-[44px] items-center rounded-lg border border-ecaa-border px-5 py-2.5 text-sm font-medium text-ecaa-ink"
+          <section
+            id="section-appearance"
+            ref={(el) => {
+              sectionRefs.current.appearance = el;
+            }}
+            className="scroll-mt-24 rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-white p-5 shadow-ecaa-sm sm:p-6"
           >
-            {adminT("common.cancel")}
-          </Link>
+            <h2 className="mb-1 text-lg font-semibold text-ecaa-green-950">{adminT("formsBuilder.formAppearance")}</h2>
+            <p className="mb-4 text-sm text-ecaa-ink-muted" lang={isAm ? "am" : undefined}>
+              {adminT("formsBuilder.coverImageHint")}
+            </p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="sm:col-span-2">
+                <ImageUpload
+                  id="cover-image-upload"
+                  label={adminT("formsBuilder.coverImage")}
+                  uploadFolder="forms/cover-images"
+                  onUploaded={(url) => updateForm({ coverImageUrl: url })}
+                />
+              </div>
+              <FormInput
+                label={adminT("formsBuilder.coverImageUrl")}
+                value={form.coverImageUrl || ""}
+                onChange={(e) => updateForm({ coverImageUrl: e.target.value })}
+              />
+              <FormInput
+                label={adminT("formsBuilder.coverImageAlt")}
+                value={form.coverImageAlt || ""}
+                onChange={(e) => updateForm({ coverImageAlt: e.target.value })}
+              />
+              <FormSelect
+                label={adminT("formsBuilder.backgroundTheme")}
+                value={form.backgroundTheme || "warm"}
+                onChange={(e) => updateForm({ backgroundTheme: e.target.value })}
+                options={backgroundOptions}
+              />
+              <FormSelect
+                label={adminT("formsBuilder.accentTheme")}
+                value={form.accentTheme || "green"}
+                onChange={(e) => updateForm({ accentTheme: e.target.value })}
+                options={accentOptions}
+              />
+              <FormSelect
+                label={adminT("formsBuilder.layoutStyle")}
+                value={form.layoutStyle || "standard"}
+                onChange={(e) => updateForm({ layoutStyle: e.target.value })}
+                options={layoutOptions}
+              />
+            </div>
+          </section>
+
+          <section
+            id="section-fields"
+            ref={(el) => {
+              sectionRefs.current.fields = el;
+            }}
+            className="scroll-mt-24 space-y-4"
+          >
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-lg font-semibold text-ecaa-green-950">{adminT("formsBuilder.fieldBuilder")}</h2>
+              <button
+                type="button"
+                onClick={addField}
+                className="min-h-[44px] rounded-lg border border-ecaa-border px-4 py-2 text-sm font-semibold text-ecaa-green-900 hover:bg-ecaa-cream"
+              >
+                {adminT("formsBuilder.addField")}
+              </button>
+            </div>
+
+            {fields.length === 0 ? (
+              <p className="rounded-lg border border-dashed border-ecaa-border px-4 py-8 text-center text-sm text-ecaa-ink-muted">
+                {adminT("formsBuilder.noFields")}
+              </p>
+            ) : (
+              fields.map((field, index) => (
+                <FieldEditor
+                  key={field.id || field.fieldKey}
+                  field={field}
+                  editorLang={editorLang}
+                  onChange={(next) => updateField(index, next)}
+                  onDelete={() => deleteField(index)}
+                  onMoveUp={() => moveField(index, -1)}
+                  onMoveDown={() => moveField(index, 1)}
+                  isFirst={index === 0}
+                  isLast={index === fields.length - 1}
+                  adminT={adminT}
+                />
+              ))
+            )}
+          </section>
+
+          <section
+            id="section-confirmation"
+            ref={(el) => {
+              sectionRefs.current.confirmation = el;
+            }}
+            className="scroll-mt-24 rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-white p-5 shadow-ecaa-sm sm:p-6"
+          >
+            <h2 className="mb-4 text-lg font-semibold text-ecaa-green-950">{adminT("formsBuilder.workflowConfirmation")}</h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <FormTextarea
+                label={adminT("formsBuilder.confirmationMessage")}
+                value={isAm ? form.confirmationMessageAm || "" : form.confirmationMessage || ""}
+                onChange={(e) =>
+                  isAm
+                    ? updateForm({ confirmationMessageAm: e.target.value })
+                    : updateForm({ confirmationMessage: e.target.value })
+                }
+                rows={2}
+              />
+              <FormInput
+                label={adminT("formsBuilder.submitButtonLabel")}
+                value={isAm ? form.submitButtonLabelAm || "" : form.submitButtonLabel || ""}
+                onChange={(e) =>
+                  isAm
+                    ? updateForm({ submitButtonLabelAm: e.target.value })
+                    : updateForm({ submitButtonLabel: e.target.value })
+                }
+              />
+            </div>
+          </section>
+
+          <section
+            id="section-preview"
+            ref={(el) => {
+              sectionRefs.current.preview = el;
+            }}
+            className="scroll-mt-24 rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-white p-5 shadow-ecaa-sm sm:p-6"
+          >
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-lg font-semibold text-ecaa-green-950">{adminT("formsBuilder.workflowPreview")}</h2>
+              <button
+                type="button"
+                onClick={openLivePreview}
+                className="min-h-[44px] rounded-lg bg-ecaa-green-800 px-4 py-2 text-sm font-semibold text-ecaa-white hover:bg-ecaa-green-900"
+              >
+                {adminT("formsBuilder.previewForm")}
+              </button>
+            </div>
+            <p className="mb-4 rounded-lg border border-ecaa-gold-200 bg-ecaa-gold-50 px-4 py-3 text-sm text-ecaa-green-900" lang={isAm ? "am" : undefined}>
+              {adminT("formsBuilder.previewHint")}
+            </p>
+            {isDraftPreview && (
+              <p className="mb-4 text-sm text-ecaa-ink-muted">{adminT("formsBuilder.previewDraftNote")}</p>
+            )}
+            {!isDraftPreview && form.slug && (
+              <p className="mb-4">
+                <a
+                  href={getFormPublicPath(form.slug)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-ecaa-green-800 hover:underline"
+                >
+                  {adminT("formsBuilder.openPublicForm")} →
+                </a>
+              </p>
+            )}
+            {showPreview && (
+              <div className="overflow-hidden rounded-ecaa-xl border border-ecaa-border/60">
+                <FormPreviewPanel form={form} fields={fields} language={editorLang} />
+              </div>
+            )}
+          </section>
+
+          <section
+            id="section-publish"
+            ref={(el) => {
+              sectionRefs.current.publish = el;
+            }}
+            className="scroll-mt-24 rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-cream/50 p-5 sm:p-6"
+          >
+            <h2 className="mb-4 text-lg font-semibold text-ecaa-green-950">{adminT("formsBuilder.workflowPublish")}</h2>
+            <p className="mb-4 text-sm text-ecaa-ink-muted">
+              {form.status === FORM_STATUS.PUBLISHED
+                ? adminT("formsBuilder.statusPublished")
+                : adminT("formsBuilder.statusDraft")}
+              {form.visiblePublic ? ` · ${adminT("formsBuilder.visiblePublic")}` : ""}
+            </p>
+            {form.slug && (
+              <div className="flex flex-wrap items-center gap-3">
+                <code className="rounded-lg border border-ecaa-border bg-ecaa-white px-3 py-2 text-sm text-ecaa-green-900">
+                  {getFormPublicPath(form.slug)}
+                </code>
+                <button
+                  type="button"
+                  onClick={copyPublicLink}
+                  className="min-h-[44px] rounded-lg border border-ecaa-border px-4 py-2 text-sm font-semibold text-ecaa-green-900 hover:bg-ecaa-white"
+                >
+                  {adminT("formsBuilder.copyLink")}
+                </button>
+              </div>
+            )}
+            {copyMessage && (
+              <p className="mt-3 text-sm font-medium text-ecaa-green-800">{copyMessage}</p>
+            )}
+          </section>
+
+          <div className="flex flex-wrap gap-3">
+            <SaveButton onClick={handleSave} saving={saving} />
+            <Link
+              to="/admin/forms"
+              className="inline-flex min-h-[44px] items-center rounded-lg border border-ecaa-border px-5 py-2.5 text-sm font-medium text-ecaa-ink"
+            >
+              {adminT("common.cancel")}
+            </Link>
+          </div>
         </div>
       </div>
     </div>

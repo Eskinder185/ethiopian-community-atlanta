@@ -2,7 +2,8 @@ import Container from "../ui/Container";
 import CTAButton from "../ui/CTAButton";
 import AnimateIn from "../ui/AnimateIn";
 import { siteAssets } from "../../config/assets";
-import { resolvePublicAssetPath } from "../../utils/images";
+import { defaultImages, hasUsableImageUrl } from "../../utils/publicAsset";
+import { resolveLocalImage } from "../../utils/images";
 import HallAvailabilityCalendar from "../events/HallAvailabilityCalendar";
 import HallBookingForm from "../events/HallBookingForm";
 
@@ -10,7 +11,10 @@ export default function EventHallRentalSection({ section, bookings = [] }) {
   if (!section) return null;
 
   const contactPath = section.contactPath || "/contact";
-  const hallImageSrc = resolvePublicAssetPath(siteAssets.bookHall);
+  const hallImageSrc = resolveLocalImage(
+    hasUsableImageUrl(section.image_url) ? section.image_url : section.image,
+    defaultImages.eventHall
+  );
   const hallImageAlt = section.hallImageAlt || siteAssets.bookHallAlt;
 
   return (

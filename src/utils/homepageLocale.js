@@ -12,6 +12,7 @@ export function mergeLocalizedContent(base, overlay) {
 
   for (const [key, value] of Object.entries(overlay)) {
     if (value === null || value === undefined || value === "") continue;
+    if (typeof value === "string" && value.trim() === "") continue;
 
     if (Array.isArray(value)) {
       if (!Array.isArray(base[key])) {
@@ -63,6 +64,7 @@ export function stripEmptyOverlay(overlay = {}) {
   const result = {};
   for (const [key, value] of Object.entries(overlay)) {
     if (value === null || value === undefined || value === "") continue;
+    if (typeof value === "string" && value.trim() === "") continue;
     if (Array.isArray(value)) {
       const cleaned = value
         .map((item) => (isPlainObject(item) ? stripEmptyOverlay(item) : item))

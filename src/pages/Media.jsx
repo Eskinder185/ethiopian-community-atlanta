@@ -5,6 +5,7 @@ import MediaCard from "../components/events/MediaCard";
 import { useMediaPage } from "../hooks/useMediaPage";
 import { getMediaHighlightCards } from "../data/mediaPageContent";
 import { getHeroBackground, getPageHero } from "../utils/pageHeroes";
+import { pageHeroDefaults } from "../utils/publicAsset";
 import {
   filterCommunityLinkMediaItems,
   filterMediaByTypes,
@@ -44,6 +45,7 @@ export default function Media() {
         stats={highlightCards}
         variant={pageHeroConfig?.variant || "page"}
         overlayStrength={pageHeroConfig?.overlayStrength || "default"}
+        fallbackImage={pageHeroDefaults.media}
       />
 
       <ErrorBoundary compact>

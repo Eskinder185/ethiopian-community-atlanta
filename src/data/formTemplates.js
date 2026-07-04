@@ -236,6 +236,11 @@ export function createFormFromTemplate(templateId) {
     notificationEmail: "",
     visiblePublic: false,
     displayOrder: 999,
+    coverImageUrl: "",
+    coverImageAlt: "",
+    backgroundTheme: "warm",
+    accentTheme: "green",
+    layoutStyle: "standard",
     fields: template.fields.map((item, index) => ({
       ...item,
       id: `temp-${index}`,
@@ -262,6 +267,11 @@ export function createBlankForm() {
     notificationEmail: "",
     visiblePublic: false,
     displayOrder: 999,
+    coverImageUrl: "",
+    coverImageAlt: "",
+    backgroundTheme: "warm",
+    accentTheme: "green",
+    layoutStyle: "standard",
     fields: [],
   };
 }

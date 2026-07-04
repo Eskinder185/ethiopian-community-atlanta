@@ -74,9 +74,9 @@ export const translations = {
       launcherMobile: "Ask ECAA",
     },
     mobile: {
-      heroTitle: "A Home for Ethiopians in Atlanta",
+      heroTitle: "Welcome Home, Ethiopians in Atlanta",
       heroSubtitle:
-        "Come connect with culture, community, support, events, and people who understand your story.",
+        "Whether you are new to Atlanta or have called it home for years, ECAA is a place to connect, celebrate our culture, support one another, and belong.",
       stickyJoin: "Join",
       stickyEvents: "Events",
       stickyDonate: "Donate",
@@ -156,9 +156,9 @@ export const translations = {
       launcherMobile: "ECAAን ይጠይቁ",
     },
     mobile: {
-      heroTitle: "በአትላንታ ለኢትዮጵያውያን የሆነ ቤት",
+      heroTitle: "እንኳን ወደ ቤታችን መጡ፣ በአትላንታ ያሉ ኢትዮጵያውያን",
       heroSubtitle:
-        "ከባህል፣ ከማህበረሰብ፣ ከድጋፍ፣ ከዝግጅቶች እና ታሪክዎን ከሚረዱ ሰዎች ጋር ይገናኙ።",
+        "አዲስ ወደ አትላንታ የመጡም ይሁኑ ለዓመታት እዚህ የኖሩ፣ ECAA ከማህበረሰብ ጋር ለመገናኘት፣ ባህላችንን ለማክበር፣ እርስ በርስ ለመደጋገፍ እና የቤትነት ስሜት ለማግኘት የተዘጋጀ ቦታ ነው።",
       stickyJoin: "አባል",
       stickyEvents: "ዝግጅቶች",
       stickyDonate: "ለግስ",

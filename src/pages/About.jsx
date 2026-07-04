@@ -9,6 +9,7 @@ import AboutLeadershipStructure from "../components/sections/about/AboutLeadersh
 import AboutClosingCta from "../components/sections/about/AboutClosingCta";
 import { getAboutPageContent } from "../data/aboutPageContent";
 import { getPageHero, getHeroBackground } from "../utils/pageHeroes";
+import { pageHeroDefaults } from "../utils/publicAsset";
 
 export default function About() {
   const { language } = useLanguage();
@@ -28,6 +29,7 @@ export default function About() {
         stats={content.highlights}
         variant={pageHeroConfig?.variant || "page"}
         overlayStrength={pageHeroConfig?.overlayStrength || "default"}
+        fallbackImage={pageHeroDefaults.about}
       />
 
       <AboutOverview section={{ cards: content.values }} />

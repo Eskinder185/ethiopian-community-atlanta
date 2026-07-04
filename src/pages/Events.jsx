@@ -10,6 +10,7 @@ import { useEventsPage } from "../hooks/useEventsPage";
 import { useHallBookings } from "../hooks/useHallBookings";
 import { getEventsHighlightCards } from "../data/eventsPageContent";
 import { getHeroBackground, getPageHero } from "../utils/pageHeroes";
+import { defaultImages } from "../utils/publicAsset";
 
 export default function Events() {
   const { content, groups } = useEventsPage();
@@ -32,6 +33,7 @@ export default function Events() {
         stats={highlightCards}
         variant={pageHeroConfig?.variant || "page"}
         overlayStrength={pageHeroConfig?.overlayStrength || "default"}
+        fallbackImage={defaultImages.eventsHero}
       />
 
       <EventsQuickActionsBar actions={content.quickActions} />

@@ -8,11 +8,7 @@ export default function LanguageToggle({ variant = "desktop" }) {
 
   if (variant === "mobile") {
     return (
-      <div
-        className="rounded-lg border border-ecaa-border/70 bg-ecaa-cream/40 px-4 py-3"
-        role="group"
-        aria-label={t("common.language")}
-      >
+      <div className="px-1 py-2" role="group" aria-label={t("common.language")}>
         <p className="text-sm font-medium text-ecaa-ink">
           {t("common.language")}:{" "}
           <button

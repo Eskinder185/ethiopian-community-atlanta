@@ -9,6 +9,7 @@ import { useIsMobile } from "../hooks/useIsMobile";
 import { useSupportPage } from "../hooks/useSupportPage";
 import { getSupportHighlightCards } from "../data/supportPageContent";
 import { getPageHero, getHeroBackground } from "../utils/pageHeroes";
+import { pageHeroDefaults } from "../utils/publicAsset";
 
 export default function Support() {
   const { content } = useSupportPage();
@@ -29,6 +30,7 @@ export default function Support() {
         stats={highlightCards}
         variant={pageHeroConfig?.variant || "page"}
         overlayStrength={pageHeroConfig?.overlayStrength || "default"}
+        fallbackImage={pageHeroDefaults.support}
       />
 
       <section className="surface-white" id="donate">

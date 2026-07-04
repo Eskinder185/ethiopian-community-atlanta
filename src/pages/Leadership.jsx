@@ -7,6 +7,7 @@ import ErrorBoundary from "../components/ErrorBoundary";
 import LeadershipAccordionGroups from "../components/leadership/LeadershipAccordionGroups";
 import { useLeadership } from "../hooks/useLeadership";
 import { getHeroBackground, getPageHero } from "../utils/pageHeroes";
+import { defaultImages } from "../utils/publicAsset";
 import { getLeadershipHighlightCards } from "../data/leadershipPageContent";
 import { getVisibleGroupMembers } from "../utils/leadership";
 
@@ -32,6 +33,7 @@ export default function Leadership() {
         stats={highlightCards}
         variant={pageHeroConfig?.variant || "page"}
         overlayStrength={pageHeroConfig?.overlayStrength || "default"}
+        fallbackImage={defaultImages.leadershipHero}
       />
 
       <LeadershipIntroSection intro={pageContent.intro} />

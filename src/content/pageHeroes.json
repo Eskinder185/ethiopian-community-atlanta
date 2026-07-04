@@ -4,16 +4,15 @@
       "visible": true,
       "variant": "home",
       "eyebrow": "Ethiopian Community Association in Atlanta",
-      "title": "Building Intergenerational Connections and Strengthening Community Resilience",
-      "description": "ECAA exists to serve, connect, and empower the Ethiopian community in Atlanta while helping preserve Ethiopian cultural heritage and support integration into American society.",
-      "trustCue": "Serving the Ethiopian and Ethiopian American community in Atlanta since 1983.",
+      "title": "Welcome Home, Ethiopians in Atlanta",
+      "description": "Whether you are new to Atlanta or have called it home for years, ECAA is a place to connect, celebrate our culture, support one another, and belong.",
+      "trustCue": "Serving Ethiopian and Ethiopian American families in Atlanta since 1983.",
       "backgroundImage": "/images/heroes/home-hero.jpg",
-      "backgroundAlt": "Community members gathered in Atlanta for the Ethiopian Community Association in Atlanta.",
+      "backgroundAlt": "Ethiopian community members gathered together at an ECAA event in the Atlanta area.",
       "overlayStrength": "welcoming",
       "buttons": [
         { "label": "Become a Member", "href": "/membership", "style": "primary" },
-        { "label": "View Events", "href": "/events", "style": "secondary" },
-        { "label": "Support ECAA", "href": "/support", "style": "ghost" }
+        { "label": "See Upcoming Events", "href": "/events", "style": "secondary" }
       ],
       "summaryBand": {
         "visible": false,

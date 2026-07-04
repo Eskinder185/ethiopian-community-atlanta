@@ -9,6 +9,7 @@ import MembershipFaq from "../components/sections/MembershipFaq";
 import MembershipClosingCta from "../components/sections/MembershipClosingCta";
 import { useMembershipPage } from "../hooks/useMembershipPage";
 import { getPageHero, getHeroBackground } from "../utils/pageHeroes";
+import { defaultImages } from "../utils/publicAsset";
 
 export default function Membership() {
   const { content } = useMembershipPage();
@@ -30,6 +31,7 @@ export default function Membership() {
         stats={content.overviewCards}
         variant={pageHeroConfig?.variant || "page"}
         overlayStrength={pageHeroConfig?.overlayStrength || "default"}
+        fallbackImage={defaultImages.membershipHero}
       />
 
       <MembershipBenefits section={content.benefits} />

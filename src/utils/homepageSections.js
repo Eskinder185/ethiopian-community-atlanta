@@ -2,6 +2,7 @@ import { getFallbackHomepage, HOMEPAGE_SECTION_KEYS } from "../data/homepage";
 import { getFallbackHomepageAmharic } from "../data/homepageAmharic";
 import { supabase } from "../lib/supabaseClient";
 import { mergeLocalizedContent, stripEmptyOverlay } from "./homepageLocale";
+import { normalizeHomeHeroAmharicSection, normalizeHomeHeroSection } from "./normalizeHomeHero";
 
 function hasSupabaseConfig() {
   return Boolean(import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY);
@@ -25,6 +26,9 @@ function buildEnglishHomepage(rows = []) {
     const key = row.section_key;
     if (!HOMEPAGE_SECTION_KEYS.includes(key)) continue;
     merged[key] = mergeSection(fallback[key], row.content);
+    if (key === "hero") {
+      merged[key] = normalizeHomeHeroSection(merged[key]);
+    }
     if (row.visible === false && merged[key]) {
       merged[key] = { ...merged[key], visible: false };
     }
@@ -40,7 +44,11 @@ function buildAmharicOverlay(rows = []) {
     const key = row.section_key;
     if (!HOMEPAGE_SECTION_KEYS.includes(key)) continue;
     if (row.content_am && typeof row.content_am === "object") {
-      overlay[key] = mergeSection(overlay[key] || {}, row.content_am);
+      let mergedAm = mergeSection(overlay[key] || {}, row.content_am);
+      if (key === "hero") {
+        mergedAm = normalizeHomeHeroAmharicSection(mergedAm);
+      }
+      overlay[key] = mergedAm;
     }
   }
 

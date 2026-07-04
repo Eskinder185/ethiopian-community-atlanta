@@ -13,14 +13,6 @@ if ("serviceWorker" in navigator && import.meta.env.DEV) {
   });
 }
 
-if ("serviceWorker" in navigator && import.meta.env.PROD) {
-  window.addEventListener("load", () => {
-    const base = import.meta.env.BASE_URL || "/";
-    const swPath = `${base}service-worker.js`.replace(/\/{2,}/g, "/");
-    navigator.serviceWorker.register(swPath);
-  });
-}
-
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <HelmetProvider>

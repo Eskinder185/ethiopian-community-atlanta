@@ -2,14 +2,12 @@
 export const homepageAmharicSections = {
   hero: {
     eyebrow: "በአትላንታ የሚገኘው የኢትዮጵያ ማህበረሰብ ማህበር",
-    title: "በአትላንታ ለኢትዮጵያውያን የሆነ ቤት",
+    title: "እንኳን ወደ ቤታችን መጡ፣ በአትላንታ ያሉ ኢትዮጵያውያን",
     description:
-      "ከባህል፣ ከማህበረሰብ፣ ከድጋፍ፣ ከዝግጅቶች እና ታሪክዎን ከሚረዱ ሰዎች ጋር ይገናኙ።",
+      "አዲስ ወደ አትላንታ የመጡም ይሁኑ ለዓመታት እዚህ የኖሩ፣ ECAA ከማህበረሰብ ጋር ለመገናኘት፣ ባህላችንን ለማክበር፣ እርስ በርስ ለመደጋገፍ እና የቤትነት ስሜት ለማግኘት የተዘጋጀ ቦታ ነው።",
     trustCue: "ከ1983 ጀምሮ በአትላንታ ያሉ ኢትዮጵያውያንን እና ኢትዮጵያ-አሜሪካውያንን በማገልገል ላይ",
     primaryCta: { label: "አባል ይሁኑ" },
     secondaryCta: { label: "መጪ ዝግጅቶችን ይመልከቱ" },
-    supportCta: { label: "በጎ ፈቃደኝነት" },
-    donateCta: { label: "ይለግሱ" },
   },
   missionSection: {
     visible: false,

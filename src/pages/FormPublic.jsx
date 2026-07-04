@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import DynamicFormRenderer from "../components/forms/DynamicFormRenderer";
+import FormPageLayout from "../components/forms/FormPageLayout";
 import { useLanguage } from "../context/LanguageContext";
 import {
   fetchPublishedFormWithFields,
@@ -128,14 +129,11 @@ export default function FormPublic() {
 
   if (submitted) {
     return (
-      <div className="container-ecaa py-16 sm:py-20">
-        <div
-          className="mx-auto max-w-xl rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-white p-8 shadow-ecaa-sm sm:p-10"
-          aria-live="polite"
-        >
-          <h1 className="text-2xl font-semibold text-ecaa-green-950">
+      <FormPageLayout form={formData.form} localized={localized} language={language}>
+        <div aria-live="polite">
+          <h2 className="text-2xl font-semibold text-ecaa-green-950">
             {language === "am" ? "እናመሰግናለን" : "Thank you"}
-          </h1>
+          </h2>
           <p className="mt-4 text-base leading-relaxed text-ecaa-ink-muted" lang={language === "am" ? "am" : undefined}>
             {localized.confirmationMessage ||
               (language === "am" ? "ስለላኩት መረጃ እናመሰግናለን።" : "Thank you for your submission.")}
@@ -149,31 +147,25 @@ export default function FormPublic() {
             </Link>
           </div>
         </div>
-      </div>
+      </FormPageLayout>
     );
   }
 
-  return (
-    <div className="container-ecaa py-10 sm:py-14">
-      <div className="mx-auto max-w-2xl">
-        <header className="mb-8">
-          <h1
-            className="text-2xl font-semibold tracking-tight text-ecaa-green-950 sm:text-3xl"
-            lang={language === "am" ? "am" : undefined}
-          >
-            {localized.title}
-          </h1>
-          {localized.description && (
-            <p
-              className="mt-3 text-base leading-relaxed text-ecaa-ink-muted sm:text-lg"
-              lang={language === "am" ? "am" : undefined}
-            >
-              {localized.description}
-            </p>
-          )}
-        </header>
+  const privacyFooter = (
+    <p className="mt-6 text-sm leading-relaxed text-ecaa-ink-muted" lang={language === "am" ? "am" : undefined}>
+      {privacyText}
+    </p>
+  );
 
-        <div className="rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-white p-6 shadow-ecaa-sm sm:p-8">
+  return (
+    <FormPageLayout
+      form={formData.form}
+      localized={localized}
+      language={language}
+      footer={privacyFooter}
+    >
+      {({ accentButtonClass }) => (
+        <>
           <DynamicFormRenderer
             form={formData.form}
             fields={formData.fields}
@@ -181,22 +173,15 @@ export default function FormPublic() {
             submitLabel={localized.submitButtonLabel}
             onSubmit={handleSubmit}
             submitting={submitting}
+            accentButtonClass={accentButtonClass}
           />
-
           {submitError && (
             <p role="alert" className="mt-4 text-sm text-ecaa-red-700">
               {submitError}
             </p>
           )}
-        </div>
-
-        <p
-          className="mt-6 text-sm leading-relaxed text-ecaa-ink-muted"
-          lang={language === "am" ? "am" : undefined}
-        >
-          {privacyText}
-        </p>
-      </div>
-    </div>
+        </>
+      )}
+    </FormPageLayout>
   );
 }
