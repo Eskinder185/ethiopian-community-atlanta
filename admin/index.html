@@ -9,7 +9,7 @@
     <style>
       body {
         margin: 0;
-        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-family: "Segoe UI", system-ui, sans-serif;
         background: #faf9f6;
         color: #1a1f1c;
       }
@@ -101,40 +101,40 @@
 
     <script>
       function showError(message) {
-        const status = document.getElementById('cms-status')
-        if (!status) return
-        status.className = 'cms-status error'
-        status.innerHTML = message
+        const status = document.getElementById("cms-status");
+        if (!status) return;
+        status.className = "cms-status error";
+        status.innerHTML = message;
       }
 
       function loadDecapCms() {
-        const existing = document.getElementById('decap-cms-script')
-        if (existing) return
+        const existing = document.getElementById("decap-cms-script");
+        if (existing) return;
 
-        const script = document.createElement('script')
-        script.id = 'decap-cms-script'
-        script.src = 'https://unpkg.com/decap-cms@3.8.0/dist/decap-cms.js'
+        const script = document.createElement("script");
+        script.id = "decap-cms-script";
+        script.src = "https://unpkg.com/decap-cms@3.8.0/dist/decap-cms.js";
         script.onload = function () {
-          document.getElementById('cms-status')?.remove()
-        }
+          document.getElementById("cms-status")?.remove();
+        };
         script.onerror = function () {
           showError(
-            '<strong>Could not load Decap CMS.</strong><p>Check your internet connection and refresh the page.</p>',
-          )
-        }
-        document.body.appendChild(script)
+            "<strong>Could not load Decap CMS.</strong><p>Check your internet connection and refresh the page.</p>"
+          );
+        };
+        document.body.appendChild(script);
       }
 
-      window.addEventListener('error', function (event) {
-        if (event.filename && event.filename.includes('decap-cms')) {
+      window.addEventListener("error", function (event) {
+        if (event.filename && event.filename.includes("decap-cms")) {
           showError(
-            '<strong>Could not load the content editor.</strong>' +
-              '<p>Check your internet connection and refresh the page. The editor loads from a CDN.</p>',
-          )
+            "<strong>Could not load the content editor.</strong>" +
+              "<p>Check your internet connection and refresh the page. The editor loads from a CDN.</p>"
+          );
         }
-      })
+      });
 
-      loadDecapCms()
+      loadDecapCms();
     </script>
   </body>
 </html>
