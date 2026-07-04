@@ -15,8 +15,28 @@
       content="Join the Ethiopian Community Association in Atlanta. Connect with culture, community programs, events, membership, volunteering, EDIR, and support for Ethiopians in Atlanta."
     />
     <title>Ethiopian Community Association in Atlanta | Join ECAA</title>
-    <script type="module" crossorigin src="/ethiopian-community-atlanta/assets/index-oDeh141v.js"></script>
-    <link rel="stylesheet" crossorigin href="/ethiopian-community-atlanta/assets/index-Bc_jQNP5.css">
+    <script>
+      (function (l) {
+        if (!l.search) return;
+        var params = {};
+        l.search
+          .slice(1)
+          .split("&")
+          .forEach(function (part) {
+            var pair = part.split("=");
+            params[pair[0]] = pair.slice(1).join("=").replace(/~and~/g, "&");
+          });
+        if (params.p !== undefined) {
+          window.history.replaceState(
+            null,
+            null,
+            l.pathname + params.p.replace(/^\/\//, "/") + (params.q ? "?" + params.q : "") + l.hash
+          );
+        }
+      })(window.location);
+    </script>
+    <script type="module" crossorigin src="/ethiopian-community-atlanta/assets/index-BCv44RnM.js"></script>
+    <link rel="stylesheet" crossorigin href="/ethiopian-community-atlanta/assets/index-DOL3YLkV.css">
   </head>
   <body>
     <div id="root"></div>
