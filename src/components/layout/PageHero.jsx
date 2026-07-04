@@ -10,9 +10,9 @@ import {
 
 const overlayPresets = {
   welcoming: {
-    main: "from-ecaa-green-950/72 via-ecaa-green-900/48 to-ecaa-gold-900/20",
-    vertical: "from-ecaa-green-950/45 via-transparent to-ecaa-green-950/18",
-    mobile: "bg-ecaa-green-950/12",
+    main: "from-ecaa-green-950/84 via-ecaa-green-900/62 to-ecaa-green-900/40",
+    vertical: "from-ecaa-green-950/58 via-ecaa-green-950/22 to-ecaa-green-950/28",
+    mobile: "bg-ecaa-green-950/28",
   },
   subtle: {
     main: "from-ecaa-green-950/88 via-ecaa-green-950/65 to-ecaa-green-950/30",

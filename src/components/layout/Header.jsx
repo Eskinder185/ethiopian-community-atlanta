@@ -29,7 +29,7 @@ export default function Header() {
   }, [location.pathname, location.hash]);
 
   return (
-    <header className="sticky top-0 z-50 w-full overflow-visible border-b border-ecaa-border/60 bg-ecaa-white/95 shadow-ecaa-sm backdrop-blur-xl">
+    <header className="sticky top-0 z-50 w-full overflow-visible border-b border-ecaa-border bg-ecaa-white/96 shadow-ecaa-sm backdrop-blur-xl">
       <Container wide className="overflow-visible">
         <div className="flex h-16 items-center justify-between gap-3 sm:gap-4">
           <HeaderBrand />

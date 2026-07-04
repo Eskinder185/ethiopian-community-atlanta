@@ -3,7 +3,7 @@ import Container from "../ui/Container";
 import CTAButton from "../ui/CTAButton";
 import AnimateIn from "../ui/AnimateIn";
 import { useLanguage } from "../../context/LanguageContext";
-import { getPatternImage, hasImageAsset, resolvePublicAssetPath } from "../../utils/images";
+import { getPatternImage, hasImageAsset, getResolvedImageSrc } from "../../utils/images";
 import {
   getHeroBackground,
   getHeroButtons,
@@ -15,9 +15,9 @@ import {
 
 const overlayPresets = {
   welcoming: {
-    main: "from-ecaa-green-950/78 via-ecaa-green-900/55 to-ecaa-green-950/35",
-    vertical: "from-ecaa-green-950/55 via-ecaa-green-950/20 to-ecaa-green-950/25",
-    mobile: "bg-ecaa-green-950/25",
+    main: "from-ecaa-green-950/84 via-ecaa-green-900/62 to-ecaa-green-900/40",
+    vertical: "from-ecaa-green-950/58 via-ecaa-green-950/22 to-ecaa-green-950/28",
+    mobile: "bg-ecaa-green-950/28",
   },
   subtle: {
     main: "from-ecaa-green-950/88 via-ecaa-green-950/65 to-ecaa-green-950/30",
@@ -152,15 +152,13 @@ export default function PageHeroWithStats({
       ? { src: backgroundImage, alt: backgroundAlt }
       : null;
 
-  const hasPhoto =
-    !imageFailed &&
-    resolvedBackground?.src &&
-    resolvedBackground.src.startsWith("/") &&
-    !resolvedBackground.src.includes("TODO");
-
-  const photoSrc = hasPhoto ? resolvePublicAssetPath(resolvedBackground.src) : "";
+  const photoSrc =
+    !imageFailed && resolvedBackground?.src
+      ? getResolvedImageSrc(resolvedBackground.src)
+      : "";
+  const hasPhoto = Boolean(photoSrc);
   const pattern = getPatternImage();
-  const patternSrc = hasImageAsset(pattern) ? resolvePublicAssetPath(pattern.src) : "";
+  const patternSrc = hasImageAsset(pattern) ? getResolvedImageSrc(pattern.src) : "";
   const overlay = overlayPresets[overlayStrength] || overlayPresets.default;
   const isHome = variant === "home";
   const isLegal = variant === "legal";
@@ -230,7 +228,7 @@ export default function PageHeroWithStats({
             <>
               <div className="max-w-2xl md:hidden">
                 {eyebrowText && <p className="hero-home-eyebrow">{eyebrowText}</p>}
-                <h1 className={`hero-home-title text-[1.75rem] leading-tight ${eyebrowText ? "mt-3" : ""}`}>
+                <h1 className={`hero-home-title ${eyebrowText ? "mt-3" : ""}`}>
                   {titleText || t("mobile.heroTitle")}
                 </h1>
                 {(descriptionText || t("mobile.heroSubtitle")) && (

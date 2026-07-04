@@ -124,7 +124,7 @@ export default function MobileMenu({ isOpen, onClose, returnFocusRef }) {
             <LanguageToggle variant="mobile" />
           </div>
 
-          <p className="mb-2 px-3 text-xs font-semibold uppercase tracking-[0.14em] text-ecaa-gold-700">
+          <p className="mb-2 px-3 text-sm font-semibold uppercase tracking-[0.14em] text-ecaa-gold-700">
             {t("nav.quickLinks")}
           </p>
           <ul className="mb-4 grid grid-cols-2 gap-1">

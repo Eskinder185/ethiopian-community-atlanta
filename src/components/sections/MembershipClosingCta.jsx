@@ -9,7 +9,7 @@ export default function MembershipClosingCta({ section }) {
     <section className="surface-white py-16 sm:py-20">
       <Container>
         <AnimateIn>
-          <div className="rounded-ecaa-2xl border border-ecaa-green-800/20 bg-gradient-to-br from-ecaa-green-900 via-ecaa-green-950 to-ecaa-green-900 px-6 py-10 text-center shadow-ecaa-md sm:px-10 sm:py-12">
+          <div className="cta-band-deep">
             <h2 className="text-2xl font-semibold normal-case tracking-tight text-ecaa-white sm:text-3xl">
               {section.title}
             </h2>

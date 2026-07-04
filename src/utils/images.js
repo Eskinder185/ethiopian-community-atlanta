@@ -2,6 +2,7 @@ import imagesData from "../content/images.json";
 import { getPatternAsset, siteAssets } from "../config/assets";
 import { resolvePublicImageUrl } from "../lib/uploadMedia";
 import { hasUsableText } from "./data";
+import { defaultImagePaths, publicAsset } from "./publicAsset";
 
 const IMAGE_ID_TO_ASSET = {
   "home-hero-community-atlanta": siteAssets.heroes.home,
@@ -11,6 +12,25 @@ const IMAGE_ID_TO_ASSET = {
   "leadership-community-guidance": siteAssets.heroes.leadership,
   "global-ethiopian-pattern-divider": siteAssets.patterns.global,
 };
+
+function isExternalUrl(path) {
+  return (
+    path.startsWith("http://") ||
+    path.startsWith("https://") ||
+    path.startsWith("//") ||
+    path.startsWith("mailto:") ||
+    path.startsWith("tel:")
+  );
+}
+
+function isInvalidLocalPath(path) {
+  return (
+    path.startsWith("blob:") ||
+    path.startsWith("file:") ||
+    /^[A-Za-z]:\\/.test(path) ||
+    path.startsWith("/uploads/")
+  );
+}
 
 export function getImageById(id) {
   if (!id) return null;
@@ -40,26 +60,34 @@ export function resolvePublicAssetPath(path) {
   return getResolvedImageSrc(path);
 }
 
-/** Resolve an image record or path string for use in img/background src. */
+/**
+ * Resolve an image record or path string for use in img/background src.
+ * Priority: external/CMS URL → Supabase storage URL → local public asset via BASE_URL.
+ */
 export function getResolvedImageSrc(imageOrPath) {
   if (!imageOrPath) return "";
+
   const path = typeof imageOrPath === "string" ? imageOrPath : imageOrPath.src;
   if (!hasUsableText(path) || path.startsWith("TODO")) return "";
 
-  const publicUrl = resolvePublicImageUrl(path);
-  if (publicUrl) return publicUrl;
+  const trimmed = path.trim();
 
-  if (path.startsWith("blob:") || path.startsWith("file:") || /^[A-Za-z]:\\/.test(path)) return "";
-  if (path.startsWith("/uploads/")) return "";
-  if (
-    path.startsWith("http") ||
-    path.startsWith("//") ||
-    path.startsWith("mailto:") ||
-    path.startsWith("tel:")
-  ) {
-    return path;
-  }
+  if (isExternalUrl(trimmed)) return trimmed;
+  if (isInvalidLocalPath(trimmed)) return "";
+
   const base = import.meta.env.BASE_URL || "/";
-  const normalized = path.startsWith("/") ? path.slice(1) : path;
-  return `${base}${normalized}`;
+  if (trimmed.startsWith(base)) return trimmed;
+
+  const storageUrl = resolvePublicImageUrl(trimmed);
+  if (storageUrl && isExternalUrl(storageUrl)) return storageUrl;
+
+  return publicAsset(trimmed);
+}
+
+/** Pick CMS image when valid, otherwise a local default public path. */
+export function resolveHeroImagePath(cmsPath, fallbackPath = defaultImagePaths.homeHero) {
+  if (hasUsableText(cmsPath) && !cmsPath.startsWith("TODO")) {
+    return cmsPath.trim();
+  }
+  return fallbackPath;
 }

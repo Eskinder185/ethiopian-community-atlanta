@@ -15,15 +15,18 @@ export default function HomeFinalCTA({ data }) {
     .filter(Boolean);
 
   return (
-    <section className="home-section surface-muted" aria-labelledby="home-final-cta-heading">
+    <section className="home-section surface-deep" aria-labelledby="home-final-cta-heading">
       <Container className="home-section-inner">
         <AnimateIn>
-          <div className="ecaa-card-premium mx-auto max-w-3xl text-center">
-            <h2 id="home-final-cta-heading" className="heading-section text-2xl sm:text-3xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2
+              id="home-final-cta-heading"
+              className="text-[1.75rem] font-semibold tracking-tight text-ecaa-white sm:text-3xl lg:text-4xl"
+            >
               {data.title}
             </h2>
             {data.description && (
-              <p className="mt-4 text-base leading-relaxed text-ecaa-ink-muted sm:text-lg">
+              <p className="mx-auto mt-4 max-w-[680px] text-base leading-[1.65] text-ecaa-green-100/92 sm:text-lg">
                 {data.description}
               </p>
             )}
@@ -33,8 +36,13 @@ export default function HomeFinalCTA({ data }) {
                   <CTAButton
                     key={`${button.label}-${button.to || button.href}`}
                     {...(button.to ? { to: button.to } : { href: button.href })}
-                    variant={index === 0 ? "primary" : "secondary"}
+                    variant={index === 0 ? "accent" : "secondary"}
                     size="lg"
+                    className={
+                      index !== 0
+                        ? "!border-ecaa-white/40 !bg-transparent !text-ecaa-white hover:!bg-ecaa-white/10"
+                        : ""
+                    }
                   >
                     {button.label}
                   </CTAButton>

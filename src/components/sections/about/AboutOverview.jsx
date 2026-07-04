@@ -5,7 +5,7 @@ export default function AboutOverview({ section }) {
   if (!section?.cards?.length) return null;
 
   return (
-    <section className="border-b border-ecaa-border/60 bg-ecaa-cream/50 py-12 sm:py-14">
+    <section className="border-b border-ecaa-border/60 bg-ecaa-green-50 py-12 sm:py-14">
       <Container>
         <AnimateIn>
           <div className="grid gap-4 sm:grid-cols-3 sm:gap-6">

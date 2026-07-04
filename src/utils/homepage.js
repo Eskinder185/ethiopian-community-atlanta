@@ -2,6 +2,8 @@ import { hasUsableText, isTodoValue, toEmbedUrl } from "./data";
 import { featuredProgramAmharicBySlug } from "../data/homepageAmharic";
 import { EVENT_STATUS } from "./events";
 import { isHomepageMediaCandidate } from "./mediaItems";
+import { getResolvedImageSrc, resolveHeroImagePath } from "./images";
+import { defaultImagePaths } from "./publicAsset";
 
 export function isSectionVisible(section) {
   return section?.visible !== false;
@@ -279,7 +281,9 @@ export function mapHomeHeroData(hero) {
     eyebrow: hero.eyebrow,
     title: hero.title,
     description: hero.description,
-    backgroundImage: hero.image,
+    backgroundImage: getResolvedImageSrc(
+      resolveHeroImagePath(hero.image, defaultImagePaths.homeHero)
+    ),
     backgroundAlt: hero.imageAlt,
     trustCue: hero.trustCue,
     buttons,

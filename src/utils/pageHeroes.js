@@ -1,6 +1,7 @@
 // Future step: add verified Amharic page hero content after ECAA approves translations.
 import pageHeroesData from "../content/pageHeroes.json";
-import { getHeroAsset } from "../config/assets";
+import { pageHeroFallbackPaths } from "./publicAsset";
+import { getResolvedImageSrc } from "./images";
 import { hasUsableText, isTodoValue } from "./data";
 
 export function getPageHero(pageKey) {
@@ -35,16 +36,28 @@ export function getHeroStats(stats = []) {
   );
 }
 
+/**
+ * Hero background: CMS/Supabase URL first, then local public fallback.
+ * Returns { src, alt } where src is ready for img/background use.
+ */
 export function getHeroBackground(hero, pageKey) {
-  const assetPath = pageKey ? getHeroAsset(pageKey) : null;
-  const src =
+  const cmsSrc =
     hasUsableText(hero?.backgroundImage) && !isTodoValue(hero.backgroundImage)
       ? hero.backgroundImage.trim()
-      : assetPath;
+      : hasUsableText(hero?.image) && !isTodoValue(hero.image)
+        ? hero.image.trim()
+        : "";
 
-  if (!hasUsableText(src) || isTodoValue(src) || !src.startsWith("/")) return null;
+  const fallbackPath = pageKey ? pageHeroFallbackPaths[pageKey] || "" : "";
+  const rawSrc = cmsSrc || fallbackPath;
+
+  if (!hasUsableText(rawSrc) || isTodoValue(rawSrc)) return null;
+
+  const resolvedSrc = getResolvedImageSrc(rawSrc);
+  if (!resolvedSrc) return null;
+
   return {
-    src,
+    src: resolvedSrc,
     alt: getPublicHeroText(hero?.backgroundAlt, "ECAA community photo"),
   };
 }

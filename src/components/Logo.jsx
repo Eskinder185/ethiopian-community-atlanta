@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import siteInfo from "../content/siteInfo.json";
-import { siteAssets } from "../config/assets";
 import { useLanguage } from "../context/LanguageContext";
-import { resolvePublicAssetPath } from "../utils/images";
+import { defaultImages } from "../utils/publicAsset";
+import { getResolvedImageSrc } from "../utils/images";
 
-export const LOGO_PATH = siteAssets.logo;
-export const LOGO_ALT = siteAssets.logoAlt;
+export const LOGO_PATH = defaultImages.logo;
+export const LOGO_ALT = "Ethiopian Community Association in Atlanta logo";
 
 export const ORG_DISPLAY_NAME = siteInfo.name.replace(/, Inc\.$/, "");
 
@@ -40,7 +40,7 @@ export default function Logo({
 }) {
   const { t, language } = useLanguage();
   const [failed, setFailed] = useState(false);
-  const src = resolvePublicAssetPath(LOGO_PATH);
+  const src = getResolvedImageSrc(LOGO_PATH);
   const sizeClass = IMAGE_SIZE[size] || size;
   const logoAlt = language === "am" ? t("brand.logoAlt") : LOGO_ALT;
   const displayName = language === "am" ? t("brand.orgName") : ORG_DISPLAY_NAME;

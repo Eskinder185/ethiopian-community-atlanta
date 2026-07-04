@@ -2,30 +2,32 @@
  * Static website design assets (logo, heroes, patterns, placeholders).
  * Community gallery media lives in Supabase / media_items — not here.
  */
+import { defaultImagePaths } from "../utils/publicAsset";
+
 export const siteAssets = {
-  logo: "/images/brand/ECAA_logo.jpg",
+  logo: defaultImagePaths.logo,
   logoAlt: "Ethiopian Community Association in Atlanta logo",
 
-  bookHall: "/images/heroes/event-hall.jpg",
+  bookHall: defaultImagePaths.eventHall,
   bookHallAlt: "ECAA event hall space for community gatherings and celebrations",
 
-  homeHero: "/images/heroes/home-hero.jpg",
+  homeHero: defaultImagePaths.homeHero,
   homeHeroAlt: "ECAA community gathering and welcome image for visitors.",
 
   heroes: {
-    home: "/images/heroes/home-hero.jpg",
-    about: "/images/patterns/global-ethiopian-pattern-divider.jpg",
-    programs: "/images/heroes/programs-hero.jpg",
-    events: "/images/heroes/events-hero.jpg",
-    membership: "/images/heroes/membership-hero.jpg",
-    leadership: "/images/heroes/leadership-hero.jpg",
-    media: "/images/heroes/events-hero.jpg",
-    contact: "/images/heroes/home-hero.jpg",
-    eventHall: "/images/heroes/event-hall.jpg",
+    home: defaultImagePaths.homeHero,
+    about: defaultImagePaths.patternDivider,
+    programs: defaultImagePaths.programsHero,
+    events: defaultImagePaths.eventsHero,
+    membership: defaultImagePaths.membershipHero,
+    leadership: defaultImagePaths.leadershipHero,
+    media: defaultImagePaths.eventsHero,
+    contact: defaultImagePaths.homeHero,
+    eventHall: defaultImagePaths.eventHall,
   },
 
   patterns: {
-    global: "/images/patterns/global-ethiopian-pattern-divider.jpg",
+    global: defaultImagePaths.patternDivider,
   },
 
   placeholders: {

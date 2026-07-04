@@ -59,7 +59,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-1.5">
-            <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-ecaa-gold-200">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.12em] text-ecaa-gold-200">
               {t("footer.contact")}
             </h2>
             <div className="space-y-0.5 text-sm text-ecaa-green-100/90">
@@ -88,7 +88,7 @@ export default function Footer() {
               aria-expanded={linksOpen}
               onClick={() => setLinksOpen((open) => !open)}
             >
-              <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-ecaa-gold-200">
+              <h2 className="text-sm font-semibold uppercase tracking-[0.12em] text-ecaa-gold-200">
                 {t("footer.quickLinks")}
               </h2>
               <span className="text-sm text-ecaa-green-200 md:hidden" aria-hidden="true">
@@ -130,7 +130,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-6 flex flex-col items-center justify-between gap-3 border-t border-ecaa-green-800/40 pt-4 text-center text-xs text-ecaa-green-200/70 sm:flex-row sm:text-left">
+        <div className="mt-6 flex flex-col items-center justify-between gap-3 border-t border-ecaa-green-800/40 pt-5 text-center text-sm text-ecaa-green-100/85 sm:flex-row sm:text-left">
           <p>{t("footer.copyright").replace("{year}", String(currentYear))}</p>
           {legalLinks.length > 0 && (
             <p className="flex flex-wrap items-center justify-center gap-x-1 gap-y-0 sm:justify-end">
