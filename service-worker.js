@@ -1,4 +1,4 @@
-const CACHE_NAME = "ecaa-site-cache-v2";
+const CACHE_NAME = "ecaa-site-cache-v3";
 
 self.addEventListener("install", () => {
   self.skipWaiting();
