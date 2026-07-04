@@ -1,27 +1,30 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
+import "./index.css";
+import App from "./App.jsx";
 
-if ('serviceWorker' in navigator && import.meta.env.DEV) {
+if ("serviceWorker" in navigator && import.meta.env.DEV) {
   navigator.serviceWorker.getRegistrations().then((registrations) => {
-    registrations.forEach((registration) => registration.unregister())
-  })
+    registrations.forEach((registration) => registration.unregister());
+  });
   caches.keys().then((keys) => {
-    keys.forEach((key) => caches.delete(key))
-  })
+    keys.forEach((key) => caches.delete(key));
+  });
 }
 
-if ('serviceWorker' in navigator && import.meta.env.PROD) {
-  window.addEventListener('load', () => {
-    const base = import.meta.env.BASE_URL || '/'
-    const swPath = `${base}service-worker.js`.replace(/\/{2,}/g, '/')
-    navigator.serviceWorker.register(swPath)
-  })
+if ("serviceWorker" in navigator && import.meta.env.PROD) {
+  window.addEventListener("load", () => {
+    const base = import.meta.env.BASE_URL || "/";
+    const swPath = `${base}service-worker.js`.replace(/\/{2,}/g, "/");
+    navigator.serviceWorker.register(swPath);
+  });
 }
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
+  </StrictMode>
+);

@@ -1,17 +1,17 @@
-import Container from '../ui/Container'
-import HomeSectionHeader from '../ui/HomeSectionHeader'
-import HomeInfoCard from '../cards/HomeInfoCard'
-import AnimateIn from '../ui/AnimateIn'
-import { getVisibleItems, isSectionVisible, isUsableHomeText } from '../../utils/homepage'
+import Container from "../ui/Container";
+import HomeSectionHeader from "../ui/HomeSectionHeader";
+import HomeInfoCard from "../cards/HomeInfoCard";
+import AnimateIn from "../ui/AnimateIn";
+import { getVisibleItems, isSectionVisible, isUsableHomeText } from "../../utils/homepage";
 
 function isImpactItem(item) {
-  return isUsableHomeText(item?.title) && isUsableHomeText(item?.description)
+  return isUsableHomeText(item?.title) && isUsableHomeText(item?.description);
 }
 
 export default function CommunityImpactSection({ data }) {
-  if (!isSectionVisible(data)) return null
+  if (!isSectionVisible(data)) return null;
 
-  const items = getVisibleItems(data.items, isImpactItem)
+  const items = getVisibleItems(data.items, isImpactItem);
 
   return (
     <section className="home-section surface-white" aria-labelledby="community-impact-heading">
@@ -38,5 +38,5 @@ export default function CommunityImpactSection({ data }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

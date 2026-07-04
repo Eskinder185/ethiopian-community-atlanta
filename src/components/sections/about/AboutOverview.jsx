@@ -1,8 +1,8 @@
-import Container from '../../ui/Container'
-import AnimateIn from '../../ui/AnimateIn'
+import Container from "../../ui/Container";
+import AnimateIn from "../../ui/AnimateIn";
 
 export default function AboutOverview({ section }) {
-  if (!section?.cards?.length) return null
+  if (!section?.cards?.length) return null;
 
   return (
     <section className="border-b border-ecaa-border/60 bg-ecaa-cream/50 py-12 sm:py-14">
@@ -20,13 +20,17 @@ export default function AboutOverview({ section }) {
                 >
                   {index + 1}
                 </div>
-                <h2 className="mt-4 text-lg font-semibold normal-case text-ecaa-ink">{card.title}</h2>
-                <p className="mt-2 text-base leading-relaxed text-ecaa-ink-muted">{card.description}</p>
+                <h2 className="mt-4 text-lg font-semibold normal-case text-ecaa-ink">
+                  {card.title}
+                </h2>
+                <p className="mt-2 text-base leading-relaxed text-ecaa-ink-muted">
+                  {card.description}
+                </p>
               </article>
             ))}
           </div>
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

@@ -1,6 +1,6 @@
-import Container from '../ui/Container'
-import SectionHeader from '../ui/SectionHeader'
-import AnimateIn from '../ui/AnimateIn'
+import Container from "../ui/Container";
+import SectionHeader from "../ui/SectionHeader";
+import AnimateIn from "../ui/AnimateIn";
 
 function CheckIcon() {
   return (
@@ -16,11 +16,11 @@ function CheckIcon() {
         clipRule="evenodd"
       />
     </svg>
-  )
+  );
 }
 
 export default function MembershipBenefits({ section }) {
-  if (!section?.items?.length) return null
+  if (!section?.items?.length) return null;
 
   return (
     <section className="surface-white" id="membership-benefits">
@@ -45,5 +45,5 @@ export default function MembershipBenefits({ section }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

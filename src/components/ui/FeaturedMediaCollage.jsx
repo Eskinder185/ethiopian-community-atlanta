@@ -1,25 +1,25 @@
-import { Link } from 'react-router-dom'
-import { getMediaAlt, getMediaCaption, getLinkProps } from '../../utils/homepage'
-import { getYoutubeThumbnail, toEmbedUrl } from '../../utils/data'
-import { getResolvedImageSrc } from '../../utils/images'
+import { Link } from "react-router-dom";
+import { getMediaAlt, getMediaCaption, getLinkProps } from "../../utils/homepage";
+import { getYoutubeThumbnail, toEmbedUrl } from "../../utils/data";
+import { getResolvedImageSrc } from "../../utils/images";
 
 const SIZE_CLASSES = {
-  large: 'sm:col-span-2 sm:row-span-2 min-h-[280px] sm:min-h-0',
-  wide: 'sm:col-span-2 sm:row-span-1 min-h-[200px] sm:min-h-0',
-  small: 'sm:col-span-1 sm:row-span-1 min-h-[200px] sm:min-h-0',
-}
+  large: "sm:col-span-2 sm:row-span-2 min-h-[280px] sm:min-h-0",
+  wide: "sm:col-span-2 sm:row-span-1 min-h-[200px] sm:min-h-0",
+  small: "sm:col-span-1 sm:row-span-1 min-h-[200px] sm:min-h-0",
+};
 
 function getLayoutClass(item, index) {
   if (item.featuredSize && SIZE_CLASSES[item.featuredSize]) {
-    return SIZE_CLASSES[item.featuredSize]
+    return SIZE_CLASSES[item.featuredSize];
   }
   const fallback = [
-    'sm:col-span-2 sm:row-span-2 min-h-[280px] sm:min-h-0',
-    'sm:col-span-1 sm:row-span-1 min-h-[200px] sm:min-h-0',
-    'sm:col-span-1 sm:row-span-1 min-h-[200px] sm:min-h-0',
-    'sm:col-span-2 sm:row-span-1 min-h-[200px] sm:min-h-0',
-  ]
-  return fallback[index % fallback.length]
+    "sm:col-span-2 sm:row-span-2 min-h-[280px] sm:min-h-0",
+    "sm:col-span-1 sm:row-span-1 min-h-[200px] sm:min-h-0",
+    "sm:col-span-1 sm:row-span-1 min-h-[200px] sm:min-h-0",
+    "sm:col-span-2 sm:row-span-1 min-h-[200px] sm:min-h-0",
+  ];
+  return fallback[index % fallback.length];
 }
 
 function PlayIcon() {
@@ -32,20 +32,19 @@ function PlayIcon() {
         <path d="M8 5v14l11-7z" />
       </svg>
     </span>
-  )
+  );
 }
 
 function MediaTile({ item, layout, sectionHref }) {
-  const isVideo = item.type === 'video'
-  const embedSrc = toEmbedUrl(item.embedUrl || item.youtubeUrl)
-  const caption = getMediaCaption(item)
-  const itemLink = getLinkProps({ href: item.href })
-  const href = itemLink?.href || itemLink?.to || sectionHref
-  const isExternal = typeof href === 'string' && href.startsWith('http')
+  const isVideo = item.type === "video";
+  const embedSrc = toEmbedUrl(item.embedUrl || item.youtubeUrl);
+  const caption = getMediaCaption(item);
+  const itemLink = getLinkProps({ href: item.href });
+  const href = itemLink?.href || itemLink?.to || sectionHref;
+  const isExternal = typeof href === "string" && href.startsWith("http");
 
   const thumbnail =
-    (isVideo && getYoutubeThumbnail(item.thumbnailUrl || item.embedUrl || item.youtubeUrl)) ||
-  null
+    (isVideo && getYoutubeThumbnail(item.thumbnailUrl || item.embedUrl || item.youtubeUrl)) || null;
 
   const content = (
     <>
@@ -86,35 +85,34 @@ function MediaTile({ item, layout, sectionHref }) {
         </figcaption>
       )}
     </>
-  )
+  );
 
-  const figureClass = `group relative overflow-hidden rounded-ecaa-xl border border-ecaa-border/70 bg-ecaa-cream-dark shadow-ecaa-sm ${layout}`
+  const figureClass = `group relative overflow-hidden rounded-ecaa-xl border border-ecaa-border/70 bg-ecaa-cream-dark shadow-ecaa-sm ${layout}`;
 
   if (href) {
     if (isExternal) {
       return (
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${figureClass} block`}
-        >
+        <a href={href} target="_blank" rel="noopener noreferrer" className={`${figureClass} block`}>
           {content}
         </a>
-      )
+      );
     }
     return (
       <Link to={href} className={`${figureClass} block`}>
         {content}
       </Link>
-    )
+    );
   }
 
-  return <figure className={figureClass}>{content}</figure>
+  return <figure className={figureClass}>{content}</figure>;
 }
 
-export default function FeaturedMediaCollage({ items = [], className = '', sectionHref = '/media' }) {
-  if (items.length === 0) return null
+export default function FeaturedMediaCollage({
+  items = [],
+  className = "",
+  sectionHref = "/media",
+}) {
+  if (items.length === 0) return null;
 
   return (
     <div
@@ -129,5 +127,5 @@ export default function FeaturedMediaCollage({ items = [], className = '', secti
         />
       ))}
     </div>
-  )
+  );
 }

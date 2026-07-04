@@ -1,15 +1,15 @@
-import { useMemo } from 'react'
-import { useLanguage } from '../context/LanguageContext'
-import PageHeroWithStats from '../components/layout/PageHeroWithStats'
-import ContactDetailsSection from '../components/sections/ContactDetailsSection'
-import { getContactPageContent } from '../data/contactPageContent'
-import { getPageHero, getHeroBackground } from '../utils/pageHeroes'
+import { useMemo } from "react";
+import { useLanguage } from "../context/LanguageContext";
+import PageHeroWithStats from "../components/layout/PageHeroWithStats";
+import ContactDetailsSection from "../components/sections/ContactDetailsSection";
+import { getContactPageContent } from "../data/contactPageContent";
+import { getPageHero, getHeroBackground } from "../utils/pageHeroes";
 
 export default function Contact() {
-  const { language } = useLanguage()
-  const content = useMemo(() => getContactPageContent(language), [language])
-  const pageHeroConfig = getPageHero('contact')
-  const background = getHeroBackground(pageHeroConfig, 'contact')
+  const { language } = useLanguage();
+  const content = useMemo(() => getContactPageContent(language), [language]);
+  const pageHeroConfig = getPageHero("contact");
+  const background = getHeroBackground(pageHeroConfig, "contact");
 
   return (
     <>
@@ -21,10 +21,10 @@ export default function Contact() {
         backgroundAlt={pageHeroConfig?.backgroundAlt}
         buttons={content.hero.buttons}
         stats={content.summaryCards}
-        variant={pageHeroConfig?.variant || 'page'}
-        overlayStrength={pageHeroConfig?.overlayStrength || 'default'}
+        variant={pageHeroConfig?.variant || "page"}
+        overlayStrength={pageHeroConfig?.overlayStrength || "default"}
       />
       <ContactDetailsSection content={content} />
     </>
-  )
+  );
 }

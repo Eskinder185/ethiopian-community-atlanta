@@ -1,14 +1,14 @@
-import DocumentCard from '../cards/DocumentCard'
-import EmptyState from '../ui/EmptyState'
-import ContentSection from './ContentSection'
-import documentsData from '../../content/documents.json'
-import { filterVerifiedContent } from '../../utils/data'
+import DocumentCard from "../cards/DocumentCard";
+import EmptyState from "../ui/EmptyState";
+import ContentSection from "./ContentSection";
+import documentsData from "../../content/documents.json";
+import { filterVerifiedContent } from "../../utils/data";
 
 export default function DocumentCategorySection({ category, muted = false }) {
   const documents = filterVerifiedContent(
     documentsData.documents.filter((doc) => doc.categoryId === category.id),
-    ['title'],
-  )
+    ["title"]
+  );
 
   return (
     <ContentSection
@@ -31,5 +31,5 @@ export default function DocumentCategorySection({ category, muted = false }) {
         />
       )}
     </ContentSection>
-  )
+  );
 }

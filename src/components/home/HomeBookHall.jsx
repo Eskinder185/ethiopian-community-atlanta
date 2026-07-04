@@ -1,46 +1,46 @@
-import Container from '../ui/Container'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
-import { siteAssets } from '../../config/assets'
-import { resolvePublicAssetPath } from '../../utils/images'
-import { useLanguage } from '../../context/LanguageContext'
+import Container from "../ui/Container";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
+import { siteAssets } from "../../config/assets";
+import { resolvePublicAssetPath } from "../../utils/images";
+import { useLanguage } from "../../context/LanguageContext";
 import {
   filterPublicLines,
   getLinkProps,
   getPublicText,
   isSectionVisible,
   isUsableHomeText,
-} from '../../utils/homepage'
+} from "../../utils/homepage";
 
 const DEFAULT_USE_CASES = [
-  'Community meetings',
-  'Cultural gatherings',
-  'Celebrations',
-  'Workshops',
-  'Trainings',
-  'Youth events',
-  'Wellness sessions',
-  'Fundraising events',
-]
+  "Community meetings",
+  "Cultural gatherings",
+  "Celebrations",
+  "Workshops",
+  "Trainings",
+  "Youth events",
+  "Wellness sessions",
+  "Fundraising events",
+];
 
 export default function HomeBookHall({ data }) {
-  const { t } = useLanguage()
-  if (!isSectionVisible(data)) return null
+  const { t } = useLanguage();
+  if (!isSectionVisible(data)) return null;
 
-  const primaryCta = getLinkProps(data.primaryCta)
-  const secondaryCta = getLinkProps(data.secondaryCta)
+  const primaryCta = getLinkProps(data.primaryCta);
+  const secondaryCta = getLinkProps(data.secondaryCta);
   const useCases = filterPublicLines(
     (data.useCases ?? DEFAULT_USE_CASES).map((item) =>
-      typeof item === 'string' ? item : item?.useCase || item?.label || '',
-    ),
-  )
+      typeof item === "string" ? item : item?.useCase || item?.label || ""
+    )
+  );
   const importantNote = getPublicText(
     data.importantNote,
-    'Submitting a request does not guarantee a reservation. ECAA must confirm availability, requirements, pricing, and approval before the hall is booked.',
-  )
-  const hallImageSrc = resolvePublicAssetPath(siteAssets.bookHall)
-  const hallImageAlt = getPublicText(data.imageAlt, siteAssets.bookHallAlt)
-  const goodForLabel = getPublicText(data.goodForLabel, t('common.goodFor'))
+    "Submitting a request does not guarantee a reservation. ECAA must confirm availability, requirements, pricing, and approval before the hall is booked."
+  );
+  const hallImageSrc = resolvePublicAssetPath(siteAssets.bookHall);
+  const hallImageAlt = getPublicText(data.imageAlt, siteAssets.bookHallAlt);
+  const goodForLabel = getPublicText(data.goodForLabel, t("common.goodFor"));
 
   return (
     <section
@@ -52,7 +52,10 @@ export default function HomeBookHall({ data }) {
           <div className="overflow-hidden rounded-ecaa-2xl border border-ecaa-gold-200/60 bg-ecaa-white/90 shadow-ecaa-md backdrop-blur-sm lg:grid lg:grid-cols-2 lg:items-stretch">
             <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
               <p className="text-eyebrow text-ecaa-gold-700">{data.eyebrow}</p>
-              <h2 id="home-book-hall-heading" className="heading-section mt-3 text-3xl text-ecaa-green-950 sm:text-4xl">
+              <h2
+                id="home-book-hall-heading"
+                className="heading-section mt-3 text-3xl text-ecaa-green-950 sm:text-4xl"
+              >
                 {data.title}
               </h2>
               <p className="mt-4 max-w-xl text-base leading-relaxed text-ecaa-ink-muted sm:text-lg">
@@ -73,7 +76,9 @@ export default function HomeBookHall({ data }) {
               </div>
 
               {isUsableHomeText(importantNote) && (
-                <p className="mt-5 max-w-xl text-sm leading-relaxed text-ecaa-ink-subtle">{importantNote}</p>
+                <p className="mt-5 max-w-xl text-sm leading-relaxed text-ecaa-ink-subtle">
+                  {importantNote}
+                </p>
               )}
 
               <div className="mt-6 lg:mt-8">
@@ -108,5 +113,5 @@ export default function HomeBookHall({ data }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

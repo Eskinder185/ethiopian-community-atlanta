@@ -1,9 +1,9 @@
-import Container from '../ui/Container'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
+import Container from "../ui/Container";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
 
 export default function LeadershipCtaSection({ section }) {
-  if (!section?.title) return null
+  if (!section?.title) return null;
 
   return (
     <section className="surface-muted">
@@ -17,7 +17,7 @@ export default function LeadershipCtaSection({ section }) {
                   <CTAButton
                     key={`${button.label}-${button.href}`}
                     to={button.href}
-                    variant={index === 0 ? 'primary' : 'secondary'}
+                    variant={index === 0 ? "primary" : "secondary"}
                     size="lg"
                   >
                     {button.label}
@@ -29,5 +29,5 @@ export default function LeadershipCtaSection({ section }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

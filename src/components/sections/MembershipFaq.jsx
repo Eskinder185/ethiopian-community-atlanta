@@ -1,13 +1,13 @@
-import Container from '../ui/Container'
-import SectionHeader from '../ui/SectionHeader'
-import Accordion from '../ui/Accordion'
-import AnimateIn from '../ui/AnimateIn'
-import { filterPublished } from '../../utils/data'
+import Container from "../ui/Container";
+import SectionHeader from "../ui/SectionHeader";
+import Accordion from "../ui/Accordion";
+import AnimateIn from "../ui/AnimateIn";
+import { filterPublished } from "../../utils/data";
 
 export default function MembershipFaq({ section }) {
-  if (!section) return null
+  if (!section) return null;
 
-  const items = filterPublished(section.items ?? [])
+  const items = filterPublished(section.items ?? []);
 
   return (
     <section className="surface-muted" id="membership-faq">
@@ -25,5 +25,5 @@ export default function MembershipFaq({ section }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

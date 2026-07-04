@@ -1,19 +1,52 @@
-export default function FormSelect({ id, label, hint, className = '', children, ...props }) {
+export default function FormSelect({
+  id,
+  label,
+  hint,
+  error,
+  required = false,
+  className = "",
+  children,
+  describedBy,
+  ...props
+}) {
+  const hintId = hint ? `${id}-hint` : undefined;
+  const errorId = error ? `${id}-error` : undefined;
+  const ariaDescribedBy =
+    describedBy || [hintId, errorId].filter(Boolean).join(" ") || undefined;
+
   return (
     <div className={className}>
       {label && (
         <label htmlFor={id} className="mb-1.5 block text-sm font-medium text-ecaa-ink">
           {label}
+          {required ? (
+            <>
+              <span aria-hidden="true"> *</span>
+              <span className="sr-only"> required</span>
+            </>
+          ) : null}
         </label>
       )}
       <select
         id={id}
-        className="w-full rounded-lg border border-ecaa-border bg-ecaa-white px-3 py-2.5 text-base text-ecaa-ink shadow-ecaa-sm outline-none transition-colors focus:border-ecaa-green-700 focus:ring-2 focus:ring-ecaa-green-700/20"
+        aria-invalid={error ? true : undefined}
+        aria-describedby={ariaDescribedBy}
+        aria-required={required || undefined}
+        className="w-full min-h-[44px] rounded-lg border border-ecaa-border bg-ecaa-white px-3 py-2.5 text-base text-ecaa-ink shadow-ecaa-sm outline-none transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ecaa-green-700 focus:border-ecaa-green-700"
         {...props}
       >
         {children}
       </select>
-      {hint && <p className="mt-1.5 text-xs text-ecaa-ink-subtle">{hint}</p>}
+      {hint && (
+        <p id={hintId} className="mt-1.5 text-xs text-ecaa-ink-subtle">
+          {hint}
+        </p>
+      )}
+      {error && (
+        <p id={errorId} role="alert" className="mt-1.5 text-sm text-ecaa-red-700">
+          {error}
+        </p>
+      )}
     </div>
-  )
+  );
 }

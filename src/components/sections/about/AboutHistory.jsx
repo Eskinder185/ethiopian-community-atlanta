@@ -1,15 +1,11 @@
 export default function AboutHistory({ section }) {
   return (
     <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start lg:gap-12">
-      <div>
-        {section.intro && (
-          <p className="text-lead leading-relaxed">{section.intro}</p>
-        )}
-      </div>
+      <div>{section.intro && <p className="text-lead leading-relaxed">{section.intro}</p>}</div>
 
       <aside className="rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-white p-6 shadow-ecaa-sm sm:p-8">
         <h3 className="text-lg font-semibold normal-case text-ecaa-green-900">
-          {section.highlightsHeading || 'Key moments'}
+          {section.highlightsHeading || "Key moments"}
         </h3>
         <ul className="mt-5 space-y-4">
           {section.highlights.map((item) => (
@@ -24,5 +20,5 @@ export default function AboutHistory({ section }) {
         </ul>
       </aside>
     </div>
-  )
+  );
 }

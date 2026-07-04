@@ -1,9 +1,9 @@
-import Container from '../ui/Container'
-import AnimateIn from '../ui/AnimateIn'
-import { filterPublished } from '../../utils/data'
+import Container from "../ui/Container";
+import AnimateIn from "../ui/AnimateIn";
+import { filterPublished } from "../../utils/data";
 
 function TopicCard({ topic }) {
-  const initials = topic.initials || topic.title?.slice(0, 2)?.toUpperCase() || 'ET'
+  const initials = topic.initials || topic.title?.slice(0, 2)?.toUpperCase() || "ET";
 
   return (
     <article className="flex h-full flex-col rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-white p-6 shadow-ecaa-sm sm:p-7">
@@ -18,19 +18,23 @@ function TopicCard({ topic }) {
           <p className="text-xs font-semibold uppercase tracking-[0.15em] text-ecaa-gold-600">
             {topic.category}
           </p>
-          <h3 className="mt-2 text-lg font-semibold tracking-tight text-ecaa-green-950">{topic.title}</h3>
+          <h3 className="mt-2 text-lg font-semibold tracking-tight text-ecaa-green-950">
+            {topic.title}
+          </h3>
           {topic.subtitle && (
             <p className="mt-1 text-sm font-medium text-ecaa-green-800">{topic.subtitle}</p>
           )}
         </div>
       </div>
-      <p className="mt-4 flex-1 text-base leading-relaxed text-ecaa-ink-muted">{topic.description}</p>
+      <p className="mt-4 flex-1 text-base leading-relaxed text-ecaa-ink-muted">
+        {topic.description}
+      </p>
     </article>
-  )
+  );
 }
 
 export default function EducationTrainingSection({ section }) {
-  const topics = filterPublished(section.topics ?? [])
+  const topics = filterPublished(section.topics ?? []);
 
   return (
     <section
@@ -40,7 +44,7 @@ export default function EducationTrainingSection({ section }) {
       <Container>
         <AnimateIn>
           <div className="max-w-3xl">
-            <p className="text-eyebrow">{section.eyebrow || 'Education & Training'}</p>
+            <p className="text-eyebrow">{section.eyebrow || "Education & Training"}</p>
             <h2 className="heading-section mt-3">{section.title}</h2>
             <p className="text-lead mt-4 leading-relaxed">{section.intro}</p>
             {section.scheduleNote && (
@@ -60,5 +64,5 @@ export default function EducationTrainingSection({ section }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

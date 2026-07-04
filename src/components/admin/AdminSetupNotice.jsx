@@ -1,5 +1,5 @@
 export default function AdminSetupNotice({ message }) {
-  if (!message) return null
+  if (!message) return null;
 
   return (
     <div
@@ -8,5 +8,5 @@ export default function AdminSetupNotice({ message }) {
     >
       {message}
     </div>
-  )
+  );
 }

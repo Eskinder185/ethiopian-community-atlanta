@@ -1,18 +1,18 @@
-import Container from '../ui/Container'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
-import { getLinkProps, isSectionVisible } from '../../utils/homepage'
+import Container from "../ui/Container";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
+import { getLinkProps, isSectionVisible } from "../../utils/homepage";
 
 export default function HomeFinalCTA({ data }) {
-  if (!isSectionVisible(data)) return null
+  if (!isSectionVisible(data)) return null;
 
   const buttons = (data.buttons ?? [])
     .map((button) => {
-      const link = getLinkProps(button)
-      if (!link || !button?.label) return null
-      return { ...link, label: button.label }
+      const link = getLinkProps(button);
+      if (!link || !button?.label) return null;
+      return { ...link, label: button.label };
     })
-    .filter(Boolean)
+    .filter(Boolean);
 
   return (
     <section className="home-section surface-muted" aria-labelledby="home-final-cta-heading">
@@ -33,7 +33,7 @@ export default function HomeFinalCTA({ data }) {
                   <CTAButton
                     key={`${button.label}-${button.to || button.href}`}
                     {...(button.to ? { to: button.to } : { href: button.href })}
-                    variant={index === 0 ? 'primary' : 'secondary'}
+                    variant={index === 0 ? "primary" : "secondary"}
                     size="lg"
                   >
                     {button.label}
@@ -45,5 +45,5 @@ export default function HomeFinalCTA({ data }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

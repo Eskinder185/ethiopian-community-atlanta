@@ -1,10 +1,10 @@
-import ResponsiveEmbed from '../ui/ResponsiveEmbed'
-import CTAButton from '../ui/CTAButton'
-import { hasUsableText, hasUsableUrl, toEmbedUrl } from '../../utils/data'
+import ResponsiveEmbed from "../ui/ResponsiveEmbed";
+import CTAButton from "../ui/CTAButton";
+import { hasUsableText, hasUsableUrl, toEmbedUrl } from "../../utils/data";
 
 export default function VideoCard({ video }) {
-  const embedSrc = toEmbedUrl(video.embedUrl)
-  const canEmbed = Boolean(embedSrc)
+  const embedSrc = toEmbedUrl(video.embedUrl);
+  const canEmbed = Boolean(embedSrc);
 
   return (
     <article className="ecaa-card-hover flex h-full flex-col overflow-hidden p-0">
@@ -32,16 +32,11 @@ export default function VideoCard({ video }) {
         )}
 
         {hasUsableUrl(video.embedUrl) && (
-          <CTAButton
-            href={video.embedUrl}
-            variant="ghost"
-            size="sm"
-            className="mt-6 self-start"
-          >
+          <CTAButton href={video.embedUrl} variant="ghost" size="sm" className="mt-6 self-start">
             Open video
           </CTAButton>
         )}
       </div>
     </article>
-  )
+  );
 }

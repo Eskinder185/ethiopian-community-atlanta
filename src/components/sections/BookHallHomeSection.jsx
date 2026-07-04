@@ -1,39 +1,39 @@
-import Container from '../ui/Container'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
+import Container from "../ui/Container";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
 import {
   filterPublicLines,
   getLinkProps,
   getPublicText,
   isSectionVisible,
   isUsableHomeText,
-} from '../../utils/homepage'
+} from "../../utils/homepage";
 
 const DEFAULT_USE_CASES = [
-  'Community meetings',
-  'Cultural gatherings',
-  'Celebrations',
-  'Workshops',
-  'Trainings',
-  'Youth events',
-  'Wellness sessions',
-  'Fundraising events',
-]
+  "Community meetings",
+  "Cultural gatherings",
+  "Celebrations",
+  "Workshops",
+  "Trainings",
+  "Youth events",
+  "Wellness sessions",
+  "Fundraising events",
+];
 
 export default function BookHallHomeSection({ data }) {
-  if (!isSectionVisible(data)) return null
+  if (!isSectionVisible(data)) return null;
 
-  const primaryCta = getLinkProps(data.primaryCta)
-  const secondaryCta = getLinkProps(data.secondaryCta)
+  const primaryCta = getLinkProps(data.primaryCta);
+  const secondaryCta = getLinkProps(data.secondaryCta);
   const useCases = filterPublicLines(
     (data.useCases ?? DEFAULT_USE_CASES).map((item) =>
-      typeof item === 'string' ? item : item?.useCase || item?.label || '',
-    ),
-  )
+      typeof item === "string" ? item : item?.useCase || item?.label || ""
+    )
+  );
   const importantNote = getPublicText(
     data.importantNote,
-    'Submitting a request does not guarantee a reservation. ECAA must confirm availability, requirements, pricing, and approval before the hall is booked.',
-  )
+    "Submitting a request does not guarantee a reservation. ECAA must confirm availability, requirements, pricing, and approval before the hall is booked."
+  );
 
   return (
     <section
@@ -45,7 +45,10 @@ export default function BookHallHomeSection({ data }) {
           <div className="overflow-hidden rounded-ecaa-2xl border border-ecaa-gold-200/60 bg-ecaa-white/90 shadow-ecaa-md backdrop-blur-sm lg:grid lg:grid-cols-2 lg:items-stretch">
             <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
               <p className="text-eyebrow text-ecaa-gold-700">{data.eyebrow}</p>
-              <h2 id="book-hall-heading" className="heading-section mt-3 text-3xl text-ecaa-green-950 sm:text-4xl">
+              <h2
+                id="book-hall-heading"
+                className="heading-section mt-3 text-3xl text-ecaa-green-950 sm:text-4xl"
+              >
                 {data.title}
               </h2>
               <p className="mt-4 max-w-xl text-base leading-relaxed text-ecaa-ink-muted sm:text-lg">
@@ -99,5 +102,5 @@ export default function BookHallHomeSection({ data }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

@@ -1,12 +1,12 @@
-import Container from '../ui/Container'
-import DocumentCard from '../cards/DocumentCard'
-import AnimateIn from '../ui/AnimateIn'
-import { getFeaturedDocuments } from '../../utils/documents'
+import Container from "../ui/Container";
+import DocumentCard from "../cards/DocumentCard";
+import AnimateIn from "../ui/AnimateIn";
+import { getFeaturedDocuments } from "../../utils/documents";
 
 export default function DocumentsFeaturedSection({ section, documents = [] }) {
-  const featured = getFeaturedDocuments(documents)
+  const featured = getFeaturedDocuments(documents);
 
-  if (!section || featured.length === 0) return null
+  if (!section || featured.length === 0) return null;
 
   return (
     <section className="border-b border-ecaa-border/60 bg-ecaa-cream/40 py-12 sm:py-14">
@@ -31,5 +31,5 @@ export default function DocumentsFeaturedSection({ section, documents = [] }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

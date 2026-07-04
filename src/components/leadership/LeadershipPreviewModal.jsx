@@ -1,65 +1,71 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from "react";
+import { useFocusTrap } from "../../hooks/useFocusTrap";
 import {
   getMemberImageAlt,
   getMemberImageSrc,
   getMemberInitials,
   memberHasDisplayableImage,
-} from '../../utils/leadership'
-import SocialContactButtons from './SocialContactButtons'
+} from "../../utils/leadership";
+import SocialContactButtons from "./SocialContactButtons";
 
 export default function LeadershipPreviewModal({
   member,
   committee,
   onClose,
-  closeLabel = 'Close',
+  closeLabel = "Close",
   contactLabels,
 }) {
-  const [imageFailed, setImageFailed] = useState(false)
+  const [imageFailed, setImageFailed] = useState(false);
+  const dialogRef = useRef(null);
+  const closeButtonRef = useRef(null);
+
+  useFocusTrap(dialogRef, Boolean(member), {
+    initialFocusRef: closeButtonRef,
+    onEscape: onClose,
+  });
 
   useEffect(() => {
-    setImageFailed(false)
-  }, [member?.id])
+    setImageFailed(false);
+  }, [member?.id]);
 
   useEffect(() => {
-    if (!member) return undefined
+    if (!member) return undefined;
 
-    const handleEscape = (event) => {
-      if (event.key === 'Escape') onClose?.()
-    }
-
-    document.addEventListener('keydown', handleEscape)
-    const previousOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
 
     return () => {
-      document.removeEventListener('keydown', handleEscape)
-      document.body.style.overflow = previousOverflow
-    }
-  }, [member, onClose])
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [member]);
 
-  if (!member) return null
+  if (!member) return null;
 
-  const hasPhoto = memberHasDisplayableImage(member) && !imageFailed
-  const imageSrc = getMemberImageSrc(member)
-  const initials = getMemberInitials(member.name)
-  const committeeLabel = committee || member.committee
+  const hasPhoto = memberHasDisplayableImage(member) && !imageFailed;
+  const imageSrc = getMemberImageSrc(member);
+  const initials = getMemberInitials(member.name);
+  const committeeLabel = committee || member.committee;
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-ecaa-green-950/55 p-4 sm:items-center"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="leadership-preview-title"
-      onClick={onClose}
-    >
+    <div className="fixed inset-0 z-50 flex items-end justify-center p-4 sm:items-center">
+      <button
+        type="button"
+        className="absolute inset-0 bg-ecaa-green-950/55"
+        aria-label={closeLabel}
+        onClick={onClose}
+      />
       <div
+        ref={dialogRef}
         className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-ecaa-2xl border border-ecaa-border bg-ecaa-white p-6 shadow-ecaa-lg sm:p-8"
-        onClick={(event) => event.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="leadership-preview-title"
       >
         <button
+          ref={closeButtonRef}
           type="button"
           onClick={onClose}
-          className="absolute right-4 top-4 inline-flex h-10 w-10 items-center justify-center rounded-full border border-ecaa-border bg-ecaa-cream text-ecaa-ink-muted transition-colors hover:bg-ecaa-cream-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ecaa-gold-500"
+          className="absolute right-4 top-4 inline-flex h-11 w-11 min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-ecaa-border bg-ecaa-cream text-ecaa-ink-muted transition-colors hover:bg-ecaa-cream-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ecaa-green-700"
           aria-label={closeLabel}
         >
           <span aria-hidden="true">×</span>
@@ -81,12 +87,15 @@ export default function LeadershipPreviewModal({
             )}
           </div>
 
-          <h2 id="leadership-preview-title" className="text-2xl font-semibold tracking-tight text-ecaa-ink">
+          <h2
+            id="leadership-preview-title"
+            className="text-2xl font-semibold tracking-tight text-ecaa-ink"
+          >
             {member.name}
           </h2>
 
           {member.role && (
-            <p className="mt-2 text-base font-medium text-ecaa-gold-700">{member.role}</p>
+            <p className="mt-2 text-base font-medium text-ecaa-green-800">{member.role}</p>
           )}
 
           {committeeLabel && (
@@ -101,9 +110,13 @@ export default function LeadershipPreviewModal({
             </p>
           )}
 
-          <SocialContactButtons member={member} labels={contactLabels} className="mt-6 justify-center" />
+          <SocialContactButtons
+            member={member}
+            labels={contactLabels}
+            className="mt-6 justify-center"
+          />
         </div>
       </div>
     </div>
-  )
+  );
 }

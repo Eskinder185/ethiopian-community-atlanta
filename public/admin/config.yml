@@ -64,10 +64,31 @@ collections:
               - { label: Show this section?, name: visible, widget: boolean, default: true }
               - { label: Eyebrow, name: eyebrow, widget: string }
               - { label: Page title, name: title, widget: text }
-              - { label: Short description, name: description, widget: text, hint: "Use TODO if details are not confirmed." }
-              - { label: Background image, name: image, widget: image, required: false, hint: "Upload image or GIF, or use /images/home-hero-community-atlanta.jpg" }
-              - { label: Image description for accessibility, name: imageAlt, widget: string, required: false }
-              - { label: Trust message below buttons, name: trustCue, widget: string, required: false }
+              - {
+                  label: Short description,
+                  name: description,
+                  widget: text,
+                  hint: "Use TODO if details are not confirmed.",
+                }
+              - {
+                  label: Background image,
+                  name: image,
+                  widget: image,
+                  required: false,
+                  hint: "Upload image or GIF, or use /images/home-hero-community-atlanta.jpg",
+                }
+              - {
+                  label: Image description for accessibility,
+                  name: imageAlt,
+                  widget: string,
+                  required: false,
+                }
+              - {
+                  label: Trust message below buttons,
+                  name: trustCue,
+                  widget: string,
+                  required: false,
+                }
               - label: Primary button
                 name: primaryCta
                 widget: object
@@ -104,11 +125,22 @@ collections:
                 fields:
                   - { label: Item ID, name: id, widget: string }
                   - { label: Event title, name: title, widget: string }
-                  - { label: Event date, name: date, widget: string, required: false, hint: "Use TODO if date is not confirmed." }
+                  - {
+                      label: Event date,
+                      name: date,
+                      widget: string,
+                      required: false,
+                      hint: "Use TODO if date is not confirmed.",
+                    }
                   - { label: Category, name: category, widget: string, required: false }
                   - { label: Short description, name: excerpt, widget: text }
                   - { label: Upload image or GIF, name: image, widget: image, required: false }
-                  - { label: Image description for accessibility, name: imageAlt, widget: string, required: false }
+                  - {
+                      label: Image description for accessibility,
+                      name: imageAlt,
+                      widget: string,
+                      required: false,
+                    }
                   - { label: Button label, name: ctaLabel, widget: string, default: "Learn more" }
                   - { label: Button link, name: href, widget: string }
                   - { label: Show this item?, name: visible, widget: boolean, default: true }
@@ -154,7 +186,12 @@ collections:
                     options: [image, gif, youtube]
                   - { label: Title, name: title, widget: string }
                   - { label: Upload image or GIF, name: src, widget: image, required: false }
-                  - { label: Image description for accessibility, name: alt, widget: string, required: false }
+                  - {
+                      label: Image description for accessibility,
+                      name: alt,
+                      widget: string,
+                      required: false,
+                    }
                   - { label: YouTube link, name: youtubeUrl, widget: string, required: false }
                   - { label: YouTube embed URL, name: embedUrl, widget: string, required: false }
                   - label: Collage size
@@ -193,7 +230,13 @@ collections:
               - { label: Section label, name: eyebrow, widget: string }
               - { label: Section heading, name: title, widget: string }
               - { label: Short description, name: description, widget: text }
-              - { label: Helpful text, name: helpfulText, widget: text, required: false, hint: "Optional extra line below the description." }
+              - {
+                  label: Helpful text,
+                  name: helpfulText,
+                  widget: text,
+                  required: false,
+                  hint: "Optional extra line below the description.",
+                }
               - { label: Important notice, name: importantNote, widget: text, required: false }
               - label: Good-for list
                 name: useCases
@@ -213,7 +256,12 @@ collections:
                   - { label: Button label, name: label, widget: string }
                   - { label: Button link, name: href, widget: string }
               - { label: Upload image or GIF, name: image, widget: image, required: false }
-              - { label: Image description for accessibility, name: imageAlt, widget: string, required: false }
+              - {
+                  label: Image description for accessibility,
+                  name: imageAlt,
+                  widget: string,
+                  required: false,
+                }
 
           - label: Featured Programs & Services
             name: featuredPrograms
@@ -232,9 +280,25 @@ collections:
                   - { label: Item ID, name: id, widget: string }
                   - { label: Program title, name: title, widget: string }
                   - { label: Short description, name: shortDescription, widget: text }
-                  - { label: Upload image or icon image, name: image, widget: image, required: false }
-                  - { label: Image description for accessibility, name: imageAlt, widget: string, required: false }
-                  - { label: Button label, name: ctaLabel, widget: string, default: "Learn More", required: false }
+                  - {
+                      label: Upload image or icon image,
+                      name: image,
+                      widget: image,
+                      required: false,
+                    }
+                  - {
+                      label: Image description for accessibility,
+                      name: imageAlt,
+                      widget: string,
+                      required: false,
+                    }
+                  - {
+                      label: Button label,
+                      name: ctaLabel,
+                      widget: string,
+                      default: "Learn More",
+                      required: false,
+                    }
                   - { label: Button link, name: href, widget: string }
                   - { label: Show this item?, name: visible, widget: boolean, default: true }
                   - { label: Notes for editors, name: notes, widget: text, required: false }
@@ -294,7 +358,12 @@ collections:
               - { label: Slug or ID, name: id, widget: string }
               - { label: Event title, name: title, widget: string }
               - { label: Category, name: category, widget: string, required: false }
-              - { label: Event date, name: date, widget: string, hint: "Required for upcoming events. YYYY-MM-DD or readable date." }
+              - {
+                  label: Event date,
+                  name: date,
+                  widget: string,
+                  hint: "Required for upcoming events. YYYY-MM-DD or readable date.",
+                }
               - { label: Event time, name: time, widget: string, required: false }
               - { label: Location, name: location, widget: string, required: false }
               - { label: Short description, name: summary, widget: text }
@@ -305,11 +374,28 @@ collections:
                 required: false
                 fields:
                   - { label: Upload image or GIF, name: src, widget: image, required: false }
-                  - { label: Image description for accessibility, name: alt, widget: string, required: false }
+                  - {
+                      label: Image description for accessibility,
+                      name: alt,
+                      widget: string,
+                      required: false,
+                    }
               - { label: External link, name: link, widget: string, required: false }
               - { label: Registration URL, name: registrationUrl, widget: string, required: false }
-              - { label: Button label, name: ctaLabel, widget: string, required: false, default: "Learn more" }
-              - { label: Featured on homepage?, name: featured, widget: boolean, default: false, hint: "Also add to Home Page featured events to display on Home." }
+              - {
+                  label: Button label,
+                  name: ctaLabel,
+                  widget: string,
+                  required: false,
+                  default: "Learn more",
+                }
+              - {
+                  label: Featured on homepage?,
+                  name: featured,
+                  widget: boolean,
+                  default: false,
+                  hint: "Also add to Home Page featured events to display on Home.",
+                }
               - { label: Show this item?, name: published, widget: boolean, default: false }
               - { label: Notes for editors, name: notes, widget: text, required: false }
 
@@ -326,9 +412,27 @@ collections:
               - { label: Short description, name: summary, widget: text }
               - { label: Full description, name: body, widget: text, required: false }
               - { label: External link, name: link, widget: string, required: false }
-              - { label: Button label, name: ctaLabel, widget: string, required: false, default: "Read more" }
-              - { label: External link opens new tab?, name: external, widget: boolean, default: true, required: false }
-              - { label: Featured on homepage?, name: featured, widget: boolean, default: false, required: false }
+              - {
+                  label: Button label,
+                  name: ctaLabel,
+                  widget: string,
+                  required: false,
+                  default: "Read more",
+                }
+              - {
+                  label: External link opens new tab?,
+                  name: external,
+                  widget: boolean,
+                  default: true,
+                  required: false,
+                }
+              - {
+                  label: Featured on homepage?,
+                  name: featured,
+                  widget: boolean,
+                  default: false,
+                  required: false,
+                }
               - { label: Show this item?, name: published, widget: boolean, default: false }
               - { label: Notes for editors, name: notes, widget: text, required: false }
 
@@ -345,9 +449,27 @@ collections:
               - { label: Short description, name: summary, widget: text }
               - { label: Full description, name: body, widget: text, required: false }
               - { label: External link, name: link, widget: string, required: false }
-              - { label: Button label, name: ctaLabel, widget: string, required: false, default: "Read more" }
-              - { label: External link opens new tab?, name: external, widget: boolean, default: true, required: false }
-              - { label: Featured on homepage?, name: featured, widget: boolean, default: false, required: false }
+              - {
+                  label: Button label,
+                  name: ctaLabel,
+                  widget: string,
+                  required: false,
+                  default: "Read more",
+                }
+              - {
+                  label: External link opens new tab?,
+                  name: external,
+                  widget: boolean,
+                  default: true,
+                  required: false,
+                }
+              - {
+                  label: Featured on homepage?,
+                  name: featured,
+                  widget: boolean,
+                  default: false,
+                  required: false,
+                }
               - { label: Show this item?, name: published, widget: boolean, default: false }
               - { label: Notes for editors, name: notes, widget: text, required: false }
 
@@ -370,8 +492,19 @@ collections:
                 required: false
                 fields:
                   - { label: Upload image or GIF, name: src, widget: image, required: false }
-                  - { label: Image description for accessibility, name: alt, widget: string, required: false }
-              - { label: Button label, name: ctaLabel, widget: string, required: false, default: "View recap" }
+                  - {
+                      label: Image description for accessibility,
+                      name: alt,
+                      widget: string,
+                      required: false,
+                    }
+              - {
+                  label: Button label,
+                  name: ctaLabel,
+                  widget: string,
+                  required: false,
+                  default: "View recap",
+                }
               - { label: Show this item?, name: published, widget: boolean, default: false }
               - { label: Notes for editors, name: notes, widget: text, required: false }
 
@@ -386,7 +519,12 @@ collections:
         file: src/content/teamMembers.json
         description: "Leadership page grouped by committee. Do not invent names, titles, or roles."
         fields:
-          - { label: Page intro, name: intro, widget: text, hint: "Short paragraph at the top of the Leadership page." }
+          - {
+              label: Page intro,
+              name: intro,
+              widget: text,
+              hint: "Short paragraph at the top of the Leadership page.",
+            }
           - label: Committees
             name: groups
             widget: list
@@ -404,7 +542,12 @@ collections:
                   - EDIR Committee
                   - Other
               - { label: Committee description, name: description, widget: text, required: false }
-              - { label: Page anchor, name: anchor, widget: string, hint: "Example: executive-committee" }
+              - {
+                  label: Page anchor,
+                  name: anchor,
+                  widget: string,
+                  hint: "Example: executive-committee",
+                }
               - label: Leadership members
                 name: members
                 widget: list
@@ -414,11 +557,34 @@ collections:
                   - { label: Leadership name, name: name, widget: string }
                   - { label: Leadership role, name: title, widget: string }
                   - { label: Bio, name: bio, widget: text, required: false }
-                  - { label: Upload image, name: image, widget: image, required: false, hint: "Upload or paste an image URL." }
-                  - { label: Image description for accessibility, name: imageAlt, widget: string, required: false }
+                  - {
+                      label: Upload image,
+                      name: image,
+                      widget: image,
+                      required: false,
+                      hint: "Upload or paste an image URL.",
+                    }
+                  - {
+                      label: Image description for accessibility,
+                      name: imageAlt,
+                      widget: string,
+                      required: false,
+                    }
                   - { label: Email, name: email, widget: string, required: false }
                   - { label: Phone, name: phone, widget: string, required: false }
-                  - { label: Display order, name: order, widget: number, required: false, default: 0, hint: "Lower numbers appear first." }
+                  - {
+                      label: Display order,
+                      name: order,
+                      widget: number,
+                      required: false,
+                      default: 0,
+                      hint: "Lower numbers appear first.",
+                    }
                   - { label: Active?, name: active, widget: boolean, default: true }
-                  - { label: Show on leadership page?, name: published, widget: boolean, default: true }
+                  - {
+                      label: Show on leadership page?,
+                      name: published,
+                      widget: boolean,
+                      default: true,
+                    }
                   - { label: Notes for editors, name: notes, widget: text, required: false }

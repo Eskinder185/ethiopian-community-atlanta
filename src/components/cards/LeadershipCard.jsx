@@ -1,40 +1,44 @@
-import { getMemberImageAlt, memberHasDisplayableImage, getPublicContactLinks } from '../../utils/leadership'
-import { hasUsableText } from '../../utils/data'
-import { resolvePublicAssetPath } from '../../utils/images'
+import {
+  getMemberImageAlt,
+  memberHasDisplayableImage,
+  getPublicContactLinks,
+} from "../../utils/leadership";
+import { hasUsableText } from "../../utils/data";
+import { resolvePublicAssetPath } from "../../utils/images";
 
 const SOCIAL_LABELS = {
-  facebook: 'Facebook',
-  linkedin: 'LinkedIn',
-  instagram: 'Instagram',
-  twitter: 'Twitter',
-  x: 'X',
-  youtube: 'YouTube',
-  email: 'Email',
-}
+  facebook: "Facebook",
+  linkedin: "LinkedIn",
+  instagram: "Instagram",
+  twitter: "Twitter",
+  x: "X",
+  youtube: "YouTube",
+  email: "Email",
+};
 
 function getImageSrc(member) {
-  return member.image || member.photo?.src || ''
+  return member.image || member.photo?.src || "";
 }
 
 function getValidSocials(socials = []) {
   return socials.filter((item) => {
-    if (!item?.url || typeof item.url !== 'string') return false
-    const url = item.url.trim()
-    return url.startsWith('http') || url.startsWith('mailto:')
-  })
+    if (!item?.url || typeof item.url !== "string") return false;
+    const url = item.url.trim();
+    return url.startsWith("http") || url.startsWith("mailto:");
+  });
 }
 
 export default function LeadershipCard({ member, committee }) {
-  const imageSrc = getImageSrc(member)
-  const hasPhoto = memberHasDisplayableImage(member)
-  const socials = getValidSocials(member.socials)
-  const publicLinks = getPublicContactLinks(member)
-  const altText = getMemberImageAlt(member)
+  const imageSrc = getImageSrc(member);
+  const hasPhoto = memberHasDisplayableImage(member);
+  const socials = getValidSocials(member.socials);
+  const publicLinks = getPublicContactLinks(member);
+  const altText = getMemberImageAlt(member);
   const resolvedSrc = hasPhoto
-    ? imageSrc.startsWith('http')
+    ? imageSrc.startsWith("http")
       ? imageSrc
       : resolvePublicAssetPath(imageSrc)
-    : ''
+    : "";
 
   return (
     <article className="ecaa-card-hover group flex h-full flex-col overflow-hidden p-0">
@@ -50,7 +54,7 @@ export default function LeadershipCard({ member, committee }) {
         ) : (
           <div className="flex h-full items-center justify-center bg-ecaa-green-100">
             <span className="text-4xl font-semibold text-ecaa-green-800" aria-hidden="true">
-              {member.name?.charAt(0) || '?'}
+              {member.name?.charAt(0) || "?"}
             </span>
           </div>
         )}
@@ -84,9 +88,7 @@ export default function LeadershipCard({ member, committee }) {
                     <a
                       href={link.href}
                       className="inline-flex min-h-9 min-w-9 items-center justify-center rounded-full border border-ecaa-border bg-ecaa-cream px-3 text-xs font-semibold uppercase tracking-wide text-ecaa-green-900 transition-colors hover:border-ecaa-green-700 hover:bg-ecaa-green-50"
-                      {...(link.external
-                        ? { target: '_blank', rel: 'noopener noreferrer' }
-                        : {})}
+                      {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     >
                       {link.label}
                     </a>
@@ -116,7 +118,7 @@ export default function LeadershipCard({ member, committee }) {
         )}
       </div>
     </article>
-  )
+  );
 }
 
-export { getValidSocials, getImageSrc }
+export { getValidSocials, getImageSrc };

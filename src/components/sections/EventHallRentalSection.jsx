@@ -1,21 +1,21 @@
-import Container from '../ui/Container'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
-import { siteAssets } from '../../config/assets'
-import { resolvePublicAssetPath } from '../../utils/images'
-import HallAvailabilityCalendar from '../events/HallAvailabilityCalendar'
-import HallBookingForm from '../events/HallBookingForm'
+import Container from "../ui/Container";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
+import { siteAssets } from "../../config/assets";
+import { resolvePublicAssetPath } from "../../utils/images";
+import HallAvailabilityCalendar from "../events/HallAvailabilityCalendar";
+import HallBookingForm from "../events/HallBookingForm";
 
 export default function EventHallRentalSection({ section, bookings = [] }) {
-  if (!section) return null
+  if (!section) return null;
 
-  const contactPath = section.contactPath || '/contact'
-  const hallImageSrc = resolvePublicAssetPath(siteAssets.bookHall)
-  const hallImageAlt = section.hallImageAlt || siteAssets.bookHallAlt
+  const contactPath = section.contactPath || "/contact";
+  const hallImageSrc = resolvePublicAssetPath(siteAssets.bookHall);
+  const hallImageAlt = section.hallImageAlt || siteAssets.bookHallAlt;
 
   return (
     <section
-      id={section.id || 'book-hall'}
+      id={section.id || "book-hall"}
       className="border-y border-ecaa-gold-200/50 bg-gradient-to-br from-ecaa-gold-50 via-ecaa-cream to-ecaa-gold-100/30 py-12 sm:py-16"
     >
       <Container>
@@ -32,8 +32,8 @@ export default function EventHallRentalSection({ section, bookings = [] }) {
                 >
                   <p className="text-sm leading-relaxed text-ecaa-ink-muted sm:text-base">
                     <span className="font-semibold text-ecaa-ink">
-                      {section.importantLabel || 'Important:'}
-                    </span>{' '}
+                      {section.importantLabel || "Important:"}
+                    </span>{" "}
                     {section.importantNote}
                   </p>
                 </div>
@@ -58,7 +58,7 @@ export default function EventHallRentalSection({ section, bookings = [] }) {
 
           <div className="mt-8 overflow-hidden rounded-ecaa-2xl border border-ecaa-gold-200/60 bg-ecaa-white/95 p-6 shadow-ecaa-md sm:p-8">
             <h3 className="text-lg font-semibold text-ecaa-green-950">
-              {section.goodForTitle || 'Good for'}
+              {section.goodForTitle || "Good for"}
             </h3>
             <ul className="mt-4 grid gap-2 sm:grid-cols-2">
               {section.goodFor?.map((item) => (
@@ -66,7 +66,10 @@ export default function EventHallRentalSection({ section, bookings = [] }) {
                   key={item}
                   className="flex items-start gap-3 rounded-ecaa-lg border border-ecaa-border/60 bg-ecaa-cream/40 px-4 py-2.5 text-sm text-ecaa-ink-muted sm:text-base"
                 >
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ecaa-gold-500" aria-hidden="true" />
+                  <span
+                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-ecaa-gold-500"
+                    aria-hidden="true"
+                  />
                   <span>{item}</span>
                 </li>
               ))}
@@ -74,12 +77,12 @@ export default function EventHallRentalSection({ section, bookings = [] }) {
 
             <div className="mt-6">
               <CTAButton to={contactPath} variant="secondary" size="lg">
-                {section.contactButton || 'Contact ECAA'}
+                {section.contactButton || "Contact ECAA"}
               </CTAButton>
             </div>
           </div>
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

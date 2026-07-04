@@ -1,10 +1,10 @@
-import Container from '../ui/Container'
-import AnimateIn from '../ui/AnimateIn'
+import Container from "../ui/Container";
+import AnimateIn from "../ui/AnimateIn";
 
 export default function ProgramsDetailsPlaceholderSection({ section }) {
-  if (!section) return null
+  if (!section) return null;
 
-  const cards = section.cards ?? []
+  const cards = section.cards ?? [];
 
   return (
     <section className="border-y border-ecaa-green-100/80 bg-linear-to-b from-ecaa-cream/60 to-ecaa-white py-16 sm:py-20">
@@ -24,7 +24,9 @@ export default function ProgramsDetailsPlaceholderSection({ section }) {
               <AnimateIn key={card.title} delay={index * 40}>
                 <article className="h-full rounded-ecaa-xl border border-ecaa-border/70 bg-ecaa-white p-5 shadow-ecaa-sm">
                   <h3 className="text-base font-semibold text-ecaa-green-950">{card.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ecaa-ink-muted">{card.description}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-ecaa-ink-muted">
+                    {card.description}
+                  </p>
                 </article>
               </AnimateIn>
             ))}
@@ -32,5 +34,5 @@ export default function ProgramsDetailsPlaceholderSection({ section }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

@@ -1,20 +1,21 @@
-import { useMemo } from 'react'
-import { useParams } from 'react-router-dom'
-import { useProgram } from '../hooks/useProgram'
-import ProgramDetailHero from '../components/programs/ProgramDetailHero'
-import ProgramDetailOverview from '../components/programs/ProgramDetailOverview'
-import ProgramDetailSections from '../components/programs/ProgramDetailSections'
-import ProgramDetailMedia from '../components/programs/ProgramDetailMedia'
-import ProgramDetailResources from '../components/programs/ProgramDetailResources'
-import ProgramDetailRegistration from '../components/programs/ProgramDetailRegistration'
-import ProgramDetailContactCta from '../components/programs/ProgramDetailContactCta'
-import CTAButton from '../components/ui/CTAButton'
-import { useLanguage } from '../context/LanguageContext'
-import { getProgramDetailLabels } from '../data/programsPageContent'
-import { applyProgramLocale } from '../utils/programsLocale'
+import { useMemo } from "react";
+import { useParams } from "react-router-dom";
+import { useProgram } from "../hooks/useProgram";
+import SEO from "../components/SEO";
+import ProgramDetailHero from "../components/programs/ProgramDetailHero";
+import ProgramDetailOverview from "../components/programs/ProgramDetailOverview";
+import ProgramDetailSections from "../components/programs/ProgramDetailSections";
+import ProgramDetailMedia from "../components/programs/ProgramDetailMedia";
+import ProgramDetailResources from "../components/programs/ProgramDetailResources";
+import ProgramDetailRegistration from "../components/programs/ProgramDetailRegistration";
+import ProgramDetailContactCta from "../components/programs/ProgramDetailContactCta";
+import CTAButton from "../components/ui/CTAButton";
+import { useLanguage } from "../context/LanguageContext";
+import { getProgramDetailLabels } from "../data/programsPageContent";
+import { applyProgramLocale } from "../utils/programsLocale";
 
 function ProgramNotFound({ labels }) {
-  const { t } = useLanguage()
+  const { t } = useLanguage();
 
   return (
     <div className="surface-cream py-20 sm:py-28">
@@ -31,39 +32,48 @@ function ProgramNotFound({ labels }) {
           </p>
           <div className="mt-8">
             <CTAButton to="/programs" variant="primary">
-              {t('common.backToPrograms')}
+              {t("common.backToPrograms")}
             </CTAButton>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default function ProgramDetail() {
-  const { slug } = useParams()
-  const { language } = useLanguage()
-  const labels = getProgramDetailLabels(language)
-  const { program, loading, notFound } = useProgram(slug)
+  const { slug } = useParams();
+  const { language } = useLanguage();
+  const labels = getProgramDetailLabels(language);
+  const { program, loading, notFound } = useProgram(slug);
   const localizedProgram = useMemo(
     () => (program ? applyProgramLocale(program, language) : null),
-    [program, language],
-  )
+    [program, language]
+  );
 
   if (loading && !program) {
     return (
-      <div className="surface-cream py-20 text-center text-ecaa-ink-muted" role="status" aria-live="polite">
+      <div
+        className="surface-cream py-20 text-center text-ecaa-ink-muted"
+        role="status"
+        aria-live="polite"
+      >
         {labels.loading}
       </div>
-    )
+    );
   }
 
   if (notFound || !localizedProgram) {
-    return <ProgramNotFound labels={labels} />
+    return <ProgramNotFound labels={labels} />;
   }
 
   return (
     <>
+      <SEO
+        title={`${localizedProgram.title} | Community Programs`}
+        description={localizedProgram.summary || localizedProgram.description}
+        canonicalPath={`/programs/${slug}`}
+      />
       <ProgramDetailHero program={localizedProgram} />
       <ProgramDetailOverview program={localizedProgram} labels={labels} />
       <ProgramDetailSections program={localizedProgram} labels={labels} />
@@ -72,5 +82,5 @@ export default function ProgramDetail() {
       <ProgramDetailResources program={localizedProgram} labels={labels} />
       <ProgramDetailContactCta />
     </>
-  )
+  );
 }

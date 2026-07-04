@@ -1,4 +1,7 @@
-import LegalPageLayout, { LegalSection, LegalSubsection } from '../components/layout/LegalPageLayout'
+import LegalPageLayout, {
+  LegalSection,
+  LegalSubsection,
+} from "../components/layout/LegalPageLayout";
 
 export default function Privacy() {
   return (
@@ -7,22 +10,22 @@ export default function Privacy() {
       subtitle="Privacy Policy of Ethiopian Community Association In Atlanta Inc. (ECAA) Website"
       effectiveDate="July 18, 2023"
       breadcrumbLabel="Privacy Policy"
-      documentTitle="Privacy Policy | Ethiopian Community Association in Atlanta"
       heroPage="privacy"
     >
       <p className="text-base leading-relaxed text-ecaa-ink-muted sm:text-lg">
-        At Ethiopian Community Association In Atlanta Inc. (ECAA), we are committed to protecting the
-        privacy and personal information of our website users. This Privacy Policy outlines how we
-        collect, use, disclose, and protect the information you provide to us through our website. By
-        accessing and using our website, you consent to the practices described in this Privacy Policy.
+        At Ethiopian Community Association In Atlanta Inc. (ECAA), we are committed to protecting
+        the privacy and personal information of our website users. This Privacy Policy outlines how
+        we collect, use, disclose, and protect the information you provide to us through our
+        website. By accessing and using our website, you consent to the practices described in this
+        Privacy Policy.
       </p>
 
       <LegalSection title="Information We Collect">
         <LegalSubsection label="a. Personal Information:">
           We may collect personal information such as your name, email address, phone number, and
-          mailing address when you voluntarily provide it to us through our website. This information
-          is typically collected when you fill out forms, make donations, subscribe to our
-          newsletter, or engage in other activities on our website.
+          mailing address when you voluntarily provide it to us through our website. This
+          information is typically collected when you fill out forms, make donations, subscribe to
+          our newsletter, or engage in other activities on our website.
         </LegalSubsection>
         <LegalSubsection label="b. Non-Personal Information:">
           We may also collect non-personal information, such as your IP address, browser type,
@@ -35,7 +38,8 @@ export default function Privacy() {
         <LegalSubsection label="a. Personal Information:">
           We may use your personal information to communicate with you, process your donations,
           provide you with information about our programs and services, respond to your inquiries,
-          and send you newsletters or other promotional materials, if you have opted to receive them.
+          and send you newsletters or other promotional materials, if you have opted to receive
+          them.
         </LegalSubsection>
         <LegalSubsection label="b. Non-Personal Information:">
           We may use non-personal information to analyze trends, administer our website, track
@@ -53,8 +57,8 @@ export default function Privacy() {
         <LegalSubsection label="b.">
           We may disclose your personal information to trusted third-party service providers who
           assist us in operating our website, conducting our business, or servicing you. These
-          service providers are contractually obligated to keep your information confidential and are
-          prohibited from using it for any other purpose.
+          service providers are contractually obligated to keep your information confidential and
+          are prohibited from using it for any other purpose.
         </LegalSubsection>
         <LegalSubsection label="c.">
           We may also disclose your information when required by law, to enforce our website
@@ -65,9 +69,9 @@ export default function Privacy() {
       <LegalSection title="Data Security">
         <p>
           We employ industry-standard security measures to protect the personal information you
-          provide to us. However, no data transmission over the internet or electronic storage method
-          is completely secure. Therefore, while we strive to protect your information, we cannot
-          guarantee its absolute security.
+          provide to us. However, no data transmission over the internet or electronic storage
+          method is completely secure. Therefore, while we strive to protect your information, we
+          cannot guarantee its absolute security.
         </p>
       </LegalSection>
 
@@ -98,13 +102,18 @@ export default function Privacy() {
       </LegalSection>
 
       <LegalSection title="Contact Information">
-        <p>If you have any questions or concerns about our Privacy Policy or our practices regarding your personal information, please contact us at:</p>
+        <p>
+          If you have any questions or concerns about our Privacy Policy or our practices regarding
+          your personal information, please contact us at:
+        </p>
         <address className="not-italic">
-          <p className="font-medium text-ecaa-ink">Ethiopian Community Association In Atlanta Inc. (ECAA)</p>
+          <p className="font-medium text-ecaa-ink">
+            Ethiopian Community Association In Atlanta Inc. (ECAA)
+          </p>
           <p className="mt-2">5616 MEMORIAL DR,</p>
           <p>Stone Mountain, GA 30083</p>
           <p className="mt-2">
-            Email:{' '}
+            Email:{" "}
             <a
               href="mailto:legal@ethiopiancaa.org"
               className="font-medium text-ecaa-green-800 hover:text-ecaa-green-950 hover:underline"
@@ -120,5 +129,5 @@ export default function Privacy() {
         this Privacy Policy.
       </p>
     </LegalPageLayout>
-  )
+  );
 }

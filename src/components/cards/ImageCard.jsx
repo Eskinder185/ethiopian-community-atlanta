@@ -1,9 +1,9 @@
-import { hasUsableText } from '../../utils/data'
-import { getResolvedImageSrc } from '../../utils/images'
+import { hasUsableText } from "../../utils/data";
+import { getResolvedImageSrc } from "../../utils/images";
 
 export default function ImageCard({ image }) {
-  const hasImage = image.src && !image.src.startsWith('TODO')
-  const imageSrc = getResolvedImageSrc(image)
+  const hasImage = image.src && !image.src.startsWith("TODO");
+  const imageSrc = getResolvedImageSrc(image);
 
   return (
     <figure className="ecaa-card-hover overflow-hidden p-0">
@@ -33,5 +33,5 @@ export default function ImageCard({ image }) {
         </figcaption>
       )}
     </figure>
-  )
+  );
 }

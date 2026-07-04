@@ -1,10 +1,8 @@
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-
-import PageHeroFromConfig from './PageHeroFromConfig'
-import Container from '../ui/Container'
-import AnimateIn from '../ui/AnimateIn'
-import CTAButton from '../ui/CTAButton'
+import { Link } from "react-router-dom";
+import PageHeroFromConfig from "./PageHeroFromConfig";
+import Container from "../ui/Container";
+import AnimateIn from "../ui/AnimateIn";
+import CTAButton from "../ui/CTAButton";
 
 export function LegalSection({ title, children }) {
   return (
@@ -14,7 +12,7 @@ export function LegalSection({ title, children }) {
         {children}
       </div>
     </section>
-  )
+  );
 }
 
 export function LegalSubsection({ label, children }) {
@@ -23,7 +21,7 @@ export function LegalSubsection({ label, children }) {
       <p className="font-medium text-ecaa-ink">{label}</p>
       <p className="mt-2">{children}</p>
     </div>
-  )
+  );
 }
 
 export default function LegalPageLayout({
@@ -31,21 +29,12 @@ export default function LegalPageLayout({
   subtitle,
   effectiveDate,
   breadcrumbLabel,
-  documentTitle,
   heroPage,
   children,
 }) {
-  useEffect(() => {
-    if (documentTitle) {
-      document.title = documentTitle
-    }
-  }, [documentTitle])
-
   return (
     <>
-      {heroPage ? (
-        <PageHeroFromConfig page={heroPage} />
-      ) : null}
+      {heroPage ? <PageHeroFromConfig page={heroPage} /> : null}
 
       <section className="section-spacing-sm bg-ecaa-cream">
         <Container>
@@ -76,7 +65,9 @@ export default function LegalPageLayout({
                     Effective Date: {effectiveDate}
                   </p>
                 )}
-                <p className={`text-base leading-relaxed text-ecaa-ink-muted sm:text-lg ${effectiveDate ? 'mt-3' : ''}`}>
+                <p
+                  className={`text-base leading-relaxed text-ecaa-ink-muted sm:text-lg ${effectiveDate ? "mt-3" : ""}`}
+                >
                   {subtitle}
                 </p>
               </div>
@@ -95,5 +86,5 @@ export default function LegalPageLayout({
         </Container>
       </section>
     </>
-  )
+  );
 }

@@ -1,11 +1,14 @@
-import Container from '../ui/Container'
-import AnimateIn from '../ui/AnimateIn'
+import Container from "../ui/Container";
+import AnimateIn from "../ui/AnimateIn";
 
 export default function EventsQuickActionsBar({ actions = [] }) {
-  if (!actions.length) return null
+  if (!actions.length) return null;
 
   return (
-    <section className="border-b border-ecaa-border/70 bg-ecaa-white py-5 sm:py-6" aria-label="Quick navigation">
+    <section
+      className="border-b border-ecaa-border/70 bg-ecaa-white py-5 sm:py-6"
+      aria-label="Quick navigation"
+    >
       <Container>
         <AnimateIn>
           <nav className="flex flex-wrap justify-center gap-2 sm:gap-3">
@@ -22,5 +25,5 @@ export default function EventsQuickActionsBar({ actions = [] }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

@@ -1,6 +1,9 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
-import LegalPageLayout, { LegalSection, LegalSubsection } from '../components/layout/LegalPageLayout'
+import LegalPageLayout, {
+  LegalSection,
+  LegalSubsection,
+} from "../components/layout/LegalPageLayout";
 
 export default function Terms() {
   return (
@@ -8,7 +11,6 @@ export default function Terms() {
       title="Terms & Conditions"
       subtitle="Terms and Conditions of Ethiopian Community Association In Atlanta Inc. (ECAA) Website"
       breadcrumbLabel="Terms & Conditions"
-      documentTitle="Terms & Conditions | Ethiopian Community Association in Atlanta"
       heroPage="terms"
     >
       <LegalSection title="Acceptance of Terms and Conditions">
@@ -25,9 +27,10 @@ export default function Terms() {
           All content, materials, and information on the website, including but not limited to text,
           graphics, logos, images, videos, and software, are the intellectual property of Ethiopian
           Community Association In Atlanta Inc. (ECAA) unless otherwise stated. These materials are
-          protected by applicable copyright, trademark, and other intellectual property laws. You may
-          not reproduce, distribute, modify, or otherwise use any content from our website without
-          prior written permission from Ethiopian Community Association In Atlanta Inc. (ECAA).
+          protected by applicable copyright, trademark, and other intellectual property laws. You
+          may not reproduce, distribute, modify, or otherwise use any content from our website
+          without prior written permission from Ethiopian Community Association In Atlanta Inc.
+          (ECAA).
         </p>
       </LegalSection>
 
@@ -35,8 +38,8 @@ export default function Terms() {
         <p>
           Ethiopian Community Association In Atlanta Inc. (ECAA) is a registered 501(c)(3) nonprofit
           organization. All donations made through our website are tax deductible to the extent
-          permitted by law. However, we recommend consulting with a tax professional to determine the
-          eligibility of your donation for tax deductions.
+          permitted by law. However, we recommend consulting with a tax professional to determine
+          the eligibility of your donation for tax deductions.
         </p>
       </LegalSection>
 
@@ -66,15 +69,15 @@ export default function Terms() {
           Community Association In Atlanta Inc. (ECAA) does not endorse or control the content,
           products, or services offered by these third-party websites. By accessing these links, you
           acknowledge and agree that Ethiopian Community Association In Atlanta Inc. (ECAA) is not
-          responsible for the accuracy, completeness, legality, or any other aspect of the content or
-          functionality of such websites.
+          responsible for the accuracy, completeness, legality, or any other aspect of the content
+          or functionality of such websites.
         </p>
       </LegalSection>
 
       <LegalSection title="Privacy Policy">
         <p>
           By using our website, you agree to the collection, use, and disclosure of your information
-          as described in our Privacy Policy, which can be found at{' '}
+          as described in our Privacy Policy, which can be found at{" "}
           <Link
             to="/privacy"
             className="font-medium text-ecaa-green-800 hover:text-ecaa-green-950 hover:underline"
@@ -111,10 +114,10 @@ export default function Terms() {
 
       <LegalSection title="Modifications and Termination">
         <p>
-          Ethiopian Community Association In Atlanta Inc. (ECAA) reserves the right to modify, suspend,
-          or terminate the website or any part thereof at any time without prior notice. We may also
-          update these terms and conditions from time to time. It is your responsibility to review the
-          terms periodically for any changes.
+          Ethiopian Community Association In Atlanta Inc. (ECAA) reserves the right to modify,
+          suspend, or terminate the website or any part thereof at any time without prior notice. We
+          may also update these terms and conditions from time to time. It is your responsibility to
+          review the terms periodically for any changes.
         </p>
       </LegalSection>
 
@@ -124,11 +127,13 @@ export default function Terms() {
           us at:
         </p>
         <address className="not-italic">
-          <p className="font-medium text-ecaa-ink">Ethiopian Community Association In Atlanta Inc. (ECAA)</p>
+          <p className="font-medium text-ecaa-ink">
+            Ethiopian Community Association In Atlanta Inc. (ECAA)
+          </p>
           <p className="mt-2">5616 MEMORIAL DR,</p>
           <p>Stone Mountain, GA 30083</p>
           <p className="mt-2">
-            Email:{' '}
+            Email:{" "}
             <a
               href="mailto:legal@ethiopiancaa.org"
               className="font-medium text-ecaa-green-800 hover:text-ecaa-green-950 hover:underline"
@@ -144,5 +149,5 @@ export default function Terms() {
         these terms and conditions.
       </p>
     </LegalPageLayout>
-  )
+  );
 }

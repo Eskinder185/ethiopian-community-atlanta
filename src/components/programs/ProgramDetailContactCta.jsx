@@ -1,4 +1,4 @@
-import CTAButton from '../ui/CTAButton'
+import CTAButton from "../ui/CTAButton";
 
 export default function ProgramDetailContactCta() {
   return (
@@ -7,7 +7,8 @@ export default function ProgramDetailContactCta() {
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="heading-section text-2xl sm:text-3xl">Questions about this program?</h2>
           <p className="mt-4 text-base leading-relaxed text-ecaa-ink-muted sm:text-lg">
-            Contact ECAA to learn more about participation, volunteer opportunities, and upcoming announcements.
+            Contact ECAA to learn more about participation, volunteer opportunities, and upcoming
+            announcements.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <CTAButton to="/contact" variant="primary">
@@ -20,5 +21,5 @@ export default function ProgramDetailContactCta() {
         </div>
       </div>
     </section>
-  )
+  );
 }

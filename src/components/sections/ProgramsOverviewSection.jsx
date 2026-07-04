@@ -1,8 +1,8 @@
-import Container from '../ui/Container'
-import AnimateIn from '../ui/AnimateIn'
+import Container from "../ui/Container";
+import AnimateIn from "../ui/AnimateIn";
 
 export default function ProgramsOverviewSection({ section }) {
-  if (!section) return null
+  if (!section) return null;
 
   return (
     <section className="border-b border-ecaa-border/60 bg-ecaa-cream/40 py-12 sm:py-14">
@@ -24,5 +24,5 @@ export default function ProgramsOverviewSection({ section }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

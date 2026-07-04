@@ -1,5 +1,5 @@
 export default function AboutHowItWorks({ section }) {
-  const items = section.items || []
+  const items = section.items || [];
 
   return (
     <div className="max-w-5xl">
@@ -9,7 +9,7 @@ export default function AboutHowItWorks({ section }) {
 
       <ul className="grid gap-4 sm:grid-cols-2 lg:gap-5">
         {items.map((item, index) => {
-          const text = typeof item === 'string' ? item : item.question
+          const text = typeof item === "string" ? item : item.question;
           return (
             <li
               key={text}
@@ -23,9 +23,9 @@ export default function AboutHowItWorks({ section }) {
               </span>
               <p className="text-base leading-relaxed text-ecaa-ink sm:text-lg">{text}</p>
             </li>
-          )
+          );
         })}
       </ul>
     </div>
-  )
+  );
 }

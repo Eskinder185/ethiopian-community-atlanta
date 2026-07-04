@@ -1,27 +1,27 @@
-import { leadershipAmharicFallbackByName } from '../data/leadershipAmharicFallback'
-import { mergeLocalizedContent } from './homepageLocale'
-import { hasUsableText } from './data'
+import { leadershipAmharicFallbackByName } from "../data/leadershipAmharicFallback";
+import { mergeLocalizedContent } from "./homepageLocale";
+import { hasUsableText } from "./data";
 
 function isPlainObject(value) {
-  return value !== null && typeof value === 'object' && !Array.isArray(value)
+  return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
 function parseContentAm(raw) {
-  if (!raw) return null
-  if (typeof raw === 'string') {
+  if (!raw) return null;
+  if (typeof raw === "string") {
     try {
-      const parsed = JSON.parse(raw)
-      return isPlainObject(parsed) ? parsed : null
+      const parsed = JSON.parse(raw);
+      return isPlainObject(parsed) ? parsed : null;
     } catch {
-      return null
+      return null;
     }
   }
-  return isPlainObject(raw) ? raw : null
+  return isPlainObject(raw) ? raw : null;
 }
 
 export function normalizeLeadershipContentAm(raw) {
-  const source = parseContentAm(raw)
-  if (!source) return null
+  const source = parseContentAm(raw);
+  if (!source) return null;
 
   return {
     name: source.name,
@@ -29,22 +29,22 @@ export function normalizeLeadershipContentAm(raw) {
     committee: source.committee,
     bio: source.bio,
     imageAlt: source.image_alt ?? source.imageAlt,
-  }
+  };
 }
 
 export function getLeadershipContentAmSource(member) {
-  if (!member) return null
-  const stored = normalizeLeadershipContentAm(member.content_am ?? member.contentAm)
-  const fallback = leadershipAmharicFallbackByName[member.name?.trim()] || null
-  if (!stored && !fallback) return null
-  return { ...fallback, ...stored }
+  if (!member) return null;
+  const stored = normalizeLeadershipContentAm(member.content_am ?? member.contentAm);
+  const fallback = leadershipAmharicFallbackByName[member.name?.trim()] || null;
+  if (!stored && !fallback) return null;
+  return { ...fallback, ...stored };
 }
 
-export function applyLeadershipMemberLocale(member, language = 'en') {
-  if (!member || language !== 'am') return member
+export function applyLeadershipMemberLocale(member, language = "en") {
+  if (!member || language !== "am") return member;
 
-  const overlay = getLeadershipContentAmSource(member)
-  if (!overlay) return member
+  const overlay = getLeadershipContentAmSource(member);
+  if (!overlay) return member;
 
   return {
     ...member,
@@ -54,36 +54,38 @@ export function applyLeadershipMemberLocale(member, language = 'en') {
     bio: hasUsableText(overlay.bio) ? overlay.bio.trim() : member.bio,
     imageAlt: hasUsableText(overlay.imageAlt) ? overlay.imageAlt.trim() : member.imageAlt,
     title: hasUsableText(overlay.role) ? overlay.role.trim() : member.title,
-  }
+  };
 }
 
-export function applyLeadershipMembersLocale(members = [], language = 'en') {
-  return members.map((member) => applyLeadershipMemberLocale(member, language))
+export function applyLeadershipMembersLocale(members = [], language = "en") {
+  return members.map((member) => applyLeadershipMemberLocale(member, language));
 }
 
 export function buildLeadershipContentAmFromDraft(draft = {}) {
-  const source = draft.content_am || {}
+  const source = draft.content_am || {};
   return {
-    name: source.name || '',
-    role: source.role || '',
-    committee: source.committee || '',
-    bio: source.bio || '',
-    image_alt: source.image_alt || source.imageAlt || '',
-  }
+    name: source.name || "",
+    role: source.role || "",
+    committee: source.committee || "",
+    bio: source.bio || "",
+    image_alt: source.image_alt || source.imageAlt || "",
+  };
 }
 
 export function localizeLeadershipGroups(groups = [], pageContent = null) {
-  if (!pageContent?.committees?.length) return groups
+  if (!pageContent?.committees?.length) return groups;
 
-  const committeeById = Object.fromEntries(pageContent.committees.map((committee) => [committee.id, committee]))
+  const committeeById = Object.fromEntries(
+    pageContent.committees.map((committee) => [committee.id, committee])
+  );
 
   return groups.map((group) => {
-    const localized = committeeById[group.id]
-    if (!localized) return group
+    const localized = committeeById[group.id];
+    if (!localized) return group;
     return mergeLocalizedContent(group, {
       title: localized.title,
       description: localized.description,
       anchor: localized.anchor || group.anchor,
-    })
-  })
+    });
+  });
 }

@@ -1,4 +1,4 @@
-import Logo from '../Logo'
+import Logo from "../Logo";
 
 export default function HeaderBrand() {
   return (
@@ -9,5 +9,5 @@ export default function HeaderBrand() {
       showText="responsive"
       linkToHome
     />
-  )
+  );
 }

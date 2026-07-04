@@ -1,13 +1,13 @@
-import Container from '../ui/Container'
-import SectionHeader from '../ui/SectionHeader'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
-import { getLinkProps, isSectionVisible } from '../../utils/homepage'
+import Container from "../ui/Container";
+import SectionHeader from "../ui/SectionHeader";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
+import { getLinkProps, isSectionVisible } from "../../utils/homepage";
 
 export default function DonationPreview({ data }) {
-  if (!isSectionVisible(data)) return null
+  if (!isSectionVisible(data)) return null;
 
-  const cta = getLinkProps(data.cta)
+  const cta = getLinkProps(data.cta);
 
   return (
     <section className="surface-muted" aria-labelledby="donation-preview-heading">
@@ -33,5 +33,5 @@ export default function DonationPreview({ data }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

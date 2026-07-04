@@ -1,12 +1,16 @@
-import PageHero from '../components/layout/PageHero'
-import Container from '../components/ui/Container'
-import AnimateIn from '../components/ui/AnimateIn'
-import ExternalFormCTA from '../components/ui/ExternalFormCTA'
-import MailtoForm from '../components/forms/MailtoForm'
-import volunteerData from '../data/volunteer.json'
+import PageHero from "../components/layout/PageHero";
+import Container from "../components/ui/Container";
+import AnimateIn from "../components/ui/AnimateIn";
+import CTAButton from "../components/ui/CTAButton";
+import MailtoForm from "../components/forms/MailtoForm";
+import volunteerData from "../data/volunteer.json";
+import { useFormLink } from "../hooks/useFormLink";
+
+const INTERNAL_VOLUNTEER_SLUG = "volunteer-sign-up";
 
 export default function Volunteer() {
-  const { hero, areas, googleForm, form } = volunteerData
+  const { hero, areas, googleForm, form } = volunteerData;
+  const { href: formHref, isInternal } = useFormLink(INTERNAL_VOLUNTEER_SLUG, googleForm.url);
 
   return (
     <>
@@ -14,7 +18,7 @@ export default function Volunteer() {
         eyebrow={hero.eyebrow}
         title={hero.title}
         description={hero.description}
-        badge={{ label: 'Serve the community', variant: 'green' }}
+        badge={{ label: "Serve the community", variant: "green" }}
         imageId="home-hero-community-atlanta"
       >
         <a href="#volunteer-form" className="btn btn-primary btn-lg">
@@ -47,13 +51,22 @@ export default function Volunteer() {
               <h2 className="heading-section text-2xl">{googleForm.title}</h2>
               <p className="text-body mt-4">{googleForm.description}</p>
             </div>
-            <div className="mt-10">
-              <ExternalFormCTA
-                title={googleForm.title}
-                description={googleForm.description}
-                buttonLabel={googleForm.buttonLabel}
-                formUrl={googleForm.url}
-              />
+            <div className="mt-10 text-center">
+              {isInternal ? (
+                <CTAButton to={formHref} variant="primary" size="lg">
+                  {googleForm.buttonLabel}
+                </CTAButton>
+              ) : (
+                <CTAButton
+                  href={formHref}
+                  variant="primary"
+                  size="lg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {googleForm.buttonLabel}
+                </CTAButton>
+              )}
             </div>
 
             <div className="mx-auto mt-14 max-w-2xl text-center">
@@ -73,5 +86,5 @@ export default function Volunteer() {
         </Container>
       </section>
     </>
-  )
+  );
 }

@@ -1,12 +1,12 @@
-import LeadershipCard, { getImageSrc } from '../cards/LeadershipCard'
-import EmptyState from '../ui/EmptyState'
-import ContentSection from './ContentSection'
-import { getVisibleGroupMembers, groupHasVisibleMembers } from '../../utils/leadership'
+import LeadershipCard, { getImageSrc } from "../cards/LeadershipCard";
+import EmptyState from "../ui/EmptyState";
+import ContentSection from "./ContentSection";
+import { getVisibleGroupMembers, groupHasVisibleMembers } from "../../utils/leadership";
 
 export default function LeadershipGroupSection({ group, muted = false }) {
-  if (!groupHasVisibleMembers(group)) return null
+  if (!groupHasVisibleMembers(group)) return null;
 
-  const groupMembers = getVisibleGroupMembers(group.members)
+  const groupMembers = getVisibleGroupMembers(group.members);
 
   return (
     <ContentSection
@@ -29,5 +29,5 @@ export default function LeadershipGroupSection({ group, muted = false }) {
         />
       )}
     </ContentSection>
-  )
+  );
 }

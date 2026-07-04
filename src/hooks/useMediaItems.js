@@ -1,32 +1,40 @@
-import { useEffect, useState } from 'react'
-import { fetchMediaItems, getFallbackMediaItems } from '../utils/mediaItems'
-import { getFallbackEvents } from '../utils/events'
+import { useEffect, useState } from "react";
+import { fetchMediaItems, getFallbackMediaItems } from "../utils/mediaItems";
+import { getFallbackEvents } from "../utils/events";
+import { runDevContentValidation, validateMediaItem } from "../utils/contentValidation";
+
+/** @typedef {import('../types').MediaItem} MediaItem */
 
 export function useMediaItems(events = null) {
-  const [mediaItems, setMediaItems] = useState(() => getFallbackMediaItems(events ?? getFallbackEvents()))
-  const [loading, setLoading] = useState(true)
+  const [mediaItems, setMediaItems] = useState(() =>
+    getFallbackMediaItems(events ?? getFallbackEvents())
+  );
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let mounted = true
-    const eventList = events ?? getFallbackEvents()
+    let mounted = true;
+    const eventList = events ?? getFallbackEvents();
 
     fetchMediaItems(eventList)
       .then((items) => {
-        if (!mounted) return
-        setMediaItems(items)
-        setLoading(false)
+        if (!mounted) return;
+        setMediaItems(items);
+        setLoading(false);
+        runDevContentValidation([{ label: "mediaItems", items, validator: validateMediaItem }]);
       })
       .catch((error) => {
-        console.warn('Using fallback media items because Supabase failed', error)
-        if (!mounted) return
-        setMediaItems(getFallbackMediaItems(eventList))
-        setLoading(false)
-      })
+        if (import.meta.env.DEV) {
+          console.warn("Using fallback media items because Supabase failed", error);
+        }
+        if (!mounted) return;
+        setMediaItems(getFallbackMediaItems(eventList));
+        setLoading(false);
+      });
 
     return () => {
-      mounted = false
-    }
-  }, [events])
+      mounted = false;
+    };
+  }, [events]);
 
-  return { mediaItems, loading }
+  return { mediaItems, loading };
 }

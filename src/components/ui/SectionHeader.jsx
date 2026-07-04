@@ -1,15 +1,15 @@
-import CTAButton from './CTAButton'
+import CTAButton from "./CTAButton";
 
 export default function SectionHeader({
   eyebrow,
   title,
   description,
   action,
-  align = 'left',
-  className = '',
+  align = "left",
+  className = "",
 }) {
   const alignment =
-    align === 'center' ? 'text-center items-center mx-auto' : 'text-left items-start'
+    align === "center" ? "text-center items-center mx-auto" : "text-left items-start";
 
   return (
     <div className={`flex max-w-3xl flex-col gap-4 ${alignment} ${className}`.trim()}>
@@ -20,12 +20,12 @@ export default function SectionHeader({
         <CTAButton
           to={action.to}
           href={action.href}
-          variant={action.variant || 'secondary'}
+          variant={action.variant || "secondary"}
           size="md"
         >
           {action.label}
         </CTAButton>
       )}
     </div>
-  )
+  );
 }

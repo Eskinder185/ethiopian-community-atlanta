@@ -1,28 +1,28 @@
-import { hasUsableText } from '../../utils/data'
-import { getResolvedImageSrc } from '../../utils/images'
+import { hasUsableText } from "../../utils/data";
+import { getResolvedImageSrc } from "../../utils/images";
 
 const COLLAGE_LAYOUTS = [
-  'sm:col-span-2 sm:row-span-2',
-  'sm:col-span-1 sm:row-span-1',
-  'sm:col-span-1 sm:row-span-1',
-  'sm:col-span-2 sm:row-span-1',
-  'sm:col-span-1 sm:row-span-2',
-  'sm:col-span-1 sm:row-span-1',
-]
+  "sm:col-span-2 sm:row-span-2",
+  "sm:col-span-1 sm:row-span-1",
+  "sm:col-span-1 sm:row-span-1",
+  "sm:col-span-2 sm:row-span-1",
+  "sm:col-span-1 sm:row-span-2",
+  "sm:col-span-1 sm:row-span-1",
+];
 
 function getAltText(image) {
-  return hasUsableText(image.alt) ? image.alt : 'TODO: Add alt text'
+  return hasUsableText(image.alt) ? image.alt : "TODO: Add alt text";
 }
 
-export default function MasonryGallery({ images = [], className = '' }) {
-  if (images.length === 0) return null
+export default function MasonryGallery({ images = [], className = "" }) {
+  if (images.length === 0) return null;
 
   return (
     <div
       className={`grid grid-cols-1 gap-3 sm:grid-cols-4 sm:auto-rows-[minmax(140px,auto)] lg:auto-rows-[minmax(180px,auto)] ${className}`.trim()}
     >
       {images.map((image, index) => {
-        const layout = COLLAGE_LAYOUTS[index % COLLAGE_LAYOUTS.length]
+        const layout = COLLAGE_LAYOUTS[index % COLLAGE_LAYOUTS.length];
 
         return (
           <figure
@@ -42,8 +42,8 @@ export default function MasonryGallery({ images = [], className = '' }) {
               </figcaption>
             )}
           </figure>
-        )
+        );
       })}
     </div>
-  )
+  );
 }

@@ -6,19 +6,23 @@
   "hero": {
     "visible": true,
     "eyebrow": "Ethiopian Community Association in Atlanta",
-    "title": "Building Intergenerational Connections and Strengthening Community Resilience",
-    "description": "ECAA exists to serve, connect, and empower the Ethiopian community in Atlanta while helping preserve Ethiopian cultural heritage and support integration into American society.",
-    "trustCue": "Serving the Ethiopian and Ethiopian American community in Atlanta since 1983.",
+    "title": "A Home for Ethiopians in Atlanta",
+    "description": "Come connect with culture, community, support, events, and people who understand your story.",
+    "trustCue": "Serving Ethiopian and Ethiopian American families in Atlanta since 1983.",
     "primaryCta": {
       "label": "Become a Member",
       "href": "/membership"
     },
     "secondaryCta": {
-      "label": "View Events",
+      "label": "See Upcoming Events",
       "href": "/events"
     },
     "supportCta": {
-      "label": "Support ECAA",
+      "label": "Volunteer",
+      "href": "/support#volunteer"
+    },
+    "donateCta": {
+      "label": "Donate",
       "href": "/support"
     },
     "image": "/images/heroes/home-hero.jpg",
@@ -26,9 +30,23 @@
   },
   "missionSection": {
     "visible": false,
-    "eyebrow": "Our Purpose",
+    "eyebrow": "",
     "title": "Our Mission",
-    "description": "ECAA serves, empowers, and advances the interests of Ethiopians and Ethiopian Americans in Atlanta and surrounding areas. We promote cultural pride, community support, education, civic connection, and successful integration into American society while preserving the values and traditions that unite us."
+    "description": "ECAA brings Ethiopians and Ethiopian Americans in Atlanta together through culture, education, mutual support, youth programs, family services, events, and community leadership.",
+    "primaryCta": {
+      "label": "Learn About ECAA",
+      "href": "/about"
+    },
+    "secondaryCta": {
+      "label": "Explore Programs",
+      "href": "/programs"
+    },
+    "badges": [
+      { "id": "culture", "label": "Culture" },
+      { "id": "education", "label": "Education" },
+      { "id": "support", "label": "Mutual Support" },
+      { "id": "youth", "label": "Youth & Family" }
+    ]
   },
   "communityPillars": {
     "visible": false,
@@ -274,10 +292,10 @@
     "maxItems": 3,
     "items": [],
     "emptyState": {
-      "title": "Upcoming events will be shared soon",
-      "description": "ECAA events and community updates will appear here as they become available.",
+      "title": "Upcoming events will be posted soon.",
+      "description": "",
       "primaryCta": {
-        "label": "View All Events",
+        "label": "View Events",
         "href": "/events"
       }
     },
@@ -392,14 +410,14 @@
     "eyebrow": "Media",
     "title": "Community Moments",
     "description": "Photos and videos that highlight ECAA's community, culture, and connection.",
-    "maxItems": 4,
+    "maxItems": 6,
     "layout": "collage",
     "items": [],
     "emptyState": {
-      "title": "Community media will be shared soon",
-      "description": "Photos, flyers, videos, and community moments will appear here when published.",
+      "title": "Community photos and highlights will be added soon.",
+      "description": "",
       "primaryCta": {
-        "label": "View Media Gallery",
+        "label": "View Media",
         "href": "/media"
       }
     },

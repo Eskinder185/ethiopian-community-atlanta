@@ -1,8 +1,8 @@
-import Container from '../ui/Container'
-import HomeSectionHeader from '../ui/HomeSectionHeader'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
-import { useLanguage } from '../../context/LanguageContext'
+import Container from "../ui/Container";
+import HomeSectionHeader from "../ui/HomeSectionHeader";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
+import { useLanguage } from "../../context/LanguageContext";
 import {
   applyFeaturedProgramLocale,
   getFeaturedProgramButtonLabel,
@@ -10,12 +10,12 @@ import {
   getLinkProps,
   getPublicText,
   isSectionVisible,
-} from '../../utils/homepage'
+} from "../../utils/homepage";
 
 function ProgramPreviewCard({ program }) {
-  const { language } = useLanguage()
-  const localized = applyFeaturedProgramLocale(program, language)
-  const cta = getLinkProps({ href: localized.href })
+  const { language } = useLanguage();
+  const localized = applyFeaturedProgramLocale(program, language);
+  const cta = getLinkProps({ href: localized.href });
 
   return (
     <article className="flex h-full flex-col rounded-ecaa-xl border border-ecaa-border/70 bg-ecaa-white p-5 shadow-ecaa-sm sm:p-6">
@@ -29,7 +29,9 @@ function ProgramPreviewCard({ program }) {
               {localized.category}
             </p>
           )}
-          <h3 className="mt-1 text-xl font-semibold tracking-tight text-ecaa-ink">{localized.title}</h3>
+          <h3 className="mt-1 text-xl font-semibold tracking-tight text-ecaa-ink">
+            {localized.title}
+          </h3>
           {getPublicText(localized.subtitle) && (
             <p className="mt-1 text-sm font-medium text-ecaa-green-800">{localized.subtitle}</p>
           )}
@@ -48,16 +50,16 @@ function ProgramPreviewCard({ program }) {
         </CTAButton>
       )}
     </article>
-  )
+  );
 }
 
 export default function HomeFeaturedPrograms({ section, programs = [] }) {
-  if (!isSectionVisible(section)) return null
+  if (!isSectionVisible(section)) return null;
 
-  const maxItems = section.maxItems ?? 4
-  const items = getHomepageFeaturedPrograms(programs, maxItems)
-  const sectionCta = getLinkProps(section.sectionCta)
-  const hasItems = items.length > 0
+  const maxItems = section.maxItems ?? 4;
+  const items = getHomepageFeaturedPrograms(programs, maxItems);
+  const sectionCta = getLinkProps(section.sectionCta);
+  const hasItems = items.length > 0;
 
   return (
     <section className="home-section surface-white" aria-labelledby="home-programs-heading">
@@ -70,16 +72,20 @@ export default function HomeFeaturedPrograms({ section, programs = [] }) {
             description={section.description}
             action={
               sectionCta
-                ? { label: section.sectionCta.label, ...sectionCta, variant: 'secondary' }
+                ? { label: section.sectionCta.label, ...sectionCta, variant: "secondary" }
                 : undefined
             }
             className="home-section-header-row"
           />
 
           {hasItems && (
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-4 xl:grid-cols-4">
               {items.map((item, index) => (
-                <AnimateIn key={item.id} delay={index * 50}>
+                <AnimateIn
+                  key={item.id}
+                  delay={index * 50}
+                  className={index >= 2 ? "hidden sm:block" : ""}
+                >
                   <ProgramPreviewCard program={item} />
                 </AnimateIn>
               ))}
@@ -88,5 +94,5 @@ export default function HomeFeaturedPrograms({ section, programs = [] }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

@@ -1,10 +1,15 @@
-import Container from '../ui/Container'
-import HomeSectionHeader from '../ui/HomeSectionHeader'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
-import contactData from '../../content/contact.json'
-import { getLinkProps, getPublicText, isSectionVisible, isUsableHomeText } from '../../utils/homepage'
-import { hasUsableText } from '../../utils/data'
+import Container from "../ui/Container";
+import HomeSectionHeader from "../ui/HomeSectionHeader";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
+import contactData from "../../content/contact.json";
+import {
+  getLinkProps,
+  getPublicText,
+  isSectionVisible,
+  isUsableHomeText,
+} from "../../utils/homepage";
+import { hasUsableText } from "../../utils/data";
 
 function TrustPoint({ children }) {
   return (
@@ -15,21 +20,23 @@ function TrustPoint({ children }) {
       />
       <span>{children}</span>
     </li>
-  )
+  );
 }
 
 export default function TrustCredibilitySection({ data }) {
-  if (!isSectionVisible(data)) return null
+  if (!isSectionVisible(data)) return null;
 
-  const { general } = contactData
+  const { general } = contactData;
   const addressLine = hasUsableText(general.address?.street)
     ? `${general.address.street}, ${general.address.city}, ${general.address.state} ${general.address.zip}`
-    : null
-  const trustPoints = (data.trustPoints ?? []).filter((point) => isUsableHomeText(point))
-  const actions = (data.actions ?? []).map((action) => ({
-    ...action,
-    linkProps: getLinkProps(action),
-  })).filter((action) => action.linkProps && isUsableHomeText(action.label))
+    : null;
+  const trustPoints = (data.trustPoints ?? []).filter((point) => isUsableHomeText(point));
+  const actions = (data.actions ?? [])
+    .map((action) => ({
+      ...action,
+      linkProps: getLinkProps(action),
+    }))
+    .filter((action) => action.linkProps && isUsableHomeText(action.label));
 
   return (
     <section className="home-section surface-cream" aria-labelledby="trust-heading">
@@ -66,7 +73,7 @@ export default function TrustCredibilitySection({ data }) {
                     <dt className="font-medium text-ecaa-ink">Phone</dt>
                     <dd className="mt-1">
                       <a
-                        href={`tel:${general.phone.replace(/\s/g, '')}`}
+                        href={`tel:${general.phone.replace(/\s/g, "")}`}
                         className="text-ecaa-green-900 underline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ecaa-gold-500"
                       >
                         {general.phone}
@@ -101,7 +108,7 @@ export default function TrustCredibilitySection({ data }) {
                     <CTAButton
                       key={action.label}
                       {...action.linkProps}
-                      variant={action.variant || 'secondary'}
+                      variant={action.variant || "secondary"}
                       size="md"
                     >
                       {action.label}
@@ -114,5 +121,5 @@ export default function TrustCredibilitySection({ data }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

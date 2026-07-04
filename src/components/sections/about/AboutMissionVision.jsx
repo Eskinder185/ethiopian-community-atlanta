@@ -1,16 +1,14 @@
 const BADGE_INITIALS = {
-  Mission: 'M',
-  Vision: 'V',
-  'ተልዕኮ': 'ተ',
-  'ራዕይ': 'ራ',
-}
+  Mission: "M",
+  Vision: "V",
+  ተልዕኮ: "ተ",
+  ራዕይ: "ራ",
+};
 
 export default function AboutMissionVision({ section }) {
   return (
     <div className="max-w-5xl">
-      {section.intro && (
-        <p className="text-lead max-w-3xl leading-relaxed">{section.intro}</p>
-      )}
+      {section.intro && <p className="text-lead max-w-3xl leading-relaxed">{section.intro}</p>}
 
       <div className="mt-10 grid gap-6 lg:grid-cols-2">
         {section.cards.map((card) => (
@@ -38,5 +36,5 @@ export default function AboutMissionVision({ section }) {
         ))}
       </div>
     </div>
-  )
+  );
 }

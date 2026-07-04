@@ -1,22 +1,17 @@
-import ProgramCard from '../cards/ProgramCard'
-import EmptyState from '../ui/EmptyState'
-import { filterPublished } from '../../utils/data'
+import ProgramCard from "../cards/ProgramCard";
+import EmptyState from "../ui/EmptyState";
+import { filterPublished } from "../../utils/data";
 
 export default function ProgramCategorySection({ category, muted = false }) {
-  const programs = filterPublished(category.programs ?? [])
+  const programs = filterPublished(category.programs ?? []);
 
   return (
-    <section
-      id={category.id}
-      className={muted ? 'surface-muted' : 'surface-white'}
-    >
+    <section id={category.id} className={muted ? "surface-muted" : "surface-white"}>
       <div className="page-container section-spacing-sm">
         <div className="max-w-3xl">
           <p className="text-eyebrow">Program area</p>
           <h2 className="heading-section mt-3">{category.title}</h2>
-          <p className="text-body mt-4">
-            {category.description}
-          </p>
+          <p className="text-body mt-4">{category.description}</p>
         </div>
 
         <div className="mt-10">
@@ -38,5 +33,5 @@ export default function ProgramCategorySection({ category, muted = false }) {
         )}
       </div>
     </section>
-  )
+  );
 }

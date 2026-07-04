@@ -1,13 +1,13 @@
-import { useState } from 'react'
-import Container from '../ui/Container'
-import CTAButton from '../ui/CTAButton'
-import ContactCard from '../cards/ContactCard'
-import { siteAssets } from '../../config/assets'
-import { resolvePublicAssetPath } from '../../utils/images'
-import { filterPublished, hasUsableText } from '../../utils/data'
+import { useState } from "react";
+import Container from "../ui/Container";
+import CTAButton from "../ui/CTAButton";
+import ContactCard from "../cards/ContactCard";
+import { siteAssets } from "../../config/assets";
+import { resolvePublicAssetPath } from "../../utils/images";
+import { filterPublished, hasUsableText } from "../../utils/data";
 
 function ContactDetail({ label, value, href, multiline = false }) {
-  if (!hasUsableText(value)) return null
+  if (!hasUsableText(value)) return null;
 
   return (
     <div className="ecaa-card">
@@ -20,17 +20,19 @@ function ContactDetail({ label, value, href, multiline = false }) {
           {value}
         </a>
       ) : (
-        <p className={`mt-3 text-lg leading-relaxed text-ecaa-ink ${multiline ? 'whitespace-pre-line' : ''}`}>
+        <p
+          className={`mt-3 text-lg leading-relaxed text-ecaa-ink ${multiline ? "whitespace-pre-line" : ""}`}
+        >
           {value}
         </p>
       )}
     </div>
-  )
+  );
 }
 
 function VisitEcaaImage({ alt }) {
-  const [failed, setFailed] = useState(false)
-  const src = resolvePublicAssetPath(siteAssets.homeHero)
+  const [failed, setFailed] = useState(false);
+  const src = resolvePublicAssetPath(siteAssets.homeHero);
 
   if (failed || !src) {
     return (
@@ -39,7 +41,7 @@ function VisitEcaaImage({ alt }) {
         role="img"
         aria-label={alt || siteAssets.homeHeroAlt}
       />
-    )
+    );
   }
 
   return (
@@ -51,15 +53,15 @@ function VisitEcaaImage({ alt }) {
       decoding="async"
       onError={() => setFailed(true)}
     />
-  )
+  );
 }
 
 export default function ContactDetailsSection({ content }) {
-  if (!content) return null
+  if (!content) return null;
 
-  const { contactInfo, visit, departmentContacts, finalCta } = content
-  const publishedDepartments = filterPublished(departmentContacts ?? [])
-  const phoneHref = (value) => `tel:${value.replace(/\D/g, '')}`
+  const { contactInfo, visit, departmentContacts, finalCta } = content;
+  const publishedDepartments = filterPublished(departmentContacts ?? []);
+  const phoneHref = (value) => `tel:${value.replace(/\D/g, "")}`;
 
   return (
     <>
@@ -118,7 +120,7 @@ export default function ContactDetailsSection({ content }) {
         </Container>
       </section>
 
-      <section className="surface-muted" id={visit.id || 'visit-ecaa'}>
+      <section className="surface-muted" id={visit.id || "visit-ecaa"}>
         <Container className="section-spacing-sm">
           <div className="overflow-hidden rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-white shadow-ecaa-sm lg:grid lg:grid-cols-2 lg:items-stretch">
             <div className="flex flex-col justify-center p-6 sm:p-8">
@@ -137,7 +139,7 @@ export default function ContactDetailsSection({ content }) {
         <section className="surface-white">
           <Container className="section-spacing-sm">
             <h2 className="heading-section normal-case">
-              {content.departmentsTitle || 'Department contacts'}
+              {content.departmentsTitle || "Department contacts"}
             </h2>
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {publishedDepartments.map((dept) => (
@@ -153,13 +155,15 @@ export default function ContactDetailsSection({ content }) {
           <Container className="section-spacing-sm">
             <div className="ecaa-card mx-auto max-w-3xl text-center">
               <h2 className="heading-section text-2xl normal-case">{finalCta.title}</h2>
-              <p className="text-body mx-auto mt-4 max-w-xl leading-relaxed">{finalCta.description}</p>
+              <p className="text-body mx-auto mt-4 max-w-xl leading-relaxed">
+                {finalCta.description}
+              </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 {finalCta.buttons?.map((button, index) => (
                   <CTAButton
                     key={button.href}
                     to={button.href}
-                    variant={index === 0 ? 'primary' : 'secondary'}
+                    variant={index === 0 ? "primary" : "secondary"}
                     size="lg"
                   >
                     {button.label}
@@ -171,5 +175,5 @@ export default function ContactDetailsSection({ content }) {
         </section>
       )}
     </>
-  )
+  );
 }

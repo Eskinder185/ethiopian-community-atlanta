@@ -1,30 +1,30 @@
-import { useEffect, useState } from 'react'
-import { fetchPublicHallBookings, getFallbackPublicHallBookings } from '../utils/hallBookings'
+import { useEffect, useState } from "react";
+import { fetchPublicHallBookings, getFallbackPublicHallBookings } from "../utils/hallBookings";
 
 export function useHallBookings() {
-  const [bookings, setBookings] = useState(getFallbackPublicHallBookings)
-  const [loading, setLoading] = useState(true)
+  const [bookings, setBookings] = useState(getFallbackPublicHallBookings);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let mounted = true
+    let mounted = true;
 
     fetchPublicHallBookings()
       .then((items) => {
-        if (!mounted) return
-        setBookings(items)
-        setLoading(false)
+        if (!mounted) return;
+        setBookings(items);
+        setLoading(false);
       })
       .catch((error) => {
-        console.warn('Using fallback hall bookings because Supabase failed', error)
-        if (!mounted) return
-        setBookings(getFallbackPublicHallBookings())
-        setLoading(false)
-      })
+        console.warn("Using fallback hall bookings because Supabase failed", error);
+        if (!mounted) return;
+        setBookings(getFallbackPublicHallBookings());
+        setLoading(false);
+      });
 
     return () => {
-      mounted = false
-    }
-  }, [])
+      mounted = false;
+    };
+  }, []);
 
-  return { bookings, loading }
+  return { bookings, loading };
 }

@@ -1,17 +1,17 @@
-import Container from '../ui/Container'
-import HomeSectionHeader from '../ui/HomeSectionHeader'
-import HomeInfoCard from '../cards/HomeInfoCard'
-import AnimateIn from '../ui/AnimateIn'
-import { getVisibleItems, isSectionVisible, isUsableHomeText } from '../../utils/homepage'
+import Container from "../ui/Container";
+import HomeSectionHeader from "../ui/HomeSectionHeader";
+import HomeInfoCard from "../cards/HomeInfoCard";
+import AnimateIn from "../ui/AnimateIn";
+import { getVisibleItems, isSectionVisible, isUsableHomeText } from "../../utils/homepage";
 
 function isAudienceItem(item) {
-  return isUsableHomeText(item?.title) && isUsableHomeText(item?.description)
+  return isUsableHomeText(item?.title) && isUsableHomeText(item?.description);
 }
 
 export default function WhoWeServeSection({ data }) {
-  if (!isSectionVisible(data)) return null
+  if (!isSectionVisible(data)) return null;
 
-  const items = getVisibleItems(data.items, isAudienceItem)
+  const items = getVisibleItems(data.items, isAudienceItem);
 
   return (
     <section className="home-section surface-cream" aria-labelledby="who-we-serve-heading">
@@ -33,5 +33,5 @@ export default function WhoWeServeSection({ data }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

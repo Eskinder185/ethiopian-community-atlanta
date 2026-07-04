@@ -78,7 +78,11 @@
     "title": "Ready to join ECAA?",
     "description": "Start your registration online or contact ECAA if you need help before completing the form.",
     "buttons": [
-      { "label": "Start Registration", "href": "https://form.jotform.com/211111215669043", "external": true },
+      {
+        "label": "Start Registration",
+        "href": "https://form.jotform.com/211111215669043",
+        "external": true
+      },
       { "label": "Contact for Help", "href": "/contact" }
     ]
   },

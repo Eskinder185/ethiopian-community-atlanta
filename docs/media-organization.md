@@ -16,13 +16,13 @@ These are static files used for the look and layout of the website:
 
 **Folder structure:**
 
-| Folder | Purpose |
-|--------|---------|
-| `public/images/brand/` | ECAA logo and brand marks |
-| `public/images/heroes/` | Page hero background photos |
-| `public/images/patterns/` | Decorative pattern/divider images |
-| `public/images/placeholders/` | Fallback placeholder graphics |
-| `public/images/icons/` | Small icon assets |
+| Folder                        | Purpose                           |
+| ----------------------------- | --------------------------------- |
+| `public/images/brand/`        | ECAA logo and brand marks         |
+| `public/images/heroes/`       | Page hero background photos       |
+| `public/images/patterns/`     | Decorative pattern/divider images |
+| `public/images/placeholders/` | Fallback placeholder graphics     |
+| `public/images/icons/`        | Small icon assets                 |
 
 **Configured in:** `src/config/assets.js`
 
@@ -53,14 +53,14 @@ These are photos, flyers, videos, forms, and links managed by ECAA editors:
 
 Uploaded community files go into organized folders inside the `ecaa-media` bucket:
 
-| Folder | Used for |
-|--------|----------|
-| `media-gallery/photos/` | Gallery photos |
-| `media-gallery/flyers/` | Event and program flyers |
-| `media-gallery/documents/` | Document files |
+| Folder                       | Used for                  |
+| ---------------------------- | ------------------------- |
+| `media-gallery/photos/`      | Gallery photos            |
+| `media-gallery/flyers/`      | Event and program flyers  |
+| `media-gallery/documents/`   | Document files            |
 | `leadership/profile-photos/` | Leadership profile photos |
-| `programs/program-media/` | Program detail page media |
-| `events/event-images/` | Event listing images |
+| `programs/program-media/`    | Program detail page media |
+| `events/event-images/`       | Event listing images      |
 
 Uploads are handled by `src/lib/uploadMedia.js`.
 
@@ -72,12 +72,12 @@ Admins enter these as **URL fields** in the admin portal. The website saves them
 
 ## Admin portal
 
-| Admin page | Upload folder |
-|------------|---------------|
-| Admin → Media | `media-gallery/photos` or `media-gallery/flyers` |
-| Admin → Leadership | `leadership/profile-photos` |
-| Admin → Programs | `programs/program-media` |
-| Admin → Events | `events/event-images` |
+| Admin page         | Upload folder                                    |
+| ------------------ | ------------------------------------------------ |
+| Admin → Media      | `media-gallery/photos` or `media-gallery/flyers` |
+| Admin → Leadership | `leadership/profile-photos`                      |
+| Admin → Programs   | `programs/program-media`                         |
+| Admin → Events     | `events/event-images`                            |
 
 ## Quick rules
 

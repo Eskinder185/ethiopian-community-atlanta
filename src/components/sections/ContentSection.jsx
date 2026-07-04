@@ -1,6 +1,6 @@
-import Container from '../ui/Container'
-import SectionHeader from '../ui/SectionHeader'
-import AnimateIn from '../ui/AnimateIn'
+import Container from "../ui/Container";
+import SectionHeader from "../ui/SectionHeader";
+import AnimateIn from "../ui/AnimateIn";
 
 export default function ContentSection({
   id,
@@ -9,24 +9,16 @@ export default function ContentSection({
   description,
   children,
   muted = false,
-  align = 'left',
+  align = "left",
 }) {
   return (
-    <section
-      id={id}
-      className={muted ? 'surface-muted' : 'surface-white'}
-    >
+    <section id={id} className={muted ? "surface-muted" : "surface-white"}>
       <Container className="section-spacing-sm">
         <AnimateIn>
-          <SectionHeader
-            eyebrow={eyebrow}
-            title={title}
-            description={description}
-            align={align}
-          />
+          <SectionHeader eyebrow={eyebrow} title={title} description={description} align={align} />
           {children && <div className="mt-12">{children}</div>}
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

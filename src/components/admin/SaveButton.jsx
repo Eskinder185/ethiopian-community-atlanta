@@ -1,12 +1,12 @@
 export default function SaveButton({
-  children = 'Save changes',
-  savingText = 'Saving…',
+  children = "Save changes",
+  savingText = "Saving…",
   loading = false,
   saving = false,
   disabled = false,
   ...props
 }) {
-  const isSaving = loading || saving
+  const isSaving = loading || saving;
 
   return (
     <button
@@ -17,5 +17,5 @@ export default function SaveButton({
     >
       {isSaving ? savingText : children}
     </button>
-  )
+  );
 }

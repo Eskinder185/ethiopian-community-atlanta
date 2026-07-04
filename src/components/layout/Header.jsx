@@ -1,31 +1,32 @@
-import { useEffect, useState } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
-import Container from '../ui/Container'
-import HeaderBrand from './HeaderBrand'
-import MobileMenu from './MobileMenu'
-import NavDropdown from './NavDropdown'
-import CTAButton from '../ui/CTAButton'
-import LanguageToggle from '../LanguageToggle'
-import navigation from '../../data/navigation.json'
-import { useLanguage } from '../../context/LanguageContext'
-import { translateNavLabel } from '../../utils/navigationLabels'
-import { ADMIN_LOGIN_PATH } from '../../utils/admin'
+import { useEffect, useRef, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import Container from "../ui/Container";
+import HeaderBrand from "./HeaderBrand";
+import MobileMenu from "./MobileMenu";
+import NavDropdown from "./NavDropdown";
+import CTAButton from "../ui/CTAButton";
+import LanguageToggle from "../LanguageToggle";
+import navigation from "../../data/navigation.json";
+import { useLanguage } from "../../context/LanguageContext";
+import { translateNavLabel } from "../../utils/navigationLabels";
+import { ADMIN_LOGIN_PATH } from "../../utils/admin";
 
 const navLinkClass = ({ isActive }) =>
-  ['nav-link nav-link-header whitespace-nowrap', isActive ? 'nav-link-active' : '']
+  ["nav-link nav-link-header whitespace-nowrap", isActive ? "nav-link-active" : ""]
     .filter(Boolean)
-    .join(' ')
+    .join(" ");
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const [openDropdown, setOpenDropdown] = useState(null)
-  const location = useLocation()
-  const { t } = useLanguage()
-  const { items, primaryCta, adminCta } = navigation.header
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const menuButtonRef = useRef(null);
+  const location = useLocation();
+  const { t } = useLanguage();
+  const { items, primaryCta, adminCta } = navigation.header;
 
   useEffect(() => {
-    setOpenDropdown(null)
-  }, [location.pathname, location.hash])
+    setOpenDropdown(null);
+  }, [location.pathname, location.hash]);
 
   return (
     <header className="sticky top-0 z-50 w-full overflow-visible border-b border-ecaa-border/60 bg-ecaa-white/95 shadow-ecaa-sm backdrop-blur-xl">
@@ -39,15 +40,13 @@ export default function Header() {
               aria-label="Main navigation"
             >
               {items.map((item) =>
-                item.type === 'dropdown' ? (
+                item.type === "dropdown" ? (
                   <NavDropdown
                     key={item.label}
                     item={item}
                     isOpen={openDropdown === item.label}
                     onToggle={() =>
-                      setOpenDropdown((current) =>
-                        current === item.label ? null : item.label,
-                      )
+                      setOpenDropdown((current) => (current === item.label ? null : item.label))
                     }
                     onClose={() => setOpenDropdown(null)}
                   />
@@ -56,11 +55,11 @@ export default function Header() {
                     key={item.path}
                     to={item.path}
                     className={navLinkClass}
-                    end={item.path === '/'}
+                    end={item.path === "/"}
                   >
                     {translateNavLabel(item.label, t)}
                   </NavLink>
-                ),
+                )
               )}
             </nav>
 
@@ -77,31 +76,31 @@ export default function Header() {
               </CTAButton>
             )}
             {primaryCta?.path && (
-              <CTAButton
-                to={primaryCta.path}
-                variant="secondary"
-                size="sm"
-                className="shrink-0"
-              >
+              <CTAButton to={primaryCta.path} variant="secondary" size="sm" className="shrink-0">
                 {translateNavLabel(primaryCta.label, t)}
               </CTAButton>
             )}
           </div>
 
           <button
+            ref={menuButtonRef}
             type="button"
-            className="btn btn-secondary btn-sm shrink-0 xl:hidden"
+            className="btn btn-secondary btn-sm min-h-[44px] shrink-0 xl:hidden"
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
+            aria-label={menuOpen ? t("common.closeMenu") : t("common.openMenu")}
             onClick={() => setMenuOpen((open) => !open)}
           >
-            <span className="sr-only">{menuOpen ? t('common.closeMenu') : t('common.openMenu')}</span>
-            <span aria-hidden="true">{menuOpen ? t('common.close') : t('common.menu')}</span>
+            <span aria-hidden="true">{menuOpen ? t("common.close") : t("common.menu")}</span>
           </button>
         </div>
 
-        <MobileMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
+        <MobileMenu
+          isOpen={menuOpen}
+          onClose={() => setMenuOpen(false)}
+          returnFocusRef={menuButtonRef}
+        />
       </Container>
     </header>
-  )
+  );
 }

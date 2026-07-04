@@ -1,26 +1,23 @@
-import CTAButton from '../ui/CTAButton'
-import { hasUsableUrl } from '../../utils/data'
+import CTAButton from "../ui/CTAButton";
+import { hasUsableUrl } from "../../utils/data";
 
 const accentStyles = {
-  green: 'border-ecaa-green-200 bg-gradient-to-br from-ecaa-green-50 to-ecaa-white',
-  gold: 'border-ecaa-gold-200 bg-gradient-to-br from-ecaa-gold-50 to-ecaa-white',
-  red: 'border-ecaa-red-200 bg-gradient-to-br from-ecaa-red-50 to-ecaa-white',
-  cream: 'border-ecaa-border bg-ecaa-cream',
-}
+  green: "border-ecaa-green-200 bg-gradient-to-br from-ecaa-green-50 to-ecaa-white",
+  gold: "border-ecaa-gold-200 bg-gradient-to-br from-ecaa-gold-50 to-ecaa-white",
+  red: "border-ecaa-red-200 bg-gradient-to-br from-ecaa-red-50 to-ecaa-white",
+  cream: "border-ecaa-border bg-ecaa-cream",
+};
 
 function isInternalPath(value) {
-  return typeof value === 'string' && value.startsWith('/')
+  return typeof value === "string" && value.startsWith("/");
 }
 
 export default function SupportCtaSection({ section, muted = false }) {
-  const isExternal = hasUsableUrl(section.ctaUrl)
-  const isInternal = isInternalPath(section.ctaUrl)
+  const isExternal = hasUsableUrl(section.ctaUrl);
+  const isInternal = isInternalPath(section.ctaUrl);
 
   return (
-    <section
-      id={section.id}
-      className={muted ? 'surface-muted' : 'surface-white'}
-    >
+    <section id={section.id} className={muted ? "surface-muted" : "surface-white"}>
       <div className="page-container section-spacing-sm">
         <article
           className={`rounded-ecaa-xl border p-8 shadow-ecaa sm:p-10 lg:p-12 ${accentStyles[section.accent] || accentStyles.cream}`}
@@ -56,9 +53,7 @@ export default function SupportCtaSection({ section, muted = false }) {
                 {section.ctaLabel}
               </CTAButton>
             ) : (
-              <p className="text-base font-medium text-ecaa-ink-subtle">
-                {section.ctaUrl}
-              </p>
+              <p className="text-base font-medium text-ecaa-ink-subtle">{section.ctaUrl}</p>
             )}
             <CTAButton to="/contact" variant="secondary" size="lg">
               Contact ECAA
@@ -67,5 +62,5 @@ export default function SupportCtaSection({ section, muted = false }) {
         </article>
       </div>
     </section>
-  )
+  );
 }

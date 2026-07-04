@@ -1,9 +1,9 @@
-import Container from '../ui/Container'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
+import Container from "../ui/Container";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
 
 export default function MembershipClosingCta({ section }) {
-  if (!section) return null
+  if (!section) return null;
 
   return (
     <section className="surface-white py-16 sm:py-20">
@@ -22,17 +22,17 @@ export default function MembershipClosingCta({ section }) {
                   key={button.href}
                   href={button.external ? button.href : undefined}
                   to={button.external ? undefined : button.href}
-                  variant={index === 0 ? 'accent' : 'secondary'}
+                  variant={index === 0 ? "accent" : "secondary"}
                   size="lg"
-                  target={button.external ? '_blank' : undefined}
-                  rel={button.external ? 'noopener noreferrer' : undefined}
+                  target={button.external ? "_blank" : undefined}
+                  rel={button.external ? "noopener noreferrer" : undefined}
                   aria-label={
                     button.external ? `${button.label} (opens in a new tab)` : button.label
                   }
                   className={
                     index !== 0
-                      ? '!border-ecaa-white/40 !bg-transparent !text-ecaa-white hover:!bg-ecaa-white/10'
-                      : ''
+                      ? "!border-ecaa-white/40 !bg-transparent !text-ecaa-white hover:!bg-ecaa-white/10"
+                      : ""
                   }
                 >
                   {button.label}
@@ -43,5 +43,5 @@ export default function MembershipClosingCta({ section }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

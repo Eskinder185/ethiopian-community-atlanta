@@ -1,19 +1,24 @@
-import Container from '../ui/Container'
-import HomeSectionHeader from '../ui/HomeSectionHeader'
-import HomeInfoCard from '../cards/HomeInfoCard'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
-import { getLinkProps, getVisibleItems, isSectionVisible, isUsableHomeText } from '../../utils/homepage'
+import Container from "../ui/Container";
+import HomeSectionHeader from "../ui/HomeSectionHeader";
+import HomeInfoCard from "../cards/HomeInfoCard";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
+import {
+  getLinkProps,
+  getVisibleItems,
+  isSectionVisible,
+  isUsableHomeText,
+} from "../../utils/homepage";
 
 function isBenefitItem(item) {
-  return isUsableHomeText(item?.title) && isUsableHomeText(item?.description)
+  return isUsableHomeText(item?.title) && isUsableHomeText(item?.description);
 }
 
 export default function WhyJoinSection({ data }) {
-  if (!isSectionVisible(data)) return null
+  if (!isSectionVisible(data)) return null;
 
-  const items = getVisibleItems(data.items, isBenefitItem)
-  const cta = getLinkProps(data.sectionCta)
+  const items = getVisibleItems(data.items, isBenefitItem);
+  const cta = getLinkProps(data.sectionCta);
 
   return (
     <section className="home-section surface-cream" aria-labelledby="why-join-heading">
@@ -44,5 +49,5 @@ export default function WhyJoinSection({ data }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

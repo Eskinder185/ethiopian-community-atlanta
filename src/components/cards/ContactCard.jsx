@@ -1,8 +1,8 @@
-import { hasUsableText } from '../../utils/data'
+import { hasUsableText } from "../../utils/data";
 
 export default function ContactCard({ contact }) {
-  const emailLabel = contact.emailLabel || 'Email:'
-  const phoneLabel = contact.phoneLabel || 'Phone:'
+  const emailLabel = contact.emailLabel || "Email:";
+  const phoneLabel = contact.phoneLabel || "Phone:";
 
   return (
     <article className="ecaa-card flex h-full flex-col">
@@ -28,7 +28,7 @@ export default function ContactCard({ contact }) {
           <li className="leading-relaxed">
             <span className="font-medium text-ecaa-ink">{phoneLabel} </span>
             <a
-              href={`tel:${contact.phone.replace(/\s/g, '')}`}
+              href={`tel:${contact.phone.replace(/\s/g, "")}`}
               className="link-subtle text-ecaa-green-900 underline-offset-4 hover:underline"
             >
               {contact.phone}
@@ -37,5 +37,5 @@ export default function ContactCard({ contact }) {
         )}
       </ul>
     </article>
-  )
+  );
 }

@@ -1,9 +1,9 @@
-import Container from '../ui/Container'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
+import Container from "../ui/Container";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
 
 export default function ProgramsClosingCta({ section }) {
-  if (!section) return null
+  if (!section) return null;
 
   return (
     <section className="surface-muted py-16 sm:py-20">
@@ -21,12 +21,12 @@ export default function ProgramsClosingCta({ section }) {
                 <CTAButton
                   key={button.href}
                   to={button.href}
-                  variant={index === 0 ? 'accent' : 'secondary'}
+                  variant={index === 0 ? "accent" : "secondary"}
                   size="lg"
                   className={
                     index !== 0
-                      ? '!border-ecaa-white/40 !bg-transparent !text-ecaa-white hover:!bg-ecaa-white/10'
-                      : ''
+                      ? "!border-ecaa-white/40 !bg-transparent !text-ecaa-white hover:!bg-ecaa-white/10"
+                      : ""
                   }
                 >
                   {button.label}
@@ -37,5 +37,5 @@ export default function ProgramsClosingCta({ section }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

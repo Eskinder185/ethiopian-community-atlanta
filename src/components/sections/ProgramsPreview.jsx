@@ -1,39 +1,39 @@
-import Container from '../ui/Container'
-import SectionHeader from '../ui/SectionHeader'
-import ProgramCard from '../cards/ProgramCard'
-import EmptyState from '../ui/EmptyState'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
-import programsData from '../../content/programs.json'
-import homeData from '../../content/homepage.json'
-import { filterPublished } from '../../utils/data'
+import Container from "../ui/Container";
+import SectionHeader from "../ui/SectionHeader";
+import ProgramCard from "../cards/ProgramCard";
+import EmptyState from "../ui/EmptyState";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
+import programsData from "../../content/programs.json";
+import homeData from "../../content/homepage.json";
+import { filterPublished } from "../../utils/data";
 
 const categoryOrder = [
-  'community-support',
-  'cultural-programs',
-  'youth-education',
-  'health-wellness',
-  'edir',
-  'volunteer-civic',
-]
+  "community-support",
+  "cultural-programs",
+  "youth-education",
+  "health-wellness",
+  "edir",
+  "volunteer-civic",
+];
 
 function getFeaturedPrograms(categories, limit = 6) {
-  const published = filterPublished(categories)
+  const published = filterPublished(categories);
   const featured = categoryOrder
     .map((id) => published.find((item) => item.id === id && item.featured === true))
-    .filter(Boolean)
+    .filter(Boolean);
 
-  if (featured.length > 0) return featured.slice(0, limit)
+  if (featured.length > 0) return featured.slice(0, limit);
 
   return categoryOrder
     .map((id) => published.find((item) => item.id === id))
     .filter(Boolean)
-    .slice(0, limit)
+    .slice(0, limit);
 }
 
 export default function ProgramsPreview() {
-  const programs = getFeaturedPrograms(programsData.categories)
-  const { programsPreview } = homeData
+  const programs = getFeaturedPrograms(programsData.categories);
+  const { programsPreview } = homeData;
 
   return (
     <section className="surface-white">
@@ -43,7 +43,7 @@ export default function ProgramsPreview() {
             eyebrow={programsPreview.eyebrow}
             title={programsPreview.title}
             description={programsPreview.description}
-            action={{ label: 'Explore Programs', to: '/programs', variant: 'secondary' }}
+            action={{ label: "Explore Programs", to: "/programs", variant: "secondary" }}
           />
 
           {programs.length > 0 ? (
@@ -69,5 +69,5 @@ export default function ProgramsPreview() {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

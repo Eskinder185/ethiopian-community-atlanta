@@ -27,7 +27,14 @@
   },
   "utilities": {
     "layout": ["page-container", "page-container-wide", "section-spacing", "section-spacing-sm"],
-    "typography": ["text-eyebrow", "text-lead", "text-body", "heading-display", "heading-page", "heading-section"],
+    "typography": [
+      "text-eyebrow",
+      "text-lead",
+      "text-body",
+      "heading-display",
+      "heading-page",
+      "heading-section"
+    ],
     "surfaces": ["surface-cream", "surface-white", "surface-muted"],
     "cards": ["ecaa-card", "ecaa-card-hover"],
     "buttons": ["btn-primary", "btn-secondary", "btn-accent", "btn-ghost"],

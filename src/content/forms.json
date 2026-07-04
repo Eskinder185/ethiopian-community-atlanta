@@ -9,10 +9,7 @@
     "address": "5616 Memorial Dr. Stone Mountain, GA 30083",
     "mailingAddress": "PO Box 494 Clarkston, GA 30021",
     "phone": "404-298-4570 / 404-254-0747",
-    "officeHours": [
-      "Monday - Friday: 10 AM to 6 PM",
-      "Saturday: 9 AM to 2 PM"
-    ],
+    "officeHours": ["Monday - Friday: 10 AM to 6 PM", "Saturday: 9 AM to 2 PM"],
     "fieldsOverview": [
       "Membership Type",
       "Full Name",

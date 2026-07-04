@@ -1,9 +1,9 @@
-import Container from '../ui/Container'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
+import Container from "../ui/Container";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
 
 export default function MembershipRelatedLinks({ section }) {
-  if (!section?.links?.length) return null
+  if (!section?.links?.length) return null;
 
   return (
     <section className="surface-white py-12 sm:py-14">
@@ -14,7 +14,9 @@ export default function MembershipRelatedLinks({ section }) {
               {section.title}
             </h2>
             {section.description && (
-              <p className="mt-3 text-base leading-relaxed text-ecaa-ink-muted">{section.description}</p>
+              <p className="mt-3 text-base leading-relaxed text-ecaa-ink-muted">
+                {section.description}
+              </p>
             )}
             <nav
               className="mt-6 flex flex-wrap justify-center gap-2 sm:gap-3"
@@ -30,5 +32,5 @@ export default function MembershipRelatedLinks({ section }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

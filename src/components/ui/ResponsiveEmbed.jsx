@@ -1,11 +1,11 @@
 export default function ResponsiveEmbed({
   src,
   title,
-  aspectRatio = '16/9',
-  className = '',
+  aspectRatio = "16/9",
+  className = "",
   allowFullScreen = true,
 }) {
-  if (!src) return null
+  if (!src) return null;
 
   return (
     <div
@@ -20,5 +20,5 @@ export default function ResponsiveEmbed({
         allowFullScreen={allowFullScreen}
       />
     </div>
-  )
+  );
 }

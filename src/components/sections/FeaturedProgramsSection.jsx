@@ -1,22 +1,22 @@
-import Container from '../ui/Container'
-import HomeSectionHeader from '../ui/HomeSectionHeader'
-import FeaturedProgramCard from '../cards/FeaturedProgramCard'
-import AnimateIn from '../ui/AnimateIn'
+import Container from "../ui/Container";
+import HomeSectionHeader from "../ui/HomeSectionHeader";
+import FeaturedProgramCard from "../cards/FeaturedProgramCard";
+import AnimateIn from "../ui/AnimateIn";
 import {
   getLinkProps,
   getVisibleItems,
   isFeaturedProgramItem,
   isSectionVisible,
-} from '../../utils/homepage'
+} from "../../utils/homepage";
 
-const FEATURED_PROGRAM_LIMIT = 4
+const FEATURED_PROGRAM_LIMIT = 4;
 
 export default function FeaturedProgramsSection({ data }) {
-  if (!isSectionVisible(data)) return null
+  if (!isSectionVisible(data)) return null;
 
-  const items = getVisibleItems(data.items, isFeaturedProgramItem, FEATURED_PROGRAM_LIMIT)
-  const sectionCta = getLinkProps(data.sectionCta)
-  const hasItems = items.length > 0
+  const items = getVisibleItems(data.items, isFeaturedProgramItem, FEATURED_PROGRAM_LIMIT);
+  const sectionCta = getLinkProps(data.sectionCta);
+  const hasItems = items.length > 0;
 
   return (
     <section className="home-section surface-white" aria-labelledby="featured-programs-heading">
@@ -29,7 +29,7 @@ export default function FeaturedProgramsSection({ data }) {
             description={data.description}
             action={
               sectionCta
-                ? { label: data.sectionCta.label, ...sectionCta, variant: 'secondary' }
+                ? { label: data.sectionCta.label, ...sectionCta, variant: "secondary" }
                 : undefined
             }
             className="home-section-header-row"
@@ -47,5 +47,5 @@ export default function FeaturedProgramsSection({ data }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

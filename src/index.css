@@ -1,9 +1,9 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 /* ─── ECAA design tokens (Linear-inspired polish) ─────────────────────────── */
 
 @theme {
-  --font-sans: 'Segoe UI', system-ui, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif;
 
   --text-base: 1.125rem;
   --text-base--line-height: 1.65;
@@ -101,7 +101,19 @@
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-ecaa-gold-500;
+    @apply outline-none ring-2 ring-offset-2 ring-ecaa-green-700;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -130,11 +142,11 @@
   }
 
   .section-spacing {
-    @apply py-20 sm:py-24 lg:py-32;
+    @apply py-10 sm:py-16 md:py-20 lg:py-32;
   }
 
   .section-spacing-sm {
-    @apply py-16 sm:py-20 lg:py-24;
+    @apply py-10 sm:py-14 md:py-16 lg:py-24;
   }
 
   .text-eyebrow {
@@ -194,16 +206,16 @@
 
   .hero-home-eyebrow,
   .hero-page-eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.22em] text-ecaa-gold-400 sm:text-sm;
+    @apply text-xs font-semibold uppercase tracking-[0.22em] text-ecaa-gold-200 sm:text-sm;
   }
 
-  html[lang='am'] .hero-page-eyebrow,
-  html[lang='am'] .hero-home-eyebrow {
+  html[lang="am"] .hero-page-eyebrow,
+  html[lang="am"] .hero-home-eyebrow {
     text-transform: none;
     letter-spacing: 0.04em;
   }
 
-  html[lang='am'] .leadership-committee-badge {
+  html[lang="am"] .leadership-committee-badge {
     text-transform: none;
     letter-spacing: 0.02em;
   }
@@ -232,7 +244,7 @@
   }
 
   .home-section {
-    @apply py-14 sm:py-16 lg:py-20;
+    @apply py-10 md:py-14 lg:py-20;
   }
 
   .home-section-inner {
@@ -311,7 +323,7 @@
   .ecaa-card-hover {
     @apply rounded-ecaa-xl border border-ecaa-border/90 bg-ecaa-white p-6 shadow-ecaa sm:p-8;
     @apply transition-all duration-300 ease-out;
-    @apply hover:-translate-y-1 hover:border-ecaa-green-200/80 hover:shadow-ecaa-md;
+    @apply motion-safe:hover:-translate-y-1 motion-safe:hover:border-ecaa-green-200/80 motion-safe:hover:shadow-ecaa-md;
   }
 
   .ecaa-card-premium {
@@ -321,19 +333,19 @@
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-base font-semibold;
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-base font-semibold;
     @apply transition-all duration-300 ease-out;
-    @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ecaa-gold-500;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ecaa-green-700;
     @apply disabled:pointer-events-none disabled:opacity-50;
-    @apply hover:-translate-y-px active:translate-y-0;
+    @apply motion-safe:hover:-translate-y-px motion-safe:active:translate-y-0;
   }
 
   .btn-sm {
-    @apply rounded-lg px-4 py-2.5 text-sm;
+    @apply min-h-[44px] rounded-lg px-4 py-2.5 text-sm;
   }
 
   .btn-lg {
-    @apply rounded-xl px-8 py-4 text-lg;
+    @apply min-h-[44px] rounded-xl px-8 py-4 text-base md:text-lg;
   }
 
   .btn-primary {
@@ -380,7 +392,11 @@
   .nav-link {
     @apply block rounded-lg px-3 py-2 text-sm font-medium text-ecaa-ink-subtle transition-all duration-300 ease-out;
     @apply hover:text-ecaa-ink;
-    @apply focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ecaa-gold-500;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-ecaa-green-700;
+  }
+
+  .nav-link-mobile {
+    @apply min-h-[44px] py-2.5 text-base;
   }
 
   .nav-link-header {
@@ -399,9 +415,9 @@
   }
 
   .nav-dropdown-item {
-    @apply block px-4 py-2.5 text-sm font-medium text-ecaa-ink-muted transition-colors duration-200;
+    @apply block min-h-[44px] px-4 py-2.5 text-sm font-medium text-ecaa-ink-muted transition-colors duration-200;
     @apply hover:bg-ecaa-green-50 hover:text-ecaa-green-900;
-    @apply focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-ecaa-gold-500;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ecaa-green-700;
   }
 
   .link-subtle {
@@ -438,7 +454,7 @@
   }
 
   .skip-link {
-    @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-ecaa-green-900 focus:px-4 focus:py-3 focus:text-base focus:font-semibold focus:text-ecaa-white;
+    @apply sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-ecaa-green-900 focus:px-4 focus:py-3 focus:text-base focus:font-semibold focus:text-ecaa-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ecaa-white;
   }
 
   .animate-on-scroll {
@@ -466,6 +482,28 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.45s ease-out both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-up,
+    .mobile-menu-panel {
+      animation: none;
     }
   }
 }

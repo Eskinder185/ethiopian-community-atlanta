@@ -1,12 +1,12 @@
-import Container from '../ui/Container'
-import SectionHeader from '../ui/SectionHeader'
-import ExternalFormCTA from '../ui/ExternalFormCTA'
-import AnimateIn from '../ui/AnimateIn'
+import Container from "../ui/Container";
+import SectionHeader from "../ui/SectionHeader";
+import ExternalFormCTA from "../ui/ExternalFormCTA";
+import AnimateIn from "../ui/AnimateIn";
 
 export default function MembershipRegistration({ section }) {
-  if (!section) return null
+  if (!section) return null;
 
-  const importantLabel = section.importantLabel || 'Important:'
+  const importantLabel = section.importantLabel || "Important:";
 
   return (
     <section className="surface-muted" id="registration-form">
@@ -26,7 +26,7 @@ export default function MembershipRegistration({ section }) {
               role="note"
             >
               <p className="text-base leading-relaxed text-ecaa-ink-muted">
-                <span className="font-semibold text-ecaa-ink">{importantLabel}</span>{' '}
+                <span className="font-semibold text-ecaa-ink">{importantLabel}</span>{" "}
                 {section.importantNote}
               </p>
             </div>
@@ -49,5 +49,5 @@ export default function MembershipRegistration({ section }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

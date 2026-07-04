@@ -1,21 +1,21 @@
-import VideoCard from '../cards/VideoCard'
-import ImageCard from '../cards/ImageCard'
-import EmptyState from '../ui/EmptyState'
-import ContentSection from './ContentSection'
-import videosData from '../../content/videos.json'
-import imagesData from '../../content/images.json'
+import VideoCard from "../cards/VideoCard";
+import ImageCard from "../cards/ImageCard";
+import EmptyState from "../ui/EmptyState";
+import ContentSection from "./ContentSection";
+import videosData from "../../content/videos.json";
+import imagesData from "../../content/images.json";
 import {
   filterPublished,
   filterVerifiedContent,
   hasUsableText,
   hasUsableUrl,
   toEmbedUrl,
-} from '../../utils/data'
+} from "../../utils/data";
 
 export function MediaVideosSection({ muted = false }) {
-  const videos = filterVerifiedContent(videosData.videos, ['title']).filter(
-    (video) => Boolean(toEmbedUrl(video.embedUrl)) || hasUsableUrl(video.embedUrl),
-  )
+  const videos = filterVerifiedContent(videosData.videos, ["title"]).filter(
+    (video) => Boolean(toEmbedUrl(video.embedUrl)) || hasUsableUrl(video.embedUrl)
+  );
 
   return (
     <ContentSection
@@ -38,16 +38,14 @@ export function MediaVideosSection({ muted = false }) {
         />
       )}
     </ContentSection>
-  )
+  );
 }
 
 export function MediaPhotosSection({ muted = false }) {
   const images = filterPublished(imagesData.images).filter(
     (image) =>
-      image.mediaGallery !== false &&
-      hasUsableText(image.title) &&
-      hasUsableText(image.src),
-  )
+      image.mediaGallery !== false && hasUsableText(image.title) && hasUsableText(image.src)
+  );
 
   return (
     <ContentSection
@@ -70,5 +68,5 @@ export function MediaPhotosSection({ muted = false }) {
         />
       )}
     </ContentSection>
-  )
+  );
 }

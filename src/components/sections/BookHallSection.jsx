@@ -1,20 +1,17 @@
-import Container from '../ui/Container'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
-import { buildMailtoUrl } from '../../utils/mailto'
+import Container from "../ui/Container";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
+import { buildMailtoUrl } from "../../utils/mailto";
 
 export default function BookHallSection({ section, muted = false }) {
   const mailtoUrl = buildMailtoUrl({
     to: section.email,
     subject: section.subject,
     body: section.bodyTemplate,
-  })
+  });
 
   return (
-    <section
-      id={section.id}
-      className={muted ? 'surface-muted' : 'surface-white'}
-    >
+    <section id={section.id} className={muted ? "surface-muted" : "surface-white"}>
       <Container className="section-spacing-sm">
         <AnimateIn>
           <div className="max-w-3xl">
@@ -46,7 +43,7 @@ export default function BookHallSection({ section, muted = false }) {
             <CTAButton
               type="button"
               onClick={() => {
-                window.location.href = mailtoUrl
+                window.location.href = mailtoUrl;
               }}
               variant="primary"
               size="lg"
@@ -60,5 +57,5 @@ export default function BookHallSection({ section, muted = false }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

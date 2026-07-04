@@ -1,18 +1,21 @@
-import { useMemo } from 'react'
-import PageHeroWithStats from '../components/layout/PageHeroWithStats'
-import Container from '../components/ui/Container'
-import CTAButton from '../components/ui/CTAButton'
-import ExternalFormCTA from '../components/ui/ExternalFormCTA'
-import AnimateIn from '../components/ui/AnimateIn'
-import { useSupportPage } from '../hooks/useSupportPage'
-import { getSupportHighlightCards } from '../data/supportPageContent'
-import { getPageHero, getHeroBackground } from '../utils/pageHeroes'
+import { useMemo } from "react";
+import PageHeroWithStats from "../components/layout/PageHeroWithStats";
+import Container from "../components/ui/Container";
+import CTAButton from "../components/ui/CTAButton";
+import ExternalFormCTA from "../components/ui/ExternalFormCTA";
+import AnimateIn from "../components/ui/AnimateIn";
+import MobileCollapsibleSection from "../components/ui/MobileCollapsibleSection";
+import { useIsMobile } from "../hooks/useIsMobile";
+import { useSupportPage } from "../hooks/useSupportPage";
+import { getSupportHighlightCards } from "../data/supportPageContent";
+import { getPageHero, getHeroBackground } from "../utils/pageHeroes";
 
 export default function Support() {
-  const { content } = useSupportPage()
-  const pageHeroConfig = useMemo(() => getPageHero('support'), [])
-  const background = useMemo(() => getHeroBackground(pageHeroConfig, 'support'), [pageHeroConfig])
-  const highlightCards = useMemo(() => getSupportHighlightCards(content), [content])
+  const { content } = useSupportPage();
+  const isMobile = useIsMobile();
+  const pageHeroConfig = useMemo(() => getPageHero("support"), []);
+  const background = useMemo(() => getHeroBackground(pageHeroConfig, "support"), [pageHeroConfig]);
+  const highlightCards = useMemo(() => getSupportHighlightCards(content), [content]);
 
   return (
     <>
@@ -24,8 +27,8 @@ export default function Support() {
         backgroundAlt={pageHeroConfig?.backgroundAlt}
         buttons={content.hero.buttons}
         stats={highlightCards}
-        variant={pageHeroConfig?.variant || 'page'}
-        overlayStrength={pageHeroConfig?.overlayStrength || 'default'}
+        variant={pageHeroConfig?.variant || "page"}
+        overlayStrength={pageHeroConfig?.overlayStrength || "default"}
       />
 
       <section className="surface-white" id="donate">
@@ -65,33 +68,72 @@ export default function Support() {
       <section className="surface-muted" id="other-ways">
         <Container className="section-spacing-sm">
           <AnimateIn>
-            <div className="ecaa-card mx-auto max-w-3xl text-center">
-              <h2 className="heading-section text-2xl">{content.otherOptions.title}</h2>
-              <p className="text-body mx-auto mt-4 max-w-xl">{content.otherOptions.description}</p>
-              <div className="mt-8 flex flex-wrap justify-center gap-4">
-                {content.otherOptions.links.map((link) => (
-                  <CTAButton key={link.path} to={link.path} variant="secondary" size="lg">
-                    {link.label}
-                  </CTAButton>
-                ))}
+            {isMobile ? (
+              <MobileCollapsibleSection
+                title={content.otherOptions.title}
+                description={content.otherOptions.description}
+                contentClassName="pt-0"
+              >
+                <div className="flex flex-col gap-3">
+                  {content.otherOptions.links.map((link) => (
+                    <CTAButton
+                      key={link.path}
+                      to={link.path}
+                      variant="secondary"
+                      size="lg"
+                      className="min-h-[44px] w-full"
+                    >
+                      {link.label}
+                    </CTAButton>
+                  ))}
+                </div>
+              </MobileCollapsibleSection>
+            ) : (
+              <div className="ecaa-card mx-auto max-w-3xl text-center">
+                <h2 className="heading-section text-2xl">{content.otherOptions.title}</h2>
+                <p className="text-body mx-auto mt-4 max-w-xl">{content.otherOptions.description}</p>
+                <div className="mt-8 flex flex-wrap justify-center gap-4">
+                  {content.otherOptions.links.map((link) => (
+                    <CTAButton key={link.path} to={link.path} variant="secondary" size="lg">
+                      {link.label}
+                    </CTAButton>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </AnimateIn>
         </Container>
       </section>
 
-      <section className="surface-muted" id={content.volunteer.id || 'volunteer'}>
+      <section className="surface-muted" id={content.volunteer.id || "volunteer"}>
         <Container className="section-spacing-sm">
           <AnimateIn>
-            <div className="ecaa-card mx-auto max-w-3xl text-center">
-              <h2 className="heading-section text-2xl">{content.volunteer.title}</h2>
-              <p className="text-body mx-auto mt-4 max-w-xl">{content.volunteer.description}</p>
-              <div className="mt-8">
-                <CTAButton to={content.volunteer.buttonPath} variant="primary" size="lg">
+            {isMobile ? (
+              <MobileCollapsibleSection
+                title={content.volunteer.title}
+                description={content.volunteer.description}
+                contentClassName="pt-0"
+              >
+                <CTAButton
+                  to={content.volunteer.buttonPath}
+                  variant="primary"
+                  size="lg"
+                  className="min-h-[44px] w-full"
+                >
                   {content.volunteer.buttonLabel}
                 </CTAButton>
+              </MobileCollapsibleSection>
+            ) : (
+              <div className="ecaa-card mx-auto max-w-3xl text-center">
+                <h2 className="heading-section text-2xl">{content.volunteer.title}</h2>
+                <p className="text-body mx-auto mt-4 max-w-xl">{content.volunteer.description}</p>
+                <div className="mt-8">
+                  <CTAButton to={content.volunteer.buttonPath} variant="primary" size="lg">
+                    {content.volunteer.buttonLabel}
+                  </CTAButton>
+                </div>
               </div>
-            </div>
+            )}
           </AnimateIn>
         </Container>
       </section>
@@ -106,7 +148,7 @@ export default function Support() {
                 <CTAButton
                   key={button.href}
                   to={button.href}
-                  variant={index === 0 ? 'primary' : 'secondary'}
+                  variant={index === 0 ? "primary" : "secondary"}
                   size="lg"
                 >
                   {button.label}
@@ -117,5 +159,5 @@ export default function Support() {
         </Container>
       </section>
     </>
-  )
+  );
 }

@@ -185,9 +185,7 @@
       "backgroundImage": "/images/heroes/events-hero.jpg",
       "backgroundAlt": "ECAA community photos and event highlights in Atlanta.",
       "overlayStrength": "default",
-      "buttons": [
-        { "label": "View Events", "href": "/events", "style": "primary" }
-      ],
+      "buttons": [{ "label": "View Events", "href": "/events", "style": "primary" }],
       "summaryBand": { "visible": false, "text": "" },
       "stats": {
         "visible": true,

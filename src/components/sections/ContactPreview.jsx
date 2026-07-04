@@ -1,10 +1,10 @@
-import Container from '../ui/Container'
-import SectionHeader from '../ui/SectionHeader'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
-import contactData from '../../content/contact.json'
-import siteInfo from '../../content/siteInfo.json'
-import { hasUsableText } from '../../utils/data'
+import Container from "../ui/Container";
+import SectionHeader from "../ui/SectionHeader";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
+import contactData from "../../content/contact.json";
+import siteInfo from "../../content/siteInfo.json";
+import { hasUsableText } from "../../utils/data";
 
 function ContactLine({ label, value, href, multiline = false }) {
   if (!hasUsableText(value)) {
@@ -15,7 +15,7 @@ function ContactLine({ label, value, href, multiline = false }) {
         </span>
         <span className="editorial-todo">TODO: Add verified {label.toLowerCase()}</span>
       </li>
-    )
+    );
   }
 
   return (
@@ -31,23 +31,25 @@ function ContactLine({ label, value, href, multiline = false }) {
           {value}
         </a>
       ) : (
-        <span className={`text-lg text-ecaa-ink ${multiline ? 'whitespace-pre-line' : ''}`}>{value}</span>
+        <span className={`text-lg text-ecaa-ink ${multiline ? "whitespace-pre-line" : ""}`}>
+          {value}
+        </span>
       )}
     </li>
-  )
+  );
 }
 
 export default function ContactPreview() {
-  const { general } = contactData
-  const { address } = general
+  const { general } = contactData;
+  const { address } = general;
 
   const streetLine = hasUsableText(address.street)
     ? address.street
-    : 'TODO: Add verified street address'
+    : "TODO: Add verified street address";
 
   const locationLine = hasUsableText(address.zip)
     ? `${address.city}, ${address.state} ${address.zip}`
-    : `${address.city}, ${address.state}`
+    : `${address.city}, ${address.state}`;
 
   return (
     <section className="surface-cream">
@@ -78,7 +80,7 @@ export default function ContactPreview() {
                   value={general.phone}
                   href={
                     hasUsableText(general.phone)
-                      ? `tel:${general.phone.replace(/\s/g, '')}`
+                      ? `tel:${general.phone.replace(/\s/g, "")}`
                       : undefined
                   }
                 />
@@ -88,7 +90,7 @@ export default function ContactPreview() {
                     Visit
                   </span>
                   <address className="not-italic text-lg text-ecaa-ink-muted">
-                    <span className={streetLine.startsWith('TODO') ? 'editorial-todo' : ''}>
+                    <span className={streetLine.startsWith("TODO") ? "editorial-todo" : ""}>
                       {streetLine}
                     </span>
                     <br />
@@ -110,5 +112,5 @@ export default function ContactPreview() {
         </div>
       </Container>
     </section>
-  )
+  );
 }

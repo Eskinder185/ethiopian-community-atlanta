@@ -1,10 +1,10 @@
-import Container from '../ui/Container'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
-import homeData from '../../content/homepage.json'
+import Container from "../ui/Container";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
+import homeData from "../../content/homepage.json";
 
 export default function ClosingCtaSection() {
-  const { closingCta } = homeData
+  const { closingCta } = homeData;
 
   return (
     <section className="surface-cream">
@@ -19,5 +19,5 @@ export default function ClosingCtaSection() {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

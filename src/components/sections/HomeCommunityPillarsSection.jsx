@@ -1,16 +1,16 @@
-import Container from '../ui/Container'
-import HomeInfoCard from '../cards/HomeInfoCard'
-import AnimateIn from '../ui/AnimateIn'
-import { getVisibleItems, isSectionVisible, isUsableHomeText } from '../../utils/homepage'
+import Container from "../ui/Container";
+import HomeInfoCard from "../cards/HomeInfoCard";
+import AnimateIn from "../ui/AnimateIn";
+import { getVisibleItems, isSectionVisible, isUsableHomeText } from "../../utils/homepage";
 
 function isPillarItem(item) {
-  return isUsableHomeText(item?.title) && isUsableHomeText(item?.description)
+  return isUsableHomeText(item?.title) && isUsableHomeText(item?.description);
 }
 
 export default function HomeCommunityPillarsSection({ data }) {
-  if (!isSectionVisible(data)) return null
+  if (!isSectionVisible(data)) return null;
 
-  const items = getVisibleItems(data.items, isPillarItem)
+  const items = getVisibleItems(data.items, isPillarItem);
 
   return (
     <section className="home-section surface-cream" aria-labelledby="community-pillars-heading">
@@ -18,7 +18,10 @@ export default function HomeCommunityPillarsSection({ data }) {
         <AnimateIn>
           <div className="mx-auto max-w-2xl text-center">
             {data.eyebrow && <p className="text-eyebrow">{data.eyebrow}</p>}
-            <h2 id="community-pillars-heading" className="heading-section mt-2 text-3xl sm:text-4xl">
+            <h2
+              id="community-pillars-heading"
+              className="heading-section mt-2 text-3xl sm:text-4xl"
+            >
               {data.title}
             </h2>
             {data.description && (
@@ -38,5 +41,5 @@ export default function HomeCommunityPillarsSection({ data }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

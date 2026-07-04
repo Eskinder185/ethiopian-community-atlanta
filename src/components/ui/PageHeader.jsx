@@ -1,4 +1,4 @@
-import Container from './Container'
+import Container from "./Container";
 
 export default function PageHeader({ title, description, badge }) {
   return (
@@ -9,5 +9,5 @@ export default function PageHeader({ title, description, badge }) {
         {description && <p className="text-lead mt-4">{description}</p>}
       </Container>
     </header>
-  )
+  );
 }

@@ -1,20 +1,20 @@
-import { useLanguage } from '../context/LanguageContext'
-import PageHeroWithStats from '../components/layout/PageHeroWithStats'
-import ContentSection from '../components/sections/ContentSection'
-import AboutOverview from '../components/sections/about/AboutOverview'
-import AboutMissionVision from '../components/sections/about/AboutMissionVision'
-import AboutHistory from '../components/sections/about/AboutHistory'
-import AboutHowItWorks from '../components/sections/about/AboutHowItWorks'
-import AboutLeadershipStructure from '../components/sections/about/AboutLeadershipStructure'
-import AboutClosingCta from '../components/sections/about/AboutClosingCta'
-import { getAboutPageContent } from '../data/aboutPageContent'
-import { getPageHero, getHeroBackground } from '../utils/pageHeroes'
+import { useLanguage } from "../context/LanguageContext";
+import PageHeroWithStats from "../components/layout/PageHeroWithStats";
+import ContentSection from "../components/sections/ContentSection";
+import AboutOverview from "../components/sections/about/AboutOverview";
+import AboutMissionVision from "../components/sections/about/AboutMissionVision";
+import AboutHistory from "../components/sections/about/AboutHistory";
+import AboutHowItWorks from "../components/sections/about/AboutHowItWorks";
+import AboutLeadershipStructure from "../components/sections/about/AboutLeadershipStructure";
+import AboutClosingCta from "../components/sections/about/AboutClosingCta";
+import { getAboutPageContent } from "../data/aboutPageContent";
+import { getPageHero, getHeroBackground } from "../utils/pageHeroes";
 
 export default function About() {
-  const { language } = useLanguage()
-  const content = getAboutPageContent(language)
-  const pageHeroConfig = getPageHero('about')
-  const background = getHeroBackground(pageHeroConfig, 'about')
+  const { language } = useLanguage();
+  const content = getAboutPageContent(language);
+  const pageHeroConfig = getPageHero("about");
+  const background = getHeroBackground(pageHeroConfig, "about");
 
   return (
     <>
@@ -26,8 +26,8 @@ export default function About() {
         backgroundAlt={pageHeroConfig?.backgroundAlt}
         buttons={content.hero.buttons}
         stats={content.highlights}
-        variant={pageHeroConfig?.variant || 'page'}
-        overlayStrength={pageHeroConfig?.overlayStrength || 'default'}
+        variant={pageHeroConfig?.variant || "page"}
+        overlayStrength={pageHeroConfig?.overlayStrength || "default"}
       />
 
       <AboutOverview section={{ cards: content.values }} />
@@ -68,5 +68,5 @@ export default function About() {
 
       <AboutClosingCta section={content.finalCta} />
     </>
-  )
+  );
 }

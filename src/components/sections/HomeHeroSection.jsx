@@ -1,17 +1,17 @@
-import Container from '../ui/Container'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
-import { siteAssets } from '../../config/assets'
-import { getPatternImage, getResolvedImageSrc } from '../../utils/images'
-import { getLinkProps, getPublicText } from '../../utils/homepage'
+import Container from "../ui/Container";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
+import { siteAssets } from "../../config/assets";
+import { getPatternImage, getResolvedImageSrc, hasImageAsset } from "../../utils/images";
+import { getLinkProps, getPublicText } from "../../utils/homepage";
 
 export default function HomeHeroSection({ data }) {
-  const backgroundImage = { src: siteAssets.heroes.home, alt: data.imageAlt }
-  const pattern = getPatternImage()
-  const hasPhoto = Boolean(siteAssets.heroes.home)
+  const backgroundImage = { src: siteAssets.heroes.home, alt: data.imageAlt };
+  const pattern = getPatternImage();
+  const hasPhoto = Boolean(siteAssets.heroes.home);
   const imageAlt =
     getPublicText(data.imageAlt) ||
-    'Community members gathered at the Ethiopian Community Association in Atlanta.'
+    "Community members gathered at the Ethiopian Community Association in Atlanta.";
 
   return (
     <header className="home-hero relative isolate overflow-hidden bg-ecaa-green-950">
@@ -26,8 +26,8 @@ export default function HomeHeroSection({ data }) {
           aria-hidden="true"
           style={{
             backgroundImage: `url(${getResolvedImageSrc(pattern)})`,
-            backgroundRepeat: 'repeat',
-            backgroundSize: '280px auto',
+            backgroundRepeat: "repeat",
+            backgroundSize: "280px auto",
           }}
         />
       )}
@@ -51,7 +51,9 @@ export default function HomeHeroSection({ data }) {
                 </>
               )}
               <h1 className="hero-home-title mt-3">{data.title}</h1>
-              {data.description && <p className="hero-home-lead mt-5 max-w-lg">{data.description}</p>}
+              {data.description && (
+                <p className="hero-home-lead mt-5 max-w-lg">{data.description}</p>
+              )}
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 {getLinkProps(data.primaryCta) && (
@@ -129,5 +131,5 @@ export default function HomeHeroSection({ data }) {
         aria-hidden="true"
       />
     </header>
-  )
+  );
 }

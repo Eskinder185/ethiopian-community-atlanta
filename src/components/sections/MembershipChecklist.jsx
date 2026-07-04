@@ -1,14 +1,14 @@
-import Container from '../ui/Container'
-import SectionHeader from '../ui/SectionHeader'
-import navigation from '../../data/navigation.json'
+import Container from "../ui/Container";
+import SectionHeader from "../ui/SectionHeader";
+import navigation from "../../data/navigation.json";
 
 const defaultSteps = navigation.sections.membership
-  .filter((item) => item.id !== 'registration-form')
+  .filter((item) => item.id !== "registration-form")
   .map((item, index) => ({
     step: index + 1,
     title: item.label,
-    description: 'TODO: Add verified step description.',
-  }))
+    description: "TODO: Add verified step description.",
+  }));
 
 export default function MembershipChecklist({ steps = defaultSteps }) {
   return (
@@ -38,5 +38,5 @@ export default function MembershipChecklist({ steps = defaultSteps }) {
         </ol>
       </Container>
     </section>
-  )
+  );
 }

@@ -1,3 +1,3 @@
-export const hallBookings = []
+export const hallBookings = [];
 
-export default hallBookings
+export default hallBookings;

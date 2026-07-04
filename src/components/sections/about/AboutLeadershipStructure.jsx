@@ -1,13 +1,11 @@
-import CTAButton from '../../ui/CTAButton'
+import CTAButton from "../../ui/CTAButton";
 
 export default function AboutLeadershipStructure({ section }) {
-  const groups = section.groups || []
+  const groups = section.groups || [];
 
   return (
     <div className="max-w-6xl">
-      {section.intro && (
-        <p className="text-lead max-w-3xl leading-relaxed">{section.intro}</p>
-      )}
+      {section.intro && <p className="text-lead max-w-3xl leading-relaxed">{section.intro}</p>}
 
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {groups.map((group) => (
@@ -33,5 +31,5 @@ export default function AboutLeadershipStructure({ section }) {
         </div>
       )}
     </div>
-  )
+  );
 }

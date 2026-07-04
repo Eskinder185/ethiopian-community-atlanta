@@ -1,9 +1,9 @@
-import Container from '../ui/Container'
-import SectionHeader from '../ui/SectionHeader'
-import AnimateIn from '../ui/AnimateIn'
+import Container from "../ui/Container";
+import SectionHeader from "../ui/SectionHeader";
+import AnimateIn from "../ui/AnimateIn";
 
 export default function MembershipBeforeYouStart({ section }) {
-  if (!section?.items?.length) return null
+  if (!section?.items?.length) return null;
 
   return (
     <section className="surface-white" id="before-you-start">
@@ -33,5 +33,5 @@ export default function MembershipBeforeYouStart({ section }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

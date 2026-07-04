@@ -50,10 +50,10 @@ Non-technical ECAA team members can update selected website content through **De
 
 ### 1. Admin page location
 
-| | |
-|---|---|
-| **URL** | `/admin/` (during development: `http://localhost:5173/admin/`) |
-| **Files** | `public/admin/index.html`, `public/admin/config.yml` |
+|           |                                                                |
+| --------- | -------------------------------------------------------------- |
+| **URL**   | `/admin/` (during development: `http://localhost:5173/admin/`) |
+| **Files** | `public/admin/index.html`, `public/admin/config.yml`           |
 
 Run `npm run dev`, then open `/admin/` or click **Admin** in the site navbar.
 
@@ -61,11 +61,11 @@ Run `npm run dev`, then open `/admin/` or click **Admin** in the site navbar.
 
 ### 2. First CMS version — three areas only
 
-| CMS collection | Content file | Used on |
-|----------------|--------------|---------|
-| **Home Page** | `src/content/homepage.json` | Home page featured sections |
-| **Events & News** | `src/content/events.json` | Events & News page |
-| **Leadership** | `src/content/teamMembers.json` | Leadership page |
+| CMS collection    | Content file                   | Used on                     |
+| ----------------- | ------------------------------ | --------------------------- |
+| **Home Page**     | `src/content/homepage.json`    | Home page featured sections |
+| **Events & News** | `src/content/events.json`      | Events & News page          |
+| **Leadership**    | `src/content/teamMembers.json` | Leadership page             |
 
 Other pages (Programs, Documents, Membership, Contact, Media, etc.) are **not** editable in the CMS yet.
 
@@ -189,20 +189,20 @@ Editors should use `/admin` after authentication is configured. Developers can a
 
 Key files:
 
-| File | Purpose |
-|------|---------|
-| `src/content/siteInfo.json` | Organization name, tagline, membership form URL |
-| `src/data/navigation.json` | Main navigation labels and paths |
-| `src/content/contact.json` | Address, phone, email, hours, social links |
-| `src/content/programs.json` | Program categories and individual programs |
-| `src/content/events.json` | Upcoming, announcements, news, past events |
-| `src/content/teamMembers.json` | Leadership groups and member profiles |
-| `src/content/documents.json` | Document categories and files |
-| `src/content/videos.json` / `src/content/images.json` | Media library |
-| `src/content/forms.json` | External forms (membership, etc.) |
-| `src/content/faq.json` | FAQ questions and answers |
-| `src/content/membership.json` | Membership page copy |
-| `src/data/about.json` / `src/data/support.json` | Page-specific content |
+| File                                                  | Purpose                                         |
+| ----------------------------------------------------- | ----------------------------------------------- |
+| `src/content/siteInfo.json`                           | Organization name, tagline, membership form URL |
+| `src/data/navigation.json`                            | Main navigation labels and paths                |
+| `src/content/contact.json`                            | Address, phone, email, hours, social links      |
+| `src/content/programs.json`                           | Program categories and individual programs      |
+| `src/content/events.json`                             | Upcoming, announcements, news, past events      |
+| `src/content/teamMembers.json`                        | Leadership groups and member profiles           |
+| `src/content/documents.json`                          | Document categories and files                   |
+| `src/content/videos.json` / `src/content/images.json` | Media library                                   |
+| `src/content/forms.json`                              | External forms (membership, etc.)               |
+| `src/content/faq.json`                                | FAQ questions and answers                       |
+| `src/content/membership.json`                         | Membership page copy                            |
+| `src/data/about.json` / `src/data/support.json`       | Page-specific content                           |
 
 ## How to add a new event
 
@@ -312,12 +312,12 @@ Content still marked `TODO` in JSON files, including:
 
 ## Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm install` | Install dependencies |
-| `npm run dev` | Start Vite + Decap local backend (CMS at `/admin`) |
-| `npm run dev:site` | Start Vite only (no CMS backend) |
-| `npm run cms` | Start Decap local backend only (port 8081) |
-| `npm run build` | Production build to `dist/` |
-| `npm run preview` | Preview production build |
-| `npm run lint` | Run Oxlint |
+| Command            | Description                                        |
+| ------------------ | -------------------------------------------------- |
+| `npm install`      | Install dependencies                               |
+| `npm run dev`      | Start Vite + Decap local backend (CMS at `/admin`) |
+| `npm run dev:site` | Start Vite only (no CMS backend)                   |
+| `npm run cms`      | Start Decap local backend only (port 8081)         |
+| `npm run build`    | Production build to `dist/`                        |
+| `npm run preview`  | Preview production build                           |
+| `npm run lint`     | Run Oxlint                                         |

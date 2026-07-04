@@ -1,8 +1,8 @@
-import Container from '../ui/Container'
-import AnimateIn from '../ui/AnimateIn'
+import Container from "../ui/Container";
+import AnimateIn from "../ui/AnimateIn";
 
 export default function LeadershipIntroSection({ intro }) {
-  if (!intro) return null
+  if (!intro) return null;
 
   return (
     <section className="surface-white">
@@ -12,5 +12,5 @@ export default function LeadershipIntroSection({ intro }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

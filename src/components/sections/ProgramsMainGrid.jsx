@@ -1,11 +1,11 @@
-import Container from '../ui/Container'
-import MainProgramCard from '../cards/MainProgramCard'
-import AnimateIn from '../ui/AnimateIn'
-import { isProgramVisible } from '../../utils/programs'
+import Container from "../ui/Container";
+import MainProgramCard from "../cards/MainProgramCard";
+import AnimateIn from "../ui/AnimateIn";
+import { isProgramVisible } from "../../utils/programs";
 
 export default function ProgramsMainGrid({ programs = [] }) {
-  const items = programs.filter(isProgramVisible)
-  if (items.length === 0) return null
+  const items = programs.filter(isProgramVisible);
+  if (items.length === 0) return null;
 
   return (
     <section id="community-programs" className="surface-white py-16 sm:py-20">
@@ -21,5 +21,5 @@ export default function ProgramsMainGrid({ programs = [] }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

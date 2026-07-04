@@ -1,28 +1,26 @@
-import Container from '../ui/Container'
-import SectionHeader from '../ui/SectionHeader'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
-import { getLinkProps, getVisibleItems, isSectionVisible, isUsableHomeText } from '../../utils/homepage'
+import Container from "../ui/Container";
+import SectionHeader from "../ui/SectionHeader";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
+import {
+  getLinkProps,
+  getVisibleItems,
+  isSectionVisible,
+  isUsableHomeText,
+} from "../../utils/homepage";
 
 export default function VolunteerPreviewSection({ data }) {
-  if (!isSectionVisible(data)) return null
+  if (!isSectionVisible(data)) return null;
 
-  const highlights = getVisibleItems(
-    data.highlights,
-    (item) => isUsableHomeText(item),
-  )
-  const primaryCta = getLinkProps(data.primaryCta)
-  const secondaryCta = getLinkProps(data.secondaryCta)
+  const highlights = getVisibleItems(data.highlights, (item) => isUsableHomeText(item));
+  const primaryCta = getLinkProps(data.primaryCta);
+  const secondaryCta = getLinkProps(data.secondaryCta);
 
   return (
     <section className="surface-cream" aria-labelledby="volunteer-preview-heading">
       <Container className="section-spacing-sm">
         <AnimateIn>
-          <SectionHeader
-            eyebrow={data.eyebrow}
-            title={data.title}
-            description={data.description}
-          />
+          <SectionHeader eyebrow={data.eyebrow} title={data.title} description={data.description} />
 
           {highlights.length > 0 && (
             <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -51,5 +49,5 @@ export default function VolunteerPreviewSection({ data }) {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

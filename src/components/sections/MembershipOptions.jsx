@@ -1,11 +1,11 @@
-import Container from '../ui/Container'
-import SectionHeader from '../ui/SectionHeader'
-import InfoCard from '../cards/InfoCard'
-import navigation from '../../data/navigation.json'
+import Container from "../ui/Container";
+import SectionHeader from "../ui/SectionHeader";
+import InfoCard from "../cards/InfoCard";
+import navigation from "../../data/navigation.json";
 
 const optionSections = navigation.sections.membership.filter(
-  (item) => item.id !== 'registration-form' && item.id !== 'membership-faq',
-)
+  (item) => item.id !== "registration-form" && item.id !== "membership-faq"
+);
 
 export default function MembershipOptions() {
   return (
@@ -26,5 +26,5 @@ export default function MembershipOptions() {
         </div>
       </Container>
     </section>
-  )
+  );
 }

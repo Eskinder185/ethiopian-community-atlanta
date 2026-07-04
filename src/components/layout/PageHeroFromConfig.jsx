@@ -1,12 +1,12 @@
-import PageHeroWithStats from './PageHeroWithStats'
-import { getPageHero, getHeroBackground, isHeroSectionVisible } from '../../utils/pageHeroes'
+import PageHeroWithStats from "./PageHeroWithStats";
+import { getPageHero, getHeroBackground, isHeroSectionVisible } from "../../utils/pageHeroes";
 
 export default function PageHeroFromConfig({ page, priority = false }) {
-  const hero = getPageHero(page)
+  const hero = getPageHero(page);
 
-  if (!hero || !isHeroSectionVisible(hero)) return null
+  if (!hero || !isHeroSectionVisible(hero)) return null;
 
-  const background = getHeroBackground(hero, page)
+  const background = getHeroBackground(hero, page);
 
   return (
     <PageHeroWithStats
@@ -19,10 +19,10 @@ export default function PageHeroFromConfig({ page, priority = false }) {
       stats={hero.stats}
       summaryBand={hero.summaryBand}
       trustCue={hero.trustCue}
-      variant={hero.variant || 'page'}
-      overlayStrength={hero.overlayStrength || 'default'}
+      variant={hero.variant || "page"}
+      overlayStrength={hero.overlayStrength || "default"}
       usePattern={hero.usePattern}
-      priority={priority || page === 'home'}
+      priority={priority || page === "home"}
     />
-  )
+  );
 }

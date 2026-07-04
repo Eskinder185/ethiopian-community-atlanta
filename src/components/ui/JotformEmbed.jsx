@@ -1,11 +1,11 @@
-import CTAButton from './CTAButton'
+import CTAButton from "./CTAButton";
 
 export default function JotformEmbed({
   title,
   description,
   formUrl,
   height = 2400,
-  fallbackLabel = 'Open form in a new tab',
+  fallbackLabel = "Open form in a new tab",
 }) {
   return (
     <section className="w-full">
@@ -43,5 +43,5 @@ export default function JotformEmbed({
         </div>
       </div>
     </section>
-  )
+  );
 }

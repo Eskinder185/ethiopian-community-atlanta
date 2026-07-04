@@ -86,7 +86,11 @@
       { "id": "mission-vision", "label": "Mission & Vision", "anchor": "mission" },
       { "id": "history", "label": "History", "anchor": "history" },
       { "id": "how-ecaa-works", "label": "How ECAA Works", "anchor": "how-it-works" },
-      { "id": "leadership-structure", "label": "Leadership Structure", "anchor": "leadership-structure" }
+      {
+        "id": "leadership-structure",
+        "label": "Leadership Structure",
+        "anchor": "leadership-structure"
+      }
     ],
     "programs": [
       { "id": "community-support", "label": "Community Support", "anchor": "community-support" },
@@ -94,15 +98,27 @@
       { "id": "youth-education", "label": "Youth & Education", "anchor": "youth-education" },
       { "id": "health-wellness", "label": "Health & Wellness", "anchor": "health-wellness" },
       { "id": "edir", "label": "EDIR", "anchor": "edir" },
-      { "id": "volunteer-civic", "label": "Volunteer & Civic Engagement", "anchor": "volunteer-civic-engagement" },
-      { "id": "education-training", "label": "Education & Training", "anchor": "education-training" }
+      {
+        "id": "volunteer-civic",
+        "label": "Volunteer & Civic Engagement",
+        "anchor": "volunteer-civic-engagement"
+      },
+      {
+        "id": "education-training",
+        "label": "Education & Training",
+        "anchor": "education-training"
+      }
     ],
     "membership": [
       { "id": "become-a-member", "label": "Become a Member", "anchor": "membership-options" },
       { "id": "benefits", "label": "Benefits", "anchor": "membership-options" },
       { "id": "eligibility", "label": "Eligibility", "anchor": "membership-options" },
       { "id": "membership-faq", "label": "Membership FAQ", "anchor": "membership-faq" },
-      { "id": "registration-form", "label": "ECAA Registration Form", "anchor": "registration-form" }
+      {
+        "id": "registration-form",
+        "label": "ECAA Registration Form",
+        "anchor": "registration-form"
+      }
     ],
     "events": [
       { "id": "upcoming-events", "label": "Upcoming Events", "anchor": "upcoming" },
@@ -112,7 +128,11 @@
       { "id": "book-hall", "label": "Book the ECAA Event Hall", "anchor": "book-hall" }
     ],
     "leadership": [
-      { "id": "executive-committee", "label": "Executive Committee", "anchor": "executive-committee" },
+      {
+        "id": "executive-committee",
+        "label": "Executive Committee",
+        "anchor": "executive-committee"
+      },
       { "id": "board-of-directors", "label": "Board of Directors", "anchor": "board-of-directors" },
       { "id": "audit-committee", "label": "Audit Committee", "anchor": "audit-committee" },
       { "id": "advisory-board", "label": "Advisory Board", "anchor": "advisory-board" },
@@ -123,7 +143,11 @@
       { "id": "election-documents", "label": "Elections", "anchor": "elections" },
       { "id": "meeting-notices", "label": "Meeting Notices", "anchor": "meeting-notices" },
       { "id": "public-reports", "label": "Public Reports", "anchor": "public-reports" },
-      { "id": "historical-documents", "label": "Historical Documents", "anchor": "historical-documents" }
+      {
+        "id": "historical-documents",
+        "label": "Historical Documents",
+        "anchor": "historical-documents"
+      }
     ],
     "media": [
       { "id": "videos", "label": "Videos", "anchor": "videos" },

@@ -1,13 +1,13 @@
-import Container from '../ui/Container'
-import SectionHeader from '../ui/SectionHeader'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
-import homeData from '../../content/homepage.json'
-import { isSectionVisible } from '../../utils/homepage'
+import Container from "../ui/Container";
+import SectionHeader from "../ui/SectionHeader";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
+import homeData from "../../content/homepage.json";
+import { isSectionVisible } from "../../utils/homepage";
 
 export default function AboutPreview() {
-  const { aboutPreview } = homeData
-  if (!isSectionVisible(aboutPreview)) return null
+  const { aboutPreview } = homeData;
+  if (!isSectionVisible(aboutPreview)) return null;
 
   return (
     <section className="surface-muted" aria-labelledby="about-preview-heading">
@@ -28,5 +28,5 @@ export default function AboutPreview() {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

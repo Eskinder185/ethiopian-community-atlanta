@@ -1,4 +1,4 @@
-import CTAButton from './CTAButton'
+import CTAButton from "./CTAButton";
 
 export default function HomeSectionHeader({
   id,
@@ -6,17 +6,17 @@ export default function HomeSectionHeader({
   title,
   description,
   action,
-  className = '',
+  className = "",
 }) {
   return (
     <div className={`home-section-header ${className}`.trim()}>
       <div className="max-w-2xl">
         {eyebrow && <p className="text-eyebrow">{eyebrow}</p>}
-        <h2 id={id} className="heading-section mt-2 text-3xl sm:text-4xl">
+        <h2 id={id} className="heading-section mt-2 text-2xl sm:text-3xl md:text-4xl">
           {title}
         </h2>
         {description && (
-          <p className="mt-3 text-base leading-relaxed text-ecaa-ink-muted sm:text-lg">
+          <p className="mt-3 text-base leading-relaxed text-ecaa-ink-muted md:text-lg">
             {description}
           </p>
         )}
@@ -25,7 +25,7 @@ export default function HomeSectionHeader({
         <CTAButton
           to={action.to}
           href={action.href}
-          variant={action.variant || 'secondary'}
+          variant={action.variant || "secondary"}
           size="md"
           className="shrink-0"
         >
@@ -33,5 +33,5 @@ export default function HomeSectionHeader({
         </CTAButton>
       )}
     </div>
-  )
+  );
 }

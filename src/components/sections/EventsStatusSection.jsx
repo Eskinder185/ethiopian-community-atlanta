@@ -1,8 +1,8 @@
-import Container from '../ui/Container'
-import SectionHeader from '../ui/SectionHeader'
-import EmptyState from '../ui/EmptyState'
-import CTAButton from '../ui/CTAButton'
-import AnimateIn from '../ui/AnimateIn'
+import Container from "../ui/Container";
+import SectionHeader from "../ui/SectionHeader";
+import EmptyState from "../ui/EmptyState";
+import CTAButton from "../ui/CTAButton";
+import AnimateIn from "../ui/AnimateIn";
 
 export default function EventsStatusSection({
   id,
@@ -16,10 +16,10 @@ export default function EventsStatusSection({
   compactEmpty = false,
   muted = false,
 }) {
-  const spacingClass = compactEmpty ? 'py-12 sm:py-14 lg:py-16' : 'section-spacing-sm'
+  const spacingClass = compactEmpty ? "py-12 sm:py-14 lg:py-16" : "section-spacing-sm";
 
   return (
-    <section id={id} className={muted ? 'surface-muted' : 'surface-white'}>
+    <section id={id} className={muted ? "surface-muted" : "surface-white"}>
       <Container className={spacingClass}>
         <AnimateIn>
           <SectionHeader eyebrow={label} title={title} description={description} />
@@ -30,11 +30,10 @@ export default function EventsStatusSection({
             </div>
           ) : (
             <EmptyState
-              className={compactEmpty ? 'mt-8 max-w-2xl' : 'mt-10'}
-              title={emptyState?.title ?? 'Nothing to show yet'}
+              className={compactEmpty ? "mt-8 max-w-2xl" : "mt-10"}
+              title={emptyState?.title ?? "Nothing to show yet"}
               description={
-                emptyState?.description ??
-                'Check back soon or contact ECAA for current updates.'
+                emptyState?.description ?? "Check back soon or contact ECAA for current updates."
               }
               headingLevel="h3"
               compact={compactEmpty}
@@ -46,8 +45,8 @@ export default function EventsStatusSection({
                         key={action.href || action.to}
                         href={action.href}
                         to={action.to}
-                        variant={index === 0 ? 'primary' : 'secondary'}
-                        size={compactEmpty ? 'md' : 'lg'}
+                        variant={index === 0 ? "primary" : "secondary"}
+                        size={compactEmpty ? "md" : "lg"}
                       >
                         {action.label}
                       </CTAButton>
@@ -60,5 +59,5 @@ export default function EventsStatusSection({
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

@@ -1,14 +1,14 @@
-import CTAButton from '../ui/CTAButton'
-import { hasUsableText, hasUsableUrl, isTodoValue } from '../../utils/data'
+import CTAButton from "../ui/CTAButton";
+import { hasUsableText, hasUsableUrl, isTodoValue } from "../../utils/data";
 
 const ICON_LABELS = {
-  community: 'CS',
-  culture: 'CP',
-  education: 'YE',
-  wellness: 'HW',
-  edir: 'ED',
-  volunteer: 'VC',
-}
+  community: "CS",
+  culture: "CP",
+  education: "YE",
+  wellness: "HW",
+  edir: "ED",
+  volunteer: "VC",
+};
 
 function isUsableForm(form) {
   return (
@@ -16,18 +16,21 @@ function isUsableForm(form) {
     hasUsableUrl(form?.url) &&
     !isTodoValue(form?.url) &&
     hasUsableText(form?.title)
-  )
+  );
 }
 
 export default function ProgramAreaCard({ program }) {
   const iconLabel =
-    program.initials || ICON_LABELS[program.icon] || program.title?.slice(0, 2)?.toUpperCase() || 'EC'
-  const form = program.form
-  const showForm = isUsableForm(form)
-  const showImage = hasUsableUrl(program.image)
-  const formCtaLabel = showForm ? form.ctaLabel || 'Open form' : 'Contact ECAA'
-  const formHref = showForm ? form.url : '/contact'
-  const isInternalFormCta = formHref.startsWith('/')
+    program.initials ||
+    ICON_LABELS[program.icon] ||
+    program.title?.slice(0, 2)?.toUpperCase() ||
+    "EC";
+  const form = program.form;
+  const showForm = isUsableForm(form);
+  const showImage = hasUsableUrl(program.image);
+  const formCtaLabel = showForm ? form.ctaLabel || "Open form" : "Contact ECAA";
+  const formHref = showForm ? form.url : "/contact";
+  const isInternalFormCta = formHref.startsWith("/");
 
   return (
     <article
@@ -38,7 +41,11 @@ export default function ProgramAreaCard({ program }) {
         {showImage ? (
           <img
             src={program.image}
-            alt={hasUsableText(program.imageAlt) ? program.imageAlt : `${program.title} placeholder image`}
+            alt={
+              hasUsableText(program.imageAlt)
+                ? program.imageAlt
+                : `${program.title} placeholder image`
+            }
             className="h-11 w-11 shrink-0 rounded-xl object-cover"
             loading="lazy"
             decoding="async"
@@ -57,11 +64,15 @@ export default function ProgramAreaCard({ program }) {
               {program.category || program.categoryLabel}
             </p>
           )}
-          <h3 className="mt-1 text-xl font-semibold tracking-tight text-ecaa-ink">{program.title}</h3>
+          <h3 className="mt-1 text-xl font-semibold tracking-tight text-ecaa-ink">
+            {program.title}
+          </h3>
         </div>
       </div>
 
-      <p className="mt-4 flex-1 text-base leading-relaxed text-ecaa-ink-muted">{program.description}</p>
+      <p className="mt-4 flex-1 text-base leading-relaxed text-ecaa-ink-muted">
+        {program.description}
+      </p>
 
       {form && form.title && (
         <div className="mt-6 rounded-ecaa-lg border border-ecaa-border/60 bg-ecaa-cream/50 p-4">
@@ -84,5 +95,5 @@ export default function ProgramAreaCard({ program }) {
         </div>
       )}
     </article>
-  )
+  );
 }

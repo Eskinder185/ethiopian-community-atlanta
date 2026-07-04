@@ -1,8 +1,8 @@
-import Container from '../ui/Container'
-import AnimateIn from '../ui/AnimateIn'
+import Container from "../ui/Container";
+import AnimateIn from "../ui/AnimateIn";
 
 export default function EdirDisclosure({ section }) {
-  if (!section?.text) return null
+  if (!section?.text) return null;
 
   return (
     <section className="surface-white py-12 sm:py-14" id="edir-disclosure">
@@ -23,11 +23,13 @@ export default function EdirDisclosure({ section }) {
               <p className="text-sm font-semibold normal-case tracking-wide text-ecaa-gold-700">
                 {section.title}
               </p>
-              <p className="mt-2 text-base leading-relaxed text-ecaa-ink-muted sm:text-lg">{section.text}</p>
+              <p className="mt-2 text-base leading-relaxed text-ecaa-ink-muted sm:text-lg">
+                {section.text}
+              </p>
             </div>
           </aside>
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }

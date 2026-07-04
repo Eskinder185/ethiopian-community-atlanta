@@ -1,8 +1,8 @@
-import Container from '../ui/Container'
-import SectionHeader from '../ui/SectionHeader'
-import QuickActionCard from '../cards/QuickActionCard'
-import AnimateIn from '../ui/AnimateIn'
-import homeData from '../../content/homepage.json'
+import Container from "../ui/Container";
+import SectionHeader from "../ui/SectionHeader";
+import QuickActionCard from "../cards/QuickActionCard";
+import AnimateIn from "../ui/AnimateIn";
+import homeData from "../../content/homepage.json";
 
 export default function QuickActions() {
   return (
@@ -27,5 +27,5 @@ export default function QuickActions() {
         </AnimateIn>
       </Container>
     </section>
-  )
+  );
 }
