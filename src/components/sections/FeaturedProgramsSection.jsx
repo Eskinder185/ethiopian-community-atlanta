@@ -20,7 +20,7 @@ export default function FeaturedProgramsSection({ data }) {
 
   return (
     <section className="home-section surface-white" aria-labelledby="featured-programs-heading">
-      <Container className="home-section-inner">
+      <Container>
         <AnimateIn>
           <HomeSectionHeader
             id="featured-programs-heading"

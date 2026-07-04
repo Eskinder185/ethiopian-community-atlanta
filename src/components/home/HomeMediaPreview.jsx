@@ -76,8 +76,8 @@ export default function HomeMediaPreview({ section, mediaItems = [] }) {
   const hasItems = items.length > 0;
 
   return (
-    <section className="home-section surface-muted" aria-labelledby="home-media-heading">
-      <Container className="home-section-inner">
+    <section className="ecaa-section surface-muted" aria-labelledby="home-media-heading">
+      <Container>
         <AnimateIn>
           <HomeSectionHeader
             id="home-media-heading"
@@ -106,7 +106,7 @@ export default function HomeMediaPreview({ section, mediaItems = [] }) {
             </div>
           ) : (
             <EmptyState
-              className="mt-10 rounded-ecaa-xl border border-ecaa-border/70 bg-ecaa-white/80 p-8 text-center shadow-ecaa-sm sm:p-10"
+              className="mt-8 rounded-3xl border border-emerald-100 bg-white/80 px-5 py-10 text-center shadow-ecaa-sm sm:mt-10 sm:px-8 md:py-14"
               headingLevel="h3"
               title={emptyState.title || "Community photos and highlights will be added soon."}
               description={emptyState.description || ""}

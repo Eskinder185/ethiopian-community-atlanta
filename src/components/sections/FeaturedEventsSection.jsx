@@ -42,7 +42,7 @@ export default function FeaturedEventsSection({ data }) {
 
   return (
     <section className="home-section surface-white" aria-labelledby="featured-events-heading">
-      <Container className="home-section-inner">
+      <Container>
         <AnimateIn>
           <HomeSectionHeader
             id="featured-events-heading"

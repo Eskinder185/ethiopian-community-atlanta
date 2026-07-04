@@ -1,6 +1,12 @@
 import fallbackHallBookings from "../data/hallBookings.js";
 import { supabase } from "../lib/supabaseClient";
 import { hasUsableText } from "./data";
+import {
+  assertAdminSession,
+  ensureDeletableUuid,
+  logAdminDeleteInDev,
+  mapAdminDeleteError,
+} from "./adminAuth";
 
 function hasSupabaseConfig() {
   return Boolean(import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY);
@@ -150,8 +156,12 @@ export async function updateHallBooking(id, updates) {
 }
 
 export async function deleteHallBooking(id) {
+  await assertAdminSession();
+  ensureDeletableUuid(id, "hall booking");
+  await logAdminDeleteInDev();
+
   const { error } = await supabase.from("hall_bookings").delete().eq("id", id);
-  if (error) throw error;
+  if (error) throw mapAdminDeleteError(error);
 }
 
 export function formatBookingDateTime(value) {

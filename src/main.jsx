@@ -4,13 +4,15 @@ import { HelmetProvider } from "react-helmet-async";
 import "./index.css";
 import App from "./App.jsx";
 
-if ("serviceWorker" in navigator && import.meta.env.DEV) {
+if ("serviceWorker" in navigator) {
   navigator.serviceWorker.getRegistrations().then((registrations) => {
     registrations.forEach((registration) => registration.unregister());
   });
-  caches.keys().then((keys) => {
-    keys.forEach((key) => caches.delete(key));
-  });
+  if (import.meta.env.DEV) {
+    caches.keys().then((keys) => {
+      keys.forEach((key) => caches.delete(key));
+    });
+  }
 }
 
 createRoot(document.getElementById("root")).render(

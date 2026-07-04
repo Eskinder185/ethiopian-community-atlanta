@@ -1,6 +1,12 @@
 import fallbackPrograms from "../data/programs.js";
 import { supabase } from "../lib/supabaseClient";
 import { hasUsableText, isTodoValue } from "./data";
+import {
+  assertAdminSession,
+  ensureDeletableUuid,
+  logAdminDeleteInDev,
+  mapAdminDeleteError,
+} from "./adminAuth";
 
 function hasSupabaseConfig() {
   return Boolean(import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY);
@@ -265,6 +271,19 @@ export async function saveProgram(program) {
     .single();
   if (error) throw error;
   return normalizeProgram(data);
+}
+
+export async function hideProgramFromSite(id) {
+  await assertAdminSession();
+  ensureDeletableUuid(id, "program");
+  await logAdminDeleteInDev();
+
+  const { error } = await supabase
+    .from("programs")
+    .update({ visible: false, published: false })
+    .eq("id", id);
+
+  if (error) throw mapAdminDeleteError(error);
 }
 
 export async function fetchProgramsForAdmin() {

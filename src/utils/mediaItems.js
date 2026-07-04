@@ -1,6 +1,17 @@
 import fallbackMediaItems from "../data/mediaItems.js";
 import { sanitizeStoredImageUrl, resolvePublicImageUrl } from "../lib/uploadMedia";
 import { supabase } from "../lib/supabaseClient";
+import {
+  AdminNotAuthorizedError,
+  AdminSessionRequiredError,
+  assertAdminSession,
+  ensureDeletableUuid,
+  isForbiddenError,
+  logAdminDeleteInDev,
+  mapAdminDeleteError,
+  mapAdminSupabaseError,
+  MEDIA_RLS_BLOCKED_MESSAGE,
+} from "./adminAuth";
 import { hasUsableText, isTodoValue } from "./data";
 import { normalizeMediaContentAm } from "./mediaLocale";
 import { cleanUuid, isValidUuid } from "./uuid";
@@ -213,12 +224,17 @@ export async function fetchMediaItemsAdminState() {
   }
 
   try {
+    await assertAdminSession();
+
     const { data, error } = await supabase
       .from("media_items")
       .select("*")
       .order("display_order", { ascending: true });
 
     if (error) {
+      if (isForbiddenError(error)) {
+        throw new AdminNotAuthorizedError();
+      }
       warnSupabaseFallback("fetchMediaItemsForAdmin", error);
       return {
         items: getFallbackMediaItems(),
@@ -242,6 +258,12 @@ export async function fetchMediaItemsAdminState() {
       setupMessage: "",
     };
   } catch (error) {
+    if (error instanceof AdminSessionRequiredError) {
+      throw error;
+    }
+    if (error instanceof AdminNotAuthorizedError) {
+      throw error;
+    }
     warnSupabaseFallback("fetchMediaItemsForAdmin", error);
     return {
       items: getFallbackMediaItems(),
@@ -282,6 +304,7 @@ export function mediaItemToDbRow(item) {
 }
 
 export async function saveMediaItem(item) {
+  await assertAdminSession();
   const row = mediaItemToDbRow(item);
 
   if (isValidUuid(item.id)) {
@@ -291,23 +314,34 @@ export async function saveMediaItem(item) {
       .eq("id", item.id)
       .select()
       .single();
-    if (error) throw error;
+    if (error) throw mapAdminSupabaseError(error, "media") || error;
     return normalizeMediaItem(data);
   }
 
   const { data, error } = await supabase.from("media_items").insert(row).select().single();
-  if (error) throw error;
+  if (error) {
+    const mapped = mapAdminSupabaseError(error, "media");
+    throw mapped || new Error(MEDIA_RLS_BLOCKED_MESSAGE);
+  }
   return normalizeMediaItem(data);
 }
 
+export async function hideMediaItem(id) {
+  await assertAdminSession();
+  ensureDeletableUuid(id, "media item");
+  await logAdminDeleteInDev();
+
+  const { error } = await supabase.from("media_items").update({ visible: false }).eq("id", id);
+  if (error) throw mapAdminDeleteError(error);
+}
+
 export async function deleteMediaItem(id) {
-  if (!isValidUuid(id)) {
-    console.warn("Skipping Supabase delete because media id is not a valid UUID:", id);
-    return;
-  }
+  await assertAdminSession();
+  ensureDeletableUuid(id, "media item");
+  await logAdminDeleteInDev();
 
   const { error } = await supabase.from("media_items").delete().eq("id", id);
-  if (error) throw error;
+  if (error) throw mapAdminDeleteError(error);
 }
 
 export function filterMediaByTypes(items = [], types = []) {

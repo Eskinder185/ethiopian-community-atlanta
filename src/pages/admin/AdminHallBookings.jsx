@@ -6,6 +6,8 @@ import SaveButton from "../../components/admin/SaveButton";
 import StatusBadge from "../../components/admin/StatusBadge";
 import AdminSetupNotice from "../../components/admin/AdminSetupNotice";
 import { useAdminLanguage } from "../../context/AdminLanguageContext";
+import { InvalidUuidForDeleteError } from "../../utils/adminAuth";
+import { isValidUuid } from "../../utils/uuid";
 import {
   deleteHallBooking,
   fetchHallBookingsAdminState,
@@ -41,6 +43,7 @@ export default function AdminHallBookings() {
   const [draft, setDraft] = useState(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [setupMessage, setSetupMessage] = useState("");
@@ -89,6 +92,16 @@ export default function AdminHallBookings() {
 
   const handleDelete = async () => {
     if (!draft?.id || !window.confirm(adminT("hallBookings.deleteConfirm"))) return;
+
+    if (!isValidUuid(draft.id)) {
+      setError(adminT("common.invalidUuidDelete"));
+      return;
+    }
+
+    setDeleting(true);
+    setError("");
+    setMessage("");
+
     try {
       if (!hasSupabaseConfig()) {
         throw new Error("Supabase is not configured. Hall bookings cannot be deleted online yet.");
@@ -100,7 +113,14 @@ export default function AdminHallBookings() {
       setDraft(null);
       setMessage(adminT("messages.bookingDeleted"));
     } catch (deleteError) {
-      setError(deleteError?.message || "Could not delete booking.");
+      console.error("Delete booking failed:", deleteError);
+      if (deleteError instanceof InvalidUuidForDeleteError) {
+        setError(adminT("common.invalidUuidDelete"));
+      } else {
+        setError(deleteError?.message || adminT("common.deleteError"));
+      }
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -202,9 +222,17 @@ export default function AdminHallBookings() {
             <SaveButton loading={saving} savingText={adminT("common.saving")}>
               {adminT("hallBookings.saveBooking")}
             </SaveButton>
-            <button type="button" onClick={handleDelete} className="btn btn-secondary btn-sm">
-              {adminT("hallBookings.deleteBooking")}
-            </button>
+            {draft.id && isValidUuid(draft.id) && (
+              <button
+                type="button"
+                onClick={handleDelete}
+                disabled={deleting}
+                aria-label={adminT("hallBookings.deleteBooking")}
+                className="btn btn-secondary btn-sm disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {deleting ? adminT("common.deleting") : adminT("hallBookings.deleteBooking")}
+              </button>
+            )}
             <button type="button" onClick={() => setDraft(null)} className="btn btn-ghost btn-sm">
               {adminT("common.cancel")}
             </button>

@@ -2,6 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import StatusBadge from "../../components/admin/StatusBadge";
 import { useAdminLanguage } from "../../context/AdminLanguageContext";
+import { useRequireAdminSession } from "../../hooks/useRequireAdminSession";
+import { AdminNotAuthorizedError, AdminSessionRequiredError, InvalidUuidForDeleteError } from "../../utils/adminAuth";
+import { isValidUuid } from "../../utils/uuid";
 import {
   FORM_STATUS,
   FORM_TYPES,
@@ -20,6 +23,7 @@ function statusVariant(status) {
 
 export default function AdminForms() {
   const { adminT } = useAdminLanguage();
+  const sessionReady = useRequireAdminSession();
   const [forms, setForms] = useState([]);
   const [responseCounts, setResponseCounts] = useState({});
   const [loading, setLoading] = useState(true);
@@ -28,10 +32,11 @@ export default function AdminForms() {
   const [typeFilter, setTypeFilter] = useState("all");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [archivingId, setArchivingId] = useState(null);
 
   useEffect(() => {
-    loadForms();
-  }, []);
+    if (sessionReady) loadForms();
+  }, [sessionReady]);
 
   async function loadForms() {
     setLoading(true);
@@ -43,7 +48,9 @@ export default function AdminForms() {
     } catch (loadError) {
       if (loadError instanceof FormsTableMissingError || loadError?.name === "FormsTableMissingError") {
         setError(adminT("formsBuilder.tableMissing"));
-      } else {
+      } else if (loadError instanceof AdminNotAuthorizedError) {
+        setError(adminT("common.notAuthorized"));
+      } else if (!(loadError instanceof AdminSessionRequiredError)) {
         setError(adminT("formsBuilder.loadError"));
       }
       console.error(loadError);
@@ -68,14 +75,28 @@ export default function AdminForms() {
   async function handleArchive(formId) {
     if (!window.confirm(adminT("formsBuilder.archiveConfirm"))) return;
 
+    if (!isValidUuid(formId)) {
+      setError(adminT("common.invalidUuidDelete"));
+      return;
+    }
+
+    setArchivingId(formId);
+    setError("");
+    setMessage("");
+
     try {
       await archiveForm(formId);
       setMessage(adminT("formsBuilder.archived"));
-      setError("");
       await loadForms();
     } catch (archiveError) {
-      setError(adminT("formsBuilder.archiveError"));
-      console.error(archiveError);
+      console.error("Archive form failed:", archiveError);
+      if (archiveError instanceof InvalidUuidForDeleteError) {
+        setError(adminT("common.invalidUuidDelete"));
+      } else {
+        setError(archiveError?.message || adminT("formsBuilder.archiveError"));
+      }
+    } finally {
+      setArchivingId(null);
     }
   }
 
@@ -149,9 +170,9 @@ export default function AdminForms() {
         </select>
       </div>
 
-      {loading ? (
+      {!sessionReady || loading ? (
         <p className="text-ecaa-ink-muted">{adminT("common.loading")}</p>
-      ) : filteredForms.length === 0 ? (
+      ) : error ? null : filteredForms.length === 0 ? (
         <div className="rounded-ecaa-xl border border-ecaa-border/80 bg-ecaa-white p-8 text-center shadow-ecaa-sm">
           <p className="text-ecaa-ink-muted">{adminT("formsBuilder.empty")}</p>
           <Link
@@ -216,9 +237,13 @@ export default function AdminForms() {
                     <button
                       type="button"
                       onClick={() => handleArchive(form.id)}
-                      className="min-h-[44px] rounded-lg border border-ecaa-border px-4 py-2 text-sm font-medium text-ecaa-ink-muted hover:bg-ecaa-cream"
+                      disabled={archivingId === form.id}
+                      aria-label={adminT("formsBuilder.archive")}
+                      className="min-h-[44px] rounded-lg border border-ecaa-border px-4 py-2 text-sm font-medium text-ecaa-ink-muted hover:bg-ecaa-cream disabled:cursor-not-allowed disabled:opacity-60"
                     >
-                      {adminT("formsBuilder.archive")}
+                      {archivingId === form.id
+                        ? adminT("common.deleting")
+                        : adminT("formsBuilder.archive")}
                     </button>
                   )}
                 </div>

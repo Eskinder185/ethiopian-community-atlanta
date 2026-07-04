@@ -17,9 +17,16 @@ import { ALT_TEXT_HINT } from "../../utils/altText";
 import EditorContentTabs from "../../components/admin/EditorContentTabs";
 import AdminSetupNotice from "../../components/admin/AdminSetupNotice";
 import { useAdminLanguage } from "../../context/AdminLanguageContext";
+import { useRequireAdminSession } from "../../hooks/useRequireAdminSession";
+import {
+  AdminNotAuthorizedError,
+  AdminSessionRequiredError,
+  InvalidUuidForDeleteError,
+  logAdminActionInDev,
+} from "../../utils/adminAuth";
 import {
   MEDIA_TYPES,
-  deleteMediaItem,
+  hideMediaItem,
   fetchMediaItemsAdminState,
   normalizeMediaItem,
 } from "../../utils/mediaItems";
@@ -83,11 +90,13 @@ function buildMediaPayload(draft, finalImageUrl) {
 
 export default function AdminMedia() {
   const { adminT } = useAdminLanguage();
+  const sessionReady = useRequireAdminSession();
   const [items, setItems] = useState([]);
   const [draft, setDraft] = useState(null);
   const [editorLang, setEditorLang] = useState("en");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [selectedImageFile, setSelectedImageFile] = useState(null);
   const [imagePreviewUrl, setImagePreviewUrl] = useState("");
   const imageFileInputRef = useRef(null);
@@ -98,12 +107,23 @@ export default function AdminMedia() {
   const [setupMessage, setSetupMessage] = useState("");
 
   useEffect(() => {
-    fetchMediaItemsAdminState().then((result) => {
-      setItems(result.items);
-      setSetupMessage(result.setupMessage || "");
-      setLoading(false);
-    });
-  }, []);
+    if (!sessionReady) return;
+
+    fetchMediaItemsAdminState()
+      .then((result) => {
+        setItems(result.items);
+        setSetupMessage(result.setupMessage || "");
+        setLoading(false);
+      })
+      .catch((loadError) => {
+        if (loadError instanceof AdminNotAuthorizedError) {
+          setError(adminT("common.notAuthorized"));
+        } else if (!(loadError instanceof AdminSessionRequiredError)) {
+          setError(loadError?.message || adminT("media.loadError"));
+        }
+        setLoading(false);
+      });
+  }, [sessionReady, adminT]);
 
   const startNew = () => {
     setDraft({
@@ -221,6 +241,8 @@ export default function AdminMedia() {
 
       const payload = buildMediaPayload(draft, finalImageUrl);
 
+      await logAdminActionInDev("Admin saving media");
+
       console.log("Saving media payload:", payload);
 
       const result =
@@ -248,7 +270,12 @@ export default function AdminMedia() {
       setMessage(adminT("messages.mediaSaved"));
     } catch (saveError) {
       console.error("Media save failed:", saveError);
-      const errorMessage = saveError?.message || "Could not save media item to Supabase.";
+      let errorMessage = saveError?.message || "Could not save media item to Supabase.";
+      if (saveError instanceof AdminNotAuthorizedError) {
+        errorMessage = adminT("common.notAuthorized");
+      } else if (saveError?.message?.includes("permissions blocked")) {
+        errorMessage = adminT("common.mediaRlsBlocked");
+      }
       setUploadError(errorMessage);
       setError(errorMessage);
     } finally {
@@ -256,30 +283,44 @@ export default function AdminMedia() {
     }
   };
 
-  const handleDelete = async () => {
-    if (!draft?.id || !window.confirm(adminT("media.deleteConfirm"))) return;
+  const handleRemoveFromSite = async () => {
+    if (!draft?.id || !window.confirm(adminT("media.removeFromSiteConfirm"))) return;
+
+    if (!isValidUuid(draft.id)) {
+      setError(adminT("common.invalidUuidDelete"));
+      return;
+    }
+
+    setDeleting(true);
+    setError("");
+    setMessage("");
+
     try {
       if (!hasSupabaseConfig()) {
         throw new Error(
-          "Supabase is not configured. Media cannot be deleted online until Supabase is connected."
+          "Supabase is not configured. Media cannot be removed online until Supabase is connected."
         );
       }
-      if (!isValidUuid(draft.id)) {
-        setError("This item is local-only and cannot be deleted from Supabase.");
-        return;
-      }
-      await deleteMediaItem(draft.id);
+
+      await hideMediaItem(draft.id);
       const refreshed = await fetchMediaItemsAdminState();
-      setItems(refreshed.items);
+      setItems(refreshed.items.filter((item) => item.visible !== false));
       setSetupMessage(refreshed.setupMessage || "");
       setDraft(null);
       setMessage(adminT("messages.mediaDeleted"));
-    } catch (deleteError) {
-      setError(deleteError?.message || "Could not delete media item.");
+    } catch (removeError) {
+      console.error("Remove media failed:", removeError);
+      if (removeError instanceof InvalidUuidForDeleteError) {
+        setError(adminT("common.invalidUuidDelete"));
+      } else {
+        setError(removeError?.message || adminT("common.deleteError"));
+      }
+    } finally {
+      setDeleting(false);
     }
   };
 
-  if (loading) return <p className="text-ecaa-ink-muted">{adminT("media.loading")}</p>;
+  if (!sessionReady || loading) return <p className="text-ecaa-ink-muted">{adminT("media.loading")}</p>;
 
   if (draft) {
     return (
@@ -493,8 +534,14 @@ export default function AdminMedia() {
               {adminT("media.saveItem")}
             </SaveButton>
             {draft.id && isValidUuid(draft.id) && (
-              <button type="button" onClick={handleDelete} className="btn btn-secondary btn-sm">
-                {adminT("media.deleteItem")}
+              <button
+                type="button"
+                onClick={handleRemoveFromSite}
+                disabled={deleting}
+                aria-label={adminT("media.deleteItem")}
+                className="btn btn-secondary btn-sm disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {deleting ? adminT("common.deleting") : adminT("media.deleteItem")}
               </button>
             )}
             <button type="button" onClick={() => setDraft(null)} className="btn btn-ghost btn-sm">

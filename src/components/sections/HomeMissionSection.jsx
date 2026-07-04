@@ -12,7 +12,7 @@ export default function HomeMissionSection({ data }) {
 
   return (
     <section className="home-section border-b border-ecaa-border/60 bg-ecaa-cream/35 py-10 sm:py-12" aria-labelledby="home-mission-heading">
-      <Container className="home-section-inner">
+      <Container>
         <AnimateIn>
           <div className="mx-auto max-w-5xl lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-10">
             <div className="text-center lg:text-left">

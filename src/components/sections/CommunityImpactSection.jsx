@@ -15,7 +15,7 @@ export default function CommunityImpactSection({ data }) {
 
   return (
     <section className="home-section surface-white" aria-labelledby="community-impact-heading">
-      <Container className="home-section-inner">
+      <Container>
         <AnimateIn>
           <HomeSectionHeader
             eyebrow={data.eyebrow}

@@ -5,6 +5,8 @@ import FormTextarea from "../../components/admin/FormTextarea";
 import SaveButton from "../../components/admin/SaveButton";
 import StatusBadge from "../../components/admin/StatusBadge";
 import { useAdminLanguage } from "../../context/AdminLanguageContext";
+import { InvalidUuidForDeleteError } from "../../utils/adminAuth";
+import { isValidUuid } from "../../utils/uuid";
 import {
   RESPONSE_STATUS,
   deleteFormResponse,
@@ -48,6 +50,7 @@ export default function AdminFormResponses() {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [deletingId, setDeletingId] = useState(null);
 
   useEffect(() => {
     loadData();
@@ -122,6 +125,16 @@ export default function AdminFormResponses() {
 
   async function handleDelete(responseId) {
     if (!window.confirm(adminT("formsBuilder.deleteResponseConfirm"))) return;
+
+    if (!isValidUuid(responseId)) {
+      setError(adminT("common.invalidUuidDelete"));
+      return;
+    }
+
+    setDeletingId(responseId);
+    setError("");
+    setMessage("");
+
     try {
       await deleteFormResponse(responseId);
       setResponses((current) => current.filter((item) => item.id !== responseId));
@@ -131,8 +144,14 @@ export default function AdminFormResponses() {
         setDraft(null);
       }
     } catch (deleteError) {
-      console.error(deleteError);
-      setError(adminT("formsBuilder.responseDeleteError"));
+      console.error("Delete response failed:", deleteError);
+      if (deleteError instanceof InvalidUuidForDeleteError) {
+        setError(adminT("common.invalidUuidDelete"));
+      } else {
+        setError(deleteError?.message || adminT("formsBuilder.responseDeleteError"));
+      }
+    } finally {
+      setDeletingId(null);
     }
   }
 
@@ -255,9 +274,11 @@ export default function AdminFormResponses() {
                 <button
                   type="button"
                   onClick={() => handleDelete(draft.id)}
-                  className="text-sm font-medium text-ecaa-red-700 hover:underline"
+                  disabled={deletingId === draft.id}
+                  aria-label={adminT("common.delete")}
+                  className="text-sm font-medium text-ecaa-red-700 hover:underline disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  {adminT("common.delete")}
+                  {deletingId === draft.id ? adminT("common.deleting") : adminT("common.delete")}
                 </button>
               </div>
               <p className="text-sm text-ecaa-ink-muted">

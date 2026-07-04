@@ -12,6 +12,12 @@ import { normalizeLeadershipContentAm } from "./leadershipLocale";
 import { isValidUuid } from "./uuid";
 import { slugifyTitle } from "./programs";
 import { getLeadershipImageAlt as buildLeadershipImageAlt } from "./altText";
+import {
+  assertAdminSession,
+  ensureDeletableUuid,
+  logAdminDeleteInDev,
+  mapAdminDeleteError,
+} from "./adminAuth";
 
 function hasSupabaseConfig() {
   return Boolean(import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY);
@@ -370,14 +376,26 @@ export async function saveLeadershipMember(member) {
   return normalizeLeadershipMember(data);
 }
 
+export async function hideLeadershipMember(id) {
+  await assertAdminSession();
+  ensureDeletableUuid(id, "leadership member");
+  await logAdminDeleteInDev();
+
+  const { error } = await supabase
+    .from("leadership")
+    .update({ active: false, visible: false })
+    .eq("id", id);
+
+  if (error) throw mapAdminDeleteError(error);
+}
+
 export async function deleteLeadershipMember(id) {
-  if (!isValidUuid(id)) {
-    console.warn("Skipping Supabase delete because leadership id is not a valid UUID:", id);
-    return;
-  }
+  await assertAdminSession();
+  ensureDeletableUuid(id, "leadership member");
+  await logAdminDeleteInDev();
 
   const { error } = await supabase.from("leadership").delete().eq("id", id);
-  if (error) throw error;
+  if (error) throw mapAdminDeleteError(error);
 }
 
 export function getLeadershipIntro() {

@@ -48,10 +48,10 @@ export default function HomeBookHall({ data }) {
 
   return (
     <section
-      className="home-section border-y border-ecaa-gold-200/50 bg-gradient-to-br from-ecaa-gold-50 via-ecaa-cream to-ecaa-gold-100/30"
+      className="ecaa-section border-y border-ecaa-gold-200/50 bg-gradient-to-br from-ecaa-gold-50 via-ecaa-cream to-ecaa-gold-100/30"
       aria-labelledby="home-book-hall-heading"
     >
-      <Container className="home-section-inner">
+      <Container>
         <AnimateIn>
           <div className="overflow-hidden rounded-ecaa-2xl border border-ecaa-gold-200/60 bg-ecaa-white/90 shadow-ecaa-md backdrop-blur-sm lg:grid lg:grid-cols-2 lg:items-stretch">
             <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">

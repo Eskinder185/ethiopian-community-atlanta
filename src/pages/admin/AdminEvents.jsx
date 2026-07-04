@@ -16,12 +16,14 @@ import {
 import { ALT_TEXT_HINT } from "../../utils/altText";
 import { getDirectImageUrl } from "../../utils/mediaUrl";
 import { sanitizeStoredImageUrl, resolvePublicImageUrl } from "../../lib/uploadMedia";
+import { isValidUuid } from "../../utils/uuid";
+import { InvalidUuidForDeleteError } from "../../utils/adminAuth";
 import {
   EVENT_STATUS,
   fetchEventsForAdmin,
+  hideEventFromSite,
   normalizeEvent,
   saveEvent,
-  deleteEvent,
 } from "../../utils/events";
 import { slugifyTitle } from "../../utils/programs";
 
@@ -55,6 +57,7 @@ export default function AdminEvents() {
   const [draft, setDraft] = useState(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [selectedPosterFile, setSelectedPosterFile] = useState(null);
   const [posterPreviewUrl, setPosterPreviewUrl] = useState("");
   const posterFileInputRef = useRef(null);
@@ -223,16 +226,33 @@ export default function AdminEvents() {
     }
   };
 
-  const handleDelete = async () => {
-    if (!draft?.slug || !window.confirm(adminT("events.deleteConfirm"))) return;
+  const handleRemoveFromSite = async () => {
+    if (!draft?.id || !window.confirm(adminT("events.removeFromSiteConfirm"))) return;
+
+    if (!isValidUuid(draft.id)) {
+      setError(adminT("common.invalidUuidDelete"));
+      return;
+    }
+
+    setDeleting(true);
+    setError("");
+    setMessage("");
+
     try {
-      await deleteEvent(draft.slug);
+      await hideEventFromSite(draft.id);
       const refreshed = await fetchEventsForAdmin();
-      setEvents(refreshed);
+      setEvents(refreshed.filter((event) => event.visible !== false));
       setDraft(null);
       setMessage(adminT("messages.eventDeleted"));
-    } catch (deleteError) {
-      setError(deleteError?.message || adminT("messages.eventDeleteError"));
+    } catch (removeError) {
+      console.error("Remove event failed:", removeError);
+      if (removeError instanceof InvalidUuidForDeleteError) {
+        setError(adminT("common.invalidUuidDelete"));
+      } else {
+        setError(removeError?.message || adminT("messages.eventDeleteError"));
+      }
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -532,9 +552,15 @@ export default function AdminEvents() {
             <SaveButton loading={saving} savingText={adminT("common.saving")}>
               {adminT("events.saveEvent")}
             </SaveButton>
-            {draft.slug && (
-              <button type="button" onClick={handleDelete} className="btn btn-secondary btn-sm">
-                {adminT("events.deleteEvent")}
+            {draft.id && isValidUuid(draft.id) && (
+              <button
+                type="button"
+                onClick={handleRemoveFromSite}
+                disabled={deleting}
+                aria-label={adminT("events.deleteEvent")}
+                className="btn btn-secondary btn-sm disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {deleting ? adminT("common.deleting") : adminT("events.deleteEvent")}
               </button>
             )}
             <button type="button" onClick={() => setDraft(null)} className="btn btn-ghost btn-sm">

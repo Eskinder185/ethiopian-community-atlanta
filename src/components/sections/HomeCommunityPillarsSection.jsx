@@ -14,7 +14,7 @@ export default function HomeCommunityPillarsSection({ data }) {
 
   return (
     <section className="home-section surface-cream" aria-labelledby="community-pillars-heading">
-      <Container className="home-section-inner">
+      <Container>
         <AnimateIn>
           <div className="mx-auto max-w-2xl text-center">
             {data.eyebrow && <p className="text-eyebrow">{data.eyebrow}</p>}

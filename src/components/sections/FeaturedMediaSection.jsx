@@ -23,7 +23,7 @@ export default function FeaturedMediaSection({ data }) {
 
   return (
     <section className="home-section surface-muted" aria-labelledby="featured-media-heading">
-      <Container className="home-section-inner">
+      <Container>
         <AnimateIn>
           <HomeSectionHeader
             id="featured-media-heading"

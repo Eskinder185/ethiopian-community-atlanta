@@ -52,9 +52,9 @@
       { "label": "Contact", "path": "/contact", "type": "link" }
     ],
     "adminCta": {
-      "label": "Admin",
-      "path": "/admin",
-      "published": true
+      "label": "Admin Login",
+      "path": "/admin/login",
+      "published": false
     }
   },
   "footer": {

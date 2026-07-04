@@ -22,7 +22,7 @@ export default function WhyJoinSection({ data }) {
 
   return (
     <section className="home-section surface-cream" aria-labelledby="why-join-heading">
-      <Container className="home-section-inner">
+      <Container>
         <AnimateIn>
           <HomeSectionHeader
             eyebrow={data.eyebrow}

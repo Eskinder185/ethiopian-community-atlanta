@@ -97,9 +97,9 @@ function HeroButtons({ buttons, isHome, compact = false }) {
 
 function HeroSummaryBand({ text }) {
   return (
-    <div className="relative border-t border-ecaa-gold-500/20 bg-ecaa-green-950/90">
+    <div className="hero-dark-band relative border-t border-white/10 bg-[#063125]/95">
       <Container className="py-4 sm:py-5">
-        <p className="max-w-4xl text-center text-sm italic leading-relaxed text-ecaa-cream/90 sm:text-base lg:text-left">
+        <p className="max-w-4xl text-center text-sm italic leading-relaxed text-white/90 sm:text-base lg:text-left">
           {text}
         </p>
       </Container>
@@ -109,15 +109,17 @@ function HeroSummaryBand({ text }) {
 
 function HeroStatsStrip({ stats, hideOnMobile = false }) {
   return (
-    <div className={`relative bg-ecaa-green-950 ${hideOnMobile ? "hidden md:block" : ""}`}>
+    <div
+      className={`hero-stat-strip hero-dark-band relative border-t border-white/10 bg-[#063125]/95 ${hideOnMobile ? "hidden md:block" : ""}`}
+    >
       <Container className="py-4 sm:py-6">
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-6">
           {stats.map((stat) => (
-            <li key={`${stat.value}-${stat.label}`} className="text-center sm:text-left">
-              <p className="text-sm font-semibold tracking-tight text-ecaa-gold-300 sm:text-lg">
+            <li key={`${stat.value}-${stat.label}`} className="hero-stat-card text-center sm:text-left">
+              <h3 className="hero-stat-card-title text-sm font-bold tracking-tight text-white sm:text-lg">
                 {stat.value}
-              </p>
-              <p className="mt-1 text-xs leading-snug text-ecaa-cream/75 sm:text-sm">
+              </h3>
+              <p className="hero-stat-card-label mt-2 text-xs leading-6 text-white/85 sm:text-base">
                 {stat.label}
               </p>
             </li>

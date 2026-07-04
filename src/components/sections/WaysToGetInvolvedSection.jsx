@@ -22,7 +22,7 @@ export default function WaysToGetInvolvedSection({ data }) {
 
   return (
     <section className="home-section surface-white" aria-labelledby="get-involved-heading">
-      <Container className="home-section-inner">
+      <Container>
         <AnimateIn>
           <HomeSectionHeader
             eyebrow={data.eyebrow}

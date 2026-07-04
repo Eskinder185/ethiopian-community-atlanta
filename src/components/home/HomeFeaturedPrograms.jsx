@@ -62,8 +62,8 @@ export default function HomeFeaturedPrograms({ section, programs = [] }) {
   const hasItems = items.length > 0;
 
   return (
-    <section className="home-section surface-white" aria-labelledby="home-programs-heading">
-      <Container className="home-section-inner">
+    <section className="ecaa-section surface-white" aria-labelledby="home-programs-heading">
+      <Container>
         <AnimateIn>
           <HomeSectionHeader
             id="home-programs-heading"

@@ -15,7 +15,7 @@ export default function WhoWeServeSection({ data }) {
 
   return (
     <section className="home-section surface-cream" aria-labelledby="who-we-serve-heading">
-      <Container className="home-section-inner">
+      <Container>
         <AnimateIn>
           <HomeSectionHeader
             eyebrow={data.eyebrow}

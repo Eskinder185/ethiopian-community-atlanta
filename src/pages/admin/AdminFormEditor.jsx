@@ -19,11 +19,17 @@ import {
   FIELD_TYPES,
   FORM_STATUS,
   FORM_TYPES,
+  FormsTableMissingError,
   fetchFormWithFieldsForAdmin,
   getFormPublicPath,
   saveFormWithFields,
   slugifyFormTitle,
 } from "../../utils/forms";
+import { useRequireAdminSession } from "../../hooks/useRequireAdminSession";
+import {
+  AdminNotAuthorizedError,
+  AdminSessionRequiredError,
+} from "../../utils/adminAuth";
 
 function ToggleField({ id, label, checked, onChange, hint }) {
   return (
@@ -267,6 +273,7 @@ export default function AdminFormEditor() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { adminT } = useAdminLanguage();
+  const sessionReady = useRequireAdminSession();
   const isNew = !id || id === "new";
 
   const [form, setForm] = useState(null);
@@ -288,6 +295,8 @@ export default function AdminFormEditor() {
   };
 
   useEffect(() => {
+    if (!sessionReady) return;
+
     if (isNew) {
       const templateId = searchParams.get("template");
       if (templateId) {
@@ -316,10 +325,14 @@ export default function AdminFormEditor() {
       })
       .catch((loadError) => {
         console.error(loadError);
-        setError(adminT("formsBuilder.loadError"));
+        if (loadError instanceof AdminNotAuthorizedError) {
+          setError(adminT("common.notAuthorized"));
+        } else if (!(loadError instanceof AdminSessionRequiredError)) {
+          setError(adminT("formsBuilder.loadError"));
+        }
       })
       .finally(() => setLoading(false));
-  }, [id, isNew, searchParams, adminT]);
+  }, [id, isNew, searchParams, adminT, sessionReady]);
 
   function updateForm(patch) {
     setForm((current) => ({ ...current, ...patch }));
@@ -403,7 +416,11 @@ export default function AdminFormEditor() {
       }
     } catch (saveError) {
       console.error(saveError);
-      setError(adminT("formsBuilder.saveError"));
+      if (saveError instanceof AdminNotAuthorizedError) {
+        setError(adminT("common.notAuthorized"));
+      } else {
+        setError(adminT("formsBuilder.saveError"));
+      }
     } finally {
       setSaving(false);
     }
@@ -439,7 +456,7 @@ export default function AdminFormEditor() {
     scrollToSection("preview");
   }
 
-  if (loading || !form) {
+  if (!sessionReady || loading || !form) {
     return <p className="text-ecaa-ink-muted">{adminT("common.loading")}</p>;
   }
 

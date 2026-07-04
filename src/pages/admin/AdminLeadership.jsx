@@ -16,10 +16,11 @@ import { hasSupabaseConfig } from "../../lib/supabaseClient";
 import { ALT_TEXT_HINT } from "../../utils/altText";
 import { isValidUuid } from "../../utils/uuid";
 import { slugifyTitle } from "../../utils/programs";
+import { InvalidUuidForDeleteError } from "../../utils/adminAuth";
 import {
   createEmptyLeadershipMember,
-  deleteLeadershipMember,
   fetchLeadershipForAdmin,
+  hideLeadershipMember,
   normalizeLeadershipMember,
   saveLeadershipMember,
 } from "../../utils/leadership";
@@ -84,6 +85,7 @@ export default function AdminLeadership() {
   const [editorLang, setEditorLang] = useState("en");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -183,26 +185,39 @@ export default function AdminLeadership() {
     }
   };
 
-  const handleDelete = async () => {
-    if (!draft?.id || !window.confirm(adminT("leadership.deleteConfirm"))) return;
+  const handleRemoveFromSite = async () => {
+    if (!draft?.id || !window.confirm(adminT("leadership.removeFromSiteConfirm"))) return;
+
+    if (!isValidUuid(draft.id)) {
+      setError(adminT("common.invalidUuidDelete"));
+      return;
+    }
+
+    setDeleting(true);
+    setError("");
+    setMessage("");
 
     try {
       if (!hasSupabaseConfig()) {
         throw new Error(
-          "Supabase is not configured. Leadership members cannot be deleted online yet."
+          "Supabase is not configured. Leadership members cannot be removed online yet."
         );
       }
-      if (!isValidUuid(draft.id)) {
-        setError("This member is local-only and cannot be deleted from Supabase.");
-        return;
-      }
-      await deleteLeadershipMember(draft.id);
+
+      await hideLeadershipMember(draft.id);
       const refreshed = await fetchLeadershipForAdmin();
-      setMembers(refreshed);
+      setMembers(refreshed.filter((member) => member.visible !== false && member.active !== false));
       setDraft(null);
       setMessage(adminT("messages.leadershipDeleted"));
-    } catch (deleteError) {
-      setError(deleteError?.message || "Could not delete leadership member.");
+    } catch (removeError) {
+      console.error("Remove leadership member failed:", removeError);
+      if (removeError instanceof InvalidUuidForDeleteError) {
+        setError(adminT("common.invalidUuidDelete"));
+      } else {
+        setError(removeError?.message || adminT("common.deleteError"));
+      }
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -544,10 +559,12 @@ export default function AdminLeadership() {
                 {isValidUuid(draft.id) && (
                   <button
                     type="button"
-                    onClick={handleDelete}
-                    className="rounded-lg border border-ecaa-red-200 bg-ecaa-red-50 px-4 py-2.5 text-sm font-semibold text-ecaa-red-700 transition-colors hover:bg-ecaa-red-100"
+                    onClick={handleRemoveFromSite}
+                    disabled={deleting}
+                    aria-label={adminT("leadership.deleteMember")}
+                    className="rounded-lg border border-ecaa-red-200 bg-ecaa-red-50 px-4 py-2.5 text-sm font-semibold text-ecaa-red-700 transition-colors hover:bg-ecaa-red-100 disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    {adminT("leadership.deleteMember")}
+                    {deleting ? adminT("common.deleting") : adminT("leadership.deleteMember")}
                   </button>
                 )}
               </div>

@@ -82,6 +82,10 @@
 }
 
 @layer base {
+  :root {
+    --header-height: 4rem;
+  }
+
   html {
     @apply scroll-smooth overflow-x-hidden;
   }
@@ -149,12 +153,81 @@
 }
 
 @layer components {
-  .page-container {
-    @apply mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-10;
+  .ecaa-container,
+  .page-container,
+  .container-ecaa {
+    width: 100%;
+    max-width: 1180px;
+    margin-inline: auto;
+    padding-inline: 1rem;
   }
 
+  @media (min-width: 640px) {
+    .ecaa-container,
+    .page-container,
+    .container-ecaa {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .ecaa-container,
+    .page-container,
+    .container-ecaa {
+      padding-inline: 2rem;
+    }
+  }
+
+  .ecaa-container-wide,
   .page-container-wide {
-    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .ecaa-container-wide,
+    .page-container-wide {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .ecaa-container-wide,
+    .page-container-wide {
+      padding-inline: 2rem;
+    }
+  }
+
+  .ecaa-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .ecaa-section {
+      padding-top: 4.5rem;
+      padding-bottom: 4.5rem;
+    }
+  }
+
+  .ecaa-section-header {
+    max-width: 760px;
+  }
+
+  .ecaa-section-eyebrow {
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  html[lang="am"] .ecaa-section-eyebrow {
+    text-transform: none;
+    letter-spacing: 0.04em;
+  }
+
+  .ecaa-readable {
+    max-width: 740px;
   }
 
   .section-spacing {
@@ -275,12 +348,24 @@
     @apply max-w-[640px] text-sm leading-relaxed text-ecaa-cream/80 sm:text-base;
   }
 
-  .home-section {
-    @apply py-10 md:py-14 lg:py-20;
+  .hero-dark-band {
+    background-color: rgb(6 49 37 / 0.95);
   }
 
-  .home-section-inner {
-    @apply px-0;
+  .hero-stat-strip {
+    @apply relative isolate;
+  }
+
+  .hero-stat-card-title {
+    @apply font-bold tracking-tight text-white;
+  }
+
+  .hero-stat-card-label {
+    @apply leading-6 text-white/85;
+  }
+
+  .home-section {
+    @apply py-10 md:py-14 lg:py-20;
   }
 
   .home-section-grid {

@@ -9,7 +9,6 @@ import LanguageToggle from "../LanguageToggle";
 import navigation from "../../data/navigation.json";
 import { useLanguage } from "../../context/LanguageContext";
 import { translateNavLabel } from "../../utils/navigationLabels";
-import { ADMIN_LOGIN_PATH } from "../../utils/admin";
 
 const navLinkClass = ({ isActive }) =>
   ["nav-link nav-link-header whitespace-nowrap", isActive ? "nav-link-active" : ""]
@@ -22,19 +21,50 @@ export default function Header() {
   const menuButtonRef = useRef(null);
   const location = useLocation();
   const { t } = useLanguage();
-  const { items, primaryCta, adminCta } = navigation.header;
+  const { items, primaryCta } = navigation.header;
 
   useEffect(() => {
     setOpenDropdown(null);
   }, [location.pathname, location.hash]);
 
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    function handleKeyDown(event) {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    }
+
+    if (menuOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen]);
+
   return (
-    <header className="sticky top-0 z-50 w-full overflow-visible border-b border-ecaa-border bg-ecaa-white/96 shadow-ecaa-sm backdrop-blur-xl">
+    <header className="sticky top-0 z-[60] w-full border-b border-ecaa-border bg-[#FAF7EF]/95 shadow-ecaa-sm backdrop-blur-md">
       <Container wide className="overflow-visible">
-        <div className="flex h-16 items-center justify-between gap-3 sm:gap-4">
+        <div
+          className="flex items-center justify-between gap-3 sm:gap-4"
+          style={{ minHeight: "var(--header-height)" }}
+        >
           <HeaderBrand />
 
-          <div className="hidden min-w-0 flex-1 items-center justify-end gap-2 xl:flex xl:gap-3">
+          <div className="hidden min-w-0 flex-1 items-center justify-end gap-2 lg:flex lg:gap-3">
             <nav
               className="flex min-w-0 items-center gap-0 overflow-visible"
               aria-label="Main navigation"
@@ -65,16 +95,6 @@ export default function Header() {
 
             <LanguageToggle />
 
-            {adminCta?.published && (
-              <CTAButton
-                to={ADMIN_LOGIN_PATH}
-                variant="primary"
-                size="sm"
-                className="ml-1 shrink-0 rounded-lg xl:ml-2"
-              >
-                {translateNavLabel(adminCta.label, t)}
-              </CTAButton>
-            )}
             {primaryCta?.path && (
               <CTAButton to={primaryCta.path} variant="secondary" size="sm" className="shrink-0">
                 {translateNavLabel(primaryCta.label, t)}
@@ -85,22 +105,22 @@ export default function Header() {
           <button
             ref={menuButtonRef}
             type="button"
-            className="btn btn-secondary btn-sm min-h-[44px] shrink-0 xl:hidden"
+            className="btn btn-secondary btn-sm min-h-[44px] shrink-0 lg:hidden"
             aria-expanded={menuOpen}
-            aria-controls="mobile-nav"
+            aria-controls="mobile-menu"
             aria-label={menuOpen ? t("common.closeMenu") : t("common.openMenu")}
             onClick={() => setMenuOpen((open) => !open)}
           >
             <span aria-hidden="true">{menuOpen ? t("common.close") : t("common.menu")}</span>
           </button>
         </div>
-
-        <MobileMenu
-          isOpen={menuOpen}
-          onClose={() => setMenuOpen(false)}
-          returnFocusRef={menuButtonRef}
-        />
       </Container>
+
+      <MobileMenu
+        isOpen={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        returnFocusRef={menuButtonRef}
+      />
     </header>
   );
 }

@@ -1,4 +1,13 @@
 import { supabase, hasSupabaseConfig } from "../lib/supabaseClient";
+import {
+  AdminNotAuthorizedError,
+  AdminSessionRequiredError,
+  assertAdminSession,
+  ensureDeletableUuid,
+  isForbiddenError,
+  logAdminDeleteInDev,
+  mapAdminDeleteError,
+} from "./adminAuth";
 import { hasUsableText } from "./data";
 import { slugifyTitle } from "./programs";
 
@@ -310,6 +319,14 @@ export async function fetchFormsForAdmin() {
   if (!hasSupabaseConfig()) return [];
 
   try {
+    const session = await assertAdminSession();
+
+    if (import.meta.env.DEV) {
+      const { data } = await supabase.auth.getUser();
+      console.log("Admin forms user:", data?.user?.email || "(no user)");
+      console.log("Admin forms session:", session?.user?.email || "(no session)");
+    }
+
     const { data, error } = await supabase
       .from("forms")
       .select("*")
@@ -320,14 +337,27 @@ export async function fetchFormsForAdmin() {
       if (isMissingTableError(error)) {
         throw new FormsTableMissingError();
       }
+      if (isForbiddenError(error)) {
+        throw new AdminNotAuthorizedError();
+      }
       warnSupabaseFallback("fetchFormsForAdmin", error);
       throw error;
     }
 
     return (data ?? []).map(normalizeForm).filter(Boolean);
   } catch (error) {
-    if (error instanceof FormsTableMissingError || isMissingTableError(error)) {
+    if (
+      error instanceof FormsTableMissingError ||
+      error instanceof AdminNotAuthorizedError ||
+      error instanceof AdminSessionRequiredError
+    ) {
+      throw error;
+    }
+    if (isMissingTableError(error)) {
       throw new FormsTableMissingError();
+    }
+    if (isForbiddenError(error)) {
+      throw new AdminNotAuthorizedError();
     }
     warnSupabaseFallback("fetchFormsForAdmin", error);
     throw error;
@@ -338,13 +368,18 @@ export async function fetchFormWithFieldsForAdmin(formId) {
   if (!hasSupabaseConfig() || !formId) return null;
 
   try {
+    await assertAdminSession();
+
     const { data: formData, error: formError } = await supabase
       .from("forms")
       .select("*")
       .eq("id", formId)
       .maybeSingle();
 
-    if (formError) throw formError;
+    if (formError) {
+      if (isForbiddenError(formError)) throw new AdminNotAuthorizedError();
+      throw formError;
+    }
     if (!formData) return null;
 
     const { data: fields, error: fieldsError } = await supabase
@@ -353,7 +388,10 @@ export async function fetchFormWithFieldsForAdmin(formId) {
       .eq("form_id", formId)
       .order("display_order", { ascending: true });
 
-    if (fieldsError) throw fieldsError;
+    if (fieldsError) {
+      if (isForbiddenError(fieldsError)) throw new AdminNotAuthorizedError();
+      throw fieldsError;
+    }
 
     return {
       form: normalizeForm(formData),
@@ -369,6 +407,8 @@ export async function saveFormWithFields(form, fields = []) {
   if (!hasSupabaseConfig()) {
     throw new Error("Supabase is not configured.");
   }
+
+  await assertAdminSession();
 
   const row = formToDbRow(form);
   let savedForm;
@@ -441,6 +481,9 @@ export async function saveFormWithFields(form, fields = []) {
 
 export async function archiveForm(formId) {
   if (!hasSupabaseConfig()) throw new Error("Supabase is not configured.");
+  await assertAdminSession();
+  ensureDeletableUuid(formId, "form");
+  await logAdminDeleteInDev();
 
   const { data, error } = await supabase
     .from("forms")
@@ -449,7 +492,7 @@ export async function archiveForm(formId) {
     .select()
     .single();
 
-  if (error) throw error;
+  if (error) throw mapAdminDeleteError(error);
   return normalizeForm(data);
 }
 
@@ -457,6 +500,8 @@ export async function fetchResponseCountsByFormIds(formIds = []) {
   if (!hasSupabaseConfig() || formIds.length === 0) return {};
 
   try {
+    await assertAdminSession();
+
     const { data, error } = await supabase
       .from("form_responses")
       .select("form_id")
@@ -542,6 +587,8 @@ export async function fetchResponsesForAdmin(formId) {
   if (!hasSupabaseConfig() || !formId) return [];
 
   try {
+    await assertAdminSession();
+
     const { data, error } = await supabase
       .from("form_responses")
       .select("*")
@@ -558,6 +605,7 @@ export async function fetchResponsesForAdmin(formId) {
 
 export async function updateFormResponse(responseId, updates) {
   if (!hasSupabaseConfig()) throw new Error("Supabase is not configured.");
+  await assertAdminSession();
 
   const row = {
     status: updates.status,
@@ -577,9 +625,12 @@ export async function updateFormResponse(responseId, updates) {
 
 export async function deleteFormResponse(responseId) {
   if (!hasSupabaseConfig()) throw new Error("Supabase is not configured.");
+  await assertAdminSession();
+  ensureDeletableUuid(responseId, "form response");
+  await logAdminDeleteInDev();
 
   const { error } = await supabase.from("form_responses").delete().eq("id", responseId);
-  if (error) throw error;
+  if (error) throw mapAdminDeleteError(error);
 }
 
 export function exportResponsesToCsv({ form, fields, responses }) {

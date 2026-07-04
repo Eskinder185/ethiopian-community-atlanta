@@ -15,8 +15,8 @@ export default function HomeFinalCTA({ data }) {
     .filter(Boolean);
 
   return (
-    <section className="home-section surface-deep" aria-labelledby="home-final-cta-heading">
-      <Container className="home-section-inner">
+    <section className="ecaa-section surface-deep" aria-labelledby="home-final-cta-heading">
+      <Container>
         <AnimateIn>
           <div className="mx-auto max-w-3xl text-center">
             <h2

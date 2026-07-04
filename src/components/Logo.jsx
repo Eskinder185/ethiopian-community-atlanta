@@ -61,11 +61,11 @@ export default function Logo({
   if (showText === "responsive") {
     textContent = (
       <>
-        <span className="shrink-0 whitespace-nowrap text-lg font-bold tracking-tight text-ecaa-green-900 transition-colors duration-300 group-hover:text-ecaa-green-800 xl:hidden xl:text-xl">
+        <span className="shrink-0 whitespace-nowrap text-lg font-bold tracking-tight text-ecaa-green-900 transition-colors duration-300 group-hover:text-ecaa-green-800 lg:hidden lg:text-xl">
           {siteInfo.shortName}
         </span>
-        <span className="hidden h-5 w-px shrink-0 bg-ecaa-border xl:block" aria-hidden="true" />
-        <span className="hidden max-w-[14rem] truncate text-sm text-ecaa-ink-subtle xl:inline 2xl:max-w-[17rem]">
+        <span className="hidden h-5 w-px shrink-0 bg-ecaa-border lg:block" aria-hidden="true" />
+        <span className="hidden max-w-[14rem] truncate text-sm text-ecaa-ink-subtle lg:inline 2xl:max-w-[17rem]">
           {displayName}
         </span>
       </>

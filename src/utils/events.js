@@ -3,6 +3,12 @@ import { supabase } from "../lib/supabaseClient";
 import { sanitizeStoredImageUrl, resolvePublicImageUrl } from "../lib/uploadMedia";
 import { getDirectImageUrl } from "./mediaUrl";
 import { filterVerifiedContent, hasUsableText } from "./data";
+import {
+  assertAdminSession,
+  ensureDeletableUuid,
+  logAdminDeleteInDev,
+  mapAdminDeleteError,
+} from "./adminAuth";
 
 function hasSupabaseConfig() {
   return Boolean(import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY);
@@ -262,9 +268,26 @@ export async function saveEvent(event) {
   return normalizeEvent(data);
 }
 
-export async function deleteEvent(slug) {
-  const { error } = await supabase.from("events").delete().eq("slug", slug);
-  if (error) throw error;
+export async function hideEventFromSite(id) {
+  await assertAdminSession();
+  ensureDeletableUuid(id, "event");
+  await logAdminDeleteInDev();
+
+  const { error } = await supabase
+    .from("events")
+    .update({ visible: false, published: false })
+    .eq("id", id);
+
+  if (error) throw mapAdminDeleteError(error);
+}
+
+export async function deleteEvent(id) {
+  await assertAdminSession();
+  ensureDeletableUuid(id, "event");
+  await logAdminDeleteInDev();
+
+  const { error } = await supabase.from("events").delete().eq("id", id);
+  if (error) throw mapAdminDeleteError(error);
 }
 
 export function getEventRawImageUrl(event, { preferCover = false } = {}) {

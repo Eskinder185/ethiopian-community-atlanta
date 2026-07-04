@@ -40,7 +40,7 @@ export default function TrustCredibilitySection({ data }) {
 
   return (
     <section className="home-section surface-cream" aria-labelledby="trust-heading">
-      <Container className="home-section-inner">
+      <Container>
         <AnimateIn>
           <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-14">
             <div>

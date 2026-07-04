@@ -7,10 +7,13 @@ import ImageUpload from "../../components/admin/ImageUpload";
 import StatusBadge from "../../components/admin/StatusBadge";
 import EditorContentTabs from "../../components/admin/EditorContentTabs";
 import { useAdminLanguage } from "../../context/AdminLanguageContext";
+import { isValidUuid } from "../../utils/uuid";
+import { InvalidUuidForDeleteError } from "../../utils/adminAuth";
 import { uploadFolders } from "../../config/assets";
 import {
   createEmptyProgram,
   fetchProgramsForAdmin,
+  hideProgramFromSite,
   saveProgram,
   slugifyTitle,
 } from "../../utils/programs";
@@ -69,6 +72,7 @@ export default function AdminPrograms() {
   const [selectedSlug, setSelectedSlug] = useState(null);
   const [draft, setDraft] = useState(null);
   const [saving, setSaving] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [editorLang, setEditorLang] = useState("en");
@@ -376,6 +380,37 @@ export default function AdminPrograms() {
       );
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleRemoveFromSite = async () => {
+    if (!draft?.id || !window.confirm(adminT("programs.removeFromSiteConfirm"))) return;
+
+    if (!isValidUuid(draft.id)) {
+      setErrorMessage(adminT("common.invalidUuidDelete"));
+      return;
+    }
+
+    setDeleting(true);
+    setErrorMessage("");
+    setStatusMessage("");
+
+    try {
+      await hideProgramFromSite(draft.id);
+      const refreshed = await fetchProgramsForAdmin();
+      setPrograms(refreshed.filter((program) => program.visible !== false));
+      setDraft(null);
+      setSelectedSlug(null);
+      setStatusMessage(adminT("messages.programRemoved"));
+    } catch (removeError) {
+      console.error("Remove program failed:", removeError);
+      if (removeError instanceof InvalidUuidForDeleteError) {
+        setErrorMessage(adminT("common.invalidUuidDelete"));
+      } else {
+        setErrorMessage(removeError?.message || adminT("common.deleteError"));
+      }
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -1140,6 +1175,17 @@ export default function AdminPrograms() {
             <SaveButton loading={saving} savingText={adminT("common.saving")}>
               {adminT("programs.saveProgram")}
             </SaveButton>
+            {draft.id && isValidUuid(draft.id) && selectedSlug !== "__new__" && (
+              <button
+                type="button"
+                onClick={handleRemoveFromSite}
+                disabled={deleting}
+                aria-label={adminT("programs.deleteProgram")}
+                className="btn btn-secondary btn-sm disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {deleting ? adminT("common.deleting") : adminT("programs.deleteProgram")}
+              </button>
+            )}
             <button
               type="button"
               onClick={() => {

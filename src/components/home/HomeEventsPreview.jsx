@@ -22,8 +22,8 @@ export default function HomeEventsPreview({ section, events = [] }) {
   const hasItems = items.length > 0;
 
   return (
-    <section className="home-section surface-white" aria-labelledby="home-events-heading">
-      <Container className="home-section-inner">
+    <section className="ecaa-section surface-white" aria-labelledby="home-events-heading">
+      <Container>
         <AnimateIn>
           <HomeSectionHeader
             id="home-events-heading"
@@ -52,7 +52,7 @@ export default function HomeEventsPreview({ section, events = [] }) {
             </div>
           ) : (
             <EmptyState
-              className="mt-10 rounded-ecaa-xl border border-ecaa-border/70 bg-ecaa-cream/40 p-8 text-center shadow-ecaa-sm sm:p-10"
+              className="mt-8 rounded-3xl border border-emerald-100 bg-white/80 px-5 py-10 text-center shadow-ecaa-sm sm:mt-10 sm:px-8 md:py-14"
               headingLevel="h3"
               title={emptyState.title || "Upcoming events will be posted soon."}
               description={emptyState.description || ""}
